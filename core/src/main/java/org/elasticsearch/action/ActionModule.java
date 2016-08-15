@@ -19,13 +19,6 @@
 
 package org.elasticsearch.action;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import org.elasticsearch.action.admin.cluster.allocation.ClusterAllocationExplainAction;
 import org.elasticsearch.action.admin.cluster.allocation.TransportClusterAllocationExplainAction;
 import org.elasticsearch.action.admin.cluster.health.ClusterHealthAction;
@@ -43,6 +36,8 @@ import org.elasticsearch.action.admin.cluster.node.tasks.get.GetTaskAction;
 import org.elasticsearch.action.admin.cluster.node.tasks.get.TransportGetTaskAction;
 import org.elasticsearch.action.admin.cluster.node.tasks.list.ListTasksAction;
 import org.elasticsearch.action.admin.cluster.node.tasks.list.TransportListTasksAction;
+import org.elasticsearch.action.admin.cluster.node.usage.NodesUsageAction;
+import org.elasticsearch.action.admin.cluster.node.usage.TransportNodesUsageAction;
 import org.elasticsearch.action.admin.cluster.repositories.delete.DeleteRepositoryAction;
 import org.elasticsearch.action.admin.cluster.repositories.delete.TransportDeleteRepositoryAction;
 import org.elasticsearch.action.admin.cluster.repositories.get.GetRepositoriesAction;
@@ -208,8 +203,6 @@ import org.elasticsearch.plugins.ActionPlugin;
 import org.elasticsearch.plugins.ActionPlugin.ActionHandler;
 import org.elasticsearch.rest.RestController;
 import org.elasticsearch.rest.RestHandler;
-import org.elasticsearch.rest.action.RestFieldStatsAction;
-import org.elasticsearch.rest.action.RestMainAction;
 import org.elasticsearch.rest.action.admin.cluster.RestCancelTasksAction;
 import org.elasticsearch.rest.action.admin.cluster.RestClusterAllocationExplainAction;
 import org.elasticsearch.rest.action.admin.cluster.RestClusterGetSettingsAction;
@@ -231,6 +224,7 @@ import org.elasticsearch.rest.action.admin.cluster.RestListTasksAction;
 import org.elasticsearch.rest.action.admin.cluster.RestNodesHotThreadsAction;
 import org.elasticsearch.rest.action.admin.cluster.RestNodesInfoAction;
 import org.elasticsearch.rest.action.admin.cluster.RestNodesStatsAction;
+import org.elasticsearch.rest.action.admin.cluster.RestNodesUsageAction;
 import org.elasticsearch.rest.action.admin.cluster.RestPendingClusterTasksAction;
 import org.elasticsearch.rest.action.admin.cluster.RestPutRepositoryAction;
 import org.elasticsearch.rest.action.admin.cluster.RestPutStoredScriptAction;
@@ -272,6 +266,7 @@ import org.elasticsearch.rest.action.admin.indices.RestTypesExistsAction;
 import org.elasticsearch.rest.action.admin.indices.RestUpdateSettingsAction;
 import org.elasticsearch.rest.action.admin.indices.RestUpgradeAction;
 import org.elasticsearch.rest.action.admin.indices.RestValidateQueryAction;
+import org.elasticsearch.rest.action.bulk.RestBulkAction;
 import org.elasticsearch.rest.action.cat.AbstractCatAction;
 import org.elasticsearch.rest.action.cat.RestAliasAction;
 import org.elasticsearch.rest.action.cat.RestAllocationAction;
@@ -289,41 +284,37 @@ import org.elasticsearch.rest.action.cat.RestShardsAction;
 import org.elasticsearch.rest.action.cat.RestSnapshotAction;
 import org.elasticsearch.rest.action.cat.RestTasksAction;
 import org.elasticsearch.rest.action.cat.RestThreadPoolAction;
-import org.elasticsearch.rest.action.document.RestBulkAction;
-import org.elasticsearch.rest.action.document.RestDeleteAction;
-import org.elasticsearch.rest.action.document.RestGetAction;
-import org.elasticsearch.rest.action.document.RestGetSourceAction;
-import org.elasticsearch.rest.action.document.RestHeadAction;
-import org.elasticsearch.rest.action.document.RestIndexAction;
-import org.elasticsearch.rest.action.document.RestMultiGetAction;
-import org.elasticsearch.rest.action.document.RestMultiTermVectorsAction;
-import org.elasticsearch.rest.action.document.RestTermVectorsAction;
-import org.elasticsearch.rest.action.document.RestUpdateAction;
+import org.elasticsearch.rest.action.delete.RestDeleteAction;
+import org.elasticsearch.rest.action.explain.RestExplainAction;
+import org.elasticsearch.rest.action.fieldstats.RestFieldStatsAction;
+import org.elasticsearch.rest.action.get.RestGetAction;
+import org.elasticsearch.rest.action.get.RestGetSourceAction;
+import org.elasticsearch.rest.action.get.RestHeadAction;
+import org.elasticsearch.rest.action.get.RestMultiGetAction;
+import org.elasticsearch.rest.action.index.RestIndexAction;
 import org.elasticsearch.rest.action.ingest.RestDeletePipelineAction;
 import org.elasticsearch.rest.action.ingest.RestGetPipelineAction;
 import org.elasticsearch.rest.action.ingest.RestPutPipelineAction;
 import org.elasticsearch.rest.action.ingest.RestSimulatePipelineAction;
+import org.elasticsearch.rest.action.main.RestMainAction;
 import org.elasticsearch.rest.action.search.RestClearScrollAction;
-import org.elasticsearch.rest.action.search.RestExplainAction;
 import org.elasticsearch.rest.action.search.RestMultiSearchAction;
 import org.elasticsearch.rest.action.search.RestSearchAction;
 import org.elasticsearch.rest.action.search.RestSearchScrollAction;
-import org.elasticsearch.rest.action.search.RestSuggestAction;
+import org.elasticsearch.rest.action.suggest.RestSuggestAction;
+import org.elasticsearch.rest.action.termvectors.RestMultiTermVectorsAction;
+import org.elasticsearch.rest.action.termvectors.RestTermVectorsAction;
+import org.elasticsearch.rest.action.update.RestUpdateAction;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static java.util.Collections.unmodifiableList;
 import static java.util.Collections.unmodifiableMap;
-
-/**
-Usage
-*/
-import org.elasticsearch.action.admin.cluster.node.usage.ClearNodesUsageAction;
-import org.elasticsearch.action.admin.cluster.node.usage.NodesUsageAction;
-import org.elasticsearch.action.admin.cluster.node.usage.TransportClearNodesUsageAction;
-import org.elasticsearch.action.admin.cluster.node.usage.TransportNodesUsageAction;
-import org.elasticsearch.rest.action.admin.cluster.RestClearNodesUsageAction;
-import org.elasticsearch.rest.action.admin.cluster.RestNodesUsageAction;
-import org.elasticsearch.usage.UsageService;
-
 
 /**
  * Builds and binds the generic action map, all {@link TransportAction}s, and {@link ActionFilters}.
@@ -340,16 +331,16 @@ public class ActionModule extends AbstractModule {
     private final RestController restController;
 
     public ActionModule(boolean ingestEnabled, boolean transportClient, Settings settings, IndexNameExpressionResolver resolver,
-    		ClusterSettings clusterSettings, List<ActionPlugin> actionPlugins, UsageService usageService) {
+            ClusterSettings clusterSettings, List<ActionPlugin> actionPlugins) {
         this.transportClient = transportClient;
         this.settings = settings;
         this.actionPlugins = actionPlugins;
         actions = setupActions(actionPlugins);
         actionFilters = setupActionFilters(actionPlugins, ingestEnabled);
-        autoCreateIndex = transportClient ? null : new AutoCreateIndex(settings, clusterSettings, resolver);
+        autoCreateIndex = transportClient ? null : new AutoCreateIndex(settings, resolver);
         destructiveOperations = new DestructiveOperations(settings, clusterSettings);
         Set<String> headers = actionPlugins.stream().flatMap(p -> p.getRestHeaders().stream()).collect(Collectors.toSet());
-        restController = new RestController(settings, headers, usageService);
+        restController = new RestController(settings, headers);
     }
 
     public Map<String, ActionHandler<?, ?>> getActions() {
@@ -378,6 +369,7 @@ public class ActionModule extends AbstractModule {
         actions.register(MainAction.INSTANCE, TransportMainAction.class);
         actions.register(NodesInfoAction.INSTANCE, TransportNodesInfoAction.class);
         actions.register(NodesStatsAction.INSTANCE, TransportNodesStatsAction.class);
+        actions.register(NodesUsageAction.INSTANCE, TransportNodesUsageAction.class);
         actions.register(NodesHotThreadsAction.INSTANCE, TransportNodesHotThreadsAction.class);
         actions.register(ListTasksAction.INSTANCE, TransportListTasksAction.class);
         actions.register(GetTaskAction.INSTANCE, TransportGetTaskAction.class);
@@ -466,11 +458,6 @@ public class ActionModule extends AbstractModule {
         actions.register(DeletePipelineAction.INSTANCE, DeletePipelineTransportAction.class);
         actions.register(SimulatePipelineAction.INSTANCE, SimulatePipelineTransportAction.class);
 
-        //Usage
-        actions.register(NodesUsageAction.INSTANCE, TransportNodesUsageAction.class);
-        actions.register(ClearNodesUsageAction.INSTANCE, TransportClearNodesUsageAction.class);
-
-
         actionPlugins.stream().flatMap(p -> p.getActions().stream()).forEach(actions::register);
 
         return unmodifiableMap(actions.getRegistry());
@@ -497,6 +484,7 @@ public class ActionModule extends AbstractModule {
         registerRestHandler(handlers, RestMainAction.class);
         registerRestHandler(handlers, RestNodesInfoAction.class);
         registerRestHandler(handlers, RestNodesStatsAction.class);
+        registerRestHandler(handlers, RestNodesUsageAction.class);
         registerRestHandler(handlers, RestNodesHotThreadsAction.class);
         registerRestHandler(handlers, RestClusterAllocationExplainAction.class);
         registerRestHandler(handlers, RestClusterStatsAction.class);
@@ -562,7 +550,7 @@ public class ActionModule extends AbstractModule {
         registerRestHandler(handlers, RestHeadAction.Source.class);
         registerRestHandler(handlers, RestMultiGetAction.class);
         registerRestHandler(handlers, RestDeleteAction.class);
-        registerRestHandler(handlers, org.elasticsearch.rest.action.document.RestCountAction.class);
+        registerRestHandler(handlers, org.elasticsearch.rest.action.count.RestCountAction.class);
         registerRestHandler(handlers, RestSuggestAction.class);
         registerRestHandler(handlers, RestTermVectorsAction.class);
         registerRestHandler(handlers, RestMultiTermVectorsAction.class);
@@ -620,12 +608,6 @@ public class ActionModule extends AbstractModule {
         registerRestHandler(handlers, RestNodeAttrsAction.class);
         registerRestHandler(handlers, RestRepositoriesAction.class);
         registerRestHandler(handlers, RestSnapshotAction.class);
-
-
-        //Usage
-        registerRestHandler(handlers, RestNodesUsageAction.class);
-        registerRestHandler(handlers, RestClearNodesUsageAction.class);
-
         for (ActionPlugin plugin : actionPlugins) {
             for (Class<? extends RestHandler> handler : plugin.getRestHandlers()) {
                 registerRestHandler(handlers, handler);

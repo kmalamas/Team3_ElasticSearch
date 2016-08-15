@@ -57,10 +57,6 @@ import org.elasticsearch.action.admin.cluster.node.tasks.list.ListTasksAction;
 import org.elasticsearch.action.admin.cluster.node.tasks.list.ListTasksRequest;
 import org.elasticsearch.action.admin.cluster.node.tasks.list.ListTasksRequestBuilder;
 import org.elasticsearch.action.admin.cluster.node.tasks.list.ListTasksResponse;
-import org.elasticsearch.action.admin.cluster.node.usage.ClearNodesUsageAction;
-import org.elasticsearch.action.admin.cluster.node.usage.ClearNodesUsageRequest;
-import org.elasticsearch.action.admin.cluster.node.usage.ClearNodesUsageRequestBuilder;
-import org.elasticsearch.action.admin.cluster.node.usage.ClearNodesUsageResponse;
 import org.elasticsearch.action.admin.cluster.node.usage.NodesUsageAction;
 import org.elasticsearch.action.admin.cluster.node.usage.NodesUsageRequest;
 import org.elasticsearch.action.admin.cluster.node.usage.NodesUsageRequestBuilder;
@@ -833,22 +829,6 @@ public abstract class AbstractClient extends AbstractComponent implements Client
         public NodesUsageRequestBuilder prepareNodesUsage(String... nodesIds) {
             return new NodesUsageRequestBuilder(this, NodesUsageAction.INSTANCE).setNodesIds(nodesIds);
         }
-
-        @Override
-        public ActionFuture<ClearNodesUsageResponse> clearNodesUsage(final ClearNodesUsageRequest request) {
-            return execute(ClearNodesUsageAction.INSTANCE, request);
-        }
-
-        @Override
-        public void clearNodesUsage(final ClearNodesUsageRequest request, final ActionListener<ClearNodesUsageResponse> listener) {
-            execute(ClearNodesUsageAction.INSTANCE, request, listener);
-        }
-
-        @Override
-        public ClearNodesUsageRequestBuilder prepareClearNodesUsage(String... nodesIds) {
-            return new ClearNodesUsageRequestBuilder(this, ClearNodesUsageAction.INSTANCE).setNodesIds(nodesIds);
-        }
-
 
         @Override
         public ActionFuture<ClusterStatsResponse> clusterStats(ClusterStatsRequest request) {
