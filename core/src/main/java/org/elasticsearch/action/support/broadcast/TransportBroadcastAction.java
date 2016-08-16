@@ -43,6 +43,7 @@ import org.elasticsearch.transport.TransportException;
 import org.elasticsearch.transport.TransportRequestHandler;
 import org.elasticsearch.transport.TransportResponseHandler;
 import org.elasticsearch.transport.TransportService;
+import org.elasticsearch.usage.UsageService;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReferenceArray;
@@ -60,9 +61,9 @@ public abstract class TransportBroadcastAction<Request extends BroadcastRequest<
     final String transportShardAction;
 
     protected TransportBroadcastAction(Settings settings, String actionName, ThreadPool threadPool, ClusterService clusterService,
-                                       TransportService transportService, ActionFilters actionFilters, IndexNameExpressionResolver indexNameExpressionResolver,
-                                       Supplier<Request> request, Supplier<ShardRequest> shardRequest, String shardExecutor) {
-        super(settings, actionName, threadPool, transportService, actionFilters, indexNameExpressionResolver, request);
+            TransportService transportService, ActionFilters actionFilters, IndexNameExpressionResolver indexNameExpressionResolver,
+            Supplier<Request> request, Supplier<ShardRequest> shardRequest, String shardExecutor, UsageService usageService) {
+        super(settings, actionName, threadPool, transportService, actionFilters, indexNameExpressionResolver, request, usageService);
         this.clusterService = clusterService;
         this.transportService = transportService;
         this.transportShardAction = actionName + "[s]";

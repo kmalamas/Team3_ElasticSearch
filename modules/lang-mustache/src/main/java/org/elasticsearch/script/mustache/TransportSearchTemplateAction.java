@@ -36,12 +36,12 @@ import org.elasticsearch.indices.query.IndicesQueriesRegistry;
 import org.elasticsearch.script.ExecutableScript;
 import org.elasticsearch.script.Script;
 import org.elasticsearch.script.ScriptService;
-import org.elasticsearch.search.SearchRequestParsers;
 import org.elasticsearch.search.aggregations.AggregatorParsers;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.elasticsearch.search.suggest.Suggesters;
 import org.elasticsearch.threadpool.ThreadPool;
 import org.elasticsearch.transport.TransportService;
+import org.elasticsearch.usage.UsageService;
 
 import static java.util.Collections.emptyMap;
 import static org.elasticsearch.script.ScriptContext.Standard.SEARCH;
@@ -52,17 +52,22 @@ public class TransportSearchTemplateAction extends HandledTransportAction<Search
 
     private final ScriptService scriptService;
     private final TransportSearchAction searchAction;
-    private final SearchRequestParsers searchRequestParsers;
+    private final IndicesQueriesRegistry queryRegistry;
+    private final AggregatorParsers aggsParsers;
+    private final Suggesters suggesters;
 
     @Inject
     public TransportSearchTemplateAction(Settings settings, ThreadPool threadPool, TransportService transportService,
-                                         ActionFilters actionFilters, IndexNameExpressionResolver resolver,
-                                         ScriptService scriptService,
-                                         TransportSearchAction searchAction, SearchRequestParsers searchRequestParsers) {
-        super(settings, SearchTemplateAction.NAME, threadPool, transportService, actionFilters, resolver, SearchTemplateRequest::new);
+            ActionFilters actionFilters, IndexNameExpressionResolver resolver, ScriptService scriptService,
+            TransportSearchAction searchAction, IndicesQueriesRegistry indicesQueryRegistry, AggregatorParsers aggregatorParsers,
+            Suggesters suggesters, UsageService usageService) {
+        super(settings, SearchTemplateAction.NAME, threadPool, transportService, actionFilters, resolver, SearchTemplateRequest::new,
+                usageService);
         this.scriptService = scriptService;
         this.searchAction = searchAction;
-        this.searchRequestParsers = searchRequestParsers;
+        this.queryRegistry = indicesQueryRegistry;
+        this.aggsParsers = aggregatorParsers;
+        this.suggesters = suggesters;
     }
 
     @Override
@@ -85,8 +90,7 @@ public class TransportSearchTemplateAction extends HandledTransportAction<Search
 
             try (XContentParser parser = XContentFactory.xContent(source).createParser(source)) {
                 SearchSourceBuilder builder = SearchSourceBuilder.searchSource();
-                builder.parseXContent(new QueryParseContext(searchRequestParsers.queryParsers, parser, parseFieldMatcher),
-                    searchRequestParsers.aggParsers, searchRequestParsers.suggesters);
+                builder.parseXContent(new QueryParseContext(queryRegistry, parser, parseFieldMatcher), aggsParsers, suggesters);
                 searchRequest.source(builder);
 
                 searchAction.execute(searchRequest, new ActionListener<SearchResponse>() {

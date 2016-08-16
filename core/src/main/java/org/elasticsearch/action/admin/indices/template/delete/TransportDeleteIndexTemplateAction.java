@@ -33,6 +33,7 @@ import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.threadpool.ThreadPool;
 import org.elasticsearch.transport.TransportService;
+import org.elasticsearch.usage.UsageService;
 
 /**
  * Delete index action.
@@ -43,9 +44,10 @@ public class TransportDeleteIndexTemplateAction extends TransportMasterNodeActio
 
     @Inject
     public TransportDeleteIndexTemplateAction(Settings settings, TransportService transportService, ClusterService clusterService,
-                                              ThreadPool threadPool, MetaDataIndexTemplateService indexTemplateService,
-                                              ActionFilters actionFilters, IndexNameExpressionResolver indexNameExpressionResolver) {
-        super(settings, DeleteIndexTemplateAction.NAME, transportService, clusterService, threadPool, actionFilters, indexNameExpressionResolver, DeleteIndexTemplateRequest::new);
+            ThreadPool threadPool, MetaDataIndexTemplateService indexTemplateService, ActionFilters actionFilters,
+            IndexNameExpressionResolver indexNameExpressionResolver, UsageService usageService) {
+        super(settings, DeleteIndexTemplateAction.NAME, transportService, clusterService, threadPool, actionFilters,
+                indexNameExpressionResolver, DeleteIndexTemplateRequest::new, usageService);
         this.indexTemplateService = indexTemplateService;
     }
 

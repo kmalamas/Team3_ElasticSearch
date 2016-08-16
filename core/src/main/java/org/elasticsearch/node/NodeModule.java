@@ -19,10 +19,10 @@
 
 package org.elasticsearch.node;
 
-import org.elasticsearch.cluster.routing.allocation.DiskThresholdMonitor;
 import org.elasticsearch.common.inject.AbstractModule;
 import org.elasticsearch.monitor.MonitorService;
 import org.elasticsearch.node.service.NodeService;
+import org.elasticsearch.usage.UsageService;
 
 public class NodeModule extends AbstractModule {
 
@@ -39,6 +39,6 @@ public class NodeModule extends AbstractModule {
         bind(Node.class).toInstance(node);
         bind(MonitorService.class).toInstance(monitorService);
         bind(NodeService.class).asEagerSingleton();
-        bind(DiskThresholdMonitor.class).asEagerSingleton();
+        bind(UsageService.class).asEagerSingleton();
     }
 }

@@ -47,13 +47,15 @@ import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.common.xcontent.XContentHelper;
 import org.elasticsearch.common.xcontent.XContentType;
-import org.elasticsearch.rest.action.admin.cluster.RestListTasksAction;
+import org.elasticsearch.discovery.Discovery;
 import org.elasticsearch.tasks.Task;
 import org.elasticsearch.tasks.TaskId;
 import org.elasticsearch.tasks.TaskInfo;
+import org.elasticsearch.test.NoopDiscovery;
 import org.elasticsearch.test.tasks.MockTaskManager;
 import org.elasticsearch.threadpool.ThreadPool;
 import org.elasticsearch.transport.TransportService;
+import org.elasticsearch.usage.UsageService;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -66,7 +68,6 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.function.Consumer;
 
 import static org.elasticsearch.action.support.PlainActionFuture.newFuture;
 import static org.hamcrest.Matchers.containsString;
@@ -172,8 +173,8 @@ public class TransportTasksActionTests extends TaskManagerTestCase {
     abstract class TestNodesAction extends AbstractTestNodesAction<NodesRequest, NodeRequest> {
 
         TestNodesAction(Settings settings, String actionName, ThreadPool threadPool,
-                        ClusterService clusterService, TransportService transportService) {
-            super(settings, actionName, threadPool, clusterService, transportService, NodesRequest::new, NodeRequest::new);
+                ClusterService clusterService, TransportService transportService, UsageService usageService) {
+            super(settings, actionName, threadPool, clusterService, transportService, NodesRequest::new, NodeRequest::new, usageService);
         }
 
         @Override
@@ -254,10 +255,10 @@ public class TransportTasksActionTests extends TaskManagerTestCase {
     abstract static class TestTasksAction extends TransportTasksAction<Task, TestTasksRequest, TestTasksResponse, TestTaskResponse> {
 
         protected TestTasksAction(Settings settings, String actionName, ThreadPool threadPool,
-                ClusterService clusterService, TransportService transportService) {
+                ClusterService clusterService, TransportService transportService, UsageService usageService) {
             super(settings, actionName, threadPool, clusterService, transportService, new ActionFilters(new HashSet<>()),
                     new IndexNameExpressionResolver(Settings.EMPTY), TestTasksRequest::new, TestTasksResponse::new,
-                    ThreadPool.Names.MANAGEMENT);
+                    ThreadPool.Names.MANAGEMENT, usageService);
         }
 
         @Override
@@ -299,8 +300,10 @@ public class TransportTasksActionTests extends TaskManagerTestCase {
         TestNodesAction[] actions = new TestNodesAction[nodesCount];
         for (int i = 0; i < testNodes.length; i++) {
             final int node = i;
+            Discovery discovery = new NoopDiscovery();
+            UsageService usageService = new UsageService(discovery, testNodes[i].clusterService.getSettings());
             actions[i] = new TestNodesAction(CLUSTER_SETTINGS, "testAction", threadPool, testNodes[i].clusterService,
-                    testNodes[i].transportService) {
+                    testNodes[i].transportService, usageService) {
                 @Override
                 protected NodeResponse nodeOperation(NodeRequest request) {
                     logger.info("Action on node {}", node);
@@ -584,8 +587,10 @@ public class TransportTasksActionTests extends TaskManagerTestCase {
         RecordingTaskManagerListener[] listeners = setupListeners(testNodes, "testAction*");
         for (int i = 0; i < testNodes.length; i++) {
             final int node = i;
+            Discovery discovery = new NoopDiscovery();
+            UsageService usageService = new UsageService(discovery, testNodes[i].clusterService.getSettings());
             actions[i] = new TestNodesAction(CLUSTER_SETTINGS, "testAction", threadPool, testNodes[i].clusterService,
-                    testNodes[i].transportService) {
+                    testNodes[i].transportService, usageService) {
                 @Override
                 protected NodeResponse nodeOperation(NodeRequest request) {
                     logger.info("Action on node {}", node);
@@ -624,8 +629,10 @@ public class TransportTasksActionTests extends TaskManagerTestCase {
         for (int i = 0; i < testNodes.length; i++) {
             final int node = i;
             // Simulate task action that fails on one of the tasks on one of the nodes
+            Discovery discovery = new NoopDiscovery();
+            UsageService usageService = new UsageService(discovery, testNodes[i].clusterService.getSettings());
             tasksActions[i] = new TestTasksAction(CLUSTER_SETTINGS, "testTasksAction", threadPool, testNodes[i].clusterService,
-                    testNodes[i].transportService) {
+                    testNodes[i].transportService, usageService) {
                 @Override
                 protected TestTaskResponse taskOperation(TestTasksRequest request, Task task) {
                     logger.info("Task action on node {}", node);
@@ -682,8 +689,10 @@ public class TransportTasksActionTests extends TaskManagerTestCase {
             final int node = i;
             // Simulate a task action that works on all nodes except nodes listed in filterNodes.
             // We are testing that it works.
+            Discovery discovery = new NoopDiscovery();
+            UsageService usageService = new UsageService(discovery, testNodes[i].clusterService.getSettings());
             tasksActions[i] = new TestTasksAction(CLUSTER_SETTINGS, "testTasksAction", threadPool,
-                testNodes[i].clusterService, testNodes[i].transportService) {
+                    testNodes[i].clusterService, testNodes[i].transportService, usageService) {
 
                 @Override
                 protected String[] filterNodeIds(DiscoveryNodes nodes, String[] nodesIds) {
@@ -738,7 +747,7 @@ public class TransportTasksActionTests extends TaskManagerTestCase {
         ListTasksResponse response = testNodes[0].transportListTasksAction.execute(listTasksRequest).get();
         assertEquals(testNodes.length + 1, response.getTasks().size());
 
-        Map<String, Object> byNodes = serialize(response, true);
+        Map<String, Object> byNodes = serialize(response, new ToXContent.MapParams(Collections.singletonMap("group_by", "nodes")));
         byNodes = (Map<String, Object>) byNodes.get("nodes");
         // One element on the top level
         assertEquals(testNodes.length, byNodes.size());
@@ -752,7 +761,7 @@ public class TransportTasksActionTests extends TaskManagerTestCase {
         }
 
         // Group by parents
-        Map<String, Object> byParent = serialize(response, false);
+        Map<String, Object> byParent = serialize(response, new ToXContent.MapParams(Collections.singletonMap("group_by", "parents")));
         byParent = (Map<String, Object>) byParent.get("tasks");
         // One element on the top level
         assertEquals(1, byParent.size()); // Only one top level task
@@ -765,15 +774,10 @@ public class TransportTasksActionTests extends TaskManagerTestCase {
         }
     }
 
-    private Map<String, Object> serialize(ListTasksResponse response, boolean byParents) throws IOException {
+    private Map<String, Object> serialize(ToXContent response, ToXContent.Params params) throws IOException {
         XContentBuilder builder = XContentFactory.contentBuilder(XContentType.JSON);
         builder.startObject();
-        if (byParents) {
-            DiscoveryNodes nodes = testNodes[0].clusterService.state().nodes();
-            response.toXContentGroupedByNode(builder, ToXContent.EMPTY_PARAMS, nodes);
-        } else {
-            response.toXContentGroupedByParents(builder, ToXContent.EMPTY_PARAMS);
-        }
+        response.toXContent(builder, params);
         builder.endObject();
         builder.flush();
         logger.info(builder.string());

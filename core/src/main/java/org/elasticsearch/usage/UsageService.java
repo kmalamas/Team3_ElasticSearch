@@ -20,72 +20,45 @@
 package org.elasticsearch.usage;
 
 import org.elasticsearch.action.admin.cluster.node.usage.NodeUsage;
-import org.elasticsearch.cluster.node.DiscoveryNode;
 import org.elasticsearch.common.component.AbstractComponent;
 import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.rest.RestHandler;
+import org.elasticsearch.discovery.Discovery;
 
+import java.io.Closeable;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.LongAdder;
-import java.util.function.Supplier;
 
-/**
- * A service to monitor usage of Elasticsearch features.
- */
-public class UsageService extends AbstractComponent {
+public class UsageService extends AbstractComponent implements Closeable {
 
-    private final Supplier<DiscoveryNode> localNodeSupplier;
-    private final Map<String, LongAdder> restUsage;
+    private final Discovery discovery;
+    private final Map<String, Long> actionUsage;
     private long sinceTime;
 
     @Inject
-    public UsageService(Supplier<DiscoveryNode> localNodeSupplier, Settings settings) {
+    public UsageService(Discovery discovery, Settings settings) {
         super(settings);
-        this.localNodeSupplier = localNodeSupplier;
-        this.restUsage = new ConcurrentHashMap<>();
+        this.discovery = discovery;
+        this.actionUsage = new HashMap<>();
         this.sinceTime = System.currentTimeMillis();
     }
 
-    /**
-     * record a call to a REST endpoint.
-     *
-     * @param actionName
-     *            the class name of the {@link RestHandler} called for this
-     *            endpoint.
-     */
-    public void addRestCall(String actionName) {
-        LongAdder counter = restUsage.computeIfAbsent(actionName, key -> new LongAdder());
-        counter.increment();
-    }
-
-    public void clear() {
-        this.sinceTime = System.currentTimeMillis();
-        this.restUsage.clear();
-    }
-
-    /**
-     * Get the current usage statistics for this node.
-     *
-     * @param restActions
-     *            whether to include rest action usage in the returned
-     *            statistics
-     * @return the {@link NodeUsage} representing the usage statistics for this
-     *         node
-     */
-    public NodeUsage getUsageStats(boolean restActions) {
-        Map<String, Long> restUsageMap;
-        if (restActions) {
-            restUsageMap = new HashMap<>();
-            restUsage.forEach((key, value) -> {
-                restUsageMap.put(key, value.longValue());
-            });
-        } else {
-            restUsageMap = null;
+    public void addActionCall(String actionName) {
+        Long counter = actionUsage.get(actionName);
+        if (counter == null) {
+            counter = 0L;
         }
-        return new NodeUsage(localNodeSupplier.get(), System.currentTimeMillis(), sinceTime, restUsageMap);
+        actionUsage.put(actionName, ++counter);
+    }
+
+    public NodeUsage getUsageStats() {
+        return new NodeUsage(discovery.localNode(), System.currentTimeMillis(), sinceTime, actionUsage);
+    }
+
+    @Override
+    public void close() throws IOException {
+        discovery.close();
     }
 
 }

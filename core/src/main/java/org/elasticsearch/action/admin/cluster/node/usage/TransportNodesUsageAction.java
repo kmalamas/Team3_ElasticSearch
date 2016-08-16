@@ -47,7 +47,7 @@ public class TransportNodesUsageAction
             TransportService transportService, NodeService nodeService, ActionFilters actionFilters,
             IndexNameExpressionResolver indexNameExpressionResolver, UsageService usageService) {
         super(settings, NodesUsageAction.NAME, threadPool, clusterService, transportService, actionFilters, indexNameExpressionResolver,
-                NodesUsageRequest::new, NodeUsageRequest::new, ThreadPool.Names.MANAGEMENT, NodeUsage.class);
+                NodesUsageRequest::new, NodeUsageRequest::new, ThreadPool.Names.MANAGEMENT, NodeUsage.class, usageService);
         this.usageService = usageService;
     }
 
@@ -68,8 +68,8 @@ public class TransportNodesUsageAction
 
     @Override
     protected NodeUsage nodeOperation(NodeUsageRequest nodeUsageRequest) {
-        NodesUsageRequest request = nodeUsageRequest.request;
-        return usageService.getUsageStats(request.restActions());
+        NodesUsageRequest request = nodeUsageRequest.request; // NOCOMMIT use the request
+        return usageService.getUsageStats();
     }
 
     @Override

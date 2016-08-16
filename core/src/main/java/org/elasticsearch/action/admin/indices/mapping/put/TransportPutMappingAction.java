@@ -37,6 +37,7 @@ import org.elasticsearch.index.Index;
 import org.elasticsearch.index.IndexNotFoundException;
 import org.elasticsearch.threadpool.ThreadPool;
 import org.elasticsearch.transport.TransportService;
+import org.elasticsearch.usage.UsageService;
 
 /**
  * Put mapping action.
@@ -47,9 +48,10 @@ public class TransportPutMappingAction extends TransportMasterNodeAction<PutMapp
 
     @Inject
     public TransportPutMappingAction(Settings settings, TransportService transportService, ClusterService clusterService,
-                                     ThreadPool threadPool, MetaDataMappingService metaDataMappingService,
-                                     ActionFilters actionFilters, IndexNameExpressionResolver indexNameExpressionResolver) {
-        super(settings, PutMappingAction.NAME, transportService, clusterService, threadPool, actionFilters, indexNameExpressionResolver, PutMappingRequest::new);
+            ThreadPool threadPool, MetaDataMappingService metaDataMappingService, ActionFilters actionFilters,
+            IndexNameExpressionResolver indexNameExpressionResolver, UsageService usageService) {
+        super(settings, PutMappingAction.NAME, transportService, clusterService, threadPool, actionFilters, indexNameExpressionResolver,
+                PutMappingRequest::new, usageService);
         this.metaDataMappingService = metaDataMappingService;
     }
 

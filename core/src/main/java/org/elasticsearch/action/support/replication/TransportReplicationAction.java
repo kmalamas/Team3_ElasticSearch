@@ -19,8 +19,6 @@
 
 package org.elasticsearch.action.support.replication;
 
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.message.ParameterizedMessage;
 import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.action.ActionListener;
 import org.elasticsearch.action.ActionListenerResponseHandler;
@@ -45,7 +43,6 @@ import org.elasticsearch.cluster.service.ClusterService;
 import org.elasticsearch.common.io.stream.StreamInput;
 import org.elasticsearch.common.lease.Releasable;
 import org.elasticsearch.common.lease.Releasables;
-import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.common.util.concurrent.AbstractRunnable;
@@ -59,6 +56,7 @@ import org.elasticsearch.indices.IndicesService;
 import org.elasticsearch.node.NodeClosedException;
 import org.elasticsearch.tasks.Task;
 import org.elasticsearch.threadpool.ThreadPool;
+import org.elasticsearch.transport.TransportResponseHandler;
 import org.elasticsearch.transport.ConnectTransportException;
 import org.elasticsearch.transport.TransportChannel;
 import org.elasticsearch.transport.TransportChannelResponseHandler;
@@ -67,7 +65,7 @@ import org.elasticsearch.transport.TransportRequestHandler;
 import org.elasticsearch.transport.TransportRequestOptions;
 import org.elasticsearch.transport.TransportResponse;
 import org.elasticsearch.transport.TransportResponse.Empty;
-import org.elasticsearch.transport.TransportResponseHandler;
+import org.elasticsearch.usage.UsageService;
 import org.elasticsearch.transport.TransportService;
 
 import java.io.IOException;
@@ -101,15 +99,14 @@ public abstract class TransportReplicationAction<
     final String transportPrimaryAction;
     private final ReplicasProxy replicasProxy;
 
-    protected static final Logger logger = Loggers.getLogger(TransportReplicationAction.class);
-
     protected TransportReplicationAction(Settings settings, String actionName, TransportService transportService,
                                          ClusterService clusterService, IndicesService indicesService,
                                          ThreadPool threadPool, ShardStateAction shardStateAction,
                                          ActionFilters actionFilters,
                                          IndexNameExpressionResolver indexNameExpressionResolver, Supplier<Request> request,
-                                         Supplier<ReplicaRequest> replicaRequest, String executor) {
-        super(settings, actionName, threadPool, actionFilters, indexNameExpressionResolver, transportService.getTaskManager());
+                                         Supplier<ReplicaRequest> replicaRequest, String executor, UsageService usageService) {
+        super(settings, actionName, threadPool, actionFilters, indexNameExpressionResolver, transportService.getTaskManager(),
+                usageService);
         this.transportService = transportService;
         this.clusterService = clusterService;
         this.indicesService = indicesService;
@@ -220,9 +217,7 @@ public abstract class TransportReplicationAction<
                         channel.sendResponse(e);
                     } catch (Exception inner) {
                         inner.addSuppressed(e);
-                        logger.warn(
-                            (org.apache.logging.log4j.util.Supplier<?>)
-                                () -> new ParameterizedMessage("Failed to send response for {}", actionName), inner);
+                        logger.warn("Failed to send response for {}", inner, actionName);
                     }
                 }
             });
@@ -345,7 +340,6 @@ public abstract class TransportReplicationAction<
                     try {
                         channel.sendResponse(e);
                     } catch (IOException e1) {
-                        logger.error(e1);
                         logger.warn("failed to send response", e);
                     }
                 }
@@ -452,13 +446,7 @@ public abstract class TransportReplicationAction<
         @Override
         public void onFailure(Exception e) {
             if (e instanceof RetryOnReplicaException) {
-                logger.trace(
-                    (org.apache.logging.log4j.util.Supplier<?>)
-                        () -> new ParameterizedMessage(
-                            "Retrying operation on replica, action [{}], request [{}]",
-                            transportReplicaAction,
-                            request),
-                    e);
+                logger.trace("Retrying operation on replica, action [{}], request [{}]", e, transportReplicaAction, request);
                 final ThreadContext.StoredContext context = threadPool.getThreadContext().newStoredContext();
                 observer.waitForNextChange(new ClusterStateObserver.Listener() {
                     @Override
@@ -493,12 +481,7 @@ public abstract class TransportReplicationAction<
                 channel.sendResponse(e);
             } catch (IOException responseException) {
                 responseException.addSuppressed(e);
-                logger.warn(
-                    (org.apache.logging.log4j.util.Supplier<?>)
-                        () -> new ParameterizedMessage(
-                            "failed to send error message back to client for action [{}]",
-                            transportReplicaAction),
-                    responseException);
+                logger.warn("failed to send error message back to client for action [{}]", responseException, transportReplicaAction);
             }
         }
 
@@ -701,12 +684,8 @@ public abstract class TransportReplicationAction<
                         final Throwable cause = exp.unwrapCause();
                         if (cause instanceof ConnectTransportException || cause instanceof NodeClosedException ||
                             (isPrimaryAction && retryPrimaryException(cause))) {
-                            logger.trace(
-                                (org.apache.logging.log4j.util.Supplier<?>) () -> new ParameterizedMessage(
-                                    "received an error from node [{}] for request [{}], scheduling a retry",
-                                    node.getId(),
-                                    request),
-                                exp);
+                            logger.trace("received an error from node [{}] for request [{}], scheduling a retry", exp, node.getId(),
+                                request);
                             retry(exp);
                         } else {
                             finishAsFailed(exp);
@@ -727,7 +706,6 @@ public abstract class TransportReplicationAction<
                 return;
             }
             setPhase(task, "waiting_for_retry");
-            request.onRetry();
             final ThreadContext.StoredContext context = threadPool.getThreadContext().newStoredContext();
             observer.waitForNextChange(new ClusterStateObserver.Listener() {
                 @Override
@@ -753,9 +731,7 @@ public abstract class TransportReplicationAction<
         void finishAsFailed(Exception failure) {
             if (finished.compareAndSet(false, true)) {
                 setPhase(task, "failed");
-                logger.trace(
-                    (org.apache.logging.log4j.util.Supplier<?>)
-                        () -> new ParameterizedMessage("operation failed. action [{}], request [{}]", actionName, request), failure);
+                logger.trace("operation failed. action [{}], request [{}]", failure, actionName, request);
                 listener.onFailure(failure);
             } else {
                 assert false : "finishAsFailed called but operation is already finished";
@@ -763,13 +739,7 @@ public abstract class TransportReplicationAction<
         }
 
         void finishWithUnexpectedFailure(Exception failure) {
-            logger.warn(
-                (org.apache.logging.log4j.util.Supplier<?>)
-                    () -> new ParameterizedMessage(
-                        "unexpected error during the primary phase for action [{}], request [{}]",
-                        actionName,
-                        request),
-                failure);
+            logger.warn("unexpected error during the primary phase for action [{}], request [{}]", failure, actionName, request);
             if (finished.compareAndSet(false, true)) {
                 setPhase(task, "failed");
                 listener.onFailure(failure);
@@ -899,39 +869,29 @@ public abstract class TransportReplicationAction<
 
         @Override
         public void failShard(ShardRouting replica, long primaryTerm, String message, Exception exception,
-                              Runnable onSuccess, Consumer<Exception> onPrimaryDemoted, Consumer<Exception> onIgnoredFailure) {
-            shardStateAction.remoteShardFailed(replica.shardId(), replica.allocationId().getId(), primaryTerm, message, exception,
-                createListener(onSuccess, onPrimaryDemoted, onIgnoredFailure));
-        }
+                              Runnable onSuccess, Consumer<Exception> onFailure, Consumer<Exception> onIgnoredFailure) {
+            shardStateAction.remoteShardFailed(
+                replica, primaryTerm, message, exception,
+                new ShardStateAction.Listener() {
+                    @Override
+                    public void onSuccess() {
+                        onSuccess.run();
+                    }
 
-        @Override
-        public void markShardCopyAsStale(ShardId shardId, String allocationId, long primaryTerm, Runnable onSuccess,
-                                         Consumer<Exception> onPrimaryDemoted, Consumer<Exception> onIgnoredFailure) {
-            shardStateAction.remoteShardFailed(shardId, allocationId, primaryTerm, "mark copy as stale", null,
-                createListener(onSuccess, onPrimaryDemoted, onIgnoredFailure));
-        }
-
-        private ShardStateAction.Listener createListener(final Runnable onSuccess, final Consumer<Exception> onPrimaryDemoted,
-                                                         final Consumer<Exception> onIgnoredFailure) {
-            return new ShardStateAction.Listener() {
-                @Override
-                public void onSuccess() {
-                    onSuccess.run();
-                }
-
-                @Override
-                public void onFailure(Exception shardFailedError) {
-                    if (shardFailedError instanceof ShardStateAction.NoLongerPrimaryShardException) {
-                        onPrimaryDemoted.accept(shardFailedError);
-                    } else {
-                        // these can occur if the node is shutting down and are okay
-                        // any other exception here is not expected and merits investigation
-                        assert shardFailedError instanceof TransportException ||
-                            shardFailedError instanceof NodeClosedException : shardFailedError;
-                        onIgnoredFailure.accept(shardFailedError);
+                    @Override
+                    public void onFailure(Exception shardFailedError) {
+                        if (shardFailedError instanceof ShardStateAction.NoLongerPrimaryShardException) {
+                            onFailure.accept(shardFailedError);
+                        } else {
+                            // these can occur if the node is shutting down and are okay
+                            // any other exception here is not expected and merits investigation
+                            assert shardFailedError instanceof TransportException ||
+                                shardFailedError instanceof NodeClosedException : shardFailedError;
+                            onIgnoredFailure.accept(shardFailedError);
+                        }
                     }
                 }
-            };
+            );
         }
     }
 
