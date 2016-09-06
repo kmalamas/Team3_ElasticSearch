@@ -1,0 +1,19 @@
+Format: 1.8
+Date: Tue, 6 Sep 2016 21:53:32 +0200
+Source: elasticsearch
+Binary: elasticsearch
+Architecture: all
+Version: 5.0.0-alpha6-SNAPSHOT
+Urgency: low
+Maintainer: Elasticsearch Team <info@elastic.co>
+Changed-By: Elasticsearch Team <info@elastic.co>
+Description:
+ elasticsearch - Elasticsearch is a distributed RESTful search engine built for the cloud. Reference documentation can be found at https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html and the 'Elasticsearch: The Definitive Guide' book can be found at https://www.elastic.co/guide/en/elasticsearch/guide/current/index.html
+Changes:
+ elasticsearch (5.0.0-alpha6-SNAPSHOT) ; urgency=low
+Checksums-Sha1:
+ b37783f84887998764fd33ac16985c899db10583 32759766 elasticsearch-5.0.0-alpha6-SNAPSHOT.deb
+Checksums-Sha256:
+ 728b21ade8dde3e1d1411f0337feda9a5b064e75559d5bae78e08a24609188b3 32759766 elasticsearch-5.0.0-alpha6-SNAPSHOT.deb
+Files:
+ 7c6ae1bf94a5ad68992fa75799baf58b 32759766 web optional elasticsearch-5.0.0-alpha6-SNAPSHOT.deb

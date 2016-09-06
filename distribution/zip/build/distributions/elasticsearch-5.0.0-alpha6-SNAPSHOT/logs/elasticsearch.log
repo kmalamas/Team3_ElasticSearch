@@ -1,0 +1,25 @@
+[2016-09-06T22:05:53,846][INFO ][node                     ] [] initializing ...
+[2016-09-06T22:05:53,947][INFO ][env                      ] [-Wgvx0k] using [1] data paths, mounts [[/ (/dev/disk1)]], net usable_space [59.6gb], net total_space [111.8gb], spins? [unknown], types [hfs]
+[2016-09-06T22:05:53,948][INFO ][env                      ] [-Wgvx0k] heap size [1.9gb], compressed ordinary object pointers [true]
+[2016-09-06T22:05:53,950][INFO ][node                     ] [-Wgvx0k] node name [-Wgvx0k] derived from node ID; set [node.name] to override
+[2016-09-06T22:05:53,952][INFO ][node                     ] [-Wgvx0k] version[5.0.0-alpha6-SNAPSHOT], pid[18565], build[724e8ec/2016-09-05T19:31:19.380Z], OS[Mac OS X/10.11.6/x86_64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/1.8.0_101/25.101-b13]
+[2016-09-06T22:05:55,147][INFO ][plugins                  ] [-Wgvx0k] loaded module [aggs-matrix-stats]
+[2016-09-06T22:05:55,147][INFO ][plugins                  ] [-Wgvx0k] loaded module [ingest-common]
+[2016-09-06T22:05:55,147][INFO ][plugins                  ] [-Wgvx0k] loaded module [lang-expression]
+[2016-09-06T22:05:55,147][INFO ][plugins                  ] [-Wgvx0k] loaded module [lang-groovy]
+[2016-09-06T22:05:55,147][INFO ][plugins                  ] [-Wgvx0k] loaded module [lang-mustache]
+[2016-09-06T22:05:55,147][INFO ][plugins                  ] [-Wgvx0k] loaded module [lang-painless]
+[2016-09-06T22:05:55,147][INFO ][plugins                  ] [-Wgvx0k] loaded module [percolator]
+[2016-09-06T22:05:55,148][INFO ][plugins                  ] [-Wgvx0k] loaded module [reindex]
+[2016-09-06T22:05:55,148][INFO ][plugins                  ] [-Wgvx0k] loaded module [transport-netty3]
+[2016-09-06T22:05:55,148][INFO ][plugins                  ] [-Wgvx0k] loaded module [transport-netty4]
+[2016-09-06T22:05:55,148][INFO ][plugins                  ] [-Wgvx0k] no plugins loaded
+[2016-09-06T22:05:57,756][INFO ][node                     ] [-Wgvx0k] initialized
+[2016-09-06T22:05:57,757][INFO ][node                     ] [-Wgvx0k] starting ...
+[2016-09-06T22:05:57,973][INFO ][transport                ] [-Wgvx0k] publish_address {127.0.0.1:9300}, bound_addresses {[fe80::1]:9300}, {[::1]:9300}, {127.0.0.1:9300}
+[2016-09-06T22:06:01,111][INFO ][cluster.service          ] [-Wgvx0k] new_master {-Wgvx0k}{-Wgvx0kkTBus530gaP17Bw}{SBgeKJw4SPmBPtpX0KFXWQ}{127.0.0.1}{127.0.0.1:9300}, reason: zen-disco-elected-as-master ([0] nodes joined)
+[2016-09-06T22:06:01,133][INFO ][http                     ] [-Wgvx0k] publish_address {127.0.0.1:9200}, bound_addresses {[fe80::1]:9200}, {[::1]:9200}, {127.0.0.1:9200}
+[2016-09-06T22:06:01,133][INFO ][node                     ] [-Wgvx0k] started
+[2016-09-06T22:06:01,139][INFO ][gateway                  ] [-Wgvx0k] recovered [0] indices into cluster_state
+[2016-09-06T22:06:21,805][INFO ][node                     ] [-Wgvx0k] stopping ...
+[2016-09-06T22:06:21,817][INFO ][node                     ] [-Wgvx0k] stopped
