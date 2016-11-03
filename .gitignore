@@ -1,18 +1,4 @@
 .DS_Store
 .sonar/
 sonar-project.properties
-.settings
-benchmarks/
-buldSrc/
-client/
-qa/
-rest-api-spec/
-test/
-build/
-distribution/
-dev-tools/
-docs/
-plugins/
-modules/
-
 
