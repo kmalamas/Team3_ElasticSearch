@@ -16,11 +16,13 @@
 
 package org.elasticsearch.common.inject;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.common.inject.internal.Errors;
 import org.elasticsearch.common.inject.internal.ErrorsException;
 import org.elasticsearch.common.inject.internal.InternalContext;
 import org.elasticsearch.common.inject.internal.InternalFactory;
 import org.elasticsearch.common.inject.spi.Dependency;
+import org.elasticsearch.common.logging.Loggers;
 
 /**
  * @author crazybob@google.com (Bob Lee)
@@ -29,6 +31,7 @@ class ProviderToInternalFactoryAdapter<T> implements Provider<T> {
 
     private final InjectorImpl injector;
     private final InternalFactory<? extends T> internalFactory;
+    private static final Logger logger = Loggers.getLogger(ProviderToInternalFactoryAdapter.class);
 
     public ProviderToInternalFactoryAdapter(InjectorImpl injector,
                                             InternalFactory<? extends T> internalFactory) {
@@ -50,6 +53,7 @@ class ProviderToInternalFactoryAdapter<T> implements Provider<T> {
             errors.throwIfNewErrors(0);
             return t;
         } catch (ErrorsException e) {
+            logger.error(e);
             throw new ProvisionException(errors.merge(e.getErrors()).getMessages());
         }
     }

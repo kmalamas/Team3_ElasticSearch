@@ -16,12 +16,14 @@
 
 package org.elasticsearch.common.inject;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.common.inject.BindingProcessor.CreationListener;
 import org.elasticsearch.common.inject.internal.Errors;
 import org.elasticsearch.common.inject.internal.ErrorsException;
 import org.elasticsearch.common.inject.internal.InternalContext;
 import org.elasticsearch.common.inject.internal.InternalFactory;
 import org.elasticsearch.common.inject.spi.Dependency;
+import org.elasticsearch.common.logging.Loggers;
 
 /**
  * Delegates to a custom factory which is also bound in the injector.
@@ -32,6 +34,8 @@ class BoundProviderFactory<T> implements InternalFactory<T>, CreationListener {
     final Key<? extends Provider<? extends T>> providerKey;
     final Object source;
     private InternalFactory<? extends Provider<? extends T>> providerFactory;
+
+    private static final Logger logger = Loggers.getLogger(BoundProviderFactory.class);
 
     BoundProviderFactory(
             InjectorImpl injector,
@@ -47,6 +51,7 @@ class BoundProviderFactory<T> implements InternalFactory<T>, CreationListener {
         try {
             providerFactory = injector.getInternalFactory(providerKey, errors.withSource(source));
         } catch (ErrorsException e) {
+            logger.error(e);
             errors.merge(e.getErrors());
         }
     }

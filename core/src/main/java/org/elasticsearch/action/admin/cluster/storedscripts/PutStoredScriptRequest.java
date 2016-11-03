@@ -19,11 +19,13 @@
 
 package org.elasticsearch.action.admin.cluster.storedscripts;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.action.ActionRequestValidationException;
 import org.elasticsearch.action.support.master.AcknowledgedRequest;
 import org.elasticsearch.common.bytes.BytesReference;
 import org.elasticsearch.common.io.stream.StreamInput;
 import org.elasticsearch.common.io.stream.StreamOutput;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.xcontent.XContentHelper;
 
 import java.io.IOException;
@@ -35,6 +37,7 @@ public class PutStoredScriptRequest extends AcknowledgedRequest<PutStoredScriptR
     private String id;
     private String scriptLang;
     private BytesReference script;
+    private static final Logger logger = Loggers.getLogger(PutStoredScriptRequest.class);
 
     public PutStoredScriptRequest() {
         super();
@@ -119,7 +122,7 @@ public class PutStoredScriptRequest extends AcknowledgedRequest<PutStoredScriptR
         try {
             sSource = XContentHelper.convertToJson(script, false);
         } catch (Exception e) {
-            // ignore
+            logger.error("Error while building string for put stored script request", e);
         }
         return "put script {[" + id + "][" + scriptLang + "], script[" + sSource + "]}";
     }

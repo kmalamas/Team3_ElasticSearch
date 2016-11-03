@@ -18,10 +18,12 @@
  */
 package org.elasticsearch.common.util;
 
+import org.apache.logging.log4j.Logger;
 import org.apache.lucene.util.ThreadInterruptedException;
 import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.common.Nullable;
 import org.elasticsearch.common.io.stream.StreamInput;
+import org.elasticsearch.common.logging.Loggers;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -39,6 +41,7 @@ public class CancellableThreads {
     // needs to be volatile as it is also read outside of synchronized blocks.
     private volatile boolean cancelled = false;
     private String reason;
+    private static final Logger logger = Loggers.getLogger(CancellableThreads.class);
 
     public synchronized boolean isCancelled() {
         return cancelled;
@@ -110,8 +113,10 @@ public class CancellableThreads {
             // been interrupted externally (which we don't support).
             cancelledByExternalInterrupt = !cancelled;
         } catch (RuntimeException t) {
+            logger.error(t);
             runtimeException = t;
         } catch (IOException e) {
+            logger.error(e);
             ioException = e;
         } finally {
             remove();

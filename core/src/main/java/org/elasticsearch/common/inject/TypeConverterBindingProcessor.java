@@ -17,6 +17,7 @@
 
 package org.elasticsearch.common.inject;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.common.inject.internal.Errors;
 import org.elasticsearch.common.inject.internal.MatcherAndConverter;
 import org.elasticsearch.common.inject.internal.SourceProvider;
@@ -26,6 +27,7 @@ import org.elasticsearch.common.inject.matcher.Matcher;
 import org.elasticsearch.common.inject.matcher.Matchers;
 import org.elasticsearch.common.inject.spi.TypeConverter;
 import org.elasticsearch.common.inject.spi.TypeConverterBinding;
+import org.elasticsearch.common.logging.Loggers;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -38,6 +40,8 @@ import java.lang.reflect.Type;
  * @author jessewilson@google.com (Jesse Wilson)
  */
 class TypeConverterBindingProcessor extends AbstractProcessor {
+
+    private static final Logger logger = Loggers.getLogger(TypeConverterBindingProcessor.class);
 
     TypeConverterBindingProcessor(Errors errors) {
         super(errors);
@@ -133,8 +137,10 @@ class TypeConverterBindingProcessor extends AbstractProcessor {
                     try {
                         return parser.invoke(null, value);
                     } catch (IllegalAccessException e) {
+                        logger.error(e);
                         throw new AssertionError(e);
                     } catch (InvocationTargetException e) {
+                        logger.error(e);
                         throw new RuntimeException(e.getTargetException());
                     }
                 }

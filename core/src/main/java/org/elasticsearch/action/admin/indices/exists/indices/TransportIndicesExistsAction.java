@@ -19,6 +19,7 @@
 
 package org.elasticsearch.action.admin.indices.exists.indices;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.action.ActionListener;
 import org.elasticsearch.action.support.ActionFilters;
 import org.elasticsearch.action.support.IndicesOptions;
@@ -29,6 +30,7 @@ import org.elasticsearch.cluster.block.ClusterBlockLevel;
 import org.elasticsearch.cluster.metadata.IndexNameExpressionResolver;
 import org.elasticsearch.cluster.service.ClusterService;
 import org.elasticsearch.common.inject.Inject;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.index.IndexNotFoundException;
 import org.elasticsearch.threadpool.ThreadPool;
@@ -38,6 +40,8 @@ import org.elasticsearch.transport.TransportService;
  * Indices exists action.
  */
 public class TransportIndicesExistsAction extends TransportMasterNodeReadAction<IndicesExistsRequest, IndicesExistsResponse> {
+
+    private static final Logger logger = Loggers.getLogger(TransportIndicesExistsAction.class);
 
     @Inject
     public TransportIndicesExistsAction(Settings settings, TransportService transportService, ClusterService clusterService,
@@ -71,6 +75,7 @@ public class TransportIndicesExistsAction extends TransportMasterNodeReadAction<
             indexNameExpressionResolver.concreteIndexNames(state, request);
             exists = true;
         } catch (IndexNotFoundException e) {
+            logger.error("Error while mastering operation", e);
             exists = false;
         }
         listener.onResponse(new IndicesExistsResponse(exists));

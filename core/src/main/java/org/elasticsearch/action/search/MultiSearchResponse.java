@@ -19,6 +19,7 @@
 
 package org.elasticsearch.action.search;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.ExceptionsHelper;
 import org.elasticsearch.action.ActionResponse;
@@ -26,6 +27,7 @@ import org.elasticsearch.common.Nullable;
 import org.elasticsearch.common.io.stream.StreamInput;
 import org.elasticsearch.common.io.stream.StreamOutput;
 import org.elasticsearch.common.io.stream.Streamable;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.xcontent.ToXContent;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
@@ -38,6 +40,8 @@ import java.util.Iterator;
  * A multi search response.
  */
 public class MultiSearchResponse extends ActionResponse implements Iterable<MultiSearchResponse.Item>, ToXContent {
+
+    private static final Logger logger = Loggers.getLogger(MultiSearchResponse.class);
 
     /**
      * A search response item, holding the actual search response, or an error message if it failed.
@@ -183,6 +187,7 @@ public class MultiSearchResponse extends ActionResponse implements Iterable<Mult
             builder.endObject();
             return builder.string();
         } catch (IOException e) {
+            logger.error(e);
             return "{ \"error\" : \"" + e.getMessage() + "\"}";
         }
     }

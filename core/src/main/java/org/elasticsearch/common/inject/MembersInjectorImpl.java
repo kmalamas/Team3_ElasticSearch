@@ -16,11 +16,13 @@
 
 package org.elasticsearch.common.inject;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.common.inject.internal.Errors;
 import org.elasticsearch.common.inject.internal.ErrorsException;
 import org.elasticsearch.common.inject.internal.InternalContext;
 import org.elasticsearch.common.inject.spi.InjectionListener;
 import org.elasticsearch.common.inject.spi.InjectionPoint;
+import org.elasticsearch.common.logging.Loggers;
 
 import java.util.List;
 import java.util.Set;
@@ -39,6 +41,7 @@ class MembersInjectorImpl<T> implements MembersInjector<T> {
     private final List<SingleMemberInjector> memberInjectors;
     private final List<MembersInjector<? super T>> userMembersInjectors;
     private final List<InjectionListener<? super T>> injectionListeners;
+    private static final Logger logger = Loggers.getLogger(MembersInjectorImpl.class);
 
     MembersInjectorImpl(InjectorImpl injector, TypeLiteral<T> typeLiteral,
                         EncounterImpl<T> encounter, List<SingleMemberInjector> memberInjectors) {
@@ -59,6 +62,7 @@ class MembersInjectorImpl<T> implements MembersInjector<T> {
         try {
             injectAndNotify(instance, errors);
         } catch (ErrorsException e) {
+            logger.error(e);
             errors.merge(e.getErrors());
         }
 

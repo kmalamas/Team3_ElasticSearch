@@ -19,7 +19,9 @@
 
 package org.elasticsearch.action.admin.cluster.snapshots.status;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.cluster.SnapshotsInProgress.State;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.snapshots.Snapshot;
 import org.elasticsearch.common.io.stream.StreamInput;
 import org.elasticsearch.common.io.stream.StreamOutput;
@@ -56,6 +58,8 @@ public class SnapshotStatus implements ToXContent, Streamable {
     private SnapshotShardsStats shardsStats;
 
     private SnapshotStats stats;
+
+    private static final Logger logger = Loggers.getLogger(SnapshotStatus.class);
 
     SnapshotStatus(final Snapshot snapshot, final State state, final List<SnapshotIndexShardStatus> shards) {
         this.snapshot = Objects.requireNonNull(snapshot);
@@ -166,6 +170,7 @@ public class SnapshotStatus implements ToXContent, Streamable {
             builder.endObject();
             return builder.string();
         } catch (IOException e) {
+            logger.error("Error while building string for snapshot status", e);
             return "{ \"error\" : \"" + e.getMessage() + "\"}";
         }
     }
