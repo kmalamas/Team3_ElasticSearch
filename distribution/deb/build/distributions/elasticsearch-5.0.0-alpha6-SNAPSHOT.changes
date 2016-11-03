@@ -1,5 +1,5 @@
 Format: 1.8
-Date: Tue, 6 Sep 2016 21:53:32 +0200
+Date: Thu, 3 Nov 2016 15:26:06 +0100
 Source: elasticsearch
 Binary: elasticsearch
 Architecture: all
@@ -12,8 +12,8 @@ Description:
 Changes:
  elasticsearch (5.0.0-alpha6-SNAPSHOT) ; urgency=low
 Checksums-Sha1:
- b37783f84887998764fd33ac16985c899db10583 32759766 elasticsearch-5.0.0-alpha6-SNAPSHOT.deb
+ 1d73736713bcab049e3f640898a07592b3dc0bd9 32770036 elasticsearch-5.0.0-alpha6-SNAPSHOT.deb
 Checksums-Sha256:
- 728b21ade8dde3e1d1411f0337feda9a5b064e75559d5bae78e08a24609188b3 32759766 elasticsearch-5.0.0-alpha6-SNAPSHOT.deb
+ 6f493b10804908367d964b611c47d9e64770bc5315e563a17a3c44fec7302238 32770036 elasticsearch-5.0.0-alpha6-SNAPSHOT.deb
 Files:
- 7c6ae1bf94a5ad68992fa75799baf58b 32759766 web optional elasticsearch-5.0.0-alpha6-SNAPSHOT.deb
+ 6a69a364ddbfc8d90c8c11339f65c2c7 32770036 web optional elasticsearch-5.0.0-alpha6-SNAPSHOT.deb

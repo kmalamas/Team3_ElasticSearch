@@ -21,8 +21,8 @@
   </developers>
   <name>repository-azure</name>
   <description>The Azure Repository plugin adds support for Azure storage repositories.</description>
-  <url>https://github.com/elastic/elasticsearch.git</url>
+  <url>https://github.com/SoftwareEvolutionProject/Team3.git</url>
   <scm>
-    <url>https://github.com/elastic/elasticsearch.git</url>
+    <url>https://github.com/SoftwareEvolutionProject/Team3.git</url>
   </scm>
 </project>

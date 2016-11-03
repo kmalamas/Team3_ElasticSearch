@@ -5,13 +5,13 @@ Implementation-Version: 5.0.0-alpha6-SNAPSHOT
 Built-Status: integration
 Built-By: kmala
 Built-OS: Windows 10
-Build-Date: 2016-09-18T11:10:26.878Z
+Build-Date: 2016-11-03T14:17:45.365Z
 Gradle-Version: 2.13
 Created-By: 1.8.0_102-b14 (Oracle Corporation)
 Build-Java-Version: 1.8
 Module-Source: /buildSrc
 Module-Origin: https://github.com/SoftwareEvolutionProject/Team3.git
-Change: f9bf8d1
+Change: 245160e
 Branch: master
 X-Compile-Target-JDK: 1.8
 X-Compile-Source-JDK: 1.8

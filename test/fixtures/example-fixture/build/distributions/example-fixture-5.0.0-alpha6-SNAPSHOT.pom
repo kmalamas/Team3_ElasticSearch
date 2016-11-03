@@ -20,8 +20,8 @@
   </developers>
   <name>example-fixture</name>
   <description>Elasticsearch subproject :test:fixtures:example-fixture</description>
-  <url>https://github.com/elastic/elasticsearch</url>
+  <url>https://github.com/SoftwareEvolutionProject/Team3</url>
   <scm>
-    <url>https://github.com/elastic/elasticsearch.git</url>
+    <url>https://github.com/SoftwareEvolutionProject/Team3.git</url>
   </scm>
 </project>

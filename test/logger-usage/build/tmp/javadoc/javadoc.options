@@ -1,9 +1,9 @@
 -Xdoclint:all,-missing '-quiet'
--classpath '/Users/slsh/Documents/git/elasticsearch/test/logger-usage/build/classes/main:/Users/slsh/Documents/git/elasticsearch/test/logger-usage/build/resources/main:/Users/slsh/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm-debug-all/5.0.4/702b8525fcf81454235e5e2fa2a35f15ffc0ec7e/asm-debug-all-5.0.4.jar'
--d '/Users/slsh/Documents/git/elasticsearch/test/logger-usage/build/docs/javadoc'
+-classpath 'C:\\Users\\kmala\\workspace\\Team3\\test\\logger-usage\\build\\classes\\main;C:\\Users\\kmala\\workspace\\Team3\\test\\logger-usage\\build\\resources\\main;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.ow2.asm\\asm-debug-all\\5.0.4\\702b8525fcf81454235e5e2fa2a35f15ffc0ec7e\\asm-debug-all-5.0.4.jar'
+-d 'C:\\Users\\kmala\\workspace\\Team3\\test\\logger-usage\\build\\docs\\javadoc'
 -doctitle 'logger-usage 5.0.0-alpha6-SNAPSHOT API'
 -encoding 'UTF8'
 -quiet 
 -windowtitle 'logger-usage 5.0.0-alpha6-SNAPSHOT API'
-'/Users/slsh/Documents/git/elasticsearch/test/logger-usage/src/main/java/org/elasticsearch/test/loggerusage/ESLoggerUsageChecker.java'
-'/Users/slsh/Documents/git/elasticsearch/test/logger-usage/src/main/java/org/elasticsearch/test/loggerusage/SuppressForbidden.java'
+'C:\\Users\\kmala\\workspace\\Team3\\test\\logger-usage\\src\\main\\java\\org\\elasticsearch\\test\\loggerusage\\ESLoggerUsageChecker.java'
+'C:\\Users\\kmala\\workspace\\Team3\\test\\logger-usage\\src\\main\\java\\org\\elasticsearch\\test\\loggerusage\\SuppressForbidden.java'

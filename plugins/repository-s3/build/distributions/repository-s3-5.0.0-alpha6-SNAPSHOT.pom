@@ -21,8 +21,8 @@
   </developers>
   <name>repository-s3</name>
   <description>The S3 repository plugin adds S3 repositories</description>
-  <url>https://github.com/elastic/elasticsearch.git</url>
+  <url>https://github.com/SoftwareEvolutionProject/Team3.git</url>
   <scm>
-    <url>https://github.com/elastic/elasticsearch.git</url>
+    <url>https://github.com/SoftwareEvolutionProject/Team3.git</url>
   </scm>
 </project>
