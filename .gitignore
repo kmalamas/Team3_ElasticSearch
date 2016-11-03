@@ -45,3 +45,5 @@ html_docs
 backwards/
 eclipse-build
 
+# sonar stuff
+sonar-project.properties

@@ -19,6 +19,7 @@
 
 package org.elasticsearch.action.admin.indices.validate.query;
 
+import org.apache.logging.log4j.Logger;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.MatchNoDocsQuery;
 import org.apache.lucene.search.Query;
@@ -38,6 +39,7 @@ import org.elasticsearch.cluster.service.ClusterService;
 import org.elasticsearch.common.ParsingException;
 import org.elasticsearch.common.Randomness;
 import org.elasticsearch.common.inject.Inject;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.util.BigArrays;
 import org.elasticsearch.index.IndexService;
@@ -74,6 +76,8 @@ public class TransportValidateQueryAction extends TransportBroadcastAction<Valid
     private final BigArrays bigArrays;
 
     private final FetchPhase fetchPhase;
+
+    private static final Logger logger = Loggers.getLogger(TransportValidateQueryAction.class);
 
     @Inject
     public TransportValidateQueryAction(Settings settings, ThreadPool threadPool, ClusterService clusterService,
@@ -185,9 +189,11 @@ public class TransportValidateQueryAction extends TransportBroadcastAction<Valid
                 explanation = searchContext.filteredQuery().query().toString();
             }
         } catch (QueryShardException|ParsingException e) {
+            logger.error(e);
             valid = false;
             error = e.getDetailedMessage();
         } catch (AssertionError|IOException e) {
+            logger.error(e);
             valid = false;
             error = e.getMessage();
         } finally {

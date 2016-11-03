@@ -19,6 +19,7 @@
 
 package org.elasticsearch.action.admin.cluster.health;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.action.ActionResponse;
 import org.elasticsearch.cluster.ClusterState;
 import org.elasticsearch.cluster.health.ClusterHealthStatus;
@@ -26,6 +27,7 @@ import org.elasticsearch.cluster.health.ClusterIndexHealth;
 import org.elasticsearch.cluster.health.ClusterStateHealth;
 import org.elasticsearch.common.io.stream.StreamInput;
 import org.elasticsearch.common.io.stream.StreamOutput;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.common.xcontent.StatusToXContent;
 import org.elasticsearch.common.xcontent.XContentBuilder;
@@ -48,6 +50,7 @@ public class ClusterHealthResponse extends ActionResponse implements StatusToXCo
     private boolean timedOut = false;
     private ClusterStateHealth clusterStateHealth;
     private ClusterHealthStatus clusterHealthStatus;
+    private static final Logger logger = Loggers.getLogger(ClusterHealthResponse.class);
 
     ClusterHealthResponse() {
     }
@@ -213,6 +216,7 @@ public class ClusterHealthResponse extends ActionResponse implements StatusToXCo
             builder.endObject();
             return builder.string();
         } catch (IOException e) {
+            logger.error("Error while building json health response", e);
             return "{ \"error\" : \"" + e.getMessage() + "\"}";
         }
     }

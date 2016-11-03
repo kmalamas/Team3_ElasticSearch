@@ -16,6 +16,7 @@
 
 package org.elasticsearch.common.inject.spi;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.common.inject.ConfigurationException;
 import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.common.inject.Key;
@@ -25,6 +26,7 @@ import org.elasticsearch.common.inject.internal.Errors;
 import org.elasticsearch.common.inject.internal.ErrorsException;
 import org.elasticsearch.common.inject.internal.MoreTypes;
 import org.elasticsearch.common.inject.internal.Nullability;
+import org.elasticsearch.common.logging.Loggers;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
@@ -58,6 +60,8 @@ public final class InjectionPoint {
     private final boolean optional;
     private final Member member;
     private final List<Dependency<?>> dependencies;
+
+    private static final Logger logger = Loggers.getLogger(InjectionPoint.class);
 
     private InjectionPoint(Member member,
                            List<Dependency<?>> dependencies, boolean optional) {
@@ -94,6 +98,7 @@ public final class InjectionPoint {
         try {
             key = Annotations.getKey(type.getFieldType(field), field, annotations, errors);
         } catch (ErrorsException e) {
+            logger.error(e);
             errors.merge(e.getErrors());
         }
         errors.throwConfigurationExceptionIfErrorsExist();
@@ -117,6 +122,7 @@ public final class InjectionPoint {
                 dependencies.add(newDependency(key, Nullability.allowsNull(paramAnnotations), index));
                 index++;
             } catch (ErrorsException e) {
+                logger.error(e);
                 errors.merge(e.getErrors());
             }
         }
@@ -224,6 +230,7 @@ public final class InjectionPoint {
             checkForMisplacedBindingAnnotations(noArgConstructor, errors);
             return new InjectionPoint(type, noArgConstructor);
         } catch (NoSuchMethodException e) {
+            logger.error(e);
             errors.missingConstructor(rawType);
             throw new ConfigurationException(errors.getMessages());
         }
@@ -338,6 +345,7 @@ public final class InjectionPoint {
                     return;
                 }
             } catch (NoSuchFieldException ignore) {
+                logger.error(ignore);
             }
         }
 
@@ -375,6 +383,7 @@ public final class InjectionPoint {
             try {
                 injectionPoints.add(factory.create(typeLiteral, member, errors));
             } catch (ConfigurationException ignorable) {
+                logger.error(ignorable);
                 if (!inject.optional()) {
                     errors.merge(ignorable.getErrorMessages());
                 }

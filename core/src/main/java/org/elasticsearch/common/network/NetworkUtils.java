@@ -19,8 +19,10 @@
 
 package org.elasticsearch.common.network;
 
+import org.apache.logging.log4j.Logger;
 import org.apache.lucene.util.BytesRef;
 import org.apache.lucene.util.Constants;
+import org.elasticsearch.common.logging.Loggers;
 
 import java.net.Inet4Address;
 import java.net.Inet6Address;
@@ -38,6 +40,8 @@ import java.util.List;
  * Its only intended for that purpose, not general purpose usage!!!!
  */
 public abstract class NetworkUtils {
+
+    private static final Logger logger = Loggers.getLogger(NetworkUtils.class);
 
     /** no instantation */
     private NetworkUtils() {}
@@ -71,6 +75,7 @@ public abstract class NetworkUtils {
                 }
             }
         } catch (SecurityException | SocketException misconfiguration) {
+            logger.error(misconfiguration);
             v = true; // be optimistic, you misconfigure, then you get noise to your screen
         }
         SUPPORTS_V6 = v;

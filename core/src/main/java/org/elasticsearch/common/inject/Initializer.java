@@ -16,9 +16,11 @@
 
 package org.elasticsearch.common.inject;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.common.inject.internal.Errors;
 import org.elasticsearch.common.inject.internal.ErrorsException;
 import org.elasticsearch.common.inject.spi.InjectionPoint;
+import org.elasticsearch.common.logging.Loggers;
 
 import java.util.ArrayList;
 import java.util.IdentityHashMap;
@@ -49,6 +51,8 @@ class Initializer {
      * Maps instances that need injection to a source that registered them
      */
     private final Map<Object, InjectableReference<?>> pendingInjection = new IdentityHashMap<>();
+
+    private static final Logger logger = Loggers.getLogger(Initializer.class);
 
     /**
      * Registers an instance for member injection when that step is performed.
@@ -81,6 +85,7 @@ class Initializer {
             try {
                 reference.validate(errors);
             } catch (ErrorsException e) {
+                logger.error(e);
                 errors.merge(e.getErrors());
             }
         }
@@ -98,6 +103,7 @@ class Initializer {
             try {
                 reference.get(errors);
             } catch (ErrorsException e) {
+                logger.error(e);
                 errors.merge(e.getErrors());
             }
         }
