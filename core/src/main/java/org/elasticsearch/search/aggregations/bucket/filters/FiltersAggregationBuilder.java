@@ -199,6 +199,10 @@ public class FiltersAggregationBuilder extends AbstractAggregationBuilder<Filter
         return builder;
     }
 
+    public static void RefactoredMethod (XContentParser parser)
+    {
+
+    }
     public static FiltersAggregationBuilder parse(String aggregationName, QueryParseContext context)
             throws IOException {
         XContentParser parser = context.parser();
@@ -260,6 +264,10 @@ public class FiltersAggregationBuilder extends AbstractAggregationBuilder<Filter
             }
         }
 
+        return getFiltersAggregationBuilder(aggregationName, keyedFilters, nonKeyedFilters, otherBucketKey, otherBucket);
+    }
+
+    private static FiltersAggregationBuilder getFiltersAggregationBuilder(String aggregationName, List<KeyedFilter> keyedFilters, List<QueryBuilder> nonKeyedFilters, String otherBucketKey, Boolean otherBucket) {
         if (otherBucket && otherBucketKey == null) {
             otherBucketKey = "_other_";
         }
@@ -267,7 +275,7 @@ public class FiltersAggregationBuilder extends AbstractAggregationBuilder<Filter
         FiltersAggregationBuilder factory;
         if (keyedFilters != null) {
             factory = new FiltersAggregationBuilder(aggregationName,
-                    keyedFilters.toArray(new FiltersAggregator.KeyedFilter[keyedFilters.size()]));
+                    keyedFilters.toArray(new KeyedFilter[keyedFilters.size()]));
         } else {
             factory = new FiltersAggregationBuilder(aggregationName,
                     nonKeyedFilters.toArray(new QueryBuilder[nonKeyedFilters.size()]));
