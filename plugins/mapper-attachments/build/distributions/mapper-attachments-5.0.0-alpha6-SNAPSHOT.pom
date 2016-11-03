@@ -21,8 +21,8 @@
   </developers>
   <name>mapper-attachments</name>
   <description>The mapper attachments plugin adds the attachment type to Elasticsearch using Apache Tika.</description>
-  <url>https://github.com/elastic/elasticsearch.git</url>
+  <url>https://github.com/SoftwareEvolutionProject/Team3</url>
   <scm>
-    <url>https://github.com/elastic/elasticsearch.git</url>
+    <url>git@github.com:SoftwareEvolutionProject/Team3.git</url>
   </scm>
 </project>

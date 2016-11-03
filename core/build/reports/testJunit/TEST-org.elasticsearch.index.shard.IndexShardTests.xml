@@ -1,0 +1,376 @@
+<testsuite errors="0" failures="0" tests="40" skipped="1" name="org.elasticsearch.index.shard.IndexShardTests" hostname="nohost.nodomain" time="26.484" timestamp="2016-09-15T12:37:48">
+   <properties class="java.util.ArrayList">
+      <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+      <property name="file.encoding" value="Cp1252"/>
+      <property name="file.encoding.pkg" value="sun.io"/>
+      <property name="file.separator" value="\"/>
+      <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+      <property name="java.awt.headless" value="true"/>
+      <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+      <property name="java.class.path" value="C:\projects\team3\core\build\classes\test;C:\projects\team3\core\build\resources\test;C:\projects\team3\core\build\classes\main;C:\projects\team3\core\build\resources\main;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-core\6.2.0\849ee62525a294416802be2cacc66c80352f6f13\lucene-core-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-analyzers-common\6.2.0\d254d52dd394b5079129f3d5f3bf4f2d44a5936e\lucene-analyzers-common-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-backward-codecs\6.2.0\b625bb21456b3c0d1e5e431bced125cb060c1abd\lucene-backward-codecs-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-grouping\6.2.0\9527fedfd5acc624b2bb3f862bd99fb8f470b053\lucene-grouping-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-highlighter\6.2.0\7ca342372a3f45e32bbd21cecaa757e38eccb8a5\lucene-highlighter-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-join\6.2.0\da0b8de98511abd4fe9c7d48a353d17854c5ed46\lucene-join-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-memory\6.2.0\bc9e075b1ee051c8e5246c237c38d8e71dab8a66\lucene-memory-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-misc\6.2.0\94ddde6312566a4da4a50a88e453b6c82c759b41\lucene-misc-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-queries\6.2.0\dce47238f78e3e97d91dc6fefa9f46f07866bc2b\lucene-queries-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-queryparser\6.2.0\17ef728ac15e668bfa1105321611548424637645\lucene-queryparser-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-sandbox\6.2.0\520183f7b9aba77a26e224760c420a3844b0631a\lucene-sandbox-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-spatial\6.2.0\8dba929b66927b936fbc76103b109ad6c824daee\lucene-spatial-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-spatial-extras\6.2.0\3b5a6ef5cd90c0218a72e9e2f7e60104be2447da\lucene-spatial-extras-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-spatial3d\6.2.0\fcdb0567725722c5145149d1502848b6a96ec18d\lucene-spatial3d-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-suggest\6.2.0\3d9d526c51f483d27f425c75d7e56bc0849242d6\lucene-suggest-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.elasticsearch\securesm\1.1\1e423447d020041534be94c0f31a49fbdc1f2950\securesm-1.1.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\net.sf.jopt-simple\jopt-simple\5.0.2\98cafc6081d5632b61be2c9e60650b64ddbc637c\jopt-simple-5.0.2.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\com.carrotsearch\hppc\0.7.1\8b5057f74ea378c0150a1860874a3ebdcb713767\hppc-0.7.1.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\joda-time\joda-time\2.9.4\1c295b462f16702ebe720bbb08f62e1ba80da41b\joda-time-2.9.4.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.joda\joda-convert\1.2\35ec554f0cd00c956cc69051514d9488b1374dec\joda-convert-1.2.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.yaml\snakeyaml\1.15\3b132bea69e8ee099f416044970997bde80f4ea6\snakeyaml-1.15.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-core\2.8.1\fd13b1c033741d48291315c6370f7d475a42dccf\jackson-core-2.8.1.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.dataformat\jackson-dataformat-smile\2.8.1\5b73867bc12224946fc67fc8d49d9f5e698d7f\jackson-dataformat-smile-2.8.1.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.dataformat\jackson-dataformat-yaml\2.8.1\eb63166c723b0b4b9fb5298fca232a2f6612ec34\jackson-dataformat-yaml-2.8.1.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.dataformat\jackson-dataformat-cbor\2.8.1\3a6fb7e75c9972559a78cf5cfc5a48a41a13ea40\jackson-dataformat-cbor-2.8.1.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\com.tdunning\t-digest\3.0\84ccf145ac2215e6bfa63baa3101c0af41017cfc\t-digest-3.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.hdrhistogram\HdrHistogram\2.1.6\7495feb7f71ee124bd2a7e7d83590e296d71d80e\HdrHistogram-2.1.6.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.locationtech.spatial4j\spatial4j\0.6\21b15310bddcfd8c72611c180f20cf23279809a3\spatial4j-0.6.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\com.vividsolutions\jts\1.13\3ccfb9b60f04d71add996a666ceb8902904fd805\jts-1.13.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.logging.log4j\log4j-api\2.6.2\bd1b74a5d170686362091c7cf596bbc3adf5c09b\log4j-api-2.6.2.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.logging.log4j\log4j-core\2.6.2\a91369f655eb1639c6aece5c5eb5108db18306\log4j-core-2.6.2.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.logging.log4j\log4j-1.2-api\2.6.2\3b4c5a8b734b6a29b2f03380535a48da6284b210\log4j-1.2-api-2.6.2.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\net.java.dev.jna\jna\4.2.2\5012450aee579c3118ff09461d5ce210e0cdc2a9\jna-4.2.2.jar;C:\projects\team3\test\framework\build\distributions\framework-5.0.0-alpha6-SNAPSHOT.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\com.carrotsearch.randomizedtesting\randomizedtesting-runner\2.3.2\307965917fe8a22b7ee72deba39ef4b8e6ebc069\randomizedtesting-runner-2.3.2.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\junit\junit\4.11\4e031bb61df09069aeb2bffb4019e7a5034a4ee0\junit-4.11.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-all\1.3\63a21ebc981131004ad02e0434e799fd7f3a8d5a\hamcrest-all-1.3.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-test-framework\6.2.0\f5026be3983acfb40d4092dbfbc015ec6e6addab\lucene-test-framework-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-codecs\6.2.0\99f887266b0ad9f2c286b3976c5bc48c8cd36624\lucene-codecs-6.2.0.jar;C:\projects\team3\client\rest\build\distributions\rest-5.0.0-alpha6-SNAPSHOT.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpclient\4.5.2\733db77aa8d9b2d68015189df76ab06304406e50\httpclient-4.5.2.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpcore\4.4.5\e7501a1b34325abb00d17dde96150604a0658b54\httpcore-4.4.5.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\commons-logging\commons-logging\1.1.3\f6f66e966c70a83ffbdb6f17a0919eaf7c8aca7f\commons-logging-1.1.3.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\commons-codec\commons-codec\1.10\4b95f4897fa13f2cd904aee711aeafc0c5295cd8\commons-codec-1.10.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.elasticsearch\securemock\1.2\98201d4ad5ac93f6b415ae9172d52b5e7cda490e\securemock-1.2.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpasyncclient\4.1.2\95aa3e6fb520191a0970a73cf09f62948ee614be\httpasyncclient-4.1.2.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpcore-nio\4.4.5\f4be009e7505f6ceddf21e7960c759f413f15056\httpcore-nio-4.4.5.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\com.carrotsearch.randomizedtesting\junit4-ant\2.3.2\dc8f03f6111974092491f35b8269eb0fc57f52f7\junit4-ant-2.3.2.jar"/>
+      <property name="java.class.version" value="52.0"/>
+      <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_65\jre\lib\endorsed"/>
+      <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_65\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
+      <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_65\jre"/>
+      <property name="java.io.tmpdir" value="./temp"/>
+      <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_65\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Ruby22-x64\bin;C:\Imagick;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Skype\Phone\;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Git\cmd;C:\Program Files\OpenVPN\bin;C:\Program Files\nodejs\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\cURL\bin;C:\Program Files\gradle\2.13\bin;C:\Program Files\CMake\bin;C:\Program Files\flex_bison;C:\Program Files\doxygen\bin;C:\SonarQube\SonarQubeScanner\bin;C:\Users\domin\AppData\Local\Programs\Python\Python35-32\Scripts\;C:\Users\domin\AppData\Local\Programs\Python\Python35-32\;C:\Users\domin\AppData\Roaming\npm;C:\Users\domin\AppData\Local\Microsoft\WindowsApps;;."/>
+      <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+      <property name="java.runtime.version" value="1.8.0_65-b17"/>
+      <property name="java.specification.name" value="Java Platform API Specification"/>
+      <property name="java.specification.vendor" value="Oracle Corporation"/>
+      <property name="java.specification.version" value="1.8"/>
+      <property name="java.vendor" value="Oracle Corporation"/>
+      <property name="java.vendor.url" value="http://java.oracle.com/"/>
+      <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+      <property name="java.version" value="1.8.0_65"/>
+      <property name="java.vm.info" value="mixed mode"/>
+      <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+      <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+      <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+      <property name="java.vm.specification.version" value="1.8"/>
+      <property name="java.vm.vendor" value="Oracle Corporation"/>
+      <property name="java.vm.version" value="25.65-b01"/>
+      <property name="jna.nosys" value="true"/>
+      <property name="junit4.childvm.count" value="3"/>
+      <property name="junit4.childvm.cwd" value="C:\projects\team3\core\build\testrun\test\J1"/>
+      <property name="junit4.childvm.id" value="1"/>
+      <property name="junit4.memory.total" value="514850816"/>
+      <property name="junit4.pidString" value="8548@LAPTOP-LKSM26S6"/>
+      <property name="junit4.processors" value="4"/>
+      <property name="line.separator" value="
+"/>
+      <property name="os.arch" value="amd64"/>
+      <property name="os.name" value="Windows 10"/>
+      <property name="os.version" value="10.0"/>
+      <property name="path.separator" value=";"/>
+      <property name="sun.arch.data.model" value="64"/>
+      <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_65\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_65\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_65\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_65\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_65\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_65\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_65\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_65\jre\classes"/>
+      <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_65\jre\bin"/>
+      <property name="sun.cpu.endian" value="little"/>
+      <property name="sun.cpu.isalist" value="amd64"/>
+      <property name="sun.desktop" value="windows"/>
+      <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+      <property name="sun.java.command" value="com.carrotsearch.ant.tasks.junit4.slave.SlaveMainSafe -eventsfile C:\projects\team3\core\build\testrun\test\temp\junit4-J1-20160915_123537_463.events @C:\projects\team3\core\build\testrun\test\temp\junit4-J1-20160915_123537_463.suites -stdin"/>
+      <property name="sun.java.launcher" value="SUN_STANDARD"/>
+      <property name="sun.jnu.encoding" value="Cp1252"/>
+      <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+      <property name="sun.os.patch.level" value=""/>
+      <property name="tests.artifact" value="core"/>
+      <property name="tests.gradle" value="true"/>
+      <property name="tests.ifNoTests" value="fail"/>
+      <property name="tests.logger.level" value="WARN"/>
+      <property name="tests.prefix" value="tests"/>
+      <property name="tests.security.manager" value="true"/>
+      <property name="tests.seed" value="9CF13790D965C5A7"/>
+      <property name="tests.task" value=":core:test"/>
+      <property name="user.country" value="AT"/>
+      <property name="user.dir" value="C:\projects\team3\core\build\testrun\test\J1"/>
+      <property name="user.home" value="C:\Users\domin"/>
+      <property name="user.language" value="de"/>
+      <property name="user.name" value="domin"/>
+      <property name="user.script" value=""/>
+      <property name="user.timezone" value=""/>
+      <property name="user.variant" value=""/>
+   </properties>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testSnapshotStore" time="1.052"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testAcquireIndexCommit" time="0.889"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testLockTryingToDelete" time="0.178"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testDeleteIndexPreventsNewOperations" time="0.118"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testWriteShardState" time="0.219"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testSearchIsReleaseIfWrapperFails" time="0.975"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testRecoverFromCleanStore" time="1.096"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testRecoverIntoLeftover" time="0.593"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testPersistenceStateMetadataPersistence" time="0.13"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testOperationLocksOnPrimaryShards" time="0.473"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testIndexingBufferDuringInternalRecovery" time="0.183"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testSearcherWrapperWorksWithGlobaOrdinals" time="1.295"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testLockingBeforeAndAfterRelocated" time="0.14"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testRecoverFromLocalShard" time="1.162"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testStressMaybeFlush" time="0.704"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testFailIfIndexNotPresentInRecoverFromStore" time="0.433"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testMarkAsInactiveTriggersSyncedFlush" time="0.677"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testDelayedOperationsBeforeAndAfterRelocated" time="0.205"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testRecoveryFailsAfterMovingToRelocatedState" time="0.32"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testIndexingBufferDuringPeerRecovery" time="0.308"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testMinimumCompatVersion" time="0.341"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testTranslogRecoverySyncsTranslog" time="0.612"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testFailShard" time="0.264"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testShardHasMemoryBufferOnTranslogRecover" time="1.839"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testIndexDirIsDeletedWhenShardRemoved" time="0.564"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testShardStateMetaHashCodeEquals" time="0.008"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testIndexCanChangeCustomDataPath" time="1.077"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testMaybeFlush" time="1.109"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testRestoreShard" time="1.499"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testRecoverFromStore" time="1.212"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testStressRelocated" time="0.441"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testIndexingOperationListnenersIsInvokedOnRecovery" time="0.785"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testUpdatePriority" time="0.142"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testIndexingOperationsListeners" time="1.304"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testOperationLocksOnReplicaShards" time="0.259"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testExpectedShardSizeIsPresent" time="1.604"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testSearcherWrapperIsUsed" time="0.94"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testShardStats" time="0.144">
+      <skipped></skipped>
+   </testcase>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testDurableFlagHasEffect" time="0.467"/>
+   <testcase classname="org.elasticsearch.index.shard.IndexShardTests" name="testAsyncFsync" time="0.56"/>
+   <system-out><![CDATA[[2016-09-15T04:37:48,895][INFO ][org.elasticsearch.node   ] [node_s_0] initializing ...
+[2016-09-15T04:37:48,923][INFO ][org.elasticsearch.env    ] [node_s_0] using [1] data paths, mounts [[Acer (C:)]], net usable_space [789.1gb], net total_space [930.9gb], spins? [unknown], types [NTFS]
+[2016-09-15T04:37:48,923][INFO ][org.elasticsearch.env    ] [node_s_0] heap size [491mb], compressed ordinary object pointers [true]
+[2016-09-15T04:37:48,927][INFO ][org.elasticsearch.node   ] [node_s_0] version[5.0.0-alpha6-SNAPSHOT], pid[8548], build[Unknown/Unknown], OS[Windows 10/10.0/amd64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/1.8.0_65/25.65-b01]
+[2016-09-15T04:37:48,930][INFO ][org.elasticsearch.plugins] [node_s_0] no modules loaded
+[2016-09-15T04:37:48,930][INFO ][org.elasticsearch.plugins] [node_s_0] loaded plugin [org.elasticsearch.test.InternalSettingsPlugin]
+[2016-09-15T04:37:49,113][INFO ][org.elasticsearch.node   ] [node_s_0] initialized
+[2016-09-15T04:37:49,113][INFO ][org.elasticsearch.node   ] [node_s_0] starting ...
+[2016-09-15T04:37:49,114][INFO ][org.elasticsearch.transport] [node_s_0] publish_address {local[7]}, bound_addresses {local[7]}
+[2016-09-15T04:37:49,129][INFO ][org.elasticsearch.cluster.service] [node_s_0] new_master {node_s_0}{Rger9MjnQACUDTSIPwRuqw}{aLjLYyeZTP6r1aaqxhK6IQ}{local}{local[7]}, reason: local-disco-initial_connect(master)
+[2016-09-15T04:37:49,130][INFO ][org.elasticsearch.node   ] [node_s_0] started
+[2016-09-15T04:37:49,166][INFO ][org.elasticsearch.gateway] [node_s_0] recovered [0] indices into cluster_state
+[2016-09-15T04:37:49,198][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:37:49,352][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:37:49,410][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test/NZDf5SSDSOW8kykD85TPYw] create_mapping [test]
+[2016-09-15T04:37:49,906][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testSnapshotStore]: cleaning up after test
+[2016-09-15T04:37:49,953][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:37:50,214][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:37:50,242][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test/ZZia0i6ZQ2Gi0Wuk2o1tVQ] create_mapping [type]
+[2016-09-15T04:37:50,791][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testAcquireIndexCommit]: cleaning up after test
+[2016-09-15T04:37:50,837][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:37:50,916][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:37:50,955][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] --> paths: [[C:\projects\team3\core\build\testrun\test\J1\temp\org.elasticsearch.index.shard.IndexShardTests_9CF13790D965C5A7-001\tempDir-001\data\nodes\0\indices\2CgeCZT8QMWL8yUzYKOKtg\0]]
+[2016-09-15T04:37:50,966][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testLockTryingToDelete]: cleaning up after test
+[2016-09-15T04:37:51,014][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:37:51,076][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:37:51,122][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testDeleteIndexPreventsNewOperations]: cleaning up after test
+[2016-09-15T04:37:51,232][INFO ][org.elasticsearch.env    ] [ukDkD7M] using [2] data paths, mounts [[Acer (C:)]], net usable_space [789.1gb], net total_space [930.9gb], spins? [unknown], types [NTFS]
+[2016-09-15T04:37:51,233][INFO ][org.elasticsearch.env    ] [ukDkD7M] heap size [491mb], compressed ordinary object pointers [true]
+[2016-09-15T04:37:51,339][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testWriteShardState]: cleaning up after test
+[2016-09-15T04:37:51,357][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:37:51,458][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:37:51,484][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test/eSBwHrfIQfenx-sMERevFw] create_mapping [test]
+[2016-09-15T04:37:52,280][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testSearchIsReleaseIfWrapperFails]: cleaning up after test
+[2016-09-15T04:37:52,337][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:37:52,405][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:37:52,427][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test/U_ShxTFuSYGtxqSoQxb8ig] create_mapping [test]
+[2016-09-15T04:37:53,385][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testRecoverFromCleanStore]: cleaning up after test
+[2016-09-15T04:37:53,422][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:37:53,484][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:37:53,504][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test/gTAux68LSDe30YmIh33HFA] create_mapping [bar]
+[2016-09-15T04:37:53,840][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] closing indices [[[test/gTAux68LSDe30YmIh33HFA]]]
+[2016-09-15T04:37:53,895][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:37:53,956][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:37:53,976][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testRecoverIntoLeftover]: cleaning up after test
+[2016-09-15T04:37:54,017][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:37:54,070][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:37:54,104][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testPersistenceStateMetadataPersistence]: cleaning up after test
+[2016-09-15T04:37:54,145][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:37:54,210][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:37:54,224][WARN ][org.elasticsearch.index.shard] [node_s_0] [test][0] suspect illegal state: trying to move shard from primary mode to replica mode
+[2016-09-15T04:37:54,256][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testOperationLocksOnPrimaryShards]: cleaning up after test
+[2016-09-15T04:37:54,619][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:37:54,673][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[index][0]] ...]).
+[2016-09-15T04:37:54,690][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index/X1d0X0z0TCCmuV5sd4nlMA] create_mapping [testtype]
+[2016-09-15T04:37:54,760][INFO ][org.elasticsearch.index.shard] [node_s_0] [index][0] [IndexShardTests#testIndexingBufferDuringInternalRecovery]: cleaning up after test
+[2016-09-15T04:37:54,803][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:37:54,879][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:37:54,897][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test/7UrSQKZ4TOqjDqcxwGY_4Q] create_mapping [test]
+[2016-09-15T04:37:55,147][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test/7UrSQKZ4TOqjDqcxwGY_4Q] update_mapping [test]
+[2016-09-15T04:37:56,037][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testSearcherWrapperWorksWithGlobaOrdinals]: cleaning up after test
+[2016-09-15T04:37:56,099][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:37:56,167][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:37:56,196][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testLockingBeforeAndAfterRelocated]: cleaning up after test
+[2016-09-15T04:37:56,240][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:37:56,347][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[index][0]] ...]).
+[2016-09-15T04:37:56,368][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_1] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:37:56,429][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[index_1][0]] ...]).
+[2016-09-15T04:37:56,447][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_2] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:37:56,520][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[index_2][0]] ...]).
+[2016-09-15T04:37:56,546][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index/ZpC7pJAWSBeV9g6H7ImKUA] create_mapping [test]
+[2016-09-15T04:37:57,009][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_1/tJjNp1efSgGBKEp1PFUm_g] create_mapping [test]
+[2016-09-15T04:37:57,298][INFO ][org.elasticsearch.index.shard] [node_s_0] [index_1][0] [IndexShardTests#testRecoverFromLocalShard]: cleaning up after test
+[2016-09-15T04:37:57,326][WARN ][org.elasticsearch.indices] [index_1/tJjNp1efSgGBKEp1PFUm_g] failed to delete index
+java.io.IOException: Could not remove the following files (in the order of attempts):
+   C:\projects\team3\core\build\testrun\test\J1\temp\org.elasticsearch.index.shard.IndexShardTests_9CF13790D965C5A7-001\tempDir-001\data\nodes\0\indices\tJjNp1efSgGBKEp1PFUm_g\0\index\_1.cfs: java.nio.file.AccessDeniedException: C:\projects\team3\core\build\testrun\test\J1\temp\org.elasticsearch.index.shard.IndexShardTests_9CF13790D965C5A7-001\tempDir-001\data\nodes\0\indices\tJjNp1efSgGBKEp1PFUm_g\0\index\_1.cfs
+   C:\projects\team3\core\build\testrun\test\J1\temp\org.elasticsearch.index.shard.IndexShardTests_9CF13790D965C5A7-001\tempDir-001\data\nodes\0\indices\tJjNp1efSgGBKEp1PFUm_g\0\index\_0.cfs: java.nio.file.AccessDeniedException: C:\projects\team3\core\build\testrun\test\J1\temp\org.elasticsearch.index.shard.IndexShardTests_9CF13790D965C5A7-001\tempDir-001\data\nodes\0\indices\tJjNp1efSgGBKEp1PFUm_g\0\index\_0.cfs
+   C:\projects\team3\core\build\testrun\test\J1\temp\org.elasticsearch.index.shard.IndexShardTests_9CF13790D965C5A7-001\tempDir-001\data\nodes\0\indices\tJjNp1efSgGBKEp1PFUm_g\0\index: java.nio.file.DirectoryNotEmptyException: C:\projects\team3\core\build\testrun\test\J1\temp\org.elasticsearch.index.shard.IndexShardTests_9CF13790D965C5A7-001\tempDir-001\data\nodes\0\indices\tJjNp1efSgGBKEp1PFUm_g\0\index
+   C:\projects\team3\core\build\testrun\test\J1\temp\org.elasticsearch.index.shard.IndexShardTests_9CF13790D965C5A7-001\tempDir-001\data\nodes\0\indices\tJjNp1efSgGBKEp1PFUm_g\0: java.nio.file.DirectoryNotEmptyException: C:\projects\team3\core\build\testrun\test\J1\temp\org.elasticsearch.index.shard.IndexShardTests_9CF13790D965C5A7-001\tempDir-001\data\nodes\0\indices\tJjNp1efSgGBKEp1PFUm_g\0
+   C:\projects\team3\core\build\testrun\test\J1\temp\org.elasticsearch.index.shard.IndexShardTests_9CF13790D965C5A7-001\tempDir-001\data\nodes\0\indices\tJjNp1efSgGBKEp1PFUm_g: java.nio.file.DirectoryNotEmptyException: C:\projects\team3\core\build\testrun\test\J1\temp\org.elasticsearch.index.shard.IndexShardTests_9CF13790D965C5A7-001\tempDir-001\data\nodes\0\indices\tJjNp1efSgGBKEp1PFUm_g
+
+	at org.apache.lucene.util.IOUtils.rm(IOUtils.java:323) ~[lucene-core-6.2.0.jar:6.2.0 764d0f19151dbff6f5fcd9fc4b2682cf934590c5 - mike - 2016-08-20 05:39:36]
+	at org.elasticsearch.env.NodeEnvironment.deleteIndexDirectoryUnderLock(NodeEnvironment.java:545) ~[main/:?]
+	at org.elasticsearch.env.NodeEnvironment.deleteIndexDirectorySafe(NodeEnvironment.java:529) ~[main/:?]
+	at org.elasticsearch.indices.IndicesService.deleteIndexStoreIfDeletionAllowed(IndicesService.java:638) [main/:?]
+	at org.elasticsearch.indices.IndicesService.deleteIndexStore(IndicesService.java:625) [main/:?]
+	at org.elasticsearch.indices.IndicesService.removeIndex(IndicesService.java:513) [main/:?]
+	at org.elasticsearch.indices.IndicesService.deleteIndex(IndicesService.java:568) [main/:?]
+	at org.elasticsearch.indices.cluster.IndicesClusterStateService.deleteIndices(IndicesClusterStateService.java:249) [main/:?]
+	at org.elasticsearch.indices.cluster.IndicesClusterStateService.clusterChanged(IndicesClusterStateService.java:183) [main/:?]
+	at org.elasticsearch.cluster.service.ClusterService.runTasksForExecutor(ClusterService.java:708) [main/:?]
+	at org.elasticsearch.cluster.service.ClusterService$UpdateTask.run(ClusterService.java:894) [main/:?]
+	at org.elasticsearch.common.util.concurrent.ThreadContext$ContextPreservingRunnable.run(ThreadContext.java:444) [main/:?]
+	at org.elasticsearch.common.util.concurrent.PrioritizedEsThreadPoolExecutor$TieBreakingPrioritizedRunnable.runAndClean(PrioritizedEsThreadPoolExecutor.java:237) [main/:?]
+	at org.elasticsearch.common.util.concurrent.PrioritizedEsThreadPoolExecutor$TieBreakingPrioritizedRunnable.run(PrioritizedEsThreadPoolExecutor.java:200) [main/:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_65]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_65]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_65]
+[2016-09-15T04:37:57,341][WARN ][org.elasticsearch.indices] [node_s_0] [index_1/tJjNp1efSgGBKEp1PFUm_g] still pending deletes present for shards [[[index_1/tJjNp1efSgGBKEp1PFUm_g]], [[index_1/tJjNp1efSgGBKEp1PFUm_g]][0]] - retrying
+[2016-09-15T04:37:57,361][WARN ][org.elasticsearch.indices] [node_s_0] [index_1/tJjNp1efSgGBKEp1PFUm_g] still pending deletes present for shards [[[index_1/tJjNp1efSgGBKEp1PFUm_g]]] - retrying
+[2016-09-15T04:37:57,400][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:37:57,452][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:37:57,514][INFO ][org.elasticsearch.common.settings] [node_s_0] updating [index.translog.flush_threshold_size] from [512mb] to [133b]
+[2016-09-15T04:37:57,516][INFO ][org.elasticsearch.common.settings] [node_s_0] updating [index.translog.flush_threshold_size] from [512mb] to [133b]
+[2016-09-15T04:37:57,533][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test/iUTU3PE3TFuFmfyRMZG5hw] create_mapping [test]
+[2016-09-15T04:37:58,055][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testStressMaybeFlush]: cleaning up after test
+[2016-09-15T04:37:58,105][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:37:58,186][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:37:58,208][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test/c60J3O10T1Sp3V-Dp3weXQ] create_mapping [test]
+[2016-09-15T04:37:58,495][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testFailIfIndexNotPresentInRecoverFromStore]: cleaning up after test
+[2016-09-15T04:37:58,536][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:37:58,607][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:37:58,646][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test/P8Dpyi4zRpSTaDkaVBJf2Q] create_mapping [test]
+[2016-09-15T04:37:59,170][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testMarkAsInactiveTriggersSyncedFlush]: cleaning up after test
+[2016-09-15T04:37:59,213][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:37:59,289][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:37:59,360][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testDelayedOperationsBeforeAndAfterRelocated]: cleaning up after test
+[2016-09-15T04:37:59,419][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:37:59,629][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:37:59,692][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testRecoveryFailsAfterMovingToRelocatedState]: cleaning up after test
+[2016-09-15T04:37:59,743][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:37:59,815][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[index][0]] ...]).
+[2016-09-15T04:37:59,837][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index/5Pn0O1drRyK22ime_1EK6A] create_mapping [testtype]
+[2016-09-15T04:37:59,945][INFO ][org.elasticsearch.index.shard] [node_s_0] [index][0] [IndexShardTests#testIndexingBufferDuringPeerRecovery]: cleaning up after test
+[2016-09-15T04:38:00,048][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:38:00,115][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:38:00,133][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test/KQpK6NZGSRW8DqRVtCCGWg] create_mapping [test]
+[2016-09-15T04:38:00,347][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testMinimumCompatVersion]: cleaning up after test
+[2016-09-15T04:38:00,394][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [testindexfortranslogsync] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:38:00,520][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[testindexfortranslogsync][0]] ...]).
+[2016-09-15T04:38:00,586][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [testindexfortranslogsync/7eUE1SwCReGjnpe-Sd8iKg] create_mapping [testtype]
+[2016-09-15T04:38:00,873][INFO ][org.elasticsearch.index.shard] [node_s_0] [testindexfortranslogsync][0] [IndexShardTests#testTranslogRecoverySyncsTranslog]: cleaning up after test
+[2016-09-15T04:38:01,001][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:38:01,070][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:38:01,209][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testFailShard]: cleaning up after test
+[2016-09-15T04:38:01,266][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:38:01,377][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:38:01,411][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test/YrpN2DF7ToCxPaTfmE1ObA] create_mapping [test]
+[2016-09-15T04:38:03,062][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testShardHasMemoryBufferOnTranslogRecover]: cleaning up after test
+[2016-09-15T04:38:03,100][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] --> idxPath: [C:\projects\team3\core\build\testrun\test\J1\temp\org.elasticsearch.index.shard.IndexShardTests_9CF13790D965C5A7-001\mrNvoQWLDC]
+[2016-09-15T04:38:03,105][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:38:03,243][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:38:03,279][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test/4gBjN60jS8SC5MxXsCkq2Q] create_mapping [bar]
+[2016-09-15T04:38:03,657][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] --> checking that [C:\projects\team3\core\build\testrun\test\J1\temp\org.elasticsearch.index.shard.IndexShardTests_9CF13790D965C5A7-001\mrNvoQWLDC] has been cleared
+[2016-09-15T04:38:03,658][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] --> found file: [C:\projects\team3\core\build\testrun\test\J1\temp\org.elasticsearch.index.shard.IndexShardTests_9CF13790D965C5A7-001\mrNvoQWLDC\0]
+[2016-09-15T04:38:03,658][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] --> checking that [C:\projects\team3\core\build\testrun\test\J1\temp\org.elasticsearch.index.shard.IndexShardTests_9CF13790D965C5A7-001\mrNvoQWLDC\0] has been cleared
+[2016-09-15T04:38:03,659][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testIndexDirIsDeletedWhenShardRemoved]: cleaning up after test
+[2016-09-15T04:38:03,667][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testShardStateMetaHashCodeEquals]: cleaning up after test
+[2016-09-15T04:38:03,674][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] --> start dir: [C:\projects\team3\core\build\testrun\test\J1\temp\org.elasticsearch.index.shard.IndexShardTests_9CF13790D965C5A7-001\lCAfgqcRFN\start-dNRwPDHiyo]
+[2016-09-15T04:38:03,675][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] -->   end dir: [C:\projects\team3\core\build\testrun\test\J1\temp\org.elasticsearch.index.shard.IndexShardTests_9CF13790D965C5A7-001\lCAfgqcRFN\end-CYQFPhEtqe]
+[2016-09-15T04:38:03,677][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] --> creating an index with data_path [C:\projects\team3\core\build\testrun\test\J1\temp\org.elasticsearch.index.shard.IndexShardTests_9CF13790D965C5A7-001\lCAfgqcRFN\start-dNRwPDHiyo]
+[2016-09-15T04:38:03,682][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [idx] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:38:03,783][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[idx][0]] ...]).
+[2016-09-15T04:38:03,801][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [idx/OIjTJqLRQzi6gT7RdY1iUw] create_mapping [bar]
+[2016-09-15T04:38:04,044][INFO ][org.elasticsearch.index.shard] [node_s_0] [idx][0] --> closing the index [idx]
+[2016-09-15T04:38:04,045][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] closing indices [[[idx/OIjTJqLRQzi6gT7RdY1iUw]]]
+[2016-09-15T04:38:04,097][INFO ][org.elasticsearch.index.shard] [node_s_0] [idx][0] --> index closed, re-opening...
+[2016-09-15T04:38:04,101][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] opening indices [[[idx/OIjTJqLRQzi6gT7RdY1iUw]]]
+[2016-09-15T04:38:04,182][INFO ][org.elasticsearch.index.shard] [node_s_0] [idx][0] --> index re-opened
+[2016-09-15T04:38:04,276][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [RED] to [GREEN] (reason: [shards started [[idx][0]] ...]).
+[2016-09-15T04:38:04,291][INFO ][org.elasticsearch.index.shard] [node_s_0] [idx][0] --> closing the index [idx]
+[2016-09-15T04:38:04,291][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] closing indices [[[idx/OIjTJqLRQzi6gT7RdY1iUw]]]
+[2016-09-15T04:38:04,328][INFO ][org.elasticsearch.index.shard] [node_s_0] [idx][0] --> moving data on disk [start-dNRwPDHiyo] to [end-CYQFPhEtqe]
+[2016-09-15T04:38:04,329][INFO ][org.elasticsearch.index.shard] [node_s_0] [idx][0] --> updating settings...
+[2016-09-15T04:38:04,362][INFO ][org.elasticsearch.index.shard] [node_s_0] [idx][0] --> settings updated and files moved, re-opening index
+[2016-09-15T04:38:04,362][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] opening indices [[[idx/OIjTJqLRQzi6gT7RdY1iUw]]]
+[2016-09-15T04:38:04,395][INFO ][org.elasticsearch.index.shard] [node_s_0] [idx][0] --> index re-opened
+[2016-09-15T04:38:04,655][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [RED] to [GREEN] (reason: [shards started [[idx][0]] ...]).
+[2016-09-15T04:38:04,742][INFO ][org.elasticsearch.index.shard] [node_s_0] [idx][0] --> checking that [C:\projects\team3\core\build\testrun\test\J1\temp\org.elasticsearch.index.shard.IndexShardTests_9CF13790D965C5A7-001\lCAfgqcRFN\start-dNRwPDHiyo] has been cleared
+[2016-09-15T04:38:04,743][INFO ][org.elasticsearch.index.shard] [node_s_0] [idx][0] --> checking that [C:\projects\team3\core\build\testrun\test\J1\temp\org.elasticsearch.index.shard.IndexShardTests_9CF13790D965C5A7-001\lCAfgqcRFN\end-CYQFPhEtqe] has been cleared
+[2016-09-15T04:38:04,743][INFO ][org.elasticsearch.index.shard] [node_s_0] [idx][0] --> found file: [C:\projects\team3\core\build\testrun\test\J1\temp\org.elasticsearch.index.shard.IndexShardTests_9CF13790D965C5A7-001\lCAfgqcRFN\end-CYQFPhEtqe\0]
+[2016-09-15T04:38:04,744][INFO ][org.elasticsearch.index.shard] [node_s_0] [idx][0] --> checking that [C:\projects\team3\core\build\testrun\test\J1\temp\org.elasticsearch.index.shard.IndexShardTests_9CF13790D965C5A7-001\lCAfgqcRFN\end-CYQFPhEtqe\0] has been cleared
+[2016-09-15T04:38:04,745][INFO ][org.elasticsearch.index.shard] [node_s_0] [idx][0] [IndexShardTests#testIndexCanChangeCustomDataPath]: cleaning up after test
+[2016-09-15T04:38:04,757][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:38:04,889][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:38:04,910][INFO ][org.elasticsearch.common.settings] [node_s_0] updating [index.translog.flush_threshold_size] from [512mb] to [133b]
+[2016-09-15T04:38:04,911][INFO ][org.elasticsearch.common.settings] [node_s_0] updating [index.translog.flush_threshold_size] from [512mb] to [133b]
+[2016-09-15T04:38:04,930][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test/SvYnbjh5RRquZx3e5Pqt5A] create_mapping [test]
+[2016-09-15T04:38:05,556][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] --> current translog size: [43] num_ops [0] generation [org.elasticsearch.index.translog.Translog$TranslogGeneration@5f853560]
+[2016-09-15T04:38:05,563][INFO ][org.elasticsearch.common.settings] [node_s_0] updating [index.translog.flush_threshold_size] from [133b] to [43b]
+[2016-09-15T04:38:05,564][INFO ][org.elasticsearch.common.settings] [node_s_0] updating [index.translog.flush_threshold_size] from [133b] to [43b]
+[2016-09-15T04:38:05,717][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] --> translog size after delete: [117] num_ops [1] generation [org.elasticsearch.index.translog.Translog$TranslogGeneration@fb18706]
+[2016-09-15T04:38:05,718][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] --> translog size on iter  : [117] num_ops [1] generation [org.elasticsearch.index.translog.Translog$TranslogGeneration@3a024723]
+[2016-09-15T04:38:05,719][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] --> translog size on iter  : [117] num_ops [1] generation [org.elasticsearch.index.translog.Translog$TranslogGeneration@61cfdde9]
+[2016-09-15T04:38:05,722][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] --> translog size on iter  : [117] num_ops [1] generation [org.elasticsearch.index.translog.Translog$TranslogGeneration@6245ef61]
+[2016-09-15T04:38:05,726][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] --> translog size on iter  : [117] num_ops [1] generation [org.elasticsearch.index.translog.Translog$TranslogGeneration@7cae3be9]
+[2016-09-15T04:38:05,735][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] --> translog size on iter  : [117] num_ops [1] generation [org.elasticsearch.index.translog.Translog$TranslogGeneration@54bd5000]
+[2016-09-15T04:38:05,752][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] --> translog size on iter  : [117] num_ops [1] generation [org.elasticsearch.index.translog.Translog$TranslogGeneration@4b82efeb]
+[2016-09-15T04:38:05,795][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] --> translog size on iter  : [43] num_ops [0] generation [org.elasticsearch.index.translog.Translog$TranslogGeneration@6f13f1d]
+[2016-09-15T04:38:05,795][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testMaybeFlush]: cleaning up after test
+[2016-09-15T04:38:05,864][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:38:06,044][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:38:06,078][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test_target] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:38:06,191][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test_target][0]] ...]).
+[2016-09-15T04:38:06,220][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test/oxMBRRCCREqXqCpnMuvZrQ] create_mapping [test]
+[2016-09-15T04:38:06,496][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test_target/jSrxiTLLTWe9dj2kINLDzQ] create_mapping [test]
+[2016-09-15T04:38:07,247][INFO ][org.elasticsearch.index.shard] [node_s_0] [test_target][0] [IndexShardTests#testRestoreShard]: cleaning up after test
+[2016-09-15T04:38:07,362][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:38:07,672][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:38:07,699][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test/ISL-BQEGTTeFPkQoqoLuyA] create_mapping [test]
+[2016-09-15T04:38:08,358][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testRecoverFromStore]: cleaning up after test
+[2016-09-15T04:38:08,579][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:38:08,885][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:38:08,972][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testStressRelocated]: cleaning up after test
+[2016-09-15T04:38:09,024][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:38:09,119][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:38:09,180][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test/UgCy3swARxS5MA3E04Uszg] create_mapping [test]
+[2016-09-15T04:38:09,759][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testIndexingOperationListnenersIsInvokedOnRecovery]: cleaning up after test
+[2016-09-15T04:38:09,802][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:38:09,858][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:38:09,897][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testUpdatePriority]: cleaning up after test
+[2016-09-15T04:38:09,944][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test_iol] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:38:09,996][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test_iol][0]] ...]).
+[2016-09-15T04:38:10,023][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test_iol/48hAueG_SIS3Cg5-GueJqw] create_mapping [test]
+[2016-09-15T04:38:10,736][INFO ][org.elasticsearch.monitor.jvm] [node_s_0] [gc][21] overhead, spent [374ms] collecting in the last [1.2s]
+[2016-09-15T04:38:11,194][INFO ][org.elasticsearch.index.shard] [node_s_0] [test_iol][0] [IndexShardTests#testIndexingOperationsListeners]: cleaning up after test
+[2016-09-15T04:38:11,249][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:38:11,334][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:38:11,381][WARN ][org.elasticsearch.index.shard] [node_s_0] [test][0] suspect illegal state: trying to move shard from primary mode to replica mode
+[2016-09-15T04:38:11,394][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] updated shard routing to [test][0], node[Rger9MjnQACUDTSIPwRuqw], [R], recovery_source[peer recovery], s[INITIALIZING], a[id=HgCL_kQhRFOYewUk2ytyWA], unassigned_info[[reason=PRIMARY_FAILED], at[2016-09-15T10:38:11.381Z], delayed=false, details[auto generated for test], allocation_status[no_attempt]]
+[2016-09-15T04:38:11,395][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testOperationLocksOnReplicaShards]: cleaning up after test
+[2016-09-15T04:38:11,508][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:38:11,910][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:38:11,943][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test/gzPy6KEFT_2QZJJpE1NEww] create_mapping [test]
+[2016-09-15T04:38:13,048][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testExpectedShardSizeIsPresent]: cleaning up after test
+[2016-09-15T04:38:13,112][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:38:13,194][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:38:13,215][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test/_cvllxzcTamkoBmquJGq3g] create_mapping [test]
+[2016-09-15T04:38:13,534][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test/_cvllxzcTamkoBmquJGq3g] update_mapping [test]
+[2016-09-15T04:38:14,010][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testSearcherWrapperIsUsed]: cleaning up after test
+[2016-09-15T04:38:14,052][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:38:14,114][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:38:14,137][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testShardStats]: cleaning up after test
+[2016-09-15T04:38:14,195][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:38:14,285][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:38:14,303][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test/VTS11BSaT3ydqPHgt88BIA] create_mapping [bar]
+[2016-09-15T04:38:14,382][INFO ][org.elasticsearch.common.settings] [node_s_0] updating [index.translog.durability] from [REQUEST] to [ASYNC]
+[2016-09-15T04:38:14,386][INFO ][org.elasticsearch.common.settings] [node_s_0] updating [index.translog.durability] from [REQUEST] to [ASYNC]
+[2016-09-15T04:38:14,406][INFO ][org.elasticsearch.common.settings] [node_s_0] updating [index.translog.durability] from [ASYNC] to [REQUEST]
+[2016-09-15T04:38:14,407][INFO ][org.elasticsearch.common.settings] [node_s_0] updating [index.translog.durability] from [ASYNC] to [REQUEST]
+[2016-09-15T04:38:14,433][INFO ][org.elasticsearch.common.settings] [node_s_0] updating [index.translog.durability] from [REQUEST] to [ASYNC]
+[2016-09-15T04:38:14,434][INFO ][org.elasticsearch.common.settings] [node_s_0] updating [index.translog.durability] from [REQUEST] to [ASYNC]
+[2016-09-15T04:38:14,457][INFO ][org.elasticsearch.common.settings] [node_s_0] updating [index.translog.durability] from [ASYNC] to [REQUEST]
+[2016-09-15T04:38:14,458][INFO ][org.elasticsearch.common.settings] [node_s_0] updating [index.translog.durability] from [ASYNC] to [REQUEST]
+[2016-09-15T04:38:14,569][INFO ][org.elasticsearch.common.settings] [node_s_0] updating [index.translog.durability] from [REQUEST] to [ASYNC]
+[2016-09-15T04:38:14,569][INFO ][org.elasticsearch.common.settings] [node_s_0] updating [index.translog.durability] from [REQUEST] to [ASYNC]
+[2016-09-15T04:38:14,590][INFO ][org.elasticsearch.common.settings] [node_s_0] updating [index.translog.durability] from [ASYNC] to [REQUEST]
+[2016-09-15T04:38:14,591][INFO ][org.elasticsearch.common.settings] [node_s_0] updating [index.translog.durability] from [ASYNC] to [REQUEST]
+[2016-09-15T04:38:14,605][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testDurableFlagHasEffect]: cleaning up after test
+[2016-09-15T04:38:14,662][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test] creating index, cause [api], templates [random_index_template], shards [1]/[0], mappings []
+[2016-09-15T04:38:14,726][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [GREEN] (reason: [shards started [[test][0]] ...]).
+[2016-09-15T04:38:14,745][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [test/C0yIajM_QcqCY6dMglbGkg] create_mapping [bar]
+[2016-09-15T04:38:15,051][INFO ][org.elasticsearch.index.shard] [node_s_0] [test][0] [IndexShardTests#testAsyncFsync]: cleaning up after test
+[2016-09-15T04:38:15,215][INFO ][org.elasticsearch.node   ] [node_s_0] stopping ...
+[2016-09-15T04:38:15,216][INFO ][org.elasticsearch.node   ] [node_s_0] stopped
+[2016-09-15T04:38:15,216][INFO ][org.elasticsearch.node   ] [node_s_0] closing ...
+[2016-09-15T04:38:15,219][INFO ][org.elasticsearch.node   ] [node_s_0] closed
+]]></system-out>
+   <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -19,6 +19,8 @@
 
 package org.elasticsearch.common;
 
+import org.apache.logging.log4j.Logger;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.settings.Setting;
 import org.elasticsearch.common.settings.Settings;
 
@@ -47,6 +49,8 @@ public final class Randomness {
     private static final Method currentMethod;
     private static final Method getRandomMethod;
 
+    private static final Logger logger = Loggers.getLogger(Randomness.class);
+
     static {
         Method maybeCurrentMethod;
         Method maybeGetRandomMethod;
@@ -55,6 +59,7 @@ public final class Randomness {
             maybeCurrentMethod = clazz.getMethod("current");
             maybeGetRandomMethod = clazz.getMethod("getRandom");
         } catch (Exception e) {
+            logger.error(e);
             maybeCurrentMethod = null;
             maybeGetRandomMethod = null;
         }

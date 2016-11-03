@@ -1,0 +1,560 @@
+<testsuite errors="0" failures="0" tests="2" skipped="0" name="org.elasticsearch.indices.cluster.IndicesClusterStateServiceRandomUpdatesTests" hostname="nohost.nodomain" time="5.22" timestamp="2016-09-15T12:37:17">
+   <properties class="java.util.ArrayList">
+      <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+      <property name="file.encoding" value="Cp1252"/>
+      <property name="file.encoding.pkg" value="sun.io"/>
+      <property name="file.separator" value="\"/>
+      <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+      <property name="java.awt.headless" value="true"/>
+      <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+      <property name="java.class.path" value="C:\projects\team3\core\build\classes\test;C:\projects\team3\core\build\resources\test;C:\projects\team3\core\build\classes\main;C:\projects\team3\core\build\resources\main;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-core\6.2.0\849ee62525a294416802be2cacc66c80352f6f13\lucene-core-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-analyzers-common\6.2.0\d254d52dd394b5079129f3d5f3bf4f2d44a5936e\lucene-analyzers-common-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-backward-codecs\6.2.0\b625bb21456b3c0d1e5e431bced125cb060c1abd\lucene-backward-codecs-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-grouping\6.2.0\9527fedfd5acc624b2bb3f862bd99fb8f470b053\lucene-grouping-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-highlighter\6.2.0\7ca342372a3f45e32bbd21cecaa757e38eccb8a5\lucene-highlighter-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-join\6.2.0\da0b8de98511abd4fe9c7d48a353d17854c5ed46\lucene-join-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-memory\6.2.0\bc9e075b1ee051c8e5246c237c38d8e71dab8a66\lucene-memory-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-misc\6.2.0\94ddde6312566a4da4a50a88e453b6c82c759b41\lucene-misc-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-queries\6.2.0\dce47238f78e3e97d91dc6fefa9f46f07866bc2b\lucene-queries-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-queryparser\6.2.0\17ef728ac15e668bfa1105321611548424637645\lucene-queryparser-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-sandbox\6.2.0\520183f7b9aba77a26e224760c420a3844b0631a\lucene-sandbox-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-spatial\6.2.0\8dba929b66927b936fbc76103b109ad6c824daee\lucene-spatial-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-spatial-extras\6.2.0\3b5a6ef5cd90c0218a72e9e2f7e60104be2447da\lucene-spatial-extras-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-spatial3d\6.2.0\fcdb0567725722c5145149d1502848b6a96ec18d\lucene-spatial3d-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-suggest\6.2.0\3d9d526c51f483d27f425c75d7e56bc0849242d6\lucene-suggest-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.elasticsearch\securesm\1.1\1e423447d020041534be94c0f31a49fbdc1f2950\securesm-1.1.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\net.sf.jopt-simple\jopt-simple\5.0.2\98cafc6081d5632b61be2c9e60650b64ddbc637c\jopt-simple-5.0.2.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\com.carrotsearch\hppc\0.7.1\8b5057f74ea378c0150a1860874a3ebdcb713767\hppc-0.7.1.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\joda-time\joda-time\2.9.4\1c295b462f16702ebe720bbb08f62e1ba80da41b\joda-time-2.9.4.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.joda\joda-convert\1.2\35ec554f0cd00c956cc69051514d9488b1374dec\joda-convert-1.2.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.yaml\snakeyaml\1.15\3b132bea69e8ee099f416044970997bde80f4ea6\snakeyaml-1.15.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-core\2.8.1\fd13b1c033741d48291315c6370f7d475a42dccf\jackson-core-2.8.1.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.dataformat\jackson-dataformat-smile\2.8.1\5b73867bc12224946fc67fc8d49d9f5e698d7f\jackson-dataformat-smile-2.8.1.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.dataformat\jackson-dataformat-yaml\2.8.1\eb63166c723b0b4b9fb5298fca232a2f6612ec34\jackson-dataformat-yaml-2.8.1.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.dataformat\jackson-dataformat-cbor\2.8.1\3a6fb7e75c9972559a78cf5cfc5a48a41a13ea40\jackson-dataformat-cbor-2.8.1.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\com.tdunning\t-digest\3.0\84ccf145ac2215e6bfa63baa3101c0af41017cfc\t-digest-3.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.hdrhistogram\HdrHistogram\2.1.6\7495feb7f71ee124bd2a7e7d83590e296d71d80e\HdrHistogram-2.1.6.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.locationtech.spatial4j\spatial4j\0.6\21b15310bddcfd8c72611c180f20cf23279809a3\spatial4j-0.6.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\com.vividsolutions\jts\1.13\3ccfb9b60f04d71add996a666ceb8902904fd805\jts-1.13.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.logging.log4j\log4j-api\2.6.2\bd1b74a5d170686362091c7cf596bbc3adf5c09b\log4j-api-2.6.2.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.logging.log4j\log4j-core\2.6.2\a91369f655eb1639c6aece5c5eb5108db18306\log4j-core-2.6.2.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.logging.log4j\log4j-1.2-api\2.6.2\3b4c5a8b734b6a29b2f03380535a48da6284b210\log4j-1.2-api-2.6.2.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\net.java.dev.jna\jna\4.2.2\5012450aee579c3118ff09461d5ce210e0cdc2a9\jna-4.2.2.jar;C:\projects\team3\test\framework\build\distributions\framework-5.0.0-alpha6-SNAPSHOT.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\com.carrotsearch.randomizedtesting\randomizedtesting-runner\2.3.2\307965917fe8a22b7ee72deba39ef4b8e6ebc069\randomizedtesting-runner-2.3.2.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\junit\junit\4.11\4e031bb61df09069aeb2bffb4019e7a5034a4ee0\junit-4.11.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-all\1.3\63a21ebc981131004ad02e0434e799fd7f3a8d5a\hamcrest-all-1.3.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-test-framework\6.2.0\f5026be3983acfb40d4092dbfbc015ec6e6addab\lucene-test-framework-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-codecs\6.2.0\99f887266b0ad9f2c286b3976c5bc48c8cd36624\lucene-codecs-6.2.0.jar;C:\projects\team3\client\rest\build\distributions\rest-5.0.0-alpha6-SNAPSHOT.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpclient\4.5.2\733db77aa8d9b2d68015189df76ab06304406e50\httpclient-4.5.2.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpcore\4.4.5\e7501a1b34325abb00d17dde96150604a0658b54\httpcore-4.4.5.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\commons-logging\commons-logging\1.1.3\f6f66e966c70a83ffbdb6f17a0919eaf7c8aca7f\commons-logging-1.1.3.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\commons-codec\commons-codec\1.10\4b95f4897fa13f2cd904aee711aeafc0c5295cd8\commons-codec-1.10.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.elasticsearch\securemock\1.2\98201d4ad5ac93f6b415ae9172d52b5e7cda490e\securemock-1.2.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpasyncclient\4.1.2\95aa3e6fb520191a0970a73cf09f62948ee614be\httpasyncclient-4.1.2.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpcore-nio\4.4.5\f4be009e7505f6ceddf21e7960c759f413f15056\httpcore-nio-4.4.5.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\com.carrotsearch.randomizedtesting\junit4-ant\2.3.2\dc8f03f6111974092491f35b8269eb0fc57f52f7\junit4-ant-2.3.2.jar"/>
+      <property name="java.class.version" value="52.0"/>
+      <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_65\jre\lib\endorsed"/>
+      <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_65\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
+      <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_65\jre"/>
+      <property name="java.io.tmpdir" value="./temp"/>
+      <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_65\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Ruby22-x64\bin;C:\Imagick;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Skype\Phone\;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Git\cmd;C:\Program Files\OpenVPN\bin;C:\Program Files\nodejs\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\cURL\bin;C:\Program Files\gradle\2.13\bin;C:\Program Files\CMake\bin;C:\Program Files\flex_bison;C:\Program Files\doxygen\bin;C:\SonarQube\SonarQubeScanner\bin;C:\Users\domin\AppData\Local\Programs\Python\Python35-32\Scripts\;C:\Users\domin\AppData\Local\Programs\Python\Python35-32\;C:\Users\domin\AppData\Roaming\npm;C:\Users\domin\AppData\Local\Microsoft\WindowsApps;;."/>
+      <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+      <property name="java.runtime.version" value="1.8.0_65-b17"/>
+      <property name="java.specification.name" value="Java Platform API Specification"/>
+      <property name="java.specification.vendor" value="Oracle Corporation"/>
+      <property name="java.specification.version" value="1.8"/>
+      <property name="java.vendor" value="Oracle Corporation"/>
+      <property name="java.vendor.url" value="http://java.oracle.com/"/>
+      <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+      <property name="java.version" value="1.8.0_65"/>
+      <property name="java.vm.info" value="mixed mode"/>
+      <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+      <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+      <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+      <property name="java.vm.specification.version" value="1.8"/>
+      <property name="java.vm.vendor" value="Oracle Corporation"/>
+      <property name="java.vm.version" value="25.65-b01"/>
+      <property name="jna.nosys" value="true"/>
+      <property name="junit4.childvm.count" value="3"/>
+      <property name="junit4.childvm.cwd" value="C:\projects\team3\core\build\testrun\test\J2"/>
+      <property name="junit4.childvm.id" value="2"/>
+      <property name="junit4.memory.total" value="514850816"/>
+      <property name="junit4.pidString" value="11072@LAPTOP-LKSM26S6"/>
+      <property name="junit4.processors" value="4"/>
+      <property name="line.separator" value="
+"/>
+      <property name="os.arch" value="amd64"/>
+      <property name="os.name" value="Windows 10"/>
+      <property name="os.version" value="10.0"/>
+      <property name="path.separator" value=";"/>
+      <property name="sun.arch.data.model" value="64"/>
+      <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_65\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_65\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_65\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_65\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_65\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_65\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_65\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_65\jre\classes"/>
+      <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_65\jre\bin"/>
+      <property name="sun.cpu.endian" value="little"/>
+      <property name="sun.cpu.isalist" value="amd64"/>
+      <property name="sun.desktop" value="windows"/>
+      <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+      <property name="sun.java.command" value="com.carrotsearch.ant.tasks.junit4.slave.SlaveMainSafe -eventsfile C:\projects\team3\core\build\testrun\test\temp\junit4-J2-20160915_123537_461.events @C:\projects\team3\core\build\testrun\test\temp\junit4-J2-20160915_123537_461.suites -stdin"/>
+      <property name="sun.java.launcher" value="SUN_STANDARD"/>
+      <property name="sun.jnu.encoding" value="Cp1252"/>
+      <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+      <property name="sun.os.patch.level" value=""/>
+      <property name="tests.artifact" value="core"/>
+      <property name="tests.gradle" value="true"/>
+      <property name="tests.ifNoTests" value="fail"/>
+      <property name="tests.logger.level" value="WARN"/>
+      <property name="tests.prefix" value="tests"/>
+      <property name="tests.security.manager" value="true"/>
+      <property name="tests.seed" value="9CF13790D965C5A7"/>
+      <property name="tests.task" value=":core:test"/>
+      <property name="user.country" value="AT"/>
+      <property name="user.dir" value="C:\projects\team3\core\build\testrun\test\J2"/>
+      <property name="user.home" value="C:\Users\domin"/>
+      <property name="user.language" value="de"/>
+      <property name="user.name" value="domin"/>
+      <property name="user.script" value=""/>
+      <property name="user.timezone" value=""/>
+      <property name="user.variant" value=""/>
+   </properties>
+   <testcase classname="org.elasticsearch.indices.cluster.IndicesClusterStateServiceRandomUpdatesTests" name="testRandomClusterStateUpdates" time="5.035"/>
+   <testcase classname="org.elasticsearch.indices.cluster.IndicesClusterStateServiceRandomUpdatesTests" name="testJoiningNewClusterOnlyRemovesInMemoryIndexStructures" time="0.097"/>
+   <system-out><![CDATA[[2016-09-15T19:37:18,963][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 0
+[2016-09-15T19:37:18,993][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 1
+[2016-09-15T19:37:18,993][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 2
+[2016-09-15T19:37:19,173][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_gceufkpkixigqlg] creating index, cause [api], templates [], shards [2]/[1], mappings []
+[2016-09-15T19:37:19,177][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 3
+[2016-09-15T19:37:19,180][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_vduscsngwmwuata] creating index, cause [api], templates [], shards [1]/[2], mappings []
+[2016-09-15T19:37:19,184][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_gvobfdcitbujpvz] creating index, cause [api], templates [], shards [2]/[1], mappings []
+[2016-09-15T19:37:19,190][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_vldalkwoxjejedq] creating index, cause [api], templates [], shards [2]/[2], mappings []
+[2016-09-15T19:37:19,210][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] closing indices [[[index_vduscsngwmwuata/KCXIEKk5TfSu9YjWOTSldg]]]
+[2016-09-15T19:37:19,264][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] updating number_of_replicas to [2] for indices [index_vldalkwoxjejedq]
+[2016-09-15T19:37:19,271][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_vupfgwctymemica] creating index, cause [api], templates [], shards [1]/[2], mappings []
+[2016-09-15T19:37:19,276][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_aeqqxnvgimidyjw] creating index, cause [api], templates [], shards [1]/[0], mappings []
+[2016-09-15T19:37:19,280][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] closing indices [[[index_gvobfdcitbujpvz/Znef5w2wSDiN953WK6lsnQ]]]
+[2016-09-15T19:37:19,346][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 4
+[2016-09-15T19:37:19,349][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_qywpvlspwiiyxxy] creating index, cause [api], templates [], shards [1]/[0], mappings []
+[2016-09-15T19:37:19,355][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_ahyvlyhwvmzdpip] creating index, cause [api], templates [], shards [1]/[1], mappings []
+[2016-09-15T19:37:19,367][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_zptfksermhffhxj] creating index, cause [api], templates [], shards [2]/[2], mappings []
+[2016-09-15T19:37:19,371][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_ahwzaixrdibvkxj] creating index, cause [api], templates [], shards [1]/[0], mappings []
+[2016-09-15T19:37:19,374][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] closing indices [[[index_ahyvlyhwvmzdpip/sV9FulQhT9-z9rUvdlVVMA]]]
+[2016-09-15T19:37:19,392][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] updating number_of_replicas to [1] for indices [index_vldalkwoxjejedq]
+[2016-09-15T19:37:19,401][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_giykcuvafckbhzx] creating index, cause [api], templates [], shards [2]/[0], mappings []
+[2016-09-15T19:37:19,406][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_cjbauhgrkqtqdux] creating index, cause [api], templates [], shards [2]/[2], mappings []
+[2016-09-15T19:37:19,413][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] closing indices [[[index_ahwzaixrdibvkxj/lbabsMFiRMSJD1LSNMIPvA]]]
+[2016-09-15T19:37:19,414][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] opening indices [[[index_ahwzaixrdibvkxj/lbabsMFiRMSJD1LSNMIPvA]]]
+[2016-09-15T19:37:19,430][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_dshnqfzpyusipov] creating index, cause [api], templates [], shards [1]/[1], mappings []
+[2016-09-15T19:37:19,439][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] closing indices [[[index_giykcuvafckbhzx/qGTJM17XRrKiPjK4sM1_JA]]]
+[2016-09-15T19:37:19,444][INFO ][org.elasticsearch.common.settings] [class org.elasticsearch.test.AbstractQueryTestCase] updating [index.refresh_interval] from [5s] to [3s]
+[2016-09-15T19:37:19,448][INFO ][org.elasticsearch.common.settings] [class org.elasticsearch.test.AbstractQueryTestCase] updating [index.refresh_interval] from [5s] to [3s]
+[2016-09-15T19:37:19,450][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 5
+[2016-09-15T19:37:19,452][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 6
+[2016-09-15T19:37:19,454][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_yzajvmicaiulcbs] creating index, cause [api], templates [], shards [1]/[0], mappings []
+[2016-09-15T19:37:19,458][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_jlnoncanxhetuac] creating index, cause [api], templates [], shards [1]/[1], mappings []
+[2016-09-15T19:37:19,465][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] closing indices [[[index_ahwzaixrdibvkxj/lbabsMFiRMSJD1LSNMIPvA]]]
+[2016-09-15T19:37:19,467][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] updating number_of_replicas to [0] for indices [index_aeqqxnvgimidyjw, index_dshnqfzpyusipov]
+[2016-09-15T19:37:19,482][INFO ][org.elasticsearch.common.settings] [class org.elasticsearch.test.AbstractQueryTestCase] updating [index.refresh_interval] from [1s] to [2s]
+[2016-09-15T19:37:19,484][INFO ][org.elasticsearch.common.settings] [class org.elasticsearch.test.AbstractQueryTestCase] updating [index.refresh_interval] from [1s] to [2s]
+[2016-09-15T19:37:19,485][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 7
+[2016-09-15T19:37:19,487][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_tcxpuywqglzaupy] creating index, cause [api], templates [], shards [2]/[0], mappings []
+[2016-09-15T19:37:19,492][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] updating number_of_replicas to [1] for indices [index_dshnqfzpyusipov, index_cjbauhgrkqtqdux]
+[2016-09-15T19:37:19,506][INFO ][org.elasticsearch.common.settings] [class org.elasticsearch.test.AbstractQueryTestCase] updating [index.refresh_interval] from [2s] to [4s]
+[2016-09-15T19:37:19,512][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 8
+[2016-09-15T19:37:19,521][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] closing indices [[[index_aeqqxnvgimidyjw/1LrWIRgySeSbrKb2iNbusw]]]
+[2016-09-15T19:37:19,542][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 9
+[2016-09-15T19:37:19,544][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_dylyrdxiuwzhygw] creating index, cause [api], templates [], shards [3]/[2], mappings []
+[2016-09-15T19:37:19,550][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_zdsdhqluogguqre] creating index, cause [api], templates [], shards [3]/[1], mappings []
+[2016-09-15T19:37:19,558][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_jkzyvmaojboecue] creating index, cause [api], templates [], shards [2]/[2], mappings []
+[2016-09-15T19:37:19,570][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_blggaeglsfkrvxc] creating index, cause [api], templates [], shards [3]/[1], mappings []
+[2016-09-15T19:37:19,572][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [RED] (reason: [index [index_blggaeglsfkrvxc] created]).
+[2016-09-15T19:37:19,580][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] closing indices [[[index_jkzyvmaojboecue/H6rRQRLCRUqs9C48Gvc_rA]]]
+[2016-09-15T19:37:19,592][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [RED] to [YELLOW] (reason: [indices closed [[[index_jkzyvmaojboecue/H6rRQRLCRUqs9C48Gvc_rA]]]]).
+[2016-09-15T19:37:19,593][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] opening indices [[[index_jkzyvmaojboecue/H6rRQRLCRUqs9C48Gvc_rA]]]
+[2016-09-15T19:37:19,595][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [RED] (reason: [indices opened [[[index_jkzyvmaojboecue/H6rRQRLCRUqs9C48Gvc_rA]]]]).
+[2016-09-15T19:37:19,605][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] closing indices [[[index_zdsdhqluogguqre/wDaALxjqQqGZtf7zsbO31w]]]
+[2016-09-15T19:37:19,607][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] updating number_of_replicas to [1] for indices [index_yzajvmicaiulcbs, index_tcxpuywqglzaupy]
+[2016-09-15T19:37:19,616][INFO ][org.elasticsearch.common.settings] [class org.elasticsearch.test.AbstractQueryTestCase] updating [index.refresh_interval] from [1s] to [4s]
+[2016-09-15T19:37:19,657][INFO ][org.elasticsearch.common.settings] [class org.elasticsearch.test.AbstractQueryTestCase] updating [index.refresh_interval] from [1s] to [4s]
+[2016-09-15T19:37:19,659][INFO ][org.elasticsearch.common.settings] [class org.elasticsearch.test.AbstractQueryTestCase] updating [index.refresh_interval] from [1s] to [4s]
+[2016-09-15T19:37:19,660][INFO ][org.elasticsearch.common.settings] [class org.elasticsearch.test.AbstractQueryTestCase] updating [index.refresh_interval] from [1s] to [4s]
+[2016-09-15T19:37:19,679][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 10
+[2016-09-15T19:37:19,683][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_sgwhywydfslenac] creating index, cause [api], templates [], shards [3]/[2], mappings []
+[2016-09-15T19:37:19,696][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_flquykygjdbnifb] creating index, cause [api], templates [], shards [1]/[1], mappings []
+[2016-09-15T19:37:19,704][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] closing indices [[[index_yzajvmicaiulcbs/2iVBPW1BQNCI7vTs1xRcHw]]]
+[2016-09-15T19:37:19,722][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] updating number_of_replicas to [1] for indices [index_jkzyvmaojboecue]
+[2016-09-15T19:37:19,741][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[index_dylyrdxiuwzhygw][2], [index_jkzyvmaojboecue][0], [index_blggaeglsfkrvxc][1], [index_tcxpuywqglzaupy][1], [index_dylyrdxiuwzhygw][0], [index_blggaeglsfkrvxc][2], [index_blggaeglsfkrvxc][0], [index_tcxpuywqglzaupy][0]] ...]).
+[2016-09-15T19:37:19,746][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_vnnzvrivikxucyr] creating index, cause [api], templates [], shards [3]/[1], mappings []
+[2016-09-15T19:37:19,766][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_elhetuwvzbxyfii] creating index, cause [api], templates [], shards [3]/[0], mappings []
+[2016-09-15T19:37:19,771][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] updating number_of_replicas to [2] for indices [index_vnnzvrivikxucyr]
+[2016-09-15T19:37:19,784][INFO ][org.elasticsearch.common.settings] [class org.elasticsearch.test.AbstractQueryTestCase] updating [index.refresh_interval] from [1s] to [4s]
+[2016-09-15T19:37:19,876][INFO ][org.elasticsearch.common.settings] [class org.elasticsearch.test.AbstractQueryTestCase] updating [index.refresh_interval] from [1s] to [4s]
+[2016-09-15T19:37:19,937][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 11
+[2016-09-15T19:37:19,942][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_vwuuihgsuqdkbju] creating index, cause [api], templates [], shards [3]/[0], mappings []
+[2016-09-15T19:37:20,011][INFO ][org.elasticsearch.common.settings] [class org.elasticsearch.test.AbstractQueryTestCase] updating [index.refresh_interval] from [4s] to [1s]
+[2016-09-15T19:37:20,013][INFO ][org.elasticsearch.common.settings] [class org.elasticsearch.test.AbstractQueryTestCase] updating [index.refresh_interval] from [4s] to [1s]
+[2016-09-15T19:37:20,017][INFO ][org.elasticsearch.common.settings] [class org.elasticsearch.test.AbstractQueryTestCase] updating [index.refresh_interval] from [4s] to [1s]
+[2016-09-15T19:37:20,019][INFO ][org.elasticsearch.common.settings] [class org.elasticsearch.test.AbstractQueryTestCase] updating [index.refresh_interval] from [4s] to [1s]
+[2016-09-15T19:37:20,139][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 12
+[2016-09-15T19:37:20,141][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_nbovwpbipvcclnj] creating index, cause [api], templates [], shards [3]/[1], mappings []
+[2016-09-15T19:37:20,169][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 13
+[2016-09-15T19:37:20,178][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 14
+[2016-09-15T19:37:20,180][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_qocbarqrdiyxbwl] creating index, cause [api], templates [], shards [3]/[0], mappings []
+[2016-09-15T19:37:20,187][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] updating number_of_replicas to [1] for indices [index_vnnzvrivikxucyr]
+[2016-09-15T19:37:20,342][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] opening indices [[[index_yzajvmicaiulcbs/2iVBPW1BQNCI7vTs1xRcHw]]]
+[2016-09-15T19:37:20,357][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_slzjrqrczelqxak] creating index, cause [api], templates [], shards [2]/[0], mappings []
+[2016-09-15T19:37:20,362][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] updating number_of_replicas to [2] for indices [index_sgwhywydfslenac]
+[2016-09-15T19:37:20,373][INFO ][org.elasticsearch.common.settings] [class org.elasticsearch.test.AbstractQueryTestCase] updating [index.refresh_interval] from [1s] to [2s]
+[2016-09-15T19:37:20,373][INFO ][org.elasticsearch.common.settings] [class org.elasticsearch.test.AbstractQueryTestCase] updating [index.refresh_interval] from [1s] to [4s]
+[2016-09-15T19:37:20,390][INFO ][org.elasticsearch.common.settings] [class org.elasticsearch.test.AbstractQueryTestCase] updating [index.refresh_interval] from [1s] to [2s]
+[2016-09-15T19:37:20,391][INFO ][org.elasticsearch.common.settings] [class org.elasticsearch.test.AbstractQueryTestCase] updating [index.refresh_interval] from [1s] to [4s]
+[2016-09-15T19:37:20,407][INFO ][org.elasticsearch.common.settings] [class org.elasticsearch.test.AbstractQueryTestCase] updating [index.refresh_interval] from [1s] to [2s]
+[2016-09-15T19:37:20,418][INFO ][org.elasticsearch.common.settings] [class org.elasticsearch.test.AbstractQueryTestCase] updating [index.refresh_interval] from [1s] to [2s]
+[2016-09-15T19:37:20,418][INFO ][org.elasticsearch.common.settings] [class org.elasticsearch.test.AbstractQueryTestCase] updating [index.refresh_interval] from [1s] to [4s]
+[2016-09-15T19:37:20,439][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 15
+[2016-09-15T19:37:20,449][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_bdxqskevpyjswip] creating index, cause [api], templates [], shards [2]/[2], mappings []
+[2016-09-15T19:37:20,453][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_qwqovivipdnlamr] creating index, cause [api], templates [], shards [2]/[2], mappings []
+[2016-09-15T19:37:20,513][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_qphohsvaexfvwnf] creating index, cause [api], templates [], shards [2]/[1], mappings []
+[2016-09-15T19:37:20,517][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_vkkrmfxvcygnaiy] creating index, cause [api], templates [], shards [2]/[1], mappings []
+[2016-09-15T19:37:20,522][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] closing indices [[[index_bdxqskevpyjswip/nzCqMr2aRgKd3x9cH54nCQ]]]
+[2016-09-15T19:37:20,537][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 16
+[2016-09-15T19:37:20,539][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_fejsksbytxephzd] creating index, cause [api], templates [], shards [1]/[1], mappings []
+[2016-09-15T19:37:20,624][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] closing indices [[[index_vkkrmfxvcygnaiy/hJufL-sWSlmPsGKUdH_QsA]]]
+[2016-09-15T19:37:20,627][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] updating number_of_replicas to [1] for indices [index_fejsksbytxephzd]
+[2016-09-15T19:37:20,653][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 17
+[2016-09-15T19:37:20,657][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 18
+[2016-09-15T19:37:20,659][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_nmwolxitfhuokni] creating index, cause [api], templates [], shards [3]/[2], mappings []
+[2016-09-15T19:37:20,671][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] updating number_of_replicas to [0] for indices [index_qwqovivipdnlamr]
+[2016-09-15T19:37:20,715][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_ewiviwcffsvzgdc] creating index, cause [api], templates [], shards [1]/[0], mappings []
+[2016-09-15T19:37:20,719][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_ckikwuboegbvcrj] creating index, cause [api], templates [], shards [2]/[2], mappings []
+[2016-09-15T19:37:20,893][INFO ][org.elasticsearch.common.settings] [class org.elasticsearch.test.AbstractQueryTestCase] updating [index.refresh_interval] from [1s] to [4s]
+[2016-09-15T19:37:20,990][INFO ][org.elasticsearch.common.settings] [class org.elasticsearch.test.AbstractQueryTestCase] updating [index.refresh_interval] from [1s] to [4s]
+[2016-09-15T19:37:21,001][INFO ][org.elasticsearch.common.settings] [class org.elasticsearch.test.AbstractQueryTestCase] updating [index.refresh_interval] from [1s] to [4s]
+[2016-09-15T19:37:21,004][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 19
+[2016-09-15T19:37:21,020][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_fcgxufctueovbsn] creating index, cause [api], templates [], shards [2]/[1], mappings []
+[2016-09-15T19:37:21,110][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 20
+[2016-09-15T19:37:21,117][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_cufszxslaoidtxe] creating index, cause [api], templates [], shards [1]/[2], mappings []
+[2016-09-15T19:37:21,120][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [RED] (reason: [index [index_cufszxslaoidtxe] created]).
+[2016-09-15T19:37:21,122][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_dioxvjszjiertvz] creating index, cause [api], templates [], shards [2]/[2], mappings []
+[2016-09-15T19:37:21,169][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] closing indices [[[index_fejsksbytxephzd/D7VBW9keQ3K7SPQGOf2TOw]]]
+[2016-09-15T19:37:21,243][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_geejzbfeebedjnx] creating index, cause [api], templates [], shards [3]/[1], mappings []
+[2016-09-15T19:37:21,245][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [YELLOW] to [RED] (reason: [index [index_geejzbfeebedjnx] created]).
+[2016-09-15T19:37:21,249][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_yohvehnctodmgst] creating index, cause [api], templates [], shards [3]/[2], mappings []
+[2016-09-15T19:37:21,257][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_ukpagpiqkuqofnz] creating index, cause [api], templates [], shards [2]/[1], mappings []
+[2016-09-15T19:37:21,642][INFO ][org.elasticsearch.common.settings] [class org.elasticsearch.test.AbstractQueryTestCase] updating [index.refresh_interval] from [4s] to [3s]
+[2016-09-15T19:37:21,655][INFO ][org.elasticsearch.common.settings] [class org.elasticsearch.test.AbstractQueryTestCase] updating [index.refresh_interval] from [4s] to [3s]
+[2016-09-15T19:37:21,662][INFO ][org.elasticsearch.common.settings] [class org.elasticsearch.test.AbstractQueryTestCase] updating [index.refresh_interval] from [4s] to [3s]
+[2016-09-15T19:37:21,673][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 21
+[2016-09-15T19:37:21,682][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 22
+[2016-09-15T19:37:21,779][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 23
+[2016-09-15T19:37:21,782][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] closing indices [[[index_geejzbfeebedjnx/fDla0aeVRfaFgPCzJvejpg]]]
+[2016-09-15T19:37:21,784][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] opening indices [[[index_vkkrmfxvcygnaiy/hJufL-sWSlmPsGKUdH_QsA]]]
+[2016-09-15T19:37:21,804][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_iggoxzaslqmtkvp] creating index, cause [api], templates [], shards [1]/[2], mappings []
+[2016-09-15T19:37:21,808][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_ehhnxkhrbuxbfez] creating index, cause [api], templates [], shards [2]/[2], mappings []
+[2016-09-15T19:37:21,998][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 24
+[2016-09-15T19:37:22,000][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 25
+[2016-09-15T19:37:22,002][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_lldeouktwyjrteu] creating index, cause [api], templates [], shards [2]/[0], mappings []
+[2016-09-15T19:37:22,007][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_fvmfgcextnrdumg] creating index, cause [api], templates [], shards [2]/[1], mappings []
+[2016-09-15T19:37:22,111][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_osndjqtyaglnllb] creating index, cause [api], templates [], shards [2]/[1], mappings []
+[2016-09-15T19:37:22,115][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_oavxsfftcghtybv] creating index, cause [api], templates [], shards [1]/[2], mappings []
+[2016-09-15T19:37:22,120][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_pkdeyczpnmkicwn] creating index, cause [api], templates [], shards [2]/[1], mappings []
+[2016-09-15T19:37:22,124][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_tuljnpgkssbgcrh] creating index, cause [api], templates [], shards [1]/[0], mappings []
+[2016-09-15T19:37:22,129][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_okttikfpeebioag] creating index, cause [api], templates [], shards [3]/[0], mappings []
+[2016-09-15T19:37:22,140][INFO ][org.elasticsearch.cluster.routing.allocation] [node_s_0] Cluster health status changed from [RED] to [YELLOW] (reason: [shards started [[index_dioxvjszjiertvz][0], [index_jkzyvmaojboecue][0], [index_jkzyvmaojboecue][1], [index_vnnzvrivikxucyr][1], [index_vkkrmfxvcygnaiy][0], [index_nmwolxitfhuokni][0], [index_nmwolxitfhuokni][2], [index_vkkrmfxvcygnaiy][1], [index_ukpagpiqkuqofnz][1], [index_ckikwuboegbvcrj][1]] ...]).
+[2016-09-15T19:37:22,268][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 26
+[2016-09-15T19:37:22,489][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 27
+[2016-09-15T19:37:22,490][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] [index_cbjgtzxqqhyclem] creating index, cause [api], templates [], shards [3]/[1], mappings []
+[2016-09-15T19:37:22,519][INFO ][org.elasticsearch.cluster.metadata] [node_s_0] opening indices [[[index_fejsksbytxephzd/D7VBW9keQ3K7SPQGOf2TOw]]]
+[2016-09-15T19:37:22,553][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 28
+[2016-09-15T19:37:22,598][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Iteration 29
+[2016-09-15T19:37:22,608][INFO ][org.elasticsearch.indices.cluster] [node_s_0] Final cluster state: cluster uuid: pVSBEMkoRzu6tr9wfcLq7A
+version: 0
+state uuid: NfdUUo-gTuKDUm8N4M0ZCg
+from_diff: false
+meta data version: 0
+   [index_ewiviwcffsvzgdc/ltYnAaveRwGNZf_d09kdbQ]: v[6]
+      0: p_term [1], a_ids [gZVrm-09SfiltAQ-h7wEZQ]
+   [index_pkdeyczpnmkicwn/MPuJRxfZSjqOYcerbYPBrw]: v[4]
+      0: p_term [1], a_ids [VjVbiG6WTLOarqqYE3o4eQ]
+      1: p_term [1], a_ids [NizXAp_hRM-DcSo6jonHng, K99qohXfSeuDP4EHBxxCng]
+   [index_ukpagpiqkuqofnz/G3gorFfjTRqCX_CqFVkdTQ]: v[7]
+      0: p_term [1], a_ids [K2g0NBcaT6y4omlzahOrIg, ao6YbYrTS1yzbZTXEZm_ew]
+      1: p_term [1], a_ids [hhn1yd9vTnyPbwfmj0Mr2A, WDP2qBn5SViY-48Y7IDeSg]
+   [index_lldeouktwyjrteu/uYzsT894QtqKQyuf1uvOFw]: v[4]
+      0: p_term [1], a_ids [H_z0eu6PRHWseyF9bC2eeQ]
+      1: p_term [1], a_ids []
+   [index_okttikfpeebioag/XGo9boNZQ4azRSEdtSeRqw]: v[3]
+      0: p_term [1], a_ids [kfDRndmnR3SzWJwlPx_J7w]
+      1: p_term [1], a_ids [QjVh_b-xSgm7-YRfH6ZVDA]
+      2: p_term [1], a_ids [LDfqsj77TcOHd-pDuyk98g]
+   [index_ckikwuboegbvcrj/fHtnFZ2PTXGsZfrd_JqW-g]: v[12]
+      0: p_term [1], a_ids [8g6jz_7VT_uupe4H6sqS7A, XAhXUeZvTZSNB_1D716h_Q]
+      1: p_term [2], a_ids [HX_DfziCQnSlHLhCROUKmg, Ju6JX487TjSLjj_fQjSU-Q, 0rVszwh0TRW5wjdQRzxKIg]
+   [index_cbjgtzxqqhyclem/aBoghLZQSHi1FpQIZF_mMQ]: v[3]
+      0: p_term [1], a_ids []
+      1: p_term [1], a_ids []
+      2: p_term [1], a_ids []
+   [index_iggoxzaslqmtkvp/RQtQrnkQRuW6zldGO_T_9A]: v[3]
+      0: p_term [1], a_ids [BAuzPTIpS8CBdXbuLPG4HQ]
+   [index_geejzbfeebedjnx/fDla0aeVRfaFgPCzJvejpg]: v[5]
+      0: p_term [1], a_ids []
+      1: p_term [1], a_ids []
+      2: p_term [1], a_ids []
+   [index_jkzyvmaojboecue/H6rRQRLCRUqs9C48Gvc_rA]: v[25]
+      0: p_term [2], a_ids [qaovY10hQ3e0E37MPbjbQQ, tLZyzglRQDekhPSGdRJVmw]
+      1: p_term [2], a_ids [GMs5F-HQSySzEEkJvtHtCw, WHkqyghET1ere52dirqq4g]
+   [index_nmwolxitfhuokni/SFulx4AYTdmVmqFFonr65Q]: v[10]
+      0: p_term [1], a_ids [NmxnIqVNQ2W2UFomYVen8g, hglabTPeRSqLfwz732lilw, hb4RuxQbT6SZylv3TssKCg]
+      1: p_term [1], a_ids [tNj1RJauSX6xOoXhcrIdCg, sfEFP7HjStSBwf9RTNUkiA, wLCBEHKSRtebJXSghm3Kfw]
+      2: p_term [0], a_ids [Q3g6kG7xTsCEs5kEl8xGqg, ebi7VxumSiu21yqeWRHiLQ, 8dquQjI5QAa2uMiOT0vlBQ]
+   [index_vnnzvrivikxucyr/s5dQD2K1RmqGvsh4jXHEkA]: v[26]
+      0: p_term [1], a_ids [tcEosQAFQ42IYIogbhNKyA, c5upNC4aQrKDp08t0j6sTg]
+      1: p_term [1], a_ids [jscGUS9LSRK0WC3iarlTyQ, ZcmLR7ZkREC8j0cpLgzWmQ]
+      2: p_term [1], a_ids [TL1JkcXbQYi9C44gdhQ-NQ, QiXyxcIVSb-EQ_psopj4kw]
+   [index_osndjqtyaglnllb/t6nRdeq2S0ytXm8b2SwhpQ]: v[3]
+      0: p_term [1], a_ids []
+      1: p_term [1], a_ids []
+   [index_dioxvjszjiertvz/VLM653kXQ-iZlz8mUW1nxg]: v[6]
+      0: p_term [2], a_ids [h-FY0fnhTAaBbezljfK0Gw, walmO02wQLWN_8DJokVytA, FFu2asyARYGmFF-AuDYohA]
+      1: p_term [1], a_ids [FRgyYFvyRtKKqTm1XDdayg, FoeOOSwuQHKNrnuSXl8H0Q]
+   [index_ehhnxkhrbuxbfez/wl6njlhTSt6sgE6NGzOvFA]: v[5]
+      0: p_term [1], a_ids [kc6Gn7QuSoKOWPW_QqIqbw, JYELKBo2Q9izmeGgZX4oRQ, dmgRzZ-DTzayUJ2mRDBR5Q]
+      1: p_term [1], a_ids [e8CbiuSlSea4Gx2hk9HPqg, sl4VLZpnRomk9rIUj8wiVg]
+   [index_fejsksbytxephzd/D7VBW9keQ3K7SPQGOf2TOw]: v[12]
+      0: p_term [2], a_ids [AbP1NS_DQUmaCJVTHQAIeg]
+   [index_qwqovivipdnlamr/yVaOfLCERcCl2PZLb1yfbg]: v[14]
+      0: p_term [1], a_ids [ZdeVVmW2TRqVOyLk_sf2zQ]
+      1: p_term [2], a_ids [aT0h-mRBR-mDKzU5MLlM0Q]
+   [index_vkkrmfxvcygnaiy/hJufL-sWSlmPsGKUdH_QsA]: v[10]
+      0: p_term [2], a_ids [fDX45lrATKKv2MzKPsdibA, bdJC1CHeQzKPygxXrarYqQ]
+      1: p_term [2], a_ids [Cs-vltfpQwGNHJ8EhAmJoQ]
+   [index_fvmfgcextnrdumg/7j2yilKHS3-DZlPUN-tEQg]: v[4]
+      0: p_term [1], a_ids [ooZ2hVOfTOa6VyziLbV5Hw, Sowjix0yS2SsauBBpFpu4g]
+      1: p_term [1], a_ids []
+blocks: 
+   index_geejzbfeebedjnx:
+      4,index closed, blocks READ,WRITE
+nodes: 
+   {node_bMbGzdoB}{HXIPITUIQd2v5orS5srzRg}{local}{local[25]}
+   {node_IIBVKexH}{eX0E-jZdQMuDBvDuQZWXgw}{local}{local[21]}, local, master
+   {node_xDsDZBSP}{VWUz632KQEG1GLzmElrlaQ}{local}{local[23]}
+   {node_iHZwWXkq}{uaUQXy_OSTyzIrsS9h0lvA}{local}{local[26]}
+   {node_MWGhmlqk}{ITlCZQF_QLeyyBSYQ84Xew}{local}{local[22]}
+   {node_AsNFpLkV}{xK7pFEXHQfSpQITJncTs-Q}{local}{local[27]}
+   {node_DRjMVzkb}{vqKKC2kSSIaYISvlyCZ8KQ}{local}{local[24]}
+routing_table (version 0):
+-- index [[index_dioxvjszjiertvz/VLM653kXQ-iZlz8mUW1nxg]]
+----shard_id [index_dioxvjszjiertvz][0]
+--------[index_dioxvjszjiertvz][0], node[node_MWGhmlqk], [R], s[STARTED], a[id=walmO02wQLWN_8DJokVytA]
+--------[index_dioxvjszjiertvz][0], node[node_AsNFpLkV], [P], s[STARTED], a[id=FFu2asyARYGmFF-AuDYohA]
+--------[index_dioxvjszjiertvz][0], node[node_iHZwWXkq], [R], s[STARTED], a[id=h-FY0fnhTAaBbezljfK0Gw]
+----shard_id [index_dioxvjszjiertvz][1]
+--------[index_dioxvjszjiertvz][1], node[node_MWGhmlqk], [R], recovery_source[peer recovery], s[INITIALIZING], a[id=4HsjwbjdREiDGhOG1Rbbyw], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:21.122Z], delayed=false, allocation_status[no_attempt]]
+--------[index_dioxvjszjiertvz][1], node[node_AsNFpLkV], relocating [node_iHZwWXkq], [P], s[RELOCATING], a[id=FRgyYFvyRtKKqTm1XDdayg, rId=oIPZuRYyQryAVpO3UHdjgA]
+--------[index_dioxvjszjiertvz][1], node[node_xDsDZBSP], [R], s[STARTED], a[id=FoeOOSwuQHKNrnuSXl8H0Q]
+
+-- index [[index_qwqovivipdnlamr/yVaOfLCERcCl2PZLb1yfbg]]
+----shard_id [index_qwqovivipdnlamr][0]
+--------[index_qwqovivipdnlamr][0], node[node_iHZwWXkq], relocating [node_MWGhmlqk], [P], s[RELOCATING], a[id=ZdeVVmW2TRqVOyLk_sf2zQ, rId=6G91GildREC_PSYnS-IsyQ]
+----shard_id [index_qwqovivipdnlamr][1]
+--------[index_qwqovivipdnlamr][1], node[node_iHZwWXkq], [P], s[STARTED], a[id=aT0h-mRBR-mDKzU5MLlM0Q]
+
+-- index [[index_ehhnxkhrbuxbfez/wl6njlhTSt6sgE6NGzOvFA]]
+----shard_id [index_ehhnxkhrbuxbfez][0]
+--------[index_ehhnxkhrbuxbfez][0], node[node_MWGhmlqk], [R], s[STARTED], a[id=kc6Gn7QuSoKOWPW_QqIqbw]
+--------[index_ehhnxkhrbuxbfez][0], node[node_AsNFpLkV], [R], s[STARTED], a[id=dmgRzZ-DTzayUJ2mRDBR5Q]
+--------[index_ehhnxkhrbuxbfez][0], node[node_iHZwWXkq], relocating [node_xDsDZBSP], [P], s[RELOCATING], a[id=JYELKBo2Q9izmeGgZX4oRQ, rId=It169HRcR4WFhQvUbZeDVw]
+----shard_id [index_ehhnxkhrbuxbfez][1]
+--------[index_ehhnxkhrbuxbfez][1], node[node_MWGhmlqk], [P], s[STARTED], a[id=e8CbiuSlSea4Gx2hk9HPqg]
+--------[index_ehhnxkhrbuxbfez][1], node[node_AsNFpLkV], [R], recovery_source[peer recovery], s[INITIALIZING], a[id=prRth70VTKaIficYdnQcMQ], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:21.809Z], delayed=false, allocation_status[no_attempt]]
+--------[index_ehhnxkhrbuxbfez][1], node[node_iHZwWXkq], [R], s[STARTED], a[id=sl4VLZpnRomk9rIUj8wiVg]
+
+-- index [[index_vkkrmfxvcygnaiy/hJufL-sWSlmPsGKUdH_QsA]]
+----shard_id [index_vkkrmfxvcygnaiy][0]
+--------[index_vkkrmfxvcygnaiy][0], node[node_MWGhmlqk], [P], s[STARTED], a[id=bdJC1CHeQzKPygxXrarYqQ]
+--------[index_vkkrmfxvcygnaiy][0], node[node_AsNFpLkV], [R], s[STARTED], a[id=fDX45lrATKKv2MzKPsdibA]
+----shard_id [index_vkkrmfxvcygnaiy][1]
+--------[index_vkkrmfxvcygnaiy][1], node[node_AsNFpLkV], [R], recovery_source[peer recovery], s[INITIALIZING], a[id=CldC-uSaRBidS4-sLsHUMw], unassigned_info[[reason=INDEX_REOPENED], at[2016-09-15T10:37:21.784Z], delayed=false, allocation_status[no_attempt]]
+--------[index_vkkrmfxvcygnaiy][1], node[node_xDsDZBSP], relocating [node_MWGhmlqk], [P], s[RELOCATING], a[id=Cs-vltfpQwGNHJ8EhAmJoQ, rId=LRtzPOdjRN6VnIz8kdBBag]
+
+-- index [[index_pkdeyczpnmkicwn/MPuJRxfZSjqOYcerbYPBrw]]
+----shard_id [index_pkdeyczpnmkicwn][0]
+--------[index_pkdeyczpnmkicwn][0], node[node_AsNFpLkV], [R], recovery_source[peer recovery], s[INITIALIZING], a[id=un7kACRESwqDBS9MU8XmoA], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:22.120Z], delayed=false, allocation_status[no_attempt]]
+--------[index_pkdeyczpnmkicwn][0], node[node_iHZwWXkq], relocating [node_MWGhmlqk], [P], s[RELOCATING], a[id=VjVbiG6WTLOarqqYE3o4eQ, rId=3mzR9q0zR4qjfxl7PdrR-w]
+----shard_id [index_pkdeyczpnmkicwn][1]
+--------[index_pkdeyczpnmkicwn][1], node[node_MWGhmlqk], relocating [node_AsNFpLkV], [R], s[RELOCATING], a[id=NizXAp_hRM-DcSo6jonHng, rId=MFNAjuCWQ3uC_ErVMreSAA]
+--------[index_pkdeyczpnmkicwn][1], node[node_xDsDZBSP], [P], s[STARTED], a[id=K99qohXfSeuDP4EHBxxCng]
+
+-- index [[index_ukpagpiqkuqofnz/G3gorFfjTRqCX_CqFVkdTQ]]
+----shard_id [index_ukpagpiqkuqofnz][0]
+--------[index_ukpagpiqkuqofnz][0], node[node_AsNFpLkV], relocating [node_xDsDZBSP], [P], s[RELOCATING], a[id=ao6YbYrTS1yzbZTXEZm_ew, rId=b7ogaL9eSH2ikhxjgo2cWQ]
+--------[index_ukpagpiqkuqofnz][0], node[node_iHZwWXkq], relocating [node_MWGhmlqk], [R], s[RELOCATING], a[id=K2g0NBcaT6y4omlzahOrIg, rId=K3tmGfU0SViPePKDBV2zCg]
+----shard_id [index_ukpagpiqkuqofnz][1]
+--------[index_ukpagpiqkuqofnz][1], node[node_xDsDZBSP], relocating [node_MWGhmlqk], [R], s[RELOCATING], a[id=hhn1yd9vTnyPbwfmj0Mr2A, rId=vJYe0x_MTRy_m-WyG2sv7g]
+--------[index_ukpagpiqkuqofnz][1], node[node_iHZwWXkq], relocating [node_AsNFpLkV], [P], s[RELOCATING], a[id=WDP2qBn5SViY-48Y7IDeSg, rId=sykH18CJRJSd6knld6WWQg]
+
+-- index [[index_jkzyvmaojboecue/H6rRQRLCRUqs9C48Gvc_rA]]
+----shard_id [index_jkzyvmaojboecue][0]
+--------[index_jkzyvmaojboecue][0], node[node_MWGhmlqk], relocating [node_iHZwWXkq], [P], s[RELOCATING], a[id=qaovY10hQ3e0E37MPbjbQQ, rId=GV8BSMCCQsK3LmnNaqXFcQ]
+--------[index_jkzyvmaojboecue][0], node[node_xDsDZBSP], [R], s[STARTED], a[id=tLZyzglRQDekhPSGdRJVmw]
+----shard_id [index_jkzyvmaojboecue][1]
+--------[index_jkzyvmaojboecue][1], node[node_MWGhmlqk], relocating [node_AsNFpLkV], [P], s[RELOCATING], a[id=WHkqyghET1ere52dirqq4g, rId=KeR1VxAHSTaH2pRia48Mpg]
+--------[index_jkzyvmaojboecue][1], node[node_iHZwWXkq], relocating [node_xDsDZBSP], [R], s[RELOCATING], a[id=GMs5F-HQSySzEEkJvtHtCw, rId=plCRi7O5TlqFGP5y_zZ87w]
+
+-- index [[index_nmwolxitfhuokni/SFulx4AYTdmVmqFFonr65Q]]
+----shard_id [index_nmwolxitfhuokni][0]
+--------[index_nmwolxitfhuokni][0], node[node_MWGhmlqk], [R], s[STARTED], a[id=hglabTPeRSqLfwz732lilw]
+--------[index_nmwolxitfhuokni][0], node[node_AsNFpLkV], relocating [node_iHZwWXkq], [R], s[RELOCATING], a[id=NmxnIqVNQ2W2UFomYVen8g, rId=1nCNyVXkTGSWJrvg5sfJ7A]
+--------[index_nmwolxitfhuokni][0], node[node_xDsDZBSP], [P], s[STARTED], a[id=hb4RuxQbT6SZylv3TssKCg]
+----shard_id [index_nmwolxitfhuokni][1]
+--------[index_nmwolxitfhuokni][1], node[node_MWGhmlqk], [R], s[STARTED], a[id=tNj1RJauSX6xOoXhcrIdCg]
+--------[index_nmwolxitfhuokni][1], node[node_AsNFpLkV], relocating [node_iHZwWXkq], [P], s[RELOCATING], a[id=sfEFP7HjStSBwf9RTNUkiA, rId=NnE0E0U4Sq6J0QRIc7PDNQ]
+--------[index_nmwolxitfhuokni][1], node[node_xDsDZBSP], [R], s[STARTED], a[id=wLCBEHKSRtebJXSghm3Kfw]
+----shard_id [index_nmwolxitfhuokni][2]
+--------[index_nmwolxitfhuokni][2], node[node_MWGhmlqk], [P], s[STARTED], a[id=Q3g6kG7xTsCEs5kEl8xGqg]
+--------[index_nmwolxitfhuokni][2], node[node_xDsDZBSP], [R], s[STARTED], a[id=ebi7VxumSiu21yqeWRHiLQ]
+--------[index_nmwolxitfhuokni][2], node[node_iHZwWXkq], relocating [node_AsNFpLkV], [R], s[RELOCATING], a[id=8dquQjI5QAa2uMiOT0vlBQ, rId=jYYkdlIzSKiwxIGLdpL9Pw]
+
+-- index [[index_fvmfgcextnrdumg/7j2yilKHS3-DZlPUN-tEQg]]
+----shard_id [index_fvmfgcextnrdumg][0]
+--------[index_fvmfgcextnrdumg][0], node[node_AsNFpLkV], relocating [node_MWGhmlqk], [R], s[RELOCATING], a[id=ooZ2hVOfTOa6VyziLbV5Hw, rId=3klTrOhsRuu_UTqdumnSDQ]
+--------[index_fvmfgcextnrdumg][0], node[node_xDsDZBSP], [P], s[STARTED], a[id=Sowjix0yS2SsauBBpFpu4g]
+----shard_id [index_fvmfgcextnrdumg][1]
+--------[index_fvmfgcextnrdumg][1], node[node_iHZwWXkq], [P], recovery_source[new shard recovery], s[INITIALIZING], a[id=wxQ-0YGQRDiwrkCVUFyGOg], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:22.007Z], delayed=false, allocation_status[no_attempt]]
+--------[index_fvmfgcextnrdumg][1], node[null], [R], recovery_source[peer recovery], s[UNASSIGNED], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:22.007Z], delayed=false, allocation_status[no_attempt]]
+
+-- index [[index_lldeouktwyjrteu/uYzsT894QtqKQyuf1uvOFw]]
+----shard_id [index_lldeouktwyjrteu][0]
+--------[index_lldeouktwyjrteu][0], node[node_iHZwWXkq], [P], s[STARTED], a[id=H_z0eu6PRHWseyF9bC2eeQ]
+----shard_id [index_lldeouktwyjrteu][1]
+--------[index_lldeouktwyjrteu][1], node[node_AsNFpLkV], [P], recovery_source[new shard recovery], s[INITIALIZING], a[id=gyXfM0vZTYOiz4Bvik-ptQ], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:22.003Z], delayed=false, allocation_status[no_attempt]]
+
+-- index [[index_ewiviwcffsvzgdc/ltYnAaveRwGNZf_d09kdbQ]]
+----shard_id [index_ewiviwcffsvzgdc][0]
+--------[index_ewiviwcffsvzgdc][0], node[node_AsNFpLkV], relocating [node_xDsDZBSP], [P], s[RELOCATING], a[id=gZVrm-09SfiltAQ-h7wEZQ, rId=RfJWVdXRS_-a2XdWHuA9zg]
+
+-- index [[index_osndjqtyaglnllb/t6nRdeq2S0ytXm8b2SwhpQ]]
+----shard_id [index_osndjqtyaglnllb][0]
+--------[index_osndjqtyaglnllb][0], node[node_AsNFpLkV], [P], recovery_source[new shard recovery], s[INITIALIZING], a[id=9Kr3Oi45RR6sJYhlWeuwXA], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:22.112Z], delayed=false, allocation_status[deciders_throttled]]
+--------[index_osndjqtyaglnllb][0], node[null], [R], recovery_source[peer recovery], s[UNASSIGNED], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:22.112Z], delayed=false, allocation_status[no_attempt]]
+----shard_id [index_osndjqtyaglnllb][1]
+--------[index_osndjqtyaglnllb][1], node[node_MWGhmlqk], [P], recovery_source[new shard recovery], s[INITIALIZING], a[id=bPRy7S8oTEqIxDrcygpW9g], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:22.112Z], delayed=false, allocation_status[no_attempt]]
+--------[index_osndjqtyaglnllb][1], node[null], [R], recovery_source[peer recovery], s[UNASSIGNED], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:22.112Z], delayed=false, allocation_status[no_attempt]]
+
+-- index [[index_vnnzvrivikxucyr/s5dQD2K1RmqGvsh4jXHEkA]]
+----shard_id [index_vnnzvrivikxucyr][0]
+--------[index_vnnzvrivikxucyr][0], node[node_MWGhmlqk], relocating [node_AsNFpLkV], [P], s[RELOCATING], a[id=c5upNC4aQrKDp08t0j6sTg, rId=CrC5ceXaS-ulFUj2r9K02w]
+--------[index_vnnzvrivikxucyr][0], node[node_xDsDZBSP], [R], s[STARTED], a[id=tcEosQAFQ42IYIogbhNKyA]
+----shard_id [index_vnnzvrivikxucyr][1]
+--------[index_vnnzvrivikxucyr][1], node[node_MWGhmlqk], relocating [node_xDsDZBSP], [P], s[RELOCATING], a[id=jscGUS9LSRK0WC3iarlTyQ, rId=pW2ifwnWQBuqYEsI2I8wPQ]
+--------[index_vnnzvrivikxucyr][1], node[node_AsNFpLkV], [R], s[STARTED], a[id=ZcmLR7ZkREC8j0cpLgzWmQ]
+----shard_id [index_vnnzvrivikxucyr][2]
+--------[index_vnnzvrivikxucyr][2], node[node_MWGhmlqk], relocating [node_xDsDZBSP], [P], s[RELOCATING], a[id=TL1JkcXbQYi9C44gdhQ-NQ, rId=XMj2d3HCRXSqCd0UrX-Mng]
+--------[index_vnnzvrivikxucyr][2], node[node_iHZwWXkq], [R], s[STARTED], a[id=QiXyxcIVSb-EQ_psopj4kw]
+
+-- index [[index_cbjgtzxqqhyclem/aBoghLZQSHi1FpQIZF_mMQ]]
+----shard_id [index_cbjgtzxqqhyclem][0]
+--------[index_cbjgtzxqqhyclem][0], node[node_iHZwWXkq], [P], recovery_source[new shard recovery], s[INITIALIZING], a[id=zQXyPJZLR3eAL-Z8q4z0Rw], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:22.491Z], delayed=false, allocation_status[deciders_throttled]]
+--------[index_cbjgtzxqqhyclem][0], node[null], [R], recovery_source[peer recovery], s[UNASSIGNED], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:22.491Z], delayed=false, allocation_status[no_attempt]]
+----shard_id [index_cbjgtzxqqhyclem][1]
+--------[index_cbjgtzxqqhyclem][1], node[node_iHZwWXkq], [P], recovery_source[new shard recovery], s[INITIALIZING], a[id=x4R-8HyeTHOezDfA6qMX1g], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:22.491Z], delayed=false, allocation_status[no_attempt]]
+--------[index_cbjgtzxqqhyclem][1], node[null], [R], recovery_source[peer recovery], s[UNASSIGNED], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:22.491Z], delayed=false, allocation_status[no_attempt]]
+----shard_id [index_cbjgtzxqqhyclem][2]
+--------[index_cbjgtzxqqhyclem][2], node[node_xDsDZBSP], [P], recovery_source[new shard recovery], s[INITIALIZING], a[id=5GDCnGyIT8eprS4OO7syjQ], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:22.491Z], delayed=false, allocation_status[no_attempt]]
+--------[index_cbjgtzxqqhyclem][2], node[null], [R], recovery_source[peer recovery], s[UNASSIGNED], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:22.491Z], delayed=false, allocation_status[no_attempt]]
+
+-- index [[index_ckikwuboegbvcrj/fHtnFZ2PTXGsZfrd_JqW-g]]
+----shard_id [index_ckikwuboegbvcrj][0]
+--------[index_ckikwuboegbvcrj][0], node[node_MWGhmlqk], relocating [node_AsNFpLkV], [R], s[RELOCATING], a[id=XAhXUeZvTZSNB_1D716h_Q, rId=wRAet8i3QKKQqqEkBctNVg]
+--------[index_ckikwuboegbvcrj][0], node[node_iHZwWXkq], relocating [node_xDsDZBSP], [P], s[RELOCATING], a[id=8g6jz_7VT_uupe4H6sqS7A, rId=ids8RbDYQRm4LLP-Nd5xlA]
+--------[index_ckikwuboegbvcrj][0], node[null], [R], recovery_source[peer recovery], s[UNASSIGNED], unassigned_info[[reason=ALLOCATION_FAILED], at[2016-09-15T10:37:22.134Z], failed_attempts[1], delayed=false, details[fake shard failure, failure Exception[null]], allocation_status[no_attempt]]
+----shard_id [index_ckikwuboegbvcrj][1]
+--------[index_ckikwuboegbvcrj][1], node[node_AsNFpLkV], [P], s[STARTED], a[id=HX_DfziCQnSlHLhCROUKmg]
+--------[index_ckikwuboegbvcrj][1], node[node_xDsDZBSP], [R], s[STARTED], a[id=0rVszwh0TRW5wjdQRzxKIg]
+--------[index_ckikwuboegbvcrj][1], node[node_iHZwWXkq], [R], s[STARTED], a[id=Ju6JX487TjSLjj_fQjSU-Q]
+
+-- index [[index_okttikfpeebioag/XGo9boNZQ4azRSEdtSeRqw]]
+----shard_id [index_okttikfpeebioag][0]
+--------[index_okttikfpeebioag][0], node[node_iHZwWXkq], relocating [node_xDsDZBSP], [P], s[RELOCATING], a[id=kfDRndmnR3SzWJwlPx_J7w, rId=J2yz22qUT26QyjkDkPMBNg]
+----shard_id [index_okttikfpeebioag][1]
+--------[index_okttikfpeebioag][1], node[node_iHZwWXkq], relocating [node_AsNFpLkV], [P], s[RELOCATING], a[id=QjVh_b-xSgm7-YRfH6ZVDA, rId=YOt3AJNNTwWESrJkHOx9JA]
+----shard_id [index_okttikfpeebioag][2]
+--------[index_okttikfpeebioag][2], node[node_AsNFpLkV], relocating [node_MWGhmlqk], [P], s[RELOCATING], a[id=LDfqsj77TcOHd-pDuyk98g, rId=XzbVKAlXRtKL99kYvAZ9ww]
+
+-- index [[index_fejsksbytxephzd/D7VBW9keQ3K7SPQGOf2TOw]]
+----shard_id [index_fejsksbytxephzd][0]
+--------[index_fejsksbytxephzd][0], node[node_MWGhmlqk], [P], recovery_source[existing recovery], s[INITIALIZING], a[id=AbP1NS_DQUmaCJVTHQAIeg], unassigned_info[[reason=INDEX_REOPENED], at[2016-09-15T10:37:22.520Z], delayed=false, allocation_status[no_attempt]]
+--------[index_fejsksbytxephzd][0], node[null], [R], recovery_source[peer recovery], s[UNASSIGNED], unassigned_info[[reason=INDEX_REOPENED], at[2016-09-15T10:37:22.520Z], delayed=false, allocation_status[no_attempt]]
+
+-- index [[index_iggoxzaslqmtkvp/RQtQrnkQRuW6zldGO_T_9A]]
+----shard_id [index_iggoxzaslqmtkvp][0]
+--------[index_iggoxzaslqmtkvp][0], node[node_MWGhmlqk], [P], s[STARTED], a[id=BAuzPTIpS8CBdXbuLPG4HQ]
+--------[index_iggoxzaslqmtkvp][0], node[node_AsNFpLkV], [R], recovery_source[peer recovery], s[INITIALIZING], a[id=tfJohva9QaWmun--zxGysw], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:21.805Z], delayed=false, allocation_status[no_attempt]]
+--------[index_iggoxzaslqmtkvp][0], node[node_xDsDZBSP], [R], recovery_source[peer recovery], s[INITIALIZING], a[id=2B-HJmAiTF2xMRhfdGkgkA], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:21.805Z], delayed=false, allocation_status[no_attempt]]
+
+routing_nodes:
+-----node_id[node_MWGhmlqk][V]
+--------[index_dioxvjszjiertvz][1], node[node_MWGhmlqk], [R], recovery_source[peer recovery], s[INITIALIZING], a[id=4HsjwbjdREiDGhOG1Rbbyw], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:21.122Z], delayed=false, allocation_status[no_attempt]]
+--------[index_dioxvjszjiertvz][0], node[node_MWGhmlqk], [R], s[STARTED], a[id=walmO02wQLWN_8DJokVytA]
+--------[index_qwqovivipdnlamr][0], node[node_MWGhmlqk], relocating [node_iHZwWXkq], [P], recovery_source[peer recovery], s[INITIALIZING], a[id=6G91GildREC_PSYnS-IsyQ, rId=ZdeVVmW2TRqVOyLk_sf2zQ]
+--------[index_ehhnxkhrbuxbfez][1], node[node_MWGhmlqk], [P], s[STARTED], a[id=e8CbiuSlSea4Gx2hk9HPqg]
+--------[index_ehhnxkhrbuxbfez][0], node[node_MWGhmlqk], [R], s[STARTED], a[id=kc6Gn7QuSoKOWPW_QqIqbw]
+--------[index_vkkrmfxvcygnaiy][1], node[node_MWGhmlqk], relocating [node_xDsDZBSP], [P], recovery_source[peer recovery], s[INITIALIZING], a[id=LRtzPOdjRN6VnIz8kdBBag, rId=Cs-vltfpQwGNHJ8EhAmJoQ]
+--------[index_vkkrmfxvcygnaiy][0], node[node_MWGhmlqk], [P], s[STARTED], a[id=bdJC1CHeQzKPygxXrarYqQ]
+--------[index_pkdeyczpnmkicwn][1], node[node_MWGhmlqk], relocating [node_AsNFpLkV], [R], s[RELOCATING], a[id=NizXAp_hRM-DcSo6jonHng, rId=MFNAjuCWQ3uC_ErVMreSAA]
+--------[index_pkdeyczpnmkicwn][0], node[node_MWGhmlqk], relocating [node_iHZwWXkq], [P], recovery_source[peer recovery], s[INITIALIZING], a[id=3mzR9q0zR4qjfxl7PdrR-w, rId=VjVbiG6WTLOarqqYE3o4eQ]
+--------[index_ukpagpiqkuqofnz][1], node[node_MWGhmlqk], relocating [node_xDsDZBSP], [R], recovery_source[peer recovery], s[INITIALIZING], a[id=vJYe0x_MTRy_m-WyG2sv7g, rId=hhn1yd9vTnyPbwfmj0Mr2A]
+--------[index_ukpagpiqkuqofnz][0], node[node_MWGhmlqk], relocating [node_iHZwWXkq], [R], recovery_source[peer recovery], s[INITIALIZING], a[id=K3tmGfU0SViPePKDBV2zCg, rId=K2g0NBcaT6y4omlzahOrIg]
+--------[index_jkzyvmaojboecue][1], node[node_MWGhmlqk], relocating [node_AsNFpLkV], [P], s[RELOCATING], a[id=WHkqyghET1ere52dirqq4g, rId=KeR1VxAHSTaH2pRia48Mpg]
+--------[index_jkzyvmaojboecue][0], node[node_MWGhmlqk], relocating [node_iHZwWXkq], [P], s[RELOCATING], a[id=qaovY10hQ3e0E37MPbjbQQ, rId=GV8BSMCCQsK3LmnNaqXFcQ]
+--------[index_nmwolxitfhuokni][1], node[node_MWGhmlqk], [R], s[STARTED], a[id=tNj1RJauSX6xOoXhcrIdCg]
+--------[index_nmwolxitfhuokni][2], node[node_MWGhmlqk], [P], s[STARTED], a[id=Q3g6kG7xTsCEs5kEl8xGqg]
+--------[index_nmwolxitfhuokni][0], node[node_MWGhmlqk], [R], s[STARTED], a[id=hglabTPeRSqLfwz732lilw]
+--------[index_fvmfgcextnrdumg][0], node[node_MWGhmlqk], relocating [node_AsNFpLkV], [R], recovery_source[peer recovery], s[INITIALIZING], a[id=3klTrOhsRuu_UTqdumnSDQ, rId=ooZ2hVOfTOa6VyziLbV5Hw]
+--------[index_osndjqtyaglnllb][1], node[node_MWGhmlqk], [P], recovery_source[new shard recovery], s[INITIALIZING], a[id=bPRy7S8oTEqIxDrcygpW9g], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:22.112Z], delayed=false, allocation_status[no_attempt]]
+--------[index_vnnzvrivikxucyr][1], node[node_MWGhmlqk], relocating [node_xDsDZBSP], [P], s[RELOCATING], a[id=jscGUS9LSRK0WC3iarlTyQ, rId=pW2ifwnWQBuqYEsI2I8wPQ]
+--------[index_vnnzvrivikxucyr][2], node[node_MWGhmlqk], relocating [node_xDsDZBSP], [P], s[RELOCATING], a[id=TL1JkcXbQYi9C44gdhQ-NQ, rId=XMj2d3HCRXSqCd0UrX-Mng]
+--------[index_vnnzvrivikxucyr][0], node[node_MWGhmlqk], relocating [node_AsNFpLkV], [P], s[RELOCATING], a[id=c5upNC4aQrKDp08t0j6sTg, rId=CrC5ceXaS-ulFUj2r9K02w]
+--------[index_ckikwuboegbvcrj][0], node[node_MWGhmlqk], relocating [node_AsNFpLkV], [R], s[RELOCATING], a[id=XAhXUeZvTZSNB_1D716h_Q, rId=wRAet8i3QKKQqqEkBctNVg]
+--------[index_okttikfpeebioag][2], node[node_MWGhmlqk], relocating [node_AsNFpLkV], [P], recovery_source[peer recovery], s[INITIALIZING], a[id=XzbVKAlXRtKL99kYvAZ9ww, rId=LDfqsj77TcOHd-pDuyk98g]
+--------[index_fejsksbytxephzd][0], node[node_MWGhmlqk], [P], recovery_source[existing recovery], s[INITIALIZING], a[id=AbP1NS_DQUmaCJVTHQAIeg], unassigned_info[[reason=INDEX_REOPENED], at[2016-09-15T10:37:22.520Z], delayed=false, allocation_status[no_attempt]]
+--------[index_iggoxzaslqmtkvp][0], node[node_MWGhmlqk], [P], s[STARTED], a[id=BAuzPTIpS8CBdXbuLPG4HQ]
+-----node_id[node_AsNFpLkV][V]
+--------[index_dioxvjszjiertvz][1], node[node_AsNFpLkV], relocating [node_iHZwWXkq], [P], s[RELOCATING], a[id=FRgyYFvyRtKKqTm1XDdayg, rId=oIPZuRYyQryAVpO3UHdjgA]
+--------[index_dioxvjszjiertvz][0], node[node_AsNFpLkV], [P], s[STARTED], a[id=FFu2asyARYGmFF-AuDYohA]
+--------[index_ehhnxkhrbuxbfez][1], node[node_AsNFpLkV], [R], recovery_source[peer recovery], s[INITIALIZING], a[id=prRth70VTKaIficYdnQcMQ], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:21.809Z], delayed=false, allocation_status[no_attempt]]
+--------[index_ehhnxkhrbuxbfez][0], node[node_AsNFpLkV], [R], s[STARTED], a[id=dmgRzZ-DTzayUJ2mRDBR5Q]
+--------[index_vkkrmfxvcygnaiy][1], node[node_AsNFpLkV], [R], recovery_source[peer recovery], s[INITIALIZING], a[id=CldC-uSaRBidS4-sLsHUMw], unassigned_info[[reason=INDEX_REOPENED], at[2016-09-15T10:37:21.784Z], delayed=false, allocation_status[no_attempt]]
+--------[index_vkkrmfxvcygnaiy][0], node[node_AsNFpLkV], [R], s[STARTED], a[id=fDX45lrATKKv2MzKPsdibA]
+--------[index_pkdeyczpnmkicwn][1], node[node_AsNFpLkV], relocating [node_MWGhmlqk], [R], recovery_source[peer recovery], s[INITIALIZING], a[id=MFNAjuCWQ3uC_ErVMreSAA, rId=NizXAp_hRM-DcSo6jonHng]
+--------[index_pkdeyczpnmkicwn][0], node[node_AsNFpLkV], [R], recovery_source[peer recovery], s[INITIALIZING], a[id=un7kACRESwqDBS9MU8XmoA], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:22.120Z], delayed=false, allocation_status[no_attempt]]
+--------[index_ukpagpiqkuqofnz][1], node[node_AsNFpLkV], relocating [node_iHZwWXkq], [P], recovery_source[peer recovery], s[INITIALIZING], a[id=sykH18CJRJSd6knld6WWQg, rId=WDP2qBn5SViY-48Y7IDeSg]
+--------[index_ukpagpiqkuqofnz][0], node[node_AsNFpLkV], relocating [node_xDsDZBSP], [P], s[RELOCATING], a[id=ao6YbYrTS1yzbZTXEZm_ew, rId=b7ogaL9eSH2ikhxjgo2cWQ]
+--------[index_jkzyvmaojboecue][1], node[node_AsNFpLkV], relocating [node_MWGhmlqk], [P], recovery_source[peer recovery], s[INITIALIZING], a[id=KeR1VxAHSTaH2pRia48Mpg, rId=WHkqyghET1ere52dirqq4g]
+--------[index_nmwolxitfhuokni][1], node[node_AsNFpLkV], relocating [node_iHZwWXkq], [P], s[RELOCATING], a[id=sfEFP7HjStSBwf9RTNUkiA, rId=NnE0E0U4Sq6J0QRIc7PDNQ]
+--------[index_nmwolxitfhuokni][2], node[node_AsNFpLkV], relocating [node_iHZwWXkq], [R], recovery_source[peer recovery], s[INITIALIZING], a[id=jYYkdlIzSKiwxIGLdpL9Pw, rId=8dquQjI5QAa2uMiOT0vlBQ]
+--------[index_nmwolxitfhuokni][0], node[node_AsNFpLkV], relocating [node_iHZwWXkq], [R], s[RELOCATING], a[id=NmxnIqVNQ2W2UFomYVen8g, rId=1nCNyVXkTGSWJrvg5sfJ7A]
+--------[index_fvmfgcextnrdumg][0], node[node_AsNFpLkV], relocating [node_MWGhmlqk], [R], s[RELOCATING], a[id=ooZ2hVOfTOa6VyziLbV5Hw, rId=3klTrOhsRuu_UTqdumnSDQ]
+--------[index_lldeouktwyjrteu][1], node[node_AsNFpLkV], [P], recovery_source[new shard recovery], s[INITIALIZING], a[id=gyXfM0vZTYOiz4Bvik-ptQ], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:22.003Z], delayed=false, allocation_status[no_attempt]]
+--------[index_ewiviwcffsvzgdc][0], node[node_AsNFpLkV], relocating [node_xDsDZBSP], [P], s[RELOCATING], a[id=gZVrm-09SfiltAQ-h7wEZQ, rId=RfJWVdXRS_-a2XdWHuA9zg]
+--------[index_osndjqtyaglnllb][0], node[node_AsNFpLkV], [P], recovery_source[new shard recovery], s[INITIALIZING], a[id=9Kr3Oi45RR6sJYhlWeuwXA], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:22.112Z], delayed=false, allocation_status[deciders_throttled]]
+--------[index_vnnzvrivikxucyr][1], node[node_AsNFpLkV], [R], s[STARTED], a[id=ZcmLR7ZkREC8j0cpLgzWmQ]
+--------[index_vnnzvrivikxucyr][0], node[node_AsNFpLkV], relocating [node_MWGhmlqk], [P], recovery_source[peer recovery], s[INITIALIZING], a[id=CrC5ceXaS-ulFUj2r9K02w, rId=c5upNC4aQrKDp08t0j6sTg]
+--------[index_ckikwuboegbvcrj][1], node[node_AsNFpLkV], [P], s[STARTED], a[id=HX_DfziCQnSlHLhCROUKmg]
+--------[index_ckikwuboegbvcrj][0], node[node_AsNFpLkV], relocating [node_MWGhmlqk], [R], recovery_source[peer recovery], s[INITIALIZING], a[id=wRAet8i3QKKQqqEkBctNVg, rId=XAhXUeZvTZSNB_1D716h_Q]
+--------[index_okttikfpeebioag][1], node[node_AsNFpLkV], relocating [node_iHZwWXkq], [P], recovery_source[peer recovery], s[INITIALIZING], a[id=YOt3AJNNTwWESrJkHOx9JA, rId=QjVh_b-xSgm7-YRfH6ZVDA]
+--------[index_okttikfpeebioag][2], node[node_AsNFpLkV], relocating [node_MWGhmlqk], [P], s[RELOCATING], a[id=LDfqsj77TcOHd-pDuyk98g, rId=XzbVKAlXRtKL99kYvAZ9ww]
+--------[index_iggoxzaslqmtkvp][0], node[node_AsNFpLkV], [R], recovery_source[peer recovery], s[INITIALIZING], a[id=tfJohva9QaWmun--zxGysw], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:21.805Z], delayed=false, allocation_status[no_attempt]]
+-----node_id[node_xDsDZBSP][V]
+--------[index_dioxvjszjiertvz][1], node[node_xDsDZBSP], [R], s[STARTED], a[id=FoeOOSwuQHKNrnuSXl8H0Q]
+--------[index_ehhnxkhrbuxbfez][0], node[node_xDsDZBSP], relocating [node_iHZwWXkq], [P], recovery_source[peer recovery], s[INITIALIZING], a[id=It169HRcR4WFhQvUbZeDVw, rId=JYELKBo2Q9izmeGgZX4oRQ]
+--------[index_vkkrmfxvcygnaiy][1], node[node_xDsDZBSP], relocating [node_MWGhmlqk], [P], s[RELOCATING], a[id=Cs-vltfpQwGNHJ8EhAmJoQ, rId=LRtzPOdjRN6VnIz8kdBBag]
+--------[index_pkdeyczpnmkicwn][1], node[node_xDsDZBSP], [P], s[STARTED], a[id=K99qohXfSeuDP4EHBxxCng]
+--------[index_ukpagpiqkuqofnz][1], node[node_xDsDZBSP], relocating [node_MWGhmlqk], [R], s[RELOCATING], a[id=hhn1yd9vTnyPbwfmj0Mr2A, rId=vJYe0x_MTRy_m-WyG2sv7g]
+--------[index_ukpagpiqkuqofnz][0], node[node_xDsDZBSP], relocating [node_AsNFpLkV], [P], recovery_source[peer recovery], s[INITIALIZING], a[id=b7ogaL9eSH2ikhxjgo2cWQ, rId=ao6YbYrTS1yzbZTXEZm_ew]
+--------[index_jkzyvmaojboecue][1], node[node_xDsDZBSP], relocating [node_iHZwWXkq], [R], recovery_source[peer recovery], s[INITIALIZING], a[id=plCRi7O5TlqFGP5y_zZ87w, rId=GMs5F-HQSySzEEkJvtHtCw]
+--------[index_jkzyvmaojboecue][0], node[node_xDsDZBSP], [R], s[STARTED], a[id=tLZyzglRQDekhPSGdRJVmw]
+--------[index_nmwolxitfhuokni][1], node[node_xDsDZBSP], [R], s[STARTED], a[id=wLCBEHKSRtebJXSghm3Kfw]
+--------[index_nmwolxitfhuokni][2], node[node_xDsDZBSP], [R], s[STARTED], a[id=ebi7VxumSiu21yqeWRHiLQ]
+--------[index_nmwolxitfhuokni][0], node[node_xDsDZBSP], [P], s[STARTED], a[id=hb4RuxQbT6SZylv3TssKCg]
+--------[index_fvmfgcextnrdumg][0], node[node_xDsDZBSP], [P], s[STARTED], a[id=Sowjix0yS2SsauBBpFpu4g]
+--------[index_ewiviwcffsvzgdc][0], node[node_xDsDZBSP], relocating [node_AsNFpLkV], [P], recovery_source[peer recovery], s[INITIALIZING], a[id=RfJWVdXRS_-a2XdWHuA9zg, rId=gZVrm-09SfiltAQ-h7wEZQ]
+--------[index_vnnzvrivikxucyr][1], node[node_xDsDZBSP], relocating [node_MWGhmlqk], [P], recovery_source[peer recovery], s[INITIALIZING], a[id=pW2ifwnWQBuqYEsI2I8wPQ, rId=jscGUS9LSRK0WC3iarlTyQ]
+--------[index_vnnzvrivikxucyr][2], node[node_xDsDZBSP], relocating [node_MWGhmlqk], [P], recovery_source[peer recovery], s[INITIALIZING], a[id=XMj2d3HCRXSqCd0UrX-Mng, rId=TL1JkcXbQYi9C44gdhQ-NQ]
+--------[index_vnnzvrivikxucyr][0], node[node_xDsDZBSP], [R], s[STARTED], a[id=tcEosQAFQ42IYIogbhNKyA]
+--------[index_cbjgtzxqqhyclem][2], node[node_xDsDZBSP], [P], recovery_source[new shard recovery], s[INITIALIZING], a[id=5GDCnGyIT8eprS4OO7syjQ], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:22.491Z], delayed=false, allocation_status[no_attempt]]
+--------[index_ckikwuboegbvcrj][1], node[node_xDsDZBSP], [R], s[STARTED], a[id=0rVszwh0TRW5wjdQRzxKIg]
+--------[index_ckikwuboegbvcrj][0], node[node_xDsDZBSP], relocating [node_iHZwWXkq], [P], recovery_source[peer recovery], s[INITIALIZING], a[id=ids8RbDYQRm4LLP-Nd5xlA, rId=8g6jz_7VT_uupe4H6sqS7A]
+--------[index_okttikfpeebioag][0], node[node_xDsDZBSP], relocating [node_iHZwWXkq], [P], recovery_source[peer recovery], s[INITIALIZING], a[id=J2yz22qUT26QyjkDkPMBNg, rId=kfDRndmnR3SzWJwlPx_J7w]
+--------[index_iggoxzaslqmtkvp][0], node[node_xDsDZBSP], [R], recovery_source[peer recovery], s[INITIALIZING], a[id=2B-HJmAiTF2xMRhfdGkgkA], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:21.805Z], delayed=false, allocation_status[no_attempt]]
+-----node_id[node_iHZwWXkq][V]
+--------[index_dioxvjszjiertvz][1], node[node_iHZwWXkq], relocating [node_AsNFpLkV], [P], recovery_source[peer recovery], s[INITIALIZING], a[id=oIPZuRYyQryAVpO3UHdjgA, rId=FRgyYFvyRtKKqTm1XDdayg]
+--------[index_dioxvjszjiertvz][0], node[node_iHZwWXkq], [R], s[STARTED], a[id=h-FY0fnhTAaBbezljfK0Gw]
+--------[index_qwqovivipdnlamr][1], node[node_iHZwWXkq], [P], s[STARTED], a[id=aT0h-mRBR-mDKzU5MLlM0Q]
+--------[index_qwqovivipdnlamr][0], node[node_iHZwWXkq], relocating [node_MWGhmlqk], [P], s[RELOCATING], a[id=ZdeVVmW2TRqVOyLk_sf2zQ, rId=6G91GildREC_PSYnS-IsyQ]
+--------[index_ehhnxkhrbuxbfez][1], node[node_iHZwWXkq], [R], s[STARTED], a[id=sl4VLZpnRomk9rIUj8wiVg]
+--------[index_ehhnxkhrbuxbfez][0], node[node_iHZwWXkq], relocating [node_xDsDZBSP], [P], s[RELOCATING], a[id=JYELKBo2Q9izmeGgZX4oRQ, rId=It169HRcR4WFhQvUbZeDVw]
+--------[index_pkdeyczpnmkicwn][0], node[node_iHZwWXkq], relocating [node_MWGhmlqk], [P], s[RELOCATING], a[id=VjVbiG6WTLOarqqYE3o4eQ, rId=3mzR9q0zR4qjfxl7PdrR-w]
+--------[index_ukpagpiqkuqofnz][1], node[node_iHZwWXkq], relocating [node_AsNFpLkV], [P], s[RELOCATING], a[id=WDP2qBn5SViY-48Y7IDeSg, rId=sykH18CJRJSd6knld6WWQg]
+--------[index_ukpagpiqkuqofnz][0], node[node_iHZwWXkq], relocating [node_MWGhmlqk], [R], s[RELOCATING], a[id=K2g0NBcaT6y4omlzahOrIg, rId=K3tmGfU0SViPePKDBV2zCg]
+--------[index_jkzyvmaojboecue][1], node[node_iHZwWXkq], relocating [node_xDsDZBSP], [R], s[RELOCATING], a[id=GMs5F-HQSySzEEkJvtHtCw, rId=plCRi7O5TlqFGP5y_zZ87w]
+--------[index_jkzyvmaojboecue][0], node[node_iHZwWXkq], relocating [node_MWGhmlqk], [P], recovery_source[peer recovery], s[INITIALIZING], a[id=GV8BSMCCQsK3LmnNaqXFcQ, rId=qaovY10hQ3e0E37MPbjbQQ]
+--------[index_nmwolxitfhuokni][1], node[node_iHZwWXkq], relocating [node_AsNFpLkV], [P], recovery_source[peer recovery], s[INITIALIZING], a[id=NnE0E0U4Sq6J0QRIc7PDNQ, rId=sfEFP7HjStSBwf9RTNUkiA]
+--------[index_nmwolxitfhuokni][2], node[node_iHZwWXkq], relocating [node_AsNFpLkV], [R], s[RELOCATING], a[id=8dquQjI5QAa2uMiOT0vlBQ, rId=jYYkdlIzSKiwxIGLdpL9Pw]
+--------[index_nmwolxitfhuokni][0], node[node_iHZwWXkq], relocating [node_AsNFpLkV], [R], recovery_source[peer recovery], s[INITIALIZING], a[id=1nCNyVXkTGSWJrvg5sfJ7A, rId=NmxnIqVNQ2W2UFomYVen8g]
+--------[index_fvmfgcextnrdumg][1], node[node_iHZwWXkq], [P], recovery_source[new shard recovery], s[INITIALIZING], a[id=wxQ-0YGQRDiwrkCVUFyGOg], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:22.007Z], delayed=false, allocation_status[no_attempt]]
+--------[index_lldeouktwyjrteu][0], node[node_iHZwWXkq], [P], s[STARTED], a[id=H_z0eu6PRHWseyF9bC2eeQ]
+--------[index_vnnzvrivikxucyr][2], node[node_iHZwWXkq], [R], s[STARTED], a[id=QiXyxcIVSb-EQ_psopj4kw]
+--------[index_cbjgtzxqqhyclem][1], node[node_iHZwWXkq], [P], recovery_source[new shard recovery], s[INITIALIZING], a[id=x4R-8HyeTHOezDfA6qMX1g], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:22.491Z], delayed=false, allocation_status[no_attempt]]
+--------[index_cbjgtzxqqhyclem][0], node[node_iHZwWXkq], [P], recovery_source[new shard recovery], s[INITIALIZING], a[id=zQXyPJZLR3eAL-Z8q4z0Rw], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:22.491Z], delayed=false, allocation_status[deciders_throttled]]
+--------[index_ckikwuboegbvcrj][1], node[node_iHZwWXkq], [R], s[STARTED], a[id=Ju6JX487TjSLjj_fQjSU-Q]
+--------[index_ckikwuboegbvcrj][0], node[node_iHZwWXkq], relocating [node_xDsDZBSP], [P], s[RELOCATING], a[id=8g6jz_7VT_uupe4H6sqS7A, rId=ids8RbDYQRm4LLP-Nd5xlA]
+--------[index_okttikfpeebioag][1], node[node_iHZwWXkq], relocating [node_AsNFpLkV], [P], s[RELOCATING], a[id=QjVh_b-xSgm7-YRfH6ZVDA, rId=YOt3AJNNTwWESrJkHOx9JA]
+--------[index_okttikfpeebioag][0], node[node_iHZwWXkq], relocating [node_xDsDZBSP], [P], s[RELOCATING], a[id=kfDRndmnR3SzWJwlPx_J7w, rId=J2yz22qUT26QyjkDkPMBNg]
+---- unassigned
+--------[index_fvmfgcextnrdumg][1], node[null], [R], recovery_source[peer recovery], s[UNASSIGNED], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:22.007Z], delayed=false, allocation_status[no_attempt]]
+--------[index_osndjqtyaglnllb][1], node[null], [R], recovery_source[peer recovery], s[UNASSIGNED], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:22.112Z], delayed=false, allocation_status[no_attempt]]
+--------[index_osndjqtyaglnllb][0], node[null], [R], recovery_source[peer recovery], s[UNASSIGNED], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:22.112Z], delayed=false, allocation_status[no_attempt]]
+--------[index_cbjgtzxqqhyclem][1], node[null], [R], recovery_source[peer recovery], s[UNASSIGNED], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:22.491Z], delayed=false, allocation_status[no_attempt]]
+--------[index_cbjgtzxqqhyclem][2], node[null], [R], recovery_source[peer recovery], s[UNASSIGNED], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:22.491Z], delayed=false, allocation_status[no_attempt]]
+--------[index_cbjgtzxqqhyclem][0], node[null], [R], recovery_source[peer recovery], s[UNASSIGNED], unassigned_info[[reason=INDEX_CREATED], at[2016-09-15T10:37:22.491Z], delayed=false, allocation_status[no_attempt]]
+--------[index_ckikwuboegbvcrj][0], node[null], [R], recovery_source[peer recovery], s[UNASSIGNED], unassigned_info[[reason=ALLOCATION_FAILED], at[2016-09-15T10:37:22.134Z], failed_attempts[1], delayed=false, details[fake shard failure, failure Exception[null]], allocation_status[no_attempt]]
+--------[index_fejsksbytxephzd][0], node[null], [R], recovery_source[peer recovery], s[UNASSIGNED], unassigned_info[[reason=INDEX_REOPENED], at[2016-09-15T10:37:22.520Z], delayed=false, allocation_status[no_attempt]]
+
+]]></system-out>
+   <system-err><![CDATA[]]></system-err>
+</testsuite>

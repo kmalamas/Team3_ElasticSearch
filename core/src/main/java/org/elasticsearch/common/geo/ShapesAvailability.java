@@ -19,6 +19,9 @@
 
 package org.elasticsearch.common.geo;
 
+import org.apache.logging.log4j.Logger;
+import org.elasticsearch.common.logging.Loggers;
+
 /**
  */
 public class ShapesAvailability {
@@ -26,12 +29,15 @@ public class ShapesAvailability {
     public static final boolean SPATIAL4J_AVAILABLE;
     public static final boolean JTS_AVAILABLE;
 
+    private static final Logger logger = Loggers.getLogger(ShapesAvailability.class);
+
     static {
         boolean xSPATIAL4J_AVAILABLE;
         try {
             Class.forName("org.locationtech.spatial4j.shape.impl.PointImpl");
             xSPATIAL4J_AVAILABLE = true;
         } catch (ClassNotFoundException ignored) {
+            logger.error(ignored);
             xSPATIAL4J_AVAILABLE = false;
         }
         SPATIAL4J_AVAILABLE = xSPATIAL4J_AVAILABLE;
@@ -41,6 +47,7 @@ public class ShapesAvailability {
             Class.forName("com.vividsolutions.jts.geom.GeometryFactory");
             xJTS_AVAILABLE = true;
         } catch (ClassNotFoundException ignored) {
+            logger.error(ignored);
             xJTS_AVAILABLE = false;
         }
         JTS_AVAILABLE = xJTS_AVAILABLE;

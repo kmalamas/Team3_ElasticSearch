@@ -1,0 +1,81 @@
+<testsuite errors="0" failures="0" tests="4" skipped="0" name="org.elasticsearch.index.shard.RefreshListenersTests" hostname="nohost.nodomain" time="8.752" timestamp="2016-09-15T12:41:35">
+   <properties class="java.util.ArrayList">
+      <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+      <property name="file.encoding" value="Cp1252"/>
+      <property name="file.encoding.pkg" value="sun.io"/>
+      <property name="file.separator" value="\"/>
+      <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+      <property name="java.awt.headless" value="true"/>
+      <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+      <property name="java.class.path" value="C:\projects\team3\core\build\classes\test;C:\projects\team3\core\build\resources\test;C:\projects\team3\core\build\classes\main;C:\projects\team3\core\build\resources\main;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-core\6.2.0\849ee62525a294416802be2cacc66c80352f6f13\lucene-core-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-analyzers-common\6.2.0\d254d52dd394b5079129f3d5f3bf4f2d44a5936e\lucene-analyzers-common-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-backward-codecs\6.2.0\b625bb21456b3c0d1e5e431bced125cb060c1abd\lucene-backward-codecs-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-grouping\6.2.0\9527fedfd5acc624b2bb3f862bd99fb8f470b053\lucene-grouping-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-highlighter\6.2.0\7ca342372a3f45e32bbd21cecaa757e38eccb8a5\lucene-highlighter-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-join\6.2.0\da0b8de98511abd4fe9c7d48a353d17854c5ed46\lucene-join-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-memory\6.2.0\bc9e075b1ee051c8e5246c237c38d8e71dab8a66\lucene-memory-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-misc\6.2.0\94ddde6312566a4da4a50a88e453b6c82c759b41\lucene-misc-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-queries\6.2.0\dce47238f78e3e97d91dc6fefa9f46f07866bc2b\lucene-queries-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-queryparser\6.2.0\17ef728ac15e668bfa1105321611548424637645\lucene-queryparser-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-sandbox\6.2.0\520183f7b9aba77a26e224760c420a3844b0631a\lucene-sandbox-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-spatial\6.2.0\8dba929b66927b936fbc76103b109ad6c824daee\lucene-spatial-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-spatial-extras\6.2.0\3b5a6ef5cd90c0218a72e9e2f7e60104be2447da\lucene-spatial-extras-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-spatial3d\6.2.0\fcdb0567725722c5145149d1502848b6a96ec18d\lucene-spatial3d-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-suggest\6.2.0\3d9d526c51f483d27f425c75d7e56bc0849242d6\lucene-suggest-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.elasticsearch\securesm\1.1\1e423447d020041534be94c0f31a49fbdc1f2950\securesm-1.1.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\net.sf.jopt-simple\jopt-simple\5.0.2\98cafc6081d5632b61be2c9e60650b64ddbc637c\jopt-simple-5.0.2.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\com.carrotsearch\hppc\0.7.1\8b5057f74ea378c0150a1860874a3ebdcb713767\hppc-0.7.1.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\joda-time\joda-time\2.9.4\1c295b462f16702ebe720bbb08f62e1ba80da41b\joda-time-2.9.4.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.joda\joda-convert\1.2\35ec554f0cd00c956cc69051514d9488b1374dec\joda-convert-1.2.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.yaml\snakeyaml\1.15\3b132bea69e8ee099f416044970997bde80f4ea6\snakeyaml-1.15.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-core\2.8.1\fd13b1c033741d48291315c6370f7d475a42dccf\jackson-core-2.8.1.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.dataformat\jackson-dataformat-smile\2.8.1\5b73867bc12224946fc67fc8d49d9f5e698d7f\jackson-dataformat-smile-2.8.1.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.dataformat\jackson-dataformat-yaml\2.8.1\eb63166c723b0b4b9fb5298fca232a2f6612ec34\jackson-dataformat-yaml-2.8.1.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.dataformat\jackson-dataformat-cbor\2.8.1\3a6fb7e75c9972559a78cf5cfc5a48a41a13ea40\jackson-dataformat-cbor-2.8.1.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\com.tdunning\t-digest\3.0\84ccf145ac2215e6bfa63baa3101c0af41017cfc\t-digest-3.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.hdrhistogram\HdrHistogram\2.1.6\7495feb7f71ee124bd2a7e7d83590e296d71d80e\HdrHistogram-2.1.6.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.locationtech.spatial4j\spatial4j\0.6\21b15310bddcfd8c72611c180f20cf23279809a3\spatial4j-0.6.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\com.vividsolutions\jts\1.13\3ccfb9b60f04d71add996a666ceb8902904fd805\jts-1.13.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.logging.log4j\log4j-api\2.6.2\bd1b74a5d170686362091c7cf596bbc3adf5c09b\log4j-api-2.6.2.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.logging.log4j\log4j-core\2.6.2\a91369f655eb1639c6aece5c5eb5108db18306\log4j-core-2.6.2.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.logging.log4j\log4j-1.2-api\2.6.2\3b4c5a8b734b6a29b2f03380535a48da6284b210\log4j-1.2-api-2.6.2.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\net.java.dev.jna\jna\4.2.2\5012450aee579c3118ff09461d5ce210e0cdc2a9\jna-4.2.2.jar;C:\projects\team3\test\framework\build\distributions\framework-5.0.0-alpha6-SNAPSHOT.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\com.carrotsearch.randomizedtesting\randomizedtesting-runner\2.3.2\307965917fe8a22b7ee72deba39ef4b8e6ebc069\randomizedtesting-runner-2.3.2.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\junit\junit\4.11\4e031bb61df09069aeb2bffb4019e7a5034a4ee0\junit-4.11.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-all\1.3\63a21ebc981131004ad02e0434e799fd7f3a8d5a\hamcrest-all-1.3.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-test-framework\6.2.0\f5026be3983acfb40d4092dbfbc015ec6e6addab\lucene-test-framework-6.2.0.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-codecs\6.2.0\99f887266b0ad9f2c286b3976c5bc48c8cd36624\lucene-codecs-6.2.0.jar;C:\projects\team3\client\rest\build\distributions\rest-5.0.0-alpha6-SNAPSHOT.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpclient\4.5.2\733db77aa8d9b2d68015189df76ab06304406e50\httpclient-4.5.2.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpcore\4.4.5\e7501a1b34325abb00d17dde96150604a0658b54\httpcore-4.4.5.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\commons-logging\commons-logging\1.1.3\f6f66e966c70a83ffbdb6f17a0919eaf7c8aca7f\commons-logging-1.1.3.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\commons-codec\commons-codec\1.10\4b95f4897fa13f2cd904aee711aeafc0c5295cd8\commons-codec-1.10.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.elasticsearch\securemock\1.2\98201d4ad5ac93f6b415ae9172d52b5e7cda490e\securemock-1.2.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpasyncclient\4.1.2\95aa3e6fb520191a0970a73cf09f62948ee614be\httpasyncclient-4.1.2.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpcore-nio\4.4.5\f4be009e7505f6ceddf21e7960c759f413f15056\httpcore-nio-4.4.5.jar;C:\Users\domin\.gradle\caches\modules-2\files-2.1\com.carrotsearch.randomizedtesting\junit4-ant\2.3.2\dc8f03f6111974092491f35b8269eb0fc57f52f7\junit4-ant-2.3.2.jar"/>
+      <property name="java.class.version" value="52.0"/>
+      <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_65\jre\lib\endorsed"/>
+      <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_65\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
+      <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_65\jre"/>
+      <property name="java.io.tmpdir" value="./temp"/>
+      <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_65\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Ruby22-x64\bin;C:\Imagick;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Skype\Phone\;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Git\cmd;C:\Program Files\OpenVPN\bin;C:\Program Files\nodejs\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\cURL\bin;C:\Program Files\gradle\2.13\bin;C:\Program Files\CMake\bin;C:\Program Files\flex_bison;C:\Program Files\doxygen\bin;C:\SonarQube\SonarQubeScanner\bin;C:\Users\domin\AppData\Local\Programs\Python\Python35-32\Scripts\;C:\Users\domin\AppData\Local\Programs\Python\Python35-32\;C:\Users\domin\AppData\Roaming\npm;C:\Users\domin\AppData\Local\Microsoft\WindowsApps;;."/>
+      <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+      <property name="java.runtime.version" value="1.8.0_65-b17"/>
+      <property name="java.specification.name" value="Java Platform API Specification"/>
+      <property name="java.specification.vendor" value="Oracle Corporation"/>
+      <property name="java.specification.version" value="1.8"/>
+      <property name="java.vendor" value="Oracle Corporation"/>
+      <property name="java.vendor.url" value="http://java.oracle.com/"/>
+      <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+      <property name="java.version" value="1.8.0_65"/>
+      <property name="java.vm.info" value="mixed mode"/>
+      <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+      <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+      <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+      <property name="java.vm.specification.version" value="1.8"/>
+      <property name="java.vm.vendor" value="Oracle Corporation"/>
+      <property name="java.vm.version" value="25.65-b01"/>
+      <property name="jna.nosys" value="true"/>
+      <property name="junit4.childvm.count" value="3"/>
+      <property name="junit4.childvm.cwd" value="C:\projects\team3\core\build\testrun\test\J1"/>
+      <property name="junit4.childvm.id" value="1"/>
+      <property name="junit4.memory.total" value="514850816"/>
+      <property name="junit4.pidString" value="8548@LAPTOP-LKSM26S6"/>
+      <property name="junit4.processors" value="4"/>
+      <property name="line.separator" value="
+"/>
+      <property name="os.arch" value="amd64"/>
+      <property name="os.name" value="Windows 10"/>
+      <property name="os.version" value="10.0"/>
+      <property name="path.separator" value=";"/>
+      <property name="sun.arch.data.model" value="64"/>
+      <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_65\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_65\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_65\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_65\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_65\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_65\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_65\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_65\jre\classes"/>
+      <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_65\jre\bin"/>
+      <property name="sun.cpu.endian" value="little"/>
+      <property name="sun.cpu.isalist" value="amd64"/>
+      <property name="sun.desktop" value="windows"/>
+      <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+      <property name="sun.java.command" value="com.carrotsearch.ant.tasks.junit4.slave.SlaveMainSafe -eventsfile C:\projects\team3\core\build\testrun\test\temp\junit4-J1-20160915_123537_463.events @C:\projects\team3\core\build\testrun\test\temp\junit4-J1-20160915_123537_463.suites -stdin"/>
+      <property name="sun.java.launcher" value="SUN_STANDARD"/>
+      <property name="sun.jnu.encoding" value="Cp1252"/>
+      <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+      <property name="sun.os.patch.level" value=""/>
+      <property name="tests.artifact" value="core"/>
+      <property name="tests.gradle" value="true"/>
+      <property name="tests.ifNoTests" value="fail"/>
+      <property name="tests.logger.level" value="WARN"/>
+      <property name="tests.prefix" value="tests"/>
+      <property name="tests.security.manager" value="true"/>
+      <property name="tests.seed" value="9CF13790D965C5A7"/>
+      <property name="tests.task" value=":core:test"/>
+      <property name="user.country" value="AT"/>
+      <property name="user.dir" value="C:\projects\team3\core\build\testrun\test\J1"/>
+      <property name="user.home" value="C:\Users\domin"/>
+      <property name="user.language" value="de"/>
+      <property name="user.name" value="domin"/>
+      <property name="user.script" value=""/>
+      <property name="user.timezone" value=""/>
+      <property name="user.variant" value=""/>
+   </properties>
+   <testcase classname="org.elasticsearch.index.shard.RefreshListenersTests" name="testTooMany" time="0.033"/>
+   <testcase classname="org.elasticsearch.index.shard.RefreshListenersTests" name="testLotsOfThreads" time="5.278"/>
+   <testcase classname="org.elasticsearch.index.shard.RefreshListenersTests" name="testConcurrentRefresh" time="3.396"/>
+   <testcase classname="org.elasticsearch.index.shard.RefreshListenersTests" name="testAfterRefresh" time="0.027"/>
+   <system-out><![CDATA[]]></system-out>
+   <system-err><![CDATA[]]></system-err>
+</testsuite>

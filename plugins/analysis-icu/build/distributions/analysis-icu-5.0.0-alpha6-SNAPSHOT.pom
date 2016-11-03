@@ -21,8 +21,8 @@
   </developers>
   <name>analysis-icu</name>
   <description>The ICU Analysis plugin integrates Lucene ICU module into elasticsearch, adding ICU relates analysis components.</description>
-  <url>https://github.com/elastic/elasticsearch.git</url>
+  <url>https://github.com/SoftwareEvolutionProject/Team3</url>
   <scm>
-    <url>https://github.com/elastic/elasticsearch.git</url>
+    <url>git@github.com:SoftwareEvolutionProject/Team3.git</url>
   </scm>
 </project>

@@ -19,6 +19,7 @@
 
 package org.elasticsearch.action.support.replication;
 
+import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.message.ParameterizedMessage;
 import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.action.ActionListener;
@@ -44,6 +45,7 @@ import org.elasticsearch.cluster.service.ClusterService;
 import org.elasticsearch.common.io.stream.StreamInput;
 import org.elasticsearch.common.lease.Releasable;
 import org.elasticsearch.common.lease.Releasables;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.common.util.concurrent.AbstractRunnable;
@@ -98,6 +100,8 @@ public abstract class TransportReplicationAction<
     final String transportReplicaAction;
     final String transportPrimaryAction;
     private final ReplicasProxy replicasProxy;
+
+    private static final Logger logger = Loggers.getLogger(TransportReplicationAction.class);
 
     protected TransportReplicationAction(Settings settings, String actionName, TransportService transportService,
                                          ClusterService clusterService, IndicesService indicesService,
@@ -341,6 +345,7 @@ public abstract class TransportReplicationAction<
                     try {
                         channel.sendResponse(e);
                     } catch (IOException e1) {
+                        logger.error(e1);
                         logger.warn("failed to send response", e);
                     }
                 }

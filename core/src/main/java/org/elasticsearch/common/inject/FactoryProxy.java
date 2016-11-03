@@ -17,12 +17,14 @@
 
 package org.elasticsearch.common.inject;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.common.inject.internal.Errors;
 import org.elasticsearch.common.inject.internal.ErrorsException;
 import org.elasticsearch.common.inject.internal.InternalContext;
 import org.elasticsearch.common.inject.internal.InternalFactory;
 import org.elasticsearch.common.inject.internal.ToStringBuilder;
 import org.elasticsearch.common.inject.spi.Dependency;
+import org.elasticsearch.common.logging.Loggers;
 
 /**
  * A placeholder which enables us to swap in the real factory once the injector is created.
@@ -36,6 +38,8 @@ class FactoryProxy<T> implements InternalFactory<T>, BindingProcessor.CreationLi
 
     private InternalFactory<? extends T> targetFactory;
 
+    private static final Logger logger = Loggers.getLogger(FactoryProxy.class);
+
     FactoryProxy(InjectorImpl injector, Key<T> key, Key<? extends T> targetKey, Object source) {
         this.injector = injector;
         this.key = key;
@@ -48,6 +52,7 @@ class FactoryProxy<T> implements InternalFactory<T>, BindingProcessor.CreationLi
         try {
             targetFactory = injector.getInternalFactory(targetKey, errors.withSource(source));
         } catch (ErrorsException e) {
+            logger.error(e);
             errors.merge(e.getErrors());
         }
     }

@@ -1,0 +1,6 @@
+org.elasticsearch.test.rest.yaml.StashTests
+org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests
+org.elasticsearch.test.test.VersionUtilsTests
+org.elasticsearch.test.test.ESTestCaseTests
+org.elasticsearch.test.rest.yaml.restspec.ClientYamlSuiteRestApiParserFailingTests
+org.elasticsearch.test.rest.yaml.parser.DoSectionParserTestsorg.elasticsearch.node.MockNodeTests

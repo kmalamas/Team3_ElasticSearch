@@ -16,6 +16,7 @@
 
 package org.elasticsearch.common.inject;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.common.Classes;
 import org.elasticsearch.common.inject.internal.Annotations;
 import org.elasticsearch.common.inject.internal.BindingImpl;
@@ -37,6 +38,7 @@ import org.elasticsearch.common.inject.spi.Dependency;
 import org.elasticsearch.common.inject.spi.ProviderBinding;
 import org.elasticsearch.common.inject.spi.ProviderKeyBinding;
 import org.elasticsearch.common.inject.util.Providers;
+import org.elasticsearch.common.logging.Loggers;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.GenericArrayType;
@@ -67,6 +69,7 @@ class InjectorImpl implements Injector, Lookups {
     boolean readOnly;
     BindingsMultimap bindingsMultimap = new BindingsMultimap();
     final Initializer initializer;
+    private static final Logger logger = Loggers.getLogger(InjectorImpl.class);
 
     /**
      * Just-in-time binding cache. Guarded by state.lock()
@@ -614,6 +617,7 @@ class InjectorImpl implements Injector, Lookups {
                     Errors ignored = new Errors();
                     return getBindingOrThrow(key.withoutAttributes(), ignored);
                 } catch (ErrorsException ignored) {
+                    logger.error(ignored);
                     // throw with a more appropriate message below
                 }
             }
@@ -670,6 +674,7 @@ class InjectorImpl implements Injector, Lookups {
             try {
                 result[i++] = createParameterInjector(parameter, errors.withSource(parameter));
             } catch (ErrorsException rethrownBelow) {
+                logger.error(rethrownBelow);
                 // rethrown below
             }
         }
@@ -715,6 +720,7 @@ class InjectorImpl implements Injector, Lookups {
         try {
             return membersInjectorStore.get(typeLiteral, errors);
         } catch (ErrorsException e) {
+            logger.error(e);
             throw new ConfigurationException(errors.merge(e.getErrors()).getMessages());
         }
     }
@@ -739,6 +745,7 @@ class InjectorImpl implements Injector, Lookups {
                     try {
                         return (T) ((InternalFactory.Instance) factory).get(null, null, null);
                     } catch (ErrorsException e) {
+                        logger.error(e);
                         // ignore
                     }
                     // should never happen...
@@ -768,6 +775,7 @@ class InjectorImpl implements Injector, Lookups {
                     errors.throwIfNewErrors(0);
                     return t;
                 } catch (ErrorsException e) {
+                    logger.error(e);
                     throw new ProvisionException(errors.merge(e.getErrors()).getMessages());
                 }
             }
@@ -787,6 +795,7 @@ class InjectorImpl implements Injector, Lookups {
             errors.throwIfNewErrors(0);
             return result;
         } catch (ErrorsException e) {
+            logger.error(e);
             throw new ConfigurationException(errors.merge(e.getErrors()).getMessages());
         }
     }

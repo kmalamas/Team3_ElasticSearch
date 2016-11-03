@@ -21,8 +21,8 @@
   </developers>
   <name>repository-hdfs</name>
   <description>The HDFS repository plugin adds support for Hadoop Distributed File-System (HDFS) repositories.</description>
-  <url>https://github.com/elastic/elasticsearch.git</url>
+  <url>https://github.com/SoftwareEvolutionProject/Team3</url>
   <scm>
-    <url>https://github.com/elastic/elasticsearch.git</url>
+    <url>git@github.com:SoftwareEvolutionProject/Team3.git</url>
   </scm>
 </project>

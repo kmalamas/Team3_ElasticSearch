@@ -1,0 +1,9 @@
+org.elasticsearch.test.rest.yaml.parser.ClientYamlSuiteTestParserTests
+org.elasticsearch.test.AbstractQueryTestCaseTests
+org.elasticsearch.test.rest.yaml.parser.SetupSectionParserTests
+org.elasticsearch.test.rest.yaml.ObjectPathTests
+org.elasticsearch.test.rest.yaml.parser.TestSectionParserTests
+org.elasticsearch.test.test.LoggingListenerTestsorg.elasticsearch.search.MockSearchServiceTests
+org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests
+org.elasticsearch.test.rest.yaml.parser.TeardownSectionParserTests
+org.elasticsearch.test.rest.yaml.section.DoSectionTests

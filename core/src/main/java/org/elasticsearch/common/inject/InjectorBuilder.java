@@ -16,12 +16,14 @@
 
 package org.elasticsearch.common.inject;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.common.inject.internal.BindingImpl;
 import org.elasticsearch.common.inject.internal.Errors;
 import org.elasticsearch.common.inject.internal.ErrorsException;
 import org.elasticsearch.common.inject.internal.InternalContext;
 import org.elasticsearch.common.inject.internal.Stopwatch;
 import org.elasticsearch.common.inject.spi.Dependency;
+import org.elasticsearch.common.logging.Loggers;
 
 import java.util.List;
 import java.util.Map;
@@ -58,6 +60,8 @@ class InjectorBuilder {
 
     private final InjectorShell.Builder shellBuilder = new InjectorShell.Builder();
     private List<InjectorShell> shells;
+
+    private static final Logger logger = Loggers.getLogger(InjectorBuilder.class);
 
     InjectorBuilder() {
         injectionRequestProcessor = new InjectionRequestProcessor(errors, initializer);
@@ -190,6 +194,7 @@ class InjectorBuilder {
                         try {
                             binding.getInternalFactory().get(errorsForBinding, context, dependency);
                         } catch (ErrorsException e) {
+                            logger.error(e);
                             errorsForBinding.merge(e.getErrors());
                         } finally {
                             context.setDependency(null);
@@ -199,6 +204,7 @@ class InjectorBuilder {
                     }
                 });
             } catch (ErrorsException e) {
+                logger.error(e);
                 throw new AssertionError();
             }
         }

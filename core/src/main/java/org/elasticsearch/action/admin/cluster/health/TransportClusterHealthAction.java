@@ -19,6 +19,7 @@
 
 package org.elasticsearch.action.admin.cluster.health;
 
+import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.message.ParameterizedMessage;
 import org.apache.logging.log4j.util.Supplier;
 import org.elasticsearch.action.ActionListener;
@@ -36,6 +37,7 @@ import org.elasticsearch.cluster.routing.UnassignedInfo;
 import org.elasticsearch.cluster.service.ClusterService;
 import org.elasticsearch.common.Strings;
 import org.elasticsearch.common.inject.Inject;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.gateway.GatewayAllocator;
@@ -50,6 +52,7 @@ import org.elasticsearch.transport.TransportService;
 public class TransportClusterHealthAction extends TransportMasterNodeReadAction<ClusterHealthRequest, ClusterHealthResponse> {
 
     private final GatewayAllocator gatewayAllocator;
+    private static final Logger logger = Loggers.getLogger(TransportClusterHealthAction.class);
 
     @Inject
     public TransportClusterHealthAction(Settings settings, TransportService transportService, ClusterService clusterService,
@@ -228,6 +231,7 @@ public class TransportClusterHealthAction extends TransportMasterNodeReadAction<
                 indexNameExpressionResolver.concreteIndexNames(clusterState, IndicesOptions.strictExpand(), request.indices());
                 waitForCounter++;
             } catch (IndexNotFoundException e) {
+                logger.error("Couldn't find index while preparing response", e);
                 response.setStatus(ClusterHealthStatus.RED); // no indices, make sure its RED
                 // missing indices, wait a bit more...
             }
@@ -294,6 +298,7 @@ public class TransportClusterHealthAction extends TransportMasterNodeReadAction<
         try {
             concreteIndices = indexNameExpressionResolver.concreteIndexNames(clusterState, request);
         } catch (IndexNotFoundException e) {
+            logger.error("Couldn't find indexes while checking cluster health", e);
             // one of the specified indices is not there - treat it as RED.
             ClusterHealthResponse response = new ClusterHealthResponse(clusterState.getClusterName().value(), Strings.EMPTY_ARRAY, clusterState,
                     numberOfPendingTasks, numberOfInFlightFetch, UnassignedInfo.getNumberOfDelayedUnassigned(clusterState),

@@ -16,6 +16,9 @@
 
 package org.elasticsearch.common.inject.internal;
 
+import org.apache.logging.log4j.Logger;
+import org.elasticsearch.common.logging.Loggers;
+
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -32,6 +35,7 @@ public class ConstructionContext<T> {
 
     T currentReference;
     boolean constructing;
+    private static final Logger logger = Loggers.getLogger(ConstructionContext.class);
 
     List<DelegatingInvocationHandler<T>> invocationHandlers;
 
@@ -109,11 +113,11 @@ public class ConstructionContext<T> {
             try {
                 // This appears to be not test-covered
                 return method.invoke(delegate, args);
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalAccessException | IllegalArgumentException e) {
+                logger.error(e);
                 throw new RuntimeException(e);
             } catch (InvocationTargetException e) {
+                logger.error(e);
                 throw e.getTargetException();
             }
         }
