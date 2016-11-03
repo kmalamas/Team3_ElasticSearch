@@ -1,6 +1,0 @@
-org.elasticsearch.node.MockNodeTests
-org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests
-org.elasticsearch.test.test.ESTestCaseTests
-org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests
-org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests
-org.elasticsearch.test.rest.yaml.StashTests
