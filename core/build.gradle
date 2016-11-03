@@ -17,15 +17,28 @@
  * under the License.
  */
 
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.1-rc3"
+    }
+}
 
+apply plugin: "org.sonarqube"
 import com.carrotsearch.gradle.junit4.RandomizedTestingTask
 import org.elasticsearch.gradle.BuildPlugin
+
 
 apply plugin: 'elasticsearch.build'
 apply plugin: 'com.bmuschko.nexus'
 apply plugin: 'nebula.optional-base'
 apply plugin: 'nebula.maven-base-publish'
 apply plugin: 'nebula.maven-scm'
+
 
 publishing {
   publications {
@@ -38,6 +51,7 @@ publishing {
 archivesBaseName = 'elasticsearch'
 
 dependencies {
+
 
   // lucene
   compile "org.apache.lucene:lucene-core:${versions.lucene}"
@@ -91,6 +105,7 @@ dependencies {
   compile "org.apache.logging.log4j:log4j-1.2-api:${versions.log4j}", optional
 
   compile "net.java.dev.jna:jna:${versions.jna}"
+
 
   if (isEclipse == false || project.path == ":core-tests") {
     testCompile("org.elasticsearch.test:framework:${version}") {
@@ -263,4 +278,6 @@ if (isEclipse == false || project.path == ":core-tests") {
   }
   check.dependsOn integTest
   integTest.mustRunAfter test
+
+
 }

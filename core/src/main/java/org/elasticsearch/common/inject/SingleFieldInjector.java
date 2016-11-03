@@ -16,12 +16,15 @@
 
 package org.elasticsearch.common.inject;
 
+import org.apache.logging.log4j.Logger;
+import org.elasticsearch.action.admin.cluster.stats.ClusterStatsResponse;
 import org.elasticsearch.common.inject.internal.Errors;
 import org.elasticsearch.common.inject.internal.ErrorsException;
 import org.elasticsearch.common.inject.internal.InternalContext;
 import org.elasticsearch.common.inject.internal.InternalFactory;
 import org.elasticsearch.common.inject.spi.Dependency;
 import org.elasticsearch.common.inject.spi.InjectionPoint;
+import org.elasticsearch.common.logging.Loggers;
 
 import java.lang.reflect.Field;
 
@@ -29,6 +32,7 @@ import java.lang.reflect.Field;
  * Sets an injectable field.
  */
 class SingleFieldInjector implements SingleMemberInjector {
+    private static final Logger logger = Loggers.getLogger(SingleFieldInjector.class);
     final Field field;
     final InjectionPoint injectionPoint;
     final Dependency<?> dependency;
@@ -55,9 +59,11 @@ class SingleFieldInjector implements SingleMemberInjector {
         try {
             Object value = factory.get(errors, context, dependency);
             field.set(o, value);
+            field.set(o, value);
         } catch (ErrorsException e) {
             errors.withSource(injectionPoint).merge(e.getErrors());
         } catch (IllegalAccessException e) {
+            logger.error(e);
             throw new AssertionError(e); // a security manager is blocking us, we're hosed
         } finally {
             context.setDependency(null);

@@ -16,11 +16,14 @@
 
 package org.elasticsearch.common.inject;
 
+import org.apache.logging.log4j.Logger;
+import org.elasticsearch.action.admin.cluster.stats.ClusterStatsResponse;
 import org.elasticsearch.common.inject.internal.ConstructionContext;
 import org.elasticsearch.common.inject.internal.Errors;
 import org.elasticsearch.common.inject.internal.ErrorsException;
 import org.elasticsearch.common.inject.internal.InternalContext;
 import org.elasticsearch.common.inject.spi.InjectionPoint;
+import org.elasticsearch.common.logging.Loggers;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Set;
@@ -32,7 +35,7 @@ import java.util.Set;
  * @author crazybob@google.com (Bob Lee)
  */
 class ConstructorInjector<T> {
-
+    private static final Logger logger = Loggers.getLogger(ClusterStatsResponse.class);
     private final Set<InjectionPoint> injectableMembers;
     private final SingleParameterInjector<?>[] parameterInjectors;
     private final ConstructionProxy<T> constructionProxy;

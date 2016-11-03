@@ -16,6 +16,10 @@
 
 package org.elasticsearch.common.inject.internal;
 
+import org.apache.logging.log4j.Logger;
+import org.elasticsearch.action.admin.cluster.stats.ClusterStatsResponse;
+import org.elasticsearch.common.logging.Loggers;
+
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -25,6 +29,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author jessewilson@google.com (Jesse Wilson)
  */
 public abstract class FailableCache<K, V> {
+    private static final Logger logger = Loggers.getLogger(FailableCache.class);
 
     private final ConcurrentHashMap<K, Object> cache = new ConcurrentHashMap<>();
 
@@ -56,6 +61,7 @@ public abstract class FailableCache<K, V> {
         try {
             result = create(key, errors);
         } catch (ErrorsException e) {
+            logger.error(e);
             errors.merge(e.getErrors());
         }
         return errors.hasErrors() ? errors : result;

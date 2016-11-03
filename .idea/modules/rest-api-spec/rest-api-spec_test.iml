@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":rest-api-spec:test" external.linked.project.path="$MODULE_DIR$/../../../rest-api-spec" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="GRADLE" external.system.module.group="org.elasticsearch" external.system.module.type="sourceSet" external.system.module.version="5.0.0-alpha6-SNAPSHOT" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="false">
+    <output-test url="file://$MODULE_DIR$/../../../rest-api-spec/build-idea/classes/test" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../rest-api-spec/src/test">
+      <sourceFolder url="file://$MODULE_DIR$/../../../rest-api-spec/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../rest-api-spec/src/test/resources" type="java-test-resource" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="rest-api-spec_main" />
+  </component>
+  <component name="TestModuleProperties" production-module="rest-api-spec_main" />
+</module>

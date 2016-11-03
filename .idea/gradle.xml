@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="LOCAL" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="C:/Tools/gradle-2.13" />
+        <option name="gradleJvm" value="#JAVA_HOME" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/benchmarks" />
+            <option value="$PROJECT_DIR$/buildSrc" />
+            <option value="$PROJECT_DIR$/client" />
+            <option value="$PROJECT_DIR$/client/benchmark" />
+            <option value="$PROJECT_DIR$/client/client-benchmark-noop-api-plugin" />
+            <option value="$PROJECT_DIR$/client/rest" />
+            <option value="$PROJECT_DIR$/client/sniffer" />
+            <option value="$PROJECT_DIR$/client/test" />
+            <option value="$PROJECT_DIR$/client/transport" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/distribution" />
+            <option value="$PROJECT_DIR$/distribution/deb" />
+            <option value="$PROJECT_DIR$/distribution/integ-test-zip" />
+            <option value="$PROJECT_DIR$/distribution/rpm" />
+            <option value="$PROJECT_DIR$/distribution/tar" />
+            <option value="$PROJECT_DIR$/distribution/zip" />
+            <option value="$PROJECT_DIR$/docs" />
+            <option value="$PROJECT_DIR$/modules" />
+            <option value="$PROJECT_DIR$/modules/aggs-matrix-stats" />
+            <option value="$PROJECT_DIR$/modules/ingest-common" />
+            <option value="$PROJECT_DIR$/modules/lang-expression" />
+            <option value="$PROJECT_DIR$/modules/lang-groovy" />
+            <option value="$PROJECT_DIR$/modules/lang-mustache" />
+            <option value="$PROJECT_DIR$/modules/lang-painless" />
+            <option value="$PROJECT_DIR$/modules/percolator" />
+            <option value="$PROJECT_DIR$/modules/reindex" />
+            <option value="$PROJECT_DIR$/modules/transport-netty3" />
+            <option value="$PROJECT_DIR$/modules/transport-netty4" />
+            <option value="$PROJECT_DIR$/plugins" />
+            <option value="$PROJECT_DIR$/plugins/analysis-icu" />
+            <option value="$PROJECT_DIR$/plugins/analysis-kuromoji" />
+            <option value="$PROJECT_DIR$/plugins/analysis-phonetic" />
+            <option value="$PROJECT_DIR$/plugins/analysis-smartcn" />
+            <option value="$PROJECT_DIR$/plugins/analysis-stempel" />
+            <option value="$PROJECT_DIR$/plugins/discovery-azure-classic" />
+            <option value="$PROJECT_DIR$/plugins/discovery-ec2" />
+            <option value="$PROJECT_DIR$/plugins/discovery-gce" />
+            <option value="$PROJECT_DIR$/plugins/ingest-attachment" />
+            <option value="$PROJECT_DIR$/plugins/ingest-geoip" />
+            <option value="$PROJECT_DIR$/plugins/ingest-user-agent" />
+            <option value="$PROJECT_DIR$/plugins/jvm-example" />
+            <option value="$PROJECT_DIR$/plugins/lang-javascript" />
+            <option value="$PROJECT_DIR$/plugins/lang-python" />
+            <option value="$PROJECT_DIR$/plugins/mapper-attachments" />
+            <option value="$PROJECT_DIR$/plugins/mapper-murmur3" />
+            <option value="$PROJECT_DIR$/plugins/mapper-size" />
+            <option value="$PROJECT_DIR$/plugins/repository-azure" />
+            <option value="$PROJECT_DIR$/plugins/repository-gcs" />
+            <option value="$PROJECT_DIR$/plugins/repository-hdfs" />
+            <option value="$PROJECT_DIR$/plugins/repository-s3" />
+            <option value="$PROJECT_DIR$/plugins/store-smb" />
+            <option value="$PROJECT_DIR$/qa" />
+            <option value="$PROJECT_DIR$/qa/backwards-5.0" />
+            <option value="$PROJECT_DIR$/qa/evil-tests" />
+            <option value="$PROJECT_DIR$/qa/smoke-test-client" />
+            <option value="$PROJECT_DIR$/qa/smoke-test-http" />
+            <option value="$PROJECT_DIR$/qa/smoke-test-ingest-disabled" />
+            <option value="$PROJECT_DIR$/qa/smoke-test-ingest-with-all-dependencies" />
+            <option value="$PROJECT_DIR$/qa/smoke-test-multinode" />
+            <option value="$PROJECT_DIR$/qa/smoke-test-plugins" />
+            <option value="$PROJECT_DIR$/qa/smoke-test-reindex-with-painless" />
+            <option value="$PROJECT_DIR$/qa/vagrant" />
+            <option value="$PROJECT_DIR$/rest-api-spec" />
+            <option value="$PROJECT_DIR$/test" />
+            <option value="$PROJECT_DIR$/test/fixtures" />
+            <option value="$PROJECT_DIR$/test/fixtures/example-fixture" />
+            <option value="$PROJECT_DIR$/test/fixtures/hdfs-fixture" />
+            <option value="$PROJECT_DIR$/test/framework" />
+            <option value="$PROJECT_DIR$/test/logger-usage" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

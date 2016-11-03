@@ -19,12 +19,15 @@
 
 package org.elasticsearch.common.compress;
 
+import org.apache.logging.log4j.Logger;
 import org.apache.lucene.util.BytesRef;
+import org.elasticsearch.action.admin.cluster.stats.ClusterStatsResponse;
 import org.elasticsearch.common.bytes.BytesArray;
 import org.elasticsearch.common.bytes.BytesReference;
 import org.elasticsearch.common.io.stream.BytesStreamOutput;
 import org.elasticsearch.common.io.stream.StreamInput;
 import org.elasticsearch.common.io.stream.StreamOutput;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.xcontent.ToXContent;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
@@ -43,7 +46,7 @@ import java.util.zip.CheckedOutputStream;
  * decompressed in order to perform equality checks or to compute hash codes.
  */
 public final class CompressedXContent {
-
+    private static final Logger logger = Loggers.getLogger(CompressedXContent.class);
     private static int crc32(BytesReference data) {
         OutputStream dummy = new OutputStream() {
             @Override
@@ -191,6 +194,7 @@ public final class CompressedXContent {
         try {
             return string();
         } catch (IOException e) {
+            logger.error(e);
             return "_na_";
         }
     }

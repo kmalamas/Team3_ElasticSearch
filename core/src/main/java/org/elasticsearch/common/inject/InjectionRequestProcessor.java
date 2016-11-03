@@ -16,12 +16,15 @@
 
 package org.elasticsearch.common.inject;
 
+import org.apache.logging.log4j.Logger;
+import org.elasticsearch.action.admin.cluster.stats.ClusterStatsResponse;
 import org.elasticsearch.common.inject.internal.Errors;
 import org.elasticsearch.common.inject.internal.ErrorsException;
 import org.elasticsearch.common.inject.internal.InternalContext;
 import org.elasticsearch.common.inject.spi.InjectionPoint;
 import org.elasticsearch.common.inject.spi.InjectionRequest;
 import org.elasticsearch.common.inject.spi.StaticInjectionRequest;
+import org.elasticsearch.common.logging.Loggers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +38,7 @@ import java.util.Set;
  * @author mikeward@google.com (Mike Ward)
  */
 class InjectionRequestProcessor extends AbstractProcessor {
-
+    private static final Logger logger = Loggers.getLogger(InjectionRequestProcessor.class);
     private final List<StaticInjection> staticInjections = new ArrayList<>();
     private final Initializer initializer;
 
@@ -56,6 +59,7 @@ class InjectionRequestProcessor extends AbstractProcessor {
         try {
             injectionPoints = request.getInjectionPoints();
         } catch (ConfigurationException e) {
+            logger.error(e);
             errors.merge(e.getErrorMessages());
             injectionPoints = e.getPartialValue();
         }
@@ -98,6 +102,7 @@ class InjectionRequestProcessor extends AbstractProcessor {
             try {
                 injectionPoints = request.getInjectionPoints();
             } catch (ConfigurationException e) {
+                logger.error(e);
                 errors.merge(e.getErrorMessages());
                 injectionPoints = e.getPartialValue();
             }
@@ -117,6 +122,7 @@ class InjectionRequestProcessor extends AbstractProcessor {
                     }
                 });
             } catch (ErrorsException e) {
+                logger.error(e);
                 throw new AssertionError();
             }
         }

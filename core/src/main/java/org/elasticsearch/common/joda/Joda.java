@@ -19,7 +19,10 @@
 
 package org.elasticsearch.common.joda;
 
+import org.apache.logging.log4j.Logger;
+import org.elasticsearch.action.admin.cluster.stats.ClusterStatsResponse;
 import org.elasticsearch.common.Strings;
+import org.elasticsearch.common.logging.Loggers;
 import org.joda.time.Chronology;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeField;
@@ -48,7 +51,7 @@ import java.util.Locale;
  *
  */
 public class Joda {
-
+    private static final Logger logger = Loggers.getLogger(Joda.class);
     public static FormatDateTimeFormatter forPattern(String input) {
         return forPattern(input, Locale.ROOT);
     }
@@ -355,6 +358,7 @@ public class Joda {
                 bucket.saveField(DateTimeFieldType.millisOfSecond(), dt.getMillisOfSecond());
                 bucket.setZone(DateTimeZone.UTC);
             } catch (Exception e) {
+                logger.error(e);
                 return -1;
             }
             return text.length();

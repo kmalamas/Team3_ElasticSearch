@@ -19,12 +19,15 @@
 
 package org.elasticsearch.action.admin.cluster.node.info;
 
+import org.apache.logging.log4j.Logger;
+import org.elasticsearch.ExceptionsHelper;
 import org.elasticsearch.action.FailedNodeException;
 import org.elasticsearch.action.support.nodes.BaseNodesResponse;
 import org.elasticsearch.cluster.ClusterName;
 import org.elasticsearch.cluster.node.DiscoveryNode;
 import org.elasticsearch.common.io.stream.StreamInput;
 import org.elasticsearch.common.io.stream.StreamOutput;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.xcontent.ToXContent;
 import org.elasticsearch.common.xcontent.XContentBuilder;
@@ -38,7 +41,7 @@ import java.util.Map;
  *
  */
 public class NodesInfoResponse extends BaseNodesResponse<NodeInfo> implements ToXContent {
-
+    private static final Logger logger = Loggers.getLogger(NodesInfoResponse.class);
     public NodesInfoResponse() {
     }
 
@@ -134,6 +137,7 @@ public class NodesInfoResponse extends BaseNodesResponse<NodeInfo> implements To
             builder.endObject();
             return builder.string();
         } catch (IOException e) {
+            logger.error(e.getMessage(), e);
             return "{ \"error\" : \"" + e.getMessage() + "\"}";
         }
     }

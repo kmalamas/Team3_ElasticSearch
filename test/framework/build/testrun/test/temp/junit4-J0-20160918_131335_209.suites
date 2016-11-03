@@ -1,0 +1,6 @@
+org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests
+org.elasticsearch.node.MockNodeTests
+org.elasticsearch.test.rest.yaml.StashTests
+org.elasticsearch.test.rest.yaml.restspec.ClientYamlSuiteRestApiParserFailingTests
+org.elasticsearch.test.test.VersionUtilsTests
+org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests

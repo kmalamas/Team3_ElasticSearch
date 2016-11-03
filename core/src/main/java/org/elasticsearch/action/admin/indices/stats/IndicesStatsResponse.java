@@ -19,11 +19,14 @@
 
 package org.elasticsearch.action.admin.indices.stats;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.action.ShardOperationFailedException;
+import org.elasticsearch.action.admin.cluster.stats.ClusterStatsResponse;
 import org.elasticsearch.action.support.broadcast.BroadcastResponse;
 import org.elasticsearch.cluster.routing.ShardRouting;
 import org.elasticsearch.common.io.stream.StreamInput;
 import org.elasticsearch.common.io.stream.StreamOutput;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.xcontent.ToXContent;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
@@ -41,7 +44,7 @@ import static java.util.Collections.unmodifiableMap;
 /**
  */
 public class IndicesStatsResponse extends BroadcastResponse implements ToXContent {
-
+    private static final Logger logger = Loggers.getLogger(ClusterStatsResponse.class);
     private ShardStats[] shards;
 
     private Map<ShardRouting, ShardStats> shardStatsMap;
@@ -220,6 +223,7 @@ public class IndicesStatsResponse extends BroadcastResponse implements ToXConten
             builder.endObject();
             return builder.string();
         } catch (IOException e) {
+            logger.error(e.getMessage(),e);
             return "{ \"error\" : \"" + e.getMessage() + "\"}";
         }
     }

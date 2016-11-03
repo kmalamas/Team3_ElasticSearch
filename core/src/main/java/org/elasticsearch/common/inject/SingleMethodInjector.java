@@ -16,11 +16,14 @@
 
 package org.elasticsearch.common.inject;
 
+import org.apache.logging.log4j.Logger;
+import org.elasticsearch.action.admin.cluster.stats.ClusterStatsResponse;
 import org.elasticsearch.common.inject.InjectorImpl.MethodInvoker;
 import org.elasticsearch.common.inject.internal.Errors;
 import org.elasticsearch.common.inject.internal.ErrorsException;
 import org.elasticsearch.common.inject.internal.InternalContext;
 import org.elasticsearch.common.inject.spi.InjectionPoint;
+import org.elasticsearch.common.logging.Loggers;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -30,6 +33,7 @@ import java.lang.reflect.Modifier;
  * Invokes an injectable method.
  */
 class SingleMethodInjector implements SingleMemberInjector {
+    private static final Logger logger = Loggers.getLogger(SingleMethodInjector.class);
     final MethodInvoker methodInvoker;
     final SingleParameterInjector<?>[] parameterInjectors;
     final InjectionPoint injectionPoint;
@@ -69,6 +73,7 @@ class SingleMethodInjector implements SingleMemberInjector {
         try {
             parameters = SingleParameterInjector.getAll(errors, context, parameterInjectors);
         } catch (ErrorsException e) {
+            logger.error(e);
             errors.merge(e.getErrors());
             return;
         }

@@ -31,9 +31,11 @@ import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.index.Index;
 import org.elasticsearch.index.shard.ShardId;
 import org.elasticsearch.node.Node;
-
+import org.apache.logging.log4j.core.Appender;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import java.util.Map;
 
 import static java.util.Arrays.asList;
 import static org.elasticsearch.common.util.CollectionUtils.asArrayList;
@@ -171,4 +173,40 @@ public class Loggers {
         return commonPrefix + name;
     }
 
+    public static void addAppender(final Logger logger, final Appender appender) {
+        final LoggerContext ctx = (LoggerContext) LogManager.getContext(false);
+        final Configuration config = ctx.getConfiguration();
+        config.addAppender(appender);
+        LoggerConfig loggerConfig = config.getLoggerConfig(logger.getName());
+        if (!logger.getName().equals(loggerConfig.getName())) {
+            loggerConfig = new LoggerConfig(logger.getName(), logger.getLevel(), true);
+            config.addLogger(logger.getName(), loggerConfig);
+        }
+        loggerConfig.addAppender(appender, null, null);
+        ctx.updateLoggers();
+    }
+
+    public static void removeAppender(final Logger logger, final Appender appender) {
+        final LoggerContext ctx = (LoggerContext) LogManager.getContext(false);
+        final Configuration config = ctx.getConfiguration();
+        LoggerConfig loggerConfig = config.getLoggerConfig(logger.getName());
+        if (!logger.getName().equals(loggerConfig.getName())) {
+            loggerConfig = new LoggerConfig(logger.getName(), logger.getLevel(), true);
+            config.addLogger(logger.getName(), loggerConfig);
+        }
+        loggerConfig.removeAppender(appender.getName());
+        ctx.updateLoggers();
+    }
+
+    public static Appender findAppender(final Logger logger, final Class<? extends Appender> clazz) {
+        final LoggerContext ctx = (LoggerContext) LogManager.getContext(false);
+        final Configuration config = ctx.getConfiguration();
+        final LoggerConfig loggerConfig = config.getLoggerConfig(logger.getName());
+        for (final Map.Entry<String, Appender> entry : loggerConfig.getAppenders().entrySet()) {
+            if (entry.getValue().getClass().equals(clazz)) {
+                return entry.getValue();
+            }
+        }
+        return null;
+    }
 }

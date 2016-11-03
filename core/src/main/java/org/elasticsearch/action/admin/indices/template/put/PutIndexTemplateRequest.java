@@ -18,10 +18,12 @@
  */
 package org.elasticsearch.action.admin.indices.template.put;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.ElasticsearchGenerationException;
 import org.elasticsearch.ElasticsearchParseException;
 import org.elasticsearch.action.ActionRequestValidationException;
 import org.elasticsearch.action.IndicesRequest;
+import org.elasticsearch.action.admin.cluster.stats.ClusterStatsResponse;
 import org.elasticsearch.action.admin.indices.alias.Alias;
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequest;
 import org.elasticsearch.action.support.IndicesOptions;
@@ -32,6 +34,7 @@ import org.elasticsearch.common.bytes.BytesReference;
 import org.elasticsearch.common.collect.MapBuilder;
 import org.elasticsearch.common.io.stream.StreamInput;
 import org.elasticsearch.common.io.stream.StreamOutput;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
@@ -55,7 +58,7 @@ import static org.elasticsearch.common.settings.Settings.Builder.EMPTY_SETTINGS;
  * A request to create an index template.
  */
 public class PutIndexTemplateRequest extends MasterNodeRequest<PutIndexTemplateRequest> implements IndicesRequest {
-
+    private static final Logger logger = Loggers.getLogger(ClusterStatsResponse.class);
     private String name;
 
     private String cause = "";
@@ -300,6 +303,7 @@ public class PutIndexTemplateRequest extends MasterNodeRequest<PutIndexTemplateR
                     try {
                         customs.put(name, proto.fromMap((Map<String, Object>) entry.getValue()));
                     } catch (IOException e) {
+                        logger.error(e);
                         throw new ElasticsearchParseException("failed to parse custom metadata for [{}]", name);
                     }
                 }

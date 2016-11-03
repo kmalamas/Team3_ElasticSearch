@@ -360,7 +360,7 @@ public class BootstrapCheckTests extends ESTestCase {
         BootstrapCheck.check(true, false, Collections.singletonList(check), "testMaxSizeVirtualMemory");
     }
 
-    public void testMaxMapCountCheck() {
+public void testMaxMapCountCheck() {
         final int limit = 1 << 18;
         final AtomicLong maxMapCount = new AtomicLong(randomIntBetween(1, limit - 1));
         final BootstrapCheck.MaxMapCountCheck check = new BootstrapCheck.MaxMapCountCheck() {

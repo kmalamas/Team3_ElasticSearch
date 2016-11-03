@@ -1,0 +1,6 @@
+org.elasticsearch.search.MockSearchServiceTests
+org.elasticsearch.test.rest.yaml.parser.TeardownSectionParserTests
+org.elasticsearch.test.test.InternalTestClusterTests
+org.elasticsearch.test.rest.yaml.FileUtilsTests
+org.elasticsearch.test.rest.yaml.parser.SetSectionParserTests
+org.elasticsearch.test.rest.yaml.parser.AssertionParsersTests

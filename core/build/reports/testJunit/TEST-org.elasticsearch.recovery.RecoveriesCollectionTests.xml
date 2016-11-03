@@ -1,0 +1,189 @@
+<testsuite errors="0" failures="0" tests="5" skipped="0" name="org.elasticsearch.recovery.RecoveriesCollectionTests" hostname="nohost.nodomain" time="3.463" timestamp="2016-09-18T13:16:17">
+   <properties class="java.util.ArrayList">
+      <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+      <property name="file.encoding" value="Cp1252"/>
+      <property name="file.encoding.pkg" value="sun.io"/>
+      <property name="file.separator" value="\"/>
+      <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+      <property name="java.awt.headless" value="true"/>
+      <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+      <property name="java.class.path" value="C:\Users\kmala\workspace\Team3\core\build\classes\test;C:\Users\kmala\workspace\Team3\core\build\resources\test;C:\Users\kmala\workspace\Team3\core\build\classes\main;C:\Users\kmala\workspace\Team3\core\build\resources\main;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-core\6.2.0\849ee62525a294416802be2cacc66c80352f6f13\lucene-core-6.2.0.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-analyzers-common\6.2.0\d254d52dd394b5079129f3d5f3bf4f2d44a5936e\lucene-analyzers-common-6.2.0.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-backward-codecs\6.2.0\b625bb21456b3c0d1e5e431bced125cb060c1abd\lucene-backward-codecs-6.2.0.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-grouping\6.2.0\9527fedfd5acc624b2bb3f862bd99fb8f470b053\lucene-grouping-6.2.0.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-highlighter\6.2.0\7ca342372a3f45e32bbd21cecaa757e38eccb8a5\lucene-highlighter-6.2.0.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-join\6.2.0\da0b8de98511abd4fe9c7d48a353d17854c5ed46\lucene-join-6.2.0.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-memory\6.2.0\bc9e075b1ee051c8e5246c237c38d8e71dab8a66\lucene-memory-6.2.0.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-misc\6.2.0\94ddde6312566a4da4a50a88e453b6c82c759b41\lucene-misc-6.2.0.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-queries\6.2.0\dce47238f78e3e97d91dc6fefa9f46f07866bc2b\lucene-queries-6.2.0.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-queryparser\6.2.0\17ef728ac15e668bfa1105321611548424637645\lucene-queryparser-6.2.0.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-sandbox\6.2.0\520183f7b9aba77a26e224760c420a3844b0631a\lucene-sandbox-6.2.0.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-spatial\6.2.0\8dba929b66927b936fbc76103b109ad6c824daee\lucene-spatial-6.2.0.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-spatial-extras\6.2.0\3b5a6ef5cd90c0218a72e9e2f7e60104be2447da\lucene-spatial-extras-6.2.0.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-spatial3d\6.2.0\fcdb0567725722c5145149d1502848b6a96ec18d\lucene-spatial3d-6.2.0.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-suggest\6.2.0\3d9d526c51f483d27f425c75d7e56bc0849242d6\lucene-suggest-6.2.0.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.elasticsearch\securesm\1.1\1e423447d020041534be94c0f31a49fbdc1f2950\securesm-1.1.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\net.sf.jopt-simple\jopt-simple\5.0.2\98cafc6081d5632b61be2c9e60650b64ddbc637c\jopt-simple-5.0.2.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\com.carrotsearch\hppc\0.7.1\8b5057f74ea378c0150a1860874a3ebdcb713767\hppc-0.7.1.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\joda-time\joda-time\2.9.4\1c295b462f16702ebe720bbb08f62e1ba80da41b\joda-time-2.9.4.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.joda\joda-convert\1.2\35ec554f0cd00c956cc69051514d9488b1374dec\joda-convert-1.2.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.yaml\snakeyaml\1.15\3b132bea69e8ee099f416044970997bde80f4ea6\snakeyaml-1.15.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-core\2.8.1\fd13b1c033741d48291315c6370f7d475a42dccf\jackson-core-2.8.1.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.dataformat\jackson-dataformat-smile\2.8.1\5b73867bc12224946fc67fc8d49d9f5e698d7f\jackson-dataformat-smile-2.8.1.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.dataformat\jackson-dataformat-yaml\2.8.1\eb63166c723b0b4b9fb5298fca232a2f6612ec34\jackson-dataformat-yaml-2.8.1.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.dataformat\jackson-dataformat-cbor\2.8.1\3a6fb7e75c9972559a78cf5cfc5a48a41a13ea40\jackson-dataformat-cbor-2.8.1.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\com.tdunning\t-digest\3.0\84ccf145ac2215e6bfa63baa3101c0af41017cfc\t-digest-3.0.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.hdrhistogram\HdrHistogram\2.1.6\7495feb7f71ee124bd2a7e7d83590e296d71d80e\HdrHistogram-2.1.6.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.locationtech.spatial4j\spatial4j\0.6\21b15310bddcfd8c72611c180f20cf23279809a3\spatial4j-0.6.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\com.vividsolutions\jts\1.13\3ccfb9b60f04d71add996a666ceb8902904fd805\jts-1.13.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.apache.logging.log4j\log4j-api\2.6.2\bd1b74a5d170686362091c7cf596bbc3adf5c09b\log4j-api-2.6.2.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.apache.logging.log4j\log4j-core\2.6.2\a91369f655eb1639c6aece5c5eb5108db18306\log4j-core-2.6.2.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.apache.logging.log4j\log4j-1.2-api\2.6.2\3b4c5a8b734b6a29b2f03380535a48da6284b210\log4j-1.2-api-2.6.2.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\net.java.dev.jna\jna\4.2.2\5012450aee579c3118ff09461d5ce210e0cdc2a9\jna-4.2.2.jar;C:\Users\kmala\workspace\Team3\test\framework\build\distributions\framework-5.0.0-alpha6-SNAPSHOT.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\com.carrotsearch.randomizedtesting\randomizedtesting-runner\2.3.2\307965917fe8a22b7ee72deba39ef4b8e6ebc069\randomizedtesting-runner-2.3.2.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\junit\junit\4.11\4e031bb61df09069aeb2bffb4019e7a5034a4ee0\junit-4.11.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest-all\1.3\63a21ebc981131004ad02e0434e799fd7f3a8d5a\hamcrest-all-1.3.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-test-framework\6.2.0\f5026be3983acfb40d4092dbfbc015ec6e6addab\lucene-test-framework-6.2.0.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.apache.lucene\lucene-codecs\6.2.0\99f887266b0ad9f2c286b3976c5bc48c8cd36624\lucene-codecs-6.2.0.jar;C:\Users\kmala\workspace\Team3\client\rest\build\distributions\rest-5.0.0-alpha6-SNAPSHOT.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpclient\4.5.2\733db77aa8d9b2d68015189df76ab06304406e50\httpclient-4.5.2.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpcore\4.4.5\e7501a1b34325abb00d17dde96150604a0658b54\httpcore-4.4.5.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\commons-logging\commons-logging\1.1.3\f6f66e966c70a83ffbdb6f17a0919eaf7c8aca7f\commons-logging-1.1.3.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\commons-codec\commons-codec\1.10\4b95f4897fa13f2cd904aee711aeafc0c5295cd8\commons-codec-1.10.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.elasticsearch\securemock\1.2\98201d4ad5ac93f6b415ae9172d52b5e7cda490e\securemock-1.2.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpasyncclient\4.1.2\95aa3e6fb520191a0970a73cf09f62948ee614be\httpasyncclient-4.1.2.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpcore-nio\4.4.5\f4be009e7505f6ceddf21e7960c759f413f15056\httpcore-nio-4.4.5.jar;C:\Users\kmala\.gradle\caches\modules-2\files-2.1\com.carrotsearch.randomizedtesting\junit4-ant\2.3.2\dc8f03f6111974092491f35b8269eb0fc57f52f7\junit4-ant-2.3.2.jar"/>
+      <property name="java.class.version" value="52.0"/>
+      <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_102\jre\lib\endorsed"/>
+      <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_102\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
+      <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_102\jre"/>
+      <property name="java.io.tmpdir" value="./temp"/>
+      <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_102\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Skype\Phone\;C:\Tools\curl-7.50.1\bin;C:\Program Files\Git\cmd;C:\Tools\gradle-2.13\bin;C:\Tools\apache-maven-3.3.9\bin;C:\Program Files\doxygen\bin;C:\Tools\sonar-scanner-2.7\bin;C:\Windows\system32\config\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Users\kmala\AppData\Local\Microsoft\WindowsApps;;."/>
+      <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+      <property name="java.runtime.version" value="1.8.0_102-b14"/>
+      <property name="java.specification.name" value="Java Platform API Specification"/>
+      <property name="java.specification.vendor" value="Oracle Corporation"/>
+      <property name="java.specification.version" value="1.8"/>
+      <property name="java.vendor" value="Oracle Corporation"/>
+      <property name="java.vendor.url" value="http://java.oracle.com/"/>
+      <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+      <property name="java.version" value="1.8.0_102"/>
+      <property name="java.vm.info" value="mixed mode"/>
+      <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+      <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+      <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+      <property name="java.vm.specification.version" value="1.8"/>
+      <property name="java.vm.vendor" value="Oracle Corporation"/>
+      <property name="java.vm.version" value="25.102-b14"/>
+      <property name="jna.nosys" value="true"/>
+      <property name="junit4.childvm.count" value="3"/>
+      <property name="junit4.childvm.cwd" value="C:\Users\kmala\workspace\Team3\core\build\testrun\test\J1"/>
+      <property name="junit4.childvm.id" value="1"/>
+      <property name="junit4.memory.total" value="514850816"/>
+      <property name="junit4.pidString" value="6664@DESKTOP-HP7QPF3"/>
+      <property name="junit4.processors" value="4"/>
+      <property name="line.separator" value="
+"/>
+      <property name="os.arch" value="amd64"/>
+      <property name="os.name" value="Windows 10"/>
+      <property name="os.version" value="10.0"/>
+      <property name="path.separator" value=";"/>
+      <property name="sun.arch.data.model" value="64"/>
+      <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_102\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_102\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_102\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_102\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_102\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_102\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_102\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_102\jre\classes"/>
+      <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_102\jre\bin"/>
+      <property name="sun.cpu.endian" value="little"/>
+      <property name="sun.cpu.isalist" value="amd64"/>
+      <property name="sun.desktop" value="windows"/>
+      <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+      <property name="sun.java.command" value="com.carrotsearch.ant.tasks.junit4.slave.SlaveMainSafe -eventsfile C:\Users\kmala\workspace\Team3\core\build\testrun\test\temp\junit4-J1-20160918_131412_265.events @C:\Users\kmala\workspace\Team3\core\build\testrun\test\temp\junit4-J1-20160918_131412_265.suites -stdin"/>
+      <property name="sun.java.launcher" value="SUN_STANDARD"/>
+      <property name="sun.jnu.encoding" value="Cp1252"/>
+      <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+      <property name="sun.os.patch.level" value=""/>
+      <property name="tests.artifact" value="core"/>
+      <property name="tests.gradle" value="true"/>
+      <property name="tests.ifNoTests" value="fail"/>
+      <property name="tests.logger.level" value="WARN"/>
+      <property name="tests.prefix" value="tests"/>
+      <property name="tests.security.manager" value="true"/>
+      <property name="tests.seed" value="DB64F96F238DCA2A"/>
+      <property name="tests.task" value=":core:test"/>
+      <property name="user.country" value="US"/>
+      <property name="user.dir" value="C:\Users\kmala\workspace\Team3\core\build\testrun\test\J1"/>
+      <property name="user.home" value="C:\Users\kmala"/>
+      <property name="user.language" value="en"/>
+      <property name="user.name" value="kmala"/>
+      <property name="user.script" value=""/>
+      <property name="user.timezone" value=""/>
+      <property name="user.variant" value=""/>
+   </properties>
+   <testcase classname="org.elasticsearch.recovery.RecoveriesCollectionTests" name="testRecoveryTimeout" time="0.213"/>
+   <testcase classname="org.elasticsearch.recovery.RecoveriesCollectionTests" name="testResetRecovery" time="0.848"/>
+   <testcase classname="org.elasticsearch.recovery.RecoveriesCollectionTests" name="testLastAccessTimeUpdate" time="0.131"/>
+   <testcase classname="org.elasticsearch.recovery.RecoveriesCollectionTests" name="testIndexingDuringFileRecovery" time="1.932"/>
+   <testcase classname="org.elasticsearch.recovery.RecoveriesCollectionTests" name="testRecoveryCancellation" time="0.147"/>
+   <system-out><![CDATA[[2016-09-18T08:46:18,922][DEBUG][org.elasticsearch.index.shard] [s0] [test][0] state: [CREATED]
+[2016-09-18T08:46:18,923][TRACE][org.elasticsearch.index.shard] [s0] [test][0] [test][0] writing shard state, reason [initial state with allocation id [[id=IlKEs3wJRaaXa56BskdM_w]]]
+[2016-09-18T08:46:18,936][DEBUG][org.elasticsearch.index.shard] [s0] [test][0] state: [CREATED]->[RECOVERING], reason [store]
+[2016-09-18T08:46:18,936][DEBUG][org.elasticsearch.index.shard] [s0] [test][0] starting recovery from store ...
+[2016-09-18T08:46:18,988][DEBUG][org.elasticsearch.index.shard] [s0] [test][0] state: [RECOVERING]->[POST_RECOVERY], reason [post recovery from shard_store]
+[2016-09-18T08:46:18,989][TRACE][org.elasticsearch.index.shard] [s0] [test][0] recovery completed from [shard_store], took [52ms]
+    index    : files           [0] with total_size [0b], took[2ms]
+             : recovered_files [0] with total_size [0b]
+             : reusing_files   [0] with total_size [0b]
+    verify_index    : took [0s], check_index [0s]
+    translog : number_of_operations [0], took [49ms]
+[2016-09-18T08:46:18,989][DEBUG][org.elasticsearch.index.shard] [s0] [test][0] state: [POST_RECOVERY]->[STARTED], reason [global state is [STARTED]]
+[2016-09-18T08:46:18,989][TRACE][org.elasticsearch.index.shard] [s0] [test][0] [test][0] skip writing shard state, has been written before
+[2016-09-18T08:46:18,989][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][1][org.elasticsearch.index.mapper.ParseContext$Document@44b2d808]
+[2016-09-18T08:46:18,993][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][2][org.elasticsearch.index.mapper.ParseContext$Document@2dc4f35f]
+[2016-09-18T08:46:18,994][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][3][org.elasticsearch.index.mapper.ParseContext$Document@78f4bb47]
+[2016-09-18T08:46:18,995][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][4][org.elasticsearch.index.mapper.ParseContext$Document@5f5ba8c3]
+[2016-09-18T08:46:18,995][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][5][org.elasticsearch.index.mapper.ParseContext$Document@2a19fb6a]
+[2016-09-18T08:46:18,996][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][6][org.elasticsearch.index.mapper.ParseContext$Document@21aa23b]
+[2016-09-18T08:46:18,997][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][7][org.elasticsearch.index.mapper.ParseContext$Document@42b02748]
+[2016-09-18T08:46:18,997][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][8][org.elasticsearch.index.mapper.ParseContext$Document@3d3b6384]
+[2016-09-18T08:46:18,999][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][9][org.elasticsearch.index.mapper.ParseContext$Document@632b4bf9]
+[2016-09-18T08:46:19,000][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][10][org.elasticsearch.index.mapper.ParseContext$Document@5723e9b9]
+[2016-09-18T08:46:19,002][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][11][org.elasticsearch.index.mapper.ParseContext$Document@5baf1ec3]
+[2016-09-18T08:46:19,003][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][12][org.elasticsearch.index.mapper.ParseContext$Document@3614f621]
+[2016-09-18T08:46:19,004][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][13][org.elasticsearch.index.mapper.ParseContext$Document@60d6a7fb]
+[2016-09-18T08:46:19,005][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][14][org.elasticsearch.index.mapper.ParseContext$Document@1a882e78]
+[2016-09-18T08:46:19,005][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][15][org.elasticsearch.index.mapper.ParseContext$Document@6bbe3a1e]
+[2016-09-18T08:46:19,006][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][16][org.elasticsearch.index.mapper.ParseContext$Document@586cdcb2]
+[2016-09-18T08:46:19,006][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][17][org.elasticsearch.index.mapper.ParseContext$Document@696bde39]
+[2016-09-18T08:46:19,007][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][18][org.elasticsearch.index.mapper.ParseContext$Document@323fb087]
+[2016-09-18T08:46:19,007][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][19][org.elasticsearch.index.mapper.ParseContext$Document@da19224]
+[2016-09-18T08:46:19,008][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][20][org.elasticsearch.index.mapper.ParseContext$Document@db5b39b]
+[2016-09-18T08:46:19,009][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][21][org.elasticsearch.index.mapper.ParseContext$Document@5618b55d]
+[2016-09-18T08:46:19,010][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][22][org.elasticsearch.index.mapper.ParseContext$Document@38d891d0]
+[2016-09-18T08:46:19,011][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][23][org.elasticsearch.index.mapper.ParseContext$Document@3527f068]
+[2016-09-18T08:46:19,012][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][24][org.elasticsearch.index.mapper.ParseContext$Document@5f4bf5cb]
+[2016-09-18T08:46:19,013][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][25][org.elasticsearch.index.mapper.ParseContext$Document@4328e329]
+[2016-09-18T08:46:19,013][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][26][org.elasticsearch.index.mapper.ParseContext$Document@6db17a60]
+[2016-09-18T08:46:19,014][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][27][org.elasticsearch.index.mapper.ParseContext$Document@178a6914]
+[2016-09-18T08:46:19,014][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][28][org.elasticsearch.index.mapper.ParseContext$Document@3deb1ee1]
+[2016-09-18T08:46:19,015][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][29][org.elasticsearch.index.mapper.ParseContext$Document@15b1c1bf]
+[2016-09-18T08:46:19,015][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][30][org.elasticsearch.index.mapper.ParseContext$Document@53687107]
+[2016-09-18T08:46:19,016][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][31][org.elasticsearch.index.mapper.ParseContext$Document@27953cde]
+[2016-09-18T08:46:19,016][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][32][org.elasticsearch.index.mapper.ParseContext$Document@a209767]
+[2016-09-18T08:46:19,016][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][33][org.elasticsearch.index.mapper.ParseContext$Document@2db0b748]
+[2016-09-18T08:46:19,017][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][34][org.elasticsearch.index.mapper.ParseContext$Document@38850ea2]
+[2016-09-18T08:46:19,017][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][35][org.elasticsearch.index.mapper.ParseContext$Document@5bc04256]
+[2016-09-18T08:46:19,018][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][36][org.elasticsearch.index.mapper.ParseContext$Document@7ce2b346]
+[2016-09-18T08:46:19,018][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][37][org.elasticsearch.index.mapper.ParseContext$Document@4361e82f]
+[2016-09-18T08:46:19,019][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][38][org.elasticsearch.index.mapper.ParseContext$Document@540f9ddf]
+[2016-09-18T08:46:19,019][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][39][org.elasticsearch.index.mapper.ParseContext$Document@541b6bc2]
+[2016-09-18T08:46:19,020][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][40][org.elasticsearch.index.mapper.ParseContext$Document@328fcc23]
+[2016-09-18T08:46:19,021][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][41][org.elasticsearch.index.mapper.ParseContext$Document@1bd7927b]
+[2016-09-18T08:46:19,021][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][42][org.elasticsearch.index.mapper.ParseContext$Document@7fc5f688]
+[2016-09-18T08:46:19,022][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][43][org.elasticsearch.index.mapper.ParseContext$Document@21b0aefc]
+[2016-09-18T08:46:19,022][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][44][org.elasticsearch.index.mapper.ParseContext$Document@7cab0da4]
+[2016-09-18T08:46:19,023][TRACE][org.elasticsearch.index.shard] [s0] [test][0] index [type][45][org.elasticsearch.index.mapper.ParseContext$Document@4300dc60]
+[2016-09-18T08:46:19,023][TRACE][org.elasticsearch.index.shard] [s0] [test][0] flush with FlushRequest{waitIfOngoing=false, force=false}
+[2016-09-18T08:46:19,371][DEBUG][org.elasticsearch.index.shard] [s1] [test][0] state: [CREATED]
+[2016-09-18T08:46:19,372][TRACE][org.elasticsearch.index.shard] [s1] [test][0] [test][0] writing shard state, reason [initial state with allocation id [[id=oRZDISEVSIe2iFQacbQ59w]]]
+[2016-09-18T08:46:19,459][DEBUG][org.elasticsearch.index.shard] [s1] [test][0] state: [CREATED]->[RECOVERING], reason [remote]
+[2016-09-18T08:46:19,596][TRACE][org.elasticsearch.index.shard] [s1] [test][0] index [type][46][org.elasticsearch.index.mapper.ParseContext$Document@6b56aaac]
+[2016-09-18T08:46:19,607][TRACE][org.elasticsearch.index.shard] [s1] [test][0] index [type][47][org.elasticsearch.index.mapper.ParseContext$Document@5347b79d]
+[2016-09-18T08:46:19,608][TRACE][org.elasticsearch.index.shard] [s1] [test][0] index [type][48][org.elasticsearch.index.mapper.ParseContext$Document@2c77ea68]
+[2016-09-18T08:46:19,608][TRACE][org.elasticsearch.index.shard] [s1] [test][0] index [type][49][org.elasticsearch.index.mapper.ParseContext$Document@2c72570c]
+[2016-09-18T08:46:19,609][TRACE][org.elasticsearch.index.shard] [s1] [test][0] index [type][50][org.elasticsearch.index.mapper.ParseContext$Document@446e62d4]
+[2016-09-18T08:46:19,610][TRACE][org.elasticsearch.index.shard] [s1] [test][0] index [type][51][org.elasticsearch.index.mapper.ParseContext$Document@75cc0be]
+[2016-09-18T08:46:19,610][TRACE][org.elasticsearch.index.shard] [s1] [test][0] index [type][52][org.elasticsearch.index.mapper.ParseContext$Document@286589d5]
+[2016-09-18T08:46:19,611][TRACE][org.elasticsearch.index.shard] [s1] [test][0] index [type][53][org.elasticsearch.index.mapper.ParseContext$Document@31d828d1]
+[2016-09-18T08:46:19,612][TRACE][org.elasticsearch.index.shard] [s1] [test][0] index [type][54][org.elasticsearch.index.mapper.ParseContext$Document@7b9200cf]
+[2016-09-18T08:46:19,612][TRACE][org.elasticsearch.index.shard] [s1] [test][0] index [type][55][org.elasticsearch.index.mapper.ParseContext$Document@59945de3]
+[2016-09-18T08:46:19,614][TRACE][org.elasticsearch.index.shard] [s1] [test][0] index [type][56][org.elasticsearch.index.mapper.ParseContext$Document@25ef559d]
+[2016-09-18T08:46:19,614][TRACE][org.elasticsearch.index.shard] [s1] [test][0] index [type][57][org.elasticsearch.index.mapper.ParseContext$Document@24dab55e]
+[2016-09-18T08:46:19,827][TRACE][org.elasticsearch.index.shard] [s1] [test][0] [translog] recover [index] op of [type][46]
+[2016-09-18T08:46:19,827][TRACE][org.elasticsearch.index.shard] [s1] [test][0] index [type][46][org.elasticsearch.index.mapper.ParseContext$Document@4e87d65]
+[2016-09-18T08:46:19,832][TRACE][org.elasticsearch.index.shard] [s1] [test][0] [translog] recover [index] op of [type][47]
+[2016-09-18T08:46:19,833][TRACE][org.elasticsearch.index.shard] [s1] [test][0] index [type][47][org.elasticsearch.index.mapper.ParseContext$Document@203620a4]
+[2016-09-18T08:46:19,833][TRACE][org.elasticsearch.index.shard] [s1] [test][0] [translog] recover [index] op of [type][48]
+[2016-09-18T08:46:19,833][TRACE][org.elasticsearch.index.shard] [s1] [test][0] index [type][48][org.elasticsearch.index.mapper.ParseContext$Document@2d6e7960]
+[2016-09-18T08:46:19,834][TRACE][org.elasticsearch.index.shard] [s1] [test][0] [translog] recover [index] op of [type][49]
+[2016-09-18T08:46:19,834][TRACE][org.elasticsearch.index.shard] [s1] [test][0] index [type][49][org.elasticsearch.index.mapper.ParseContext$Document@190ff611]
+[2016-09-18T08:46:19,839][TRACE][org.elasticsearch.index.shard] [s1] [test][0] [translog] recover [index] op of [type][50]
+[2016-09-18T08:46:19,841][TRACE][org.elasticsearch.index.shard] [s1] [test][0] index [type][50][org.elasticsearch.index.mapper.ParseContext$Document@7662a04b]
+[2016-09-18T08:46:19,841][TRACE][org.elasticsearch.index.shard] [s1] [test][0] [translog] recover [index] op of [type][51]
+[2016-09-18T08:46:19,842][TRACE][org.elasticsearch.index.shard] [s1] [test][0] index [type][51][org.elasticsearch.index.mapper.ParseContext$Document@7655a18d]
+[2016-09-18T08:46:19,842][TRACE][org.elasticsearch.index.shard] [s1] [test][0] [translog] recover [index] op of [type][52]
+[2016-09-18T08:46:19,842][TRACE][org.elasticsearch.index.shard] [s1] [test][0] index [type][52][org.elasticsearch.index.mapper.ParseContext$Document@76e607f8]
+[2016-09-18T08:46:19,843][TRACE][org.elasticsearch.index.shard] [s1] [test][0] [translog] recover [index] op of [type][53]
+[2016-09-18T08:46:19,843][TRACE][org.elasticsearch.index.shard] [s1] [test][0] index [type][53][org.elasticsearch.index.mapper.ParseContext$Document@5e8cf8c8]
+[2016-09-18T08:46:19,843][TRACE][org.elasticsearch.index.shard] [s1] [test][0] [translog] recover [index] op of [type][54]
+[2016-09-18T08:46:19,844][TRACE][org.elasticsearch.index.shard] [s1] [test][0] index [type][54][org.elasticsearch.index.mapper.ParseContext$Document@21a04e93]
+[2016-09-18T08:46:19,844][TRACE][org.elasticsearch.index.shard] [s1] [test][0] [translog] recover [index] op of [type][55]
+[2016-09-18T08:46:19,844][TRACE][org.elasticsearch.index.shard] [s1] [test][0] index [type][55][org.elasticsearch.index.mapper.ParseContext$Document@6e6afd09]
+[2016-09-18T08:46:19,845][TRACE][org.elasticsearch.index.shard] [s1] [test][0] [translog] recover [index] op of [type][56]
+[2016-09-18T08:46:19,845][TRACE][org.elasticsearch.index.shard] [s1] [test][0] index [type][56][org.elasticsearch.index.mapper.ParseContext$Document@50dd35ab]
+[2016-09-18T08:46:19,848][TRACE][org.elasticsearch.index.shard] [s1] [test][0] [translog] recover [index] op of [type][57]
+[2016-09-18T08:46:19,848][TRACE][org.elasticsearch.index.shard] [s1] [test][0] index [type][57][org.elasticsearch.index.mapper.ParseContext$Document@76ccf12d]
+[2016-09-18T08:46:20,568][DEBUG][org.elasticsearch.index.shard] [s1] [test][0] state: [RECOVERING]->[POST_RECOVERY], reason [peer recovery done]
+[2016-09-18T08:46:20,568][DEBUG][org.elasticsearch.index.shard] [s1] [test][0] state: [POST_RECOVERY]->[STARTED], reason [global state is [STARTED]]
+[2016-09-18T08:46:20,568][TRACE][org.elasticsearch.index.shard] [s1] [test][0] [test][0] skip writing shard state, has been written before
+[2016-09-18T08:46:20,568][TRACE][org.elasticsearch.index.shard] [s1] [test][0] refresh with source [get_uids] indexBufferRAMBytesUsed [147.6kb]
+[2016-09-18T08:46:20,702][TRACE][org.elasticsearch.index.shard] [s1] [test][0] remove [147.6kb] writing bytes for shard [[test][0]]
+[2016-09-18T08:46:20,704][TRACE][org.elasticsearch.index.shard] [s1] [test][0] refresh with source [get_uids] indexBufferRAMBytesUsed [0b]
+[2016-09-18T08:46:20,704][TRACE][org.elasticsearch.index.shard] [s1] [test][0] remove [0b] writing bytes for shard [[test][0]]
+[2016-09-18T08:46:20,707][DEBUG][org.elasticsearch.index.shard] [s1] [test][0] state: [STARTED]->[CLOSED], reason [eol]
+[2016-09-18T08:46:20,759][DEBUG][org.elasticsearch.index.shard] [s1] [test][0] state: [STARTED]->[CLOSED], reason [eol]
+]]></system-out>
+   <system-err><![CDATA[]]></system-err>
+</testsuite>

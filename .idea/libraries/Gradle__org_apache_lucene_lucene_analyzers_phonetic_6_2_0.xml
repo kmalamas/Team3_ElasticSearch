@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.apache.lucene:lucene-analyzers-phonetic:6.2.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.lucene/lucene-analyzers-phonetic/6.2.0/8d2a6b8679563d9f044eb1cee580282b20d8e149/lucene-analyzers-phonetic-6.2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.lucene/lucene-analyzers-phonetic/6.2.0/e410a96528e7240a22232b2e8092de08fa81f851/lucene-analyzers-phonetic-6.2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: de.thetaphi:forbiddenapis:2.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/de.thetaphi/forbiddenapis/2.2/8a689543e4d7267398d803be1ff87a77b5cbe60b/forbiddenapis-2.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/de.thetaphi/forbiddenapis/2.2/e91b64d439d0aa0927a799b0b9d6c432e9042385/forbiddenapis-2.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -19,13 +19,16 @@
 
 package org.elasticsearch.action.search;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.action.ActionListener;
+import org.elasticsearch.action.admin.cluster.stats.ClusterStatsResponse;
 import org.elasticsearch.action.support.ActionFilters;
 import org.elasticsearch.action.support.HandledTransportAction;
 import org.elasticsearch.cluster.ClusterState;
 import org.elasticsearch.cluster.metadata.IndexNameExpressionResolver;
 import org.elasticsearch.cluster.service.ClusterService;
 import org.elasticsearch.common.inject.Inject;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.settings.Setting;
 import org.elasticsearch.common.settings.Setting.Property;
 import org.elasticsearch.common.settings.Settings;
@@ -43,7 +46,7 @@ import static org.elasticsearch.action.search.SearchType.QUERY_AND_FETCH;
 import static org.elasticsearch.action.search.SearchType.QUERY_THEN_FETCH;
 
 public class TransportSearchAction extends HandledTransportAction<SearchRequest, SearchResponse> {
-
+    private static final Logger logger = Loggers.getLogger(TransportSearchAction.class);
     /** The maximum number of shards for a single search request. */
     public static final Setting<Long> SHARD_COUNT_LIMIT_SETTING = Setting.longSetting(
             "action.search.shard_count.limit", 1000L, 1L, Property.Dynamic, Property.NodeScope);
@@ -89,6 +92,7 @@ public class TransportSearchAction extends HandledTransportAction<SearchRequest,
             }
         } catch (IndexNotFoundException | IndexClosedException e) {
             // ignore these failures, we will notify the search response if its really the case from the actual action
+            logger.error(e);
         } catch (Exception e) {
             logger.debug("failed to optimize search type, continue as normal", e);
         }

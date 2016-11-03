@@ -16,11 +16,14 @@
 
 package org.elasticsearch.common.inject;
 
+import org.apache.logging.log4j.Logger;
+import org.elasticsearch.action.admin.cluster.stats.ClusterStatsResponse;
 import org.elasticsearch.common.inject.internal.Errors;
 import org.elasticsearch.common.inject.internal.ErrorsException;
 import org.elasticsearch.common.inject.internal.FailableCache;
 import org.elasticsearch.common.inject.spi.InjectionPoint;
 import org.elasticsearch.common.inject.spi.TypeListenerBinding;
+import org.elasticsearch.common.logging.Loggers;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -34,6 +37,7 @@ import java.util.Set;
  * @author jessewilson@google.com (Jesse Wilson)
  */
 class MembersInjectorStore {
+    private static final Logger logger = Loggers.getLogger(MembersInjectorStore.class);
     private final InjectorImpl injector;
     private final List<TypeListenerBinding> typeListenerBindings;
 
@@ -79,6 +83,7 @@ class MembersInjectorStore {
         try {
             injectionPoints = InjectionPoint.forInstanceMethodsAndFields(type);
         } catch (ConfigurationException e) {
+            logger.error(e);
             errors.merge(e.getErrorMessages());
             injectionPoints = e.getPartialValue();
         }
@@ -117,7 +122,7 @@ class MembersInjectorStore {
                         : new SingleMethodInjector(this.injector, injectionPoint, errorsForMember);
                 injectors.add(injector);
             } catch (ErrorsException ignoredForNow) {
-                // ignored for now
+               logger.error(ignoredForNow);
             }
         }
         return Collections.unmodifiableList(injectors);

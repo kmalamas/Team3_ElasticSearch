@@ -19,11 +19,13 @@
 
 package org.elasticsearch.action.index;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.ElasticsearchGenerationException;
 import org.elasticsearch.action.ActionRequestValidationException;
 import org.elasticsearch.action.DocumentRequest;
 import org.elasticsearch.action.RoutingMissingException;
 import org.elasticsearch.action.TimestampParsingException;
+import org.elasticsearch.action.admin.cluster.stats.ClusterStatsResponse;
 import org.elasticsearch.action.support.replication.ReplicatedWriteRequest;
 import org.elasticsearch.client.Requests;
 import org.elasticsearch.cluster.metadata.MappingMetaData;
@@ -34,6 +36,7 @@ import org.elasticsearch.common.bytes.BytesArray;
 import org.elasticsearch.common.bytes.BytesReference;
 import org.elasticsearch.common.io.stream.StreamInput;
 import org.elasticsearch.common.io.stream.StreamOutput;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.lucene.uid.Versions;
 import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.common.xcontent.XContentBuilder;
@@ -68,7 +71,7 @@ import static org.elasticsearch.action.ValidateActions.addValidationError;
  * @see org.elasticsearch.client.Client#index(IndexRequest)
  */
 public class IndexRequest extends ReplicatedWriteRequest<IndexRequest> implements DocumentRequest<IndexRequest> {
-
+    private static final Logger logger = Loggers.getLogger(ClusterStatsResponse.class);
     /**
      * Operation type controls if the type of the index operation.
      */
@@ -687,7 +690,7 @@ public class IndexRequest extends ReplicatedWriteRequest<IndexRequest> implement
         try {
             sSource = XContentHelper.convertToJson(source, false);
         } catch (Exception e) {
-            // ignore
+            logger.error(e);
         }
         return "index {[" + index + "][" + type + "][" + id + "], source[" + sSource + "]}";
     }

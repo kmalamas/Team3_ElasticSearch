@@ -16,8 +16,11 @@
 
 package org.elasticsearch.common.inject.assistedinject;
 
+import org.apache.logging.log4j.Logger;
+import org.elasticsearch.action.admin.cluster.stats.ClusterStatsResponse;
 import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.common.inject.TypeLiteral;
+import org.elasticsearch.common.logging.Loggers;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
@@ -37,7 +40,7 @@ import java.util.Set;
  * @author jessewilson@google.com (Jesse Wilson)
  */
 class AssistedConstructor<T> {
-
+    private static final Logger logger = Loggers.getLogger(AssistedConstructor.class);
     private final Constructor<T> constructor;
     private final ParameterListKey assistedParameters;
     private final List<Parameter> allParameters;
@@ -91,6 +94,7 @@ class AssistedConstructor<T> {
         try {
             return constructor.newInstance(args);
         } catch (InvocationTargetException e) {
+            logger.error(e);
             throw e.getCause();
         }
     }

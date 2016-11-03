@@ -19,7 +19,10 @@
 
 package org.elasticsearch.common.io;
 
+import org.apache.logging.log4j.Logger;
 import org.apache.lucene.util.IOUtils;
+import org.elasticsearch.action.admin.cluster.stats.ClusterStatsResponse;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.util.Callback;
 
 import java.io.BufferedReader;
@@ -44,7 +47,7 @@ import java.util.Objects;
  * but also useful for application code.
  */
 public abstract class Streams {
-
+    private static final Logger logger = Loggers.getLogger(Streams.class);
     public static final int BUFFER_SIZE = 1024 * 8;
 
 
@@ -106,7 +109,7 @@ public abstract class Streams {
             try {
                 out.close();
             } catch (IOException ex) {
-                // do nothing
+                logger.error(ex);
             }
         }
     }
@@ -166,7 +169,7 @@ public abstract class Streams {
             try {
                 out.close();
             } catch (IOException ex) {
-                // do nothing
+               logger.error(ex);
             }
         }
     }

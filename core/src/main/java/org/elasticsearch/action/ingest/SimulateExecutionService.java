@@ -19,8 +19,11 @@
 
 package org.elasticsearch.action.ingest;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.action.ActionListener;
 import org.elasticsearch.action.ActionRunnable;
+import org.elasticsearch.action.admin.cluster.stats.ClusterStatsResponse;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.ingest.IngestDocument;
 import org.elasticsearch.ingest.Pipeline;
 import org.elasticsearch.ingest.CompoundProcessor;
@@ -32,7 +35,7 @@ import java.util.List;
 import static org.elasticsearch.action.ingest.TrackingResultProcessor.decorate;
 
 class SimulateExecutionService {
-
+    private static final Logger logger = Loggers.getLogger(ClusterStatsResponse.class);
     private static final String THREAD_POOL_NAME = ThreadPool.Names.MANAGEMENT;
 
     private final ThreadPool threadPool;
@@ -49,6 +52,7 @@ class SimulateExecutionService {
                 verbosePipelineProcessor.execute(ingestDocument);
                 return new SimulateDocumentVerboseResult(processorResultList);
             } catch (Exception e) {
+                logger.error(e);
                 return new SimulateDocumentVerboseResult(processorResultList);
             }
         } else {
@@ -56,6 +60,7 @@ class SimulateExecutionService {
                 pipeline.execute(ingestDocument);
                 return new SimulateDocumentBaseResult(ingestDocument);
             } catch (Exception e) {
+                logger.error(e);
                 return new SimulateDocumentBaseResult(e);
             }
         }

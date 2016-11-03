@@ -21,6 +21,7 @@ import com.bmuschko.gradle.nexus.NexusPlugin
 import org.eclipse.jgit.lib.Repository
 import org.eclipse.jgit.lib.RepositoryBuilder
 import org.gradle.plugins.ide.eclipse.model.SourceFolder
+
 import org.apache.tools.ant.taskdefs.condition.Os
 
 // common maven publishing configuration

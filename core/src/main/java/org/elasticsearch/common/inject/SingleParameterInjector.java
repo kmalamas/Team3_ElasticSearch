@@ -16,16 +16,20 @@
 
 package org.elasticsearch.common.inject;
 
+import org.apache.logging.log4j.Logger;
+import org.elasticsearch.action.admin.cluster.stats.ClusterStatsResponse;
 import org.elasticsearch.common.inject.internal.Errors;
 import org.elasticsearch.common.inject.internal.ErrorsException;
 import org.elasticsearch.common.inject.internal.InternalContext;
 import org.elasticsearch.common.inject.internal.InternalFactory;
 import org.elasticsearch.common.inject.spi.Dependency;
+import org.elasticsearch.common.logging.Loggers;
 
 /**
  * Resolves a single parameter, to be used in a constructor or method invocation.
  */
 class SingleParameterInjector<T> {
+    private static final Logger logger = Loggers.getLogger(SingleParameterInjector.class);
     private static final Object[] NO_ARGUMENTS = {};
 
     private final Dependency<T> dependency;
@@ -65,6 +69,7 @@ class SingleParameterInjector<T> {
             try {
                 parameters[i] = parameterInjector.inject(errors, context);
             } catch (ErrorsException e) {
+                logger.error(e);
                 errors.merge(e.getErrors());
             }
         }

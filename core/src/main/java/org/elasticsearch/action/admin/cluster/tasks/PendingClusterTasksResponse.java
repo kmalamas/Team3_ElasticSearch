@@ -19,10 +19,13 @@
 
 package org.elasticsearch.action.admin.cluster.tasks;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.action.ActionResponse;
+import org.elasticsearch.action.admin.cluster.stats.ClusterStatsResponse;
 import org.elasticsearch.cluster.service.PendingClusterTask;
 import org.elasticsearch.common.io.stream.StreamInput;
 import org.elasticsearch.common.io.stream.StreamOutput;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.xcontent.ToXContent;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
@@ -35,7 +38,7 @@ import java.util.List;
 /**
  */
 public class PendingClusterTasksResponse extends ActionResponse implements Iterable<PendingClusterTask>, ToXContent {
-
+    private static final Logger logger = Loggers.getLogger(PendingClusterTasksResponse.class);
     private List<PendingClusterTask> pendingTasks;
 
     PendingClusterTasksResponse() {
@@ -79,6 +82,7 @@ public class PendingClusterTasksResponse extends ActionResponse implements Itera
             builder.endObject();
             return builder.string();
         } catch (IOException e) {
+            logger.error(e.getMessage(),e);
             return "{ \"error\" : \"" + e.getMessage() + "\"}";
         }
     }

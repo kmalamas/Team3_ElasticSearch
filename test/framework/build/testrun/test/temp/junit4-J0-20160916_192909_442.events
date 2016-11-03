@@ -1,0 +1,1040 @@
+[
+ "BOOTSTRAP",
+ {
+  "defaultCharset": "windows-1252",
+  "pidString": "4980@DESKTOP-HP7QPF3",
+  "systemProperties": {
+   "awt.toolkit": "sun.awt.windows.WToolkit",
+   "file.encoding": "Cp1252",
+   "file.encoding.pkg": "sun.io",
+   "file.separator": "\\",
+   "java.awt.graphicsenv": "sun.awt.Win32GraphicsEnvironment",
+   "java.awt.headless": "true",
+   "java.awt.printerjob": "sun.awt.windows.WPrinterJob",
+   "java.class.path": "C:\\Users\\kmala\\workspace\\Team3\\test\\framework\\build\\classes\\test;C:\\Users\\kmala\\workspace\\Team3\\test\\framework\\build\\resources\\test;C:\\Users\\kmala\\workspace\\Team3\\test\\framework\\build\\classes\\main;C:\\Users\\kmala\\workspace\\Team3\\test\\framework\\build\\resources\\main;C:\\Users\\kmala\\workspace\\Team3\\core\\build\\distributions\\elasticsearch-5.0.0-alpha6-SNAPSHOT.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\com.carrotsearch.randomizedtesting\\randomizedtesting-runner\\2.3.2\\307965917fe8a22b7ee72deba39ef4b8e6ebc069\\randomizedtesting-runner-2.3.2.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\junit\\junit\\4.11\\4e031bb61df09069aeb2bffb4019e7a5034a4ee0\\junit-4.11.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.hamcrest\\hamcrest-all\\1.3\\63a21ebc981131004ad02e0434e799fd7f3a8d5a\\hamcrest-all-1.3.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.apache.lucene\\lucene-test-framework\\6.2.0\\f5026be3983acfb40d4092dbfbc015ec6e6addab\\lucene-test-framework-6.2.0.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.apache.lucene\\lucene-codecs\\6.2.0\\99f887266b0ad9f2c286b3976c5bc48c8cd36624\\lucene-codecs-6.2.0.jar;C:\\Users\\kmala\\workspace\\Team3\\client\\rest\\build\\distributions\\rest-5.0.0-alpha6-SNAPSHOT.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.apache.httpcomponents\\httpclient\\4.5.2\\733db77aa8d9b2d68015189df76ab06304406e50\\httpclient-4.5.2.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.apache.httpcomponents\\httpcore\\4.4.5\\e7501a1b34325abb00d17dde96150604a0658b54\\httpcore-4.4.5.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\commons-logging\\commons-logging\\1.1.3\\f6f66e966c70a83ffbdb6f17a0919eaf7c8aca7f\\commons-logging-1.1.3.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\commons-codec\\commons-codec\\1.10\\4b95f4897fa13f2cd904aee711aeafc0c5295cd8\\commons-codec-1.10.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.elasticsearch\\securemock\\1.2\\98201d4ad5ac93f6b415ae9172d52b5e7cda490e\\securemock-1.2.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.apache.lucene\\lucene-core\\6.2.0\\849ee62525a294416802be2cacc66c80352f6f13\\lucene-core-6.2.0.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.apache.lucene\\lucene-analyzers-common\\6.2.0\\d254d52dd394b5079129f3d5f3bf4f2d44a5936e\\lucene-analyzers-common-6.2.0.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.apache.lucene\\lucene-backward-codecs\\6.2.0\\b625bb21456b3c0d1e5e431bced125cb060c1abd\\lucene-backward-codecs-6.2.0.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.apache.lucene\\lucene-grouping\\6.2.0\\9527fedfd5acc624b2bb3f862bd99fb8f470b053\\lucene-grouping-6.2.0.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.apache.lucene\\lucene-highlighter\\6.2.0\\7ca342372a3f45e32bbd21cecaa757e38eccb8a5\\lucene-highlighter-6.2.0.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.apache.lucene\\lucene-join\\6.2.0\\da0b8de98511abd4fe9c7d48a353d17854c5ed46\\lucene-join-6.2.0.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.apache.lucene\\lucene-memory\\6.2.0\\bc9e075b1ee051c8e5246c237c38d8e71dab8a66\\lucene-memory-6.2.0.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.apache.lucene\\lucene-misc\\6.2.0\\94ddde6312566a4da4a50a88e453b6c82c759b41\\lucene-misc-6.2.0.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.apache.lucene\\lucene-queries\\6.2.0\\dce47238f78e3e97d91dc6fefa9f46f07866bc2b\\lucene-queries-6.2.0.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.apache.lucene\\lucene-queryparser\\6.2.0\\17ef728ac15e668bfa1105321611548424637645\\lucene-queryparser-6.2.0.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.apache.lucene\\lucene-sandbox\\6.2.0\\520183f7b9aba77a26e224760c420a3844b0631a\\lucene-sandbox-6.2.0.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.apache.lucene\\lucene-spatial\\6.2.0\\8dba929b66927b936fbc76103b109ad6c824daee\\lucene-spatial-6.2.0.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.apache.lucene\\lucene-spatial-extras\\6.2.0\\3b5a6ef5cd90c0218a72e9e2f7e60104be2447da\\lucene-spatial-extras-6.2.0.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.apache.lucene\\lucene-spatial3d\\6.2.0\\fcdb0567725722c5145149d1502848b6a96ec18d\\lucene-spatial3d-6.2.0.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.apache.lucene\\lucene-suggest\\6.2.0\\3d9d526c51f483d27f425c75d7e56bc0849242d6\\lucene-suggest-6.2.0.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.elasticsearch\\securesm\\1.1\\1e423447d020041534be94c0f31a49fbdc1f2950\\securesm-1.1.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\net.sf.jopt-simple\\jopt-simple\\5.0.2\\98cafc6081d5632b61be2c9e60650b64ddbc637c\\jopt-simple-5.0.2.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\com.carrotsearch\\hppc\\0.7.1\\8b5057f74ea378c0150a1860874a3ebdcb713767\\hppc-0.7.1.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\joda-time\\joda-time\\2.9.4\\1c295b462f16702ebe720bbb08f62e1ba80da41b\\joda-time-2.9.4.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.joda\\joda-convert\\1.2\\35ec554f0cd00c956cc69051514d9488b1374dec\\joda-convert-1.2.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.yaml\\snakeyaml\\1.15\\3b132bea69e8ee099f416044970997bde80f4ea6\\snakeyaml-1.15.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\com.fasterxml.jackson.core\\jackson-core\\2.8.1\\fd13b1c033741d48291315c6370f7d475a42dccf\\jackson-core-2.8.1.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\com.fasterxml.jackson.dataformat\\jackson-dataformat-smile\\2.8.1\\5b73867bc12224946fc67fc8d49d9f5e698d7f\\jackson-dataformat-smile-2.8.1.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\com.fasterxml.jackson.dataformat\\jackson-dataformat-yaml\\2.8.1\\eb63166c723b0b4b9fb5298fca232a2f6612ec34\\jackson-dataformat-yaml-2.8.1.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\com.fasterxml.jackson.dataformat\\jackson-dataformat-cbor\\2.8.1\\3a6fb7e75c9972559a78cf5cfc5a48a41a13ea40\\jackson-dataformat-cbor-2.8.1.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\com.tdunning\\t-digest\\3.0\\84ccf145ac2215e6bfa63baa3101c0af41017cfc\\t-digest-3.0.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.hdrhistogram\\HdrHistogram\\2.1.6\\7495feb7f71ee124bd2a7e7d83590e296d71d80e\\HdrHistogram-2.1.6.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.locationtech.spatial4j\\spatial4j\\0.6\\21b15310bddcfd8c72611c180f20cf23279809a3\\spatial4j-0.6.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\com.vividsolutions\\jts\\1.13\\3ccfb9b60f04d71add996a666ceb8902904fd805\\jts-1.13.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.apache.logging.log4j\\log4j-api\\2.6.2\\bd1b74a5d170686362091c7cf596bbc3adf5c09b\\log4j-api-2.6.2.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.apache.logging.log4j\\log4j-core\\2.6.2\\a91369f655eb1639c6aece5c5eb5108db18306\\log4j-core-2.6.2.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.apache.logging.log4j\\log4j-1.2-api\\2.6.2\\3b4c5a8b734b6a29b2f03380535a48da6284b210\\log4j-1.2-api-2.6.2.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\net.java.dev.jna\\jna\\4.2.2\\5012450aee579c3118ff09461d5ce210e0cdc2a9\\jna-4.2.2.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.apache.httpcomponents\\httpasyncclient\\4.1.2\\95aa3e6fb520191a0970a73cf09f62948ee614be\\httpasyncclient-4.1.2.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\org.apache.httpcomponents\\httpcore-nio\\4.4.5\\f4be009e7505f6ceddf21e7960c759f413f15056\\httpcore-nio-4.4.5.jar;C:\\Users\\kmala\\.gradle\\caches\\modules-2\\files-2.1\\com.carrotsearch.randomizedtesting\\junit4-ant\\2.3.2\\dc8f03f6111974092491f35b8269eb0fc57f52f7\\junit4-ant-2.3.2.jar",
+   "java.class.version": "52.0",
+   "java.endorsed.dirs": "C:\\Program Files\\Java\\jdk1.8.0_102\\jre\\lib\\endorsed",
+   "java.ext.dirs": "C:\\Program Files\\Java\\jdk1.8.0_102\\jre\\lib\\ext;C:\\Windows\\Sun\\Java\\lib\\ext",
+   "java.home": "C:\\Program Files\\Java\\jdk1.8.0_102\\jre",
+   "java.io.tmpdir": "./temp",
+   "java.library.path": "C:\\Program Files\\Java\\jdk1.8.0_102\\bin;C:\\Windows\\Sun\\Java\\bin;C:\\Windows\\system32;C:\\Windows;C:\\ProgramData\\Oracle\\Java\\javapath;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\Skype\\Phone\\;C:\\Tools\\curl-7.50.1\\bin;C:\\Program Files\\Git\\cmd;C:\\Tools\\gradle-2.13\\bin;C:\\Tools\\apache-maven-3.3.9\\bin;C:\\Program Files\\doxygen\\bin;C:\\Tools\\sonar-scanner-2.7\\bin;C:\\Windows\\system32\\config\\systemprofile\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Users\\kmala\\AppData\\Local\\Microsoft\\WindowsApps;;.",
+   "java.runtime.name": "Java(TM) SE Runtime Environment",
+   "java.runtime.version": "1.8.0_102-b14",
+   "java.specification.name": "Java Platform API Specification",
+   "java.specification.vendor": "Oracle Corporation",
+   "java.specification.version": "1.8",
+   "java.vendor": "Oracle Corporation",
+   "java.vendor.url": "http://java.oracle.com/",
+   "java.vendor.url.bug": "http://bugreport.sun.com/bugreport/",
+   "java.version": "1.8.0_102",
+   "java.vm.info": "mixed mode",
+   "java.vm.name": "Java HotSpot(TM) 64-Bit Server VM",
+   "java.vm.specification.name": "Java Virtual Machine Specification",
+   "java.vm.specification.vendor": "Oracle Corporation",
+   "java.vm.specification.version": "1.8",
+   "java.vm.vendor": "Oracle Corporation",
+   "java.vm.version": "25.102-b14",
+   "jna.nosys": "true",
+   "junit4.childvm.count": "3",
+   "junit4.childvm.cwd": "C:\\Users\\kmala\\workspace\\Team3\\test\\framework\\build\\testrun\\test\\J0",
+   "junit4.childvm.id": "0",
+   "junit4.memory.total": "514850816",
+   "junit4.pidString": "4980@DESKTOP-HP7QPF3",
+   "junit4.processors": "4",
+   "line.separator": "\r\n",
+   "os.arch": "amd64",
+   "os.name": "Windows 10",
+   "os.version": "10.0",
+   "path.separator": ";",
+   "sun.arch.data.model": "64",
+   "sun.boot.class.path": "C:\\Program Files\\Java\\jdk1.8.0_102\\jre\\lib\\resources.jar;C:\\Program Files\\Java\\jdk1.8.0_102\\jre\\lib\\rt.jar;C:\\Program Files\\Java\\jdk1.8.0_102\\jre\\lib\\sunrsasign.jar;C:\\Program Files\\Java\\jdk1.8.0_102\\jre\\lib\\jsse.jar;C:\\Program Files\\Java\\jdk1.8.0_102\\jre\\lib\\jce.jar;C:\\Program Files\\Java\\jdk1.8.0_102\\jre\\lib\\charsets.jar;C:\\Program Files\\Java\\jdk1.8.0_102\\jre\\lib\\jfr.jar;C:\\Program Files\\Java\\jdk1.8.0_102\\jre\\classes",
+   "sun.boot.library.path": "C:\\Program Files\\Java\\jdk1.8.0_102\\jre\\bin",
+   "sun.cpu.endian": "little",
+   "sun.cpu.isalist": "amd64",
+   "sun.desktop": "windows",
+   "sun.io.unicode.encoding": "UnicodeLittle",
+   "sun.java.command": "com.carrotsearch.ant.tasks.junit4.slave.SlaveMainSafe -eventsfile C:\\Users\\kmala\\workspace\\Team3\\test\\framework\\build\\testrun\\test\\temp\\junit4-J0-20160916_192909_442.events @C:\\Users\\kmala\\workspace\\Team3\\test\\framework\\build\\testrun\\test\\temp\\junit4-J0-20160916_192909_442.suites -stdin",
+   "sun.java.launcher": "SUN_STANDARD",
+   "sun.jnu.encoding": "Cp1252",
+   "sun.management.compiler": "HotSpot 64-Bit Tiered Compilers",
+   "sun.os.patch.level": "",
+   "tests.artifact": "framework",
+   "tests.gradle": "true",
+   "tests.haltonfailure": "false",
+   "tests.ifNoTests": "fail",
+   "tests.logger.level": "WARN",
+   "tests.prefix": "tests",
+   "tests.security.manager": "true",
+   "tests.seed": "BDC5EDC4E528CCF5",
+   "tests.task": ":test:framework:test",
+   "user.country": "US",
+   "user.dir": "C:\\Users\\kmala\\workspace\\Team3\\test\\framework\\build\\testrun\\test\\J0",
+   "user.home": "C:\\Users\\kmala",
+   "user.language": "en",
+   "user.name": "kmala",
+   "user.script": "",
+   "user.timezone": "",
+   "user.variant": ""
+  }
+ }
+]
+
+[
+ "SUITE_STARTED",
+ {
+  "description": {
+   "id": "ID#org.elasticsearch.node.MockNodeTests",
+   "displayName": "org.elasticsearch.node.MockNodeTests",
+   "methodName": null,
+   "className": "org.elasticsearch.node.MockNodeTests",
+   "children": [
+    {
+     "id": "ID#testComponentsMockedByMarkerPlugins(org.elasticsearch.node.MockNodeTests)",
+     "displayName": "testComponentsMockedByMarkerPlugins(org.elasticsearch.node.MockNodeTests)",
+     "methodName": "testComponentsMockedByMarkerPlugins",
+     "className": "org.elasticsearch.node.MockNodeTests",
+     "children": []
+    }
+   ]
+  },
+  "startTimestamp": 1474046951159
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testComponentsMockedByMarkerPlugins(org.elasticsearch.node.MockNodeTests)"
+]
+
+[
+ "APPEND_STDOUT",
+ {
+  "chunk": "[2016-09-16T17:29:18,659][INFO ][org.elasticsearch.node   ] [] initializing ...%0D%0A"
+ }
+]
+
+[
+ "APPEND_STDOUT",
+ {
+  "chunk": "[2016-09-16T17:29:19,576][INFO ][org.elasticsearch.env    ] [ksySjUL] using [1] data paths, mounts [[(C:)]], net usable_space [705.9gb], net total_space [780.6gb], spins? [unknown], types [NTFS]%0D%0A"
+ }
+]
+
+[
+ "APPEND_STDOUT",
+ {
+  "chunk": "[2016-09-16T17:29:19,578][INFO ][org.elasticsearch.env    ] [ksySjUL] heap size [491mb], compressed ordinary object pointers [true]%0D%0A"
+ }
+]
+
+[
+ "APPEND_STDOUT",
+ {
+  "chunk": "[2016-09-16T17:29:19,586][INFO ][org.elasticsearch.node   ] [ksySjUL] node name [ksySjUL] derived from node ID; set [node.name] to override%0D%0A"
+ }
+]
+
+[
+ "APPEND_STDOUT",
+ {
+  "chunk": "[2016-09-16T17:29:19,595][INFO ][org.elasticsearch.node   ] [ksySjUL] version[5.0.0-alpha6-SNAPSHOT], pid[4980], build[f9bf8d1/2016-09-16T17:28:48.580Z], OS[Windows 10/10.0/amd64], JVM[Oracle Corporation/Java HotSpot(TM) 64-Bit Server VM/1.8.0_102/25.102-b14]%0D%0A"
+ }
+]
+
+[
+ "APPEND_STDOUT",
+ {
+  "chunk": "[2016-09-16T17:29:19,625][INFO ][org.elasticsearch.plugins] [ksySjUL] no modules loaded%0D%0A"
+ }
+]
+
+[
+ "APPEND_STDOUT",
+ {
+  "chunk": "[2016-09-16T17:29:19,627][INFO ][org.elasticsearch.plugins] [ksySjUL] loaded plugin [org.elasticsearch.node.NodeMocksPlugin]%0D%0A"
+ }
+]
+
+[
+ "APPEND_STDOUT",
+ {
+  "chunk": "[2016-09-16T17:29:35,103][INFO ][org.elasticsearch.node   ] [ksySjUL] initialized%0D%0A"
+ }
+]
+
+[
+ "APPEND_STDOUT",
+ {
+  "chunk": "[2016-09-16T17:29:35,103][INFO ][org.elasticsearch.node   ] [ksySjUL] closing ...%0D%0A"
+ }
+]
+
+[
+ "APPEND_STDOUT",
+ {
+  "chunk": "[2016-09-16T17:29:35,143][INFO ][org.elasticsearch.node   ] [ksySjUL] closed%0D%0A"
+ }
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testComponentsMockedByMarkerPlugins(org.elasticsearch.node.MockNodeTests)",
+  "startTimestamp": 1474046957821,
+  "executionTime": 17485
+ }
+]
+
+[
+ "SUITE_COMPLETED",
+ {
+  "description": "ID#org.elasticsearch.node.MockNodeTests",
+  "startTimestamp": 1474046951159,
+  "executionTime": 24206
+ }
+]
+
+[
+ "SUITE_STARTED",
+ {
+  "description": {
+   "id": "ID#org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests",
+   "displayName": "org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests",
+   "methodName": null,
+   "className": "org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests",
+   "children": [
+    {
+     "id": "ID#testParseSkipSectionBothFeatureAndVersion(org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests)",
+     "displayName": "testParseSkipSectionBothFeatureAndVersion(org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests)",
+     "methodName": "testParseSkipSectionBothFeatureAndVersion",
+     "className": "org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests",
+     "children": []
+    },
+    {
+     "id": "ID#testParseSkipSectionNoVersionNorFeature(org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests)",
+     "displayName": "testParseSkipSectionNoVersionNorFeature(org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests)",
+     "methodName": "testParseSkipSectionNoVersionNorFeature",
+     "className": "org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests",
+     "children": []
+    },
+    {
+     "id": "ID#testParseSkipSectionAllVersions(org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests)",
+     "displayName": "testParseSkipSectionAllVersions(org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests)",
+     "methodName": "testParseSkipSectionAllVersions",
+     "className": "org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests",
+     "children": []
+    },
+    {
+     "id": "ID#testParseSkipSectionVersionNoFeature(org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests)",
+     "displayName": "testParseSkipSectionVersionNoFeature(org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests)",
+     "methodName": "testParseSkipSectionVersionNoFeature",
+     "className": "org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests",
+     "children": []
+    },
+    {
+     "id": "ID#testParseSkipSectionFeatureNoVersion(org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests)",
+     "displayName": "testParseSkipSectionFeatureNoVersion(org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests)",
+     "methodName": "testParseSkipSectionFeatureNoVersion",
+     "className": "org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests",
+     "children": []
+    },
+    {
+     "id": "ID#testParseSkipSectionNoReason(org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests)",
+     "displayName": "testParseSkipSectionNoReason(org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests)",
+     "methodName": "testParseSkipSectionNoReason",
+     "className": "org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests",
+     "children": []
+    },
+    {
+     "id": "ID#testParseSkipSectionFeaturesNoVersion(org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests)",
+     "displayName": "testParseSkipSectionFeaturesNoVersion(org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests)",
+     "methodName": "testParseSkipSectionFeaturesNoVersion",
+     "className": "org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests",
+     "children": []
+    }
+   ]
+  },
+  "startTimestamp": 1474046975381
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testParseSkipSectionBothFeatureAndVersion(org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testParseSkipSectionBothFeatureAndVersion(org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests)",
+  "startTimestamp": 1474046975433,
+  "executionTime": 685
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testParseSkipSectionNoVersionNorFeature(org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testParseSkipSectionNoVersionNorFeature(org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests)",
+  "startTimestamp": 1474046976118,
+  "executionTime": 6
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testParseSkipSectionAllVersions(org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testParseSkipSectionAllVersions(org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests)",
+  "startTimestamp": 1474046976124,
+  "executionTime": 13
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testParseSkipSectionVersionNoFeature(org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testParseSkipSectionVersionNoFeature(org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests)",
+  "startTimestamp": 1474046976139,
+  "executionTime": 6
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testParseSkipSectionFeatureNoVersion(org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testParseSkipSectionFeatureNoVersion(org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests)",
+  "startTimestamp": 1474046976145,
+  "executionTime": 7
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testParseSkipSectionNoReason(org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testParseSkipSectionNoReason(org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests)",
+  "startTimestamp": 1474046976153,
+  "executionTime": 33
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testParseSkipSectionFeaturesNoVersion(org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testParseSkipSectionFeaturesNoVersion(org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests)",
+  "startTimestamp": 1474046976189,
+  "executionTime": 20
+ }
+]
+
+[
+ "SUITE_COMPLETED",
+ {
+  "description": "ID#org.elasticsearch.test.rest.yaml.parser.SkipSectionParserTests",
+  "startTimestamp": 1474046975381,
+  "executionTime": 832
+ }
+]
+
+[
+ "SUITE_STARTED",
+ {
+  "description": {
+   "id": "ID#org.elasticsearch.test.test.ESTestCaseTests",
+   "displayName": "org.elasticsearch.test.test.ESTestCaseTests",
+   "methodName": null,
+   "className": "org.elasticsearch.test.test.ESTestCaseTests",
+   "children": [
+    {
+     "id": "ID#testExpectThrows(org.elasticsearch.test.test.ESTestCaseTests)",
+     "displayName": "testExpectThrows(org.elasticsearch.test.test.ESTestCaseTests)",
+     "methodName": "testExpectThrows",
+     "className": "org.elasticsearch.test.test.ESTestCaseTests",
+     "children": []
+    },
+    {
+     "id": "ID#testRandomUniqueNormalUsageAlwayMoreThanOne(org.elasticsearch.test.test.ESTestCaseTests)",
+     "displayName": "testRandomUniqueNormalUsageAlwayMoreThanOne(org.elasticsearch.test.test.ESTestCaseTests)",
+     "methodName": "testRandomUniqueNormalUsageAlwayMoreThanOne",
+     "className": "org.elasticsearch.test.test.ESTestCaseTests",
+     "children": []
+    },
+    {
+     "id": "ID#testRandomUniqueNotUnique(org.elasticsearch.test.test.ESTestCaseTests)",
+     "displayName": "testRandomUniqueNotUnique(org.elasticsearch.test.test.ESTestCaseTests)",
+     "methodName": "testRandomUniqueNotUnique",
+     "className": "org.elasticsearch.test.test.ESTestCaseTests",
+     "children": []
+    },
+    {
+     "id": "ID#testRandomUniqueTotallyUnique(org.elasticsearch.test.test.ESTestCaseTests)",
+     "displayName": "testRandomUniqueTotallyUnique(org.elasticsearch.test.test.ESTestCaseTests)",
+     "methodName": "testRandomUniqueTotallyUnique",
+     "className": "org.elasticsearch.test.test.ESTestCaseTests",
+     "children": []
+    },
+    {
+     "id": "ID#testShuffleXContent(org.elasticsearch.test.test.ESTestCaseTests)",
+     "displayName": "testShuffleXContent(org.elasticsearch.test.test.ESTestCaseTests)",
+     "methodName": "testShuffleXContent",
+     "className": "org.elasticsearch.test.test.ESTestCaseTests",
+     "children": []
+    }
+   ]
+  },
+  "startTimestamp": 1474046976231
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testExpectThrows(org.elasticsearch.test.test.ESTestCaseTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testExpectThrows(org.elasticsearch.test.test.ESTestCaseTests)",
+  "startTimestamp": 1474046976494,
+  "executionTime": 4
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testRandomUniqueNormalUsageAlwayMoreThanOne(org.elasticsearch.test.test.ESTestCaseTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testRandomUniqueNormalUsageAlwayMoreThanOne(org.elasticsearch.test.test.ESTestCaseTests)",
+  "startTimestamp": 1474046976499,
+  "executionTime": 41
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testRandomUniqueNotUnique(org.elasticsearch.test.test.ESTestCaseTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testRandomUniqueNotUnique(org.elasticsearch.test.test.ESTestCaseTests)",
+  "startTimestamp": 1474046976540,
+  "executionTime": 3
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testRandomUniqueTotallyUnique(org.elasticsearch.test.test.ESTestCaseTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testRandomUniqueTotallyUnique(org.elasticsearch.test.test.ESTestCaseTests)",
+  "startTimestamp": 1474046976545,
+  "executionTime": 20
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testShuffleXContent(org.elasticsearch.test.test.ESTestCaseTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testShuffleXContent(org.elasticsearch.test.test.ESTestCaseTests)",
+  "startTimestamp": 1474046976565,
+  "executionTime": 89
+ }
+]
+
+[
+ "SUITE_COMPLETED",
+ {
+  "description": "ID#org.elasticsearch.test.test.ESTestCaseTests",
+  "startTimestamp": 1474046976231,
+  "executionTime": 429
+ }
+]
+
+[
+ "SUITE_STARTED",
+ {
+  "description": {
+   "id": "ID#org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests",
+   "displayName": "org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests",
+   "methodName": null,
+   "className": "org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests",
+   "children": [
+    {
+     "id": "ID#testMatchesExact(org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests)",
+     "displayName": "testMatchesExact(org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests)",
+     "methodName": "testMatchesExact",
+     "className": "org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests",
+     "children": []
+    },
+    {
+     "id": "ID#testMatchesMixedPatterns(org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests)",
+     "displayName": "testMatchesMixedPatterns(org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests)",
+     "methodName": "testMatchesMixedPatterns",
+     "className": "org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests",
+     "children": []
+    },
+    {
+     "id": "ID#testMatchesMultiWildcardPatterns(org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests)",
+     "displayName": "testMatchesMultiWildcardPatterns(org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests)",
+     "methodName": "testMatchesMultiWildcardPatterns",
+     "className": "org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests",
+     "children": []
+    },
+    {
+     "id": "ID#testMatchesPatternsWithEscapedCommas(org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests)",
+     "displayName": "testMatchesPatternsWithEscapedCommas(org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests)",
+     "methodName": "testMatchesPatternsWithEscapedCommas",
+     "className": "org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests",
+     "children": []
+    },
+    {
+     "id": "ID#testMatchesSimpleWildcardPatterns(org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests)",
+     "displayName": "testMatchesSimpleWildcardPatterns(org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests)",
+     "methodName": "testMatchesSimpleWildcardPatterns",
+     "className": "org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests",
+     "children": []
+    }
+   ]
+  },
+  "startTimestamp": 1474046976684
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testMatchesExact(org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testMatchesExact(org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests)",
+  "startTimestamp": 1474046976768,
+  "executionTime": 28
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testMatchesMixedPatterns(org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testMatchesMixedPatterns(org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests)",
+  "startTimestamp": 1474046976797,
+  "executionTime": 5
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testMatchesMultiWildcardPatterns(org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testMatchesMultiWildcardPatterns(org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests)",
+  "startTimestamp": 1474046976804,
+  "executionTime": 8
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testMatchesPatternsWithEscapedCommas(org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testMatchesPatternsWithEscapedCommas(org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests)",
+  "startTimestamp": 1474046976813,
+  "executionTime": 5
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testMatchesSimpleWildcardPatterns(org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testMatchesSimpleWildcardPatterns(org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests)",
+  "startTimestamp": 1474046976829,
+  "executionTime": 7
+ }
+]
+
+[
+ "SUITE_COMPLETED",
+ {
+  "description": "ID#org.elasticsearch.test.rest.yaml.BlacklistedPathPatternMatcherTests",
+  "startTimestamp": 1474046976684,
+  "executionTime": 156
+ }
+]
+
+[
+ "SUITE_STARTED",
+ {
+  "description": {
+   "id": "ID#org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests",
+   "displayName": "org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests",
+   "methodName": null,
+   "className": "org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests",
+   "children": [
+    {
+     "id": "ID#testParseDoSectionExpectedWarnings(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "displayName": "testParseDoSectionExpectedWarnings(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "methodName": "testParseDoSectionExpectedWarnings",
+     "className": "org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests",
+     "children": []
+    },
+    {
+     "id": "ID#testParseDoSectionWithYamlMultipleBodies(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "displayName": "testParseDoSectionWithYamlMultipleBodies(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "methodName": "testParseDoSectionWithYamlMultipleBodies",
+     "className": "org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests",
+     "children": []
+    },
+    {
+     "id": "ID#testParseDoSectionWithJsonMultipleBodiesAsLongString(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "displayName": "testParseDoSectionWithJsonMultipleBodiesAsLongString(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "methodName": "testParseDoSectionWithJsonMultipleBodiesAsLongString",
+     "className": "org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests",
+     "children": []
+    },
+    {
+     "id": "ID#testParseDoSectionWithBodyStringified(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "displayName": "testParseDoSectionWithBodyStringified(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "methodName": "testParseDoSectionWithBodyStringified",
+     "className": "org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests",
+     "children": []
+    },
+    {
+     "id": "ID#testParseDoSectionMultivaluedField(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "displayName": "testParseDoSectionMultivaluedField(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "methodName": "testParseDoSectionMultivaluedField",
+     "className": "org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests",
+     "children": []
+    },
+    {
+     "id": "ID#testParseDoSectionWithHeaders(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "displayName": "testParseDoSectionWithHeaders(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "methodName": "testParseDoSectionWithHeaders",
+     "className": "org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests",
+     "children": []
+    },
+    {
+     "id": "ID#testParseDoSectionNoParamsNoBody(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "displayName": "testParseDoSectionNoParamsNoBody(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "methodName": "testParseDoSectionNoParamsNoBody",
+     "className": "org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests",
+     "children": []
+    },
+    {
+     "id": "ID#testParseDoSectionWithJsonBody(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "displayName": "testParseDoSectionWithJsonBody(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "methodName": "testParseDoSectionWithJsonBody",
+     "className": "org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests",
+     "children": []
+    },
+    {
+     "id": "ID#testParseDoSectionNoBody(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "displayName": "testParseDoSectionNoBody(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "methodName": "testParseDoSectionNoBody",
+     "className": "org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests",
+     "children": []
+    },
+    {
+     "id": "ID#testParseDoSectionWithBodiesStringifiedAndNot(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "displayName": "testParseDoSectionWithBodiesStringifiedAndNot(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "methodName": "testParseDoSectionWithBodiesStringifiedAndNot",
+     "className": "org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests",
+     "children": []
+    },
+    {
+     "id": "ID#testParseDoSectionWithYamlBodyMultiGet(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "displayName": "testParseDoSectionWithYamlBodyMultiGet(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "methodName": "testParseDoSectionWithYamlBodyMultiGet",
+     "className": "org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests",
+     "children": []
+    },
+    {
+     "id": "ID#testParseDoSectionWithCatch(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "displayName": "testParseDoSectionWithCatch(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "methodName": "testParseDoSectionWithCatch",
+     "className": "org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests",
+     "children": []
+    },
+    {
+     "id": "ID#testParseDoSectionWithYamlBody(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "displayName": "testParseDoSectionWithYamlBody(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "methodName": "testParseDoSectionWithYamlBody",
+     "className": "org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests",
+     "children": []
+    },
+    {
+     "id": "ID#testParseDoSectionWithoutClientCallSection(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "displayName": "testParseDoSectionWithoutClientCallSection(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "methodName": "testParseDoSectionWithoutClientCallSection",
+     "className": "org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests",
+     "children": []
+    },
+    {
+     "id": "ID#testParseDoSectionWithJsonMultipleBodiesRepeatedProperty(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "displayName": "testParseDoSectionWithJsonMultipleBodiesRepeatedProperty(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "methodName": "testParseDoSectionWithJsonMultipleBodiesRepeatedProperty",
+     "className": "org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests",
+     "children": []
+    },
+    {
+     "id": "ID#testParseDoSectionWithYamlMultipleBodiesRepeatedProperty(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "displayName": "testParseDoSectionWithYamlMultipleBodiesRepeatedProperty(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+     "methodName": "testParseDoSectionWithYamlMultipleBodiesRepeatedProperty",
+     "className": "org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests",
+     "children": []
+    }
+   ]
+  },
+  "startTimestamp": 1474046976851
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testParseDoSectionExpectedWarnings(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testParseDoSectionExpectedWarnings(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+  "startTimestamp": 1474046976980,
+  "executionTime": 92
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testParseDoSectionWithYamlMultipleBodies(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testParseDoSectionWithYamlMultipleBodies(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+  "startTimestamp": 1474046977072,
+  "executionTime": 9
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testParseDoSectionWithJsonMultipleBodiesAsLongString(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testParseDoSectionWithJsonMultipleBodiesAsLongString(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+  "startTimestamp": 1474046977081,
+  "executionTime": 11
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testParseDoSectionWithBodyStringified(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testParseDoSectionWithBodyStringified(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+  "startTimestamp": 1474046977092,
+  "executionTime": 8
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testParseDoSectionMultivaluedField(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testParseDoSectionMultivaluedField(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+  "startTimestamp": 1474046977102,
+  "executionTime": 4
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testParseDoSectionWithHeaders(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testParseDoSectionWithHeaders(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+  "startTimestamp": 1474046977106,
+  "executionTime": 4
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testParseDoSectionNoParamsNoBody(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testParseDoSectionNoParamsNoBody(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+  "startTimestamp": 1474046977110,
+  "executionTime": 9
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testParseDoSectionWithJsonBody(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testParseDoSectionWithJsonBody(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+  "startTimestamp": 1474046977119,
+  "executionTime": 7
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testParseDoSectionNoBody(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testParseDoSectionNoBody(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+  "startTimestamp": 1474046977128,
+  "executionTime": 6
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testParseDoSectionWithBodiesStringifiedAndNot(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testParseDoSectionWithBodiesStringifiedAndNot(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+  "startTimestamp": 1474046977134,
+  "executionTime": 6
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testParseDoSectionWithYamlBodyMultiGet(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testParseDoSectionWithYamlBodyMultiGet(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+  "startTimestamp": 1474046977141,
+  "executionTime": 3
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testParseDoSectionWithCatch(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testParseDoSectionWithCatch(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+  "startTimestamp": 1474046977145,
+  "executionTime": 2
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testParseDoSectionWithYamlBody(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testParseDoSectionWithYamlBody(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+  "startTimestamp": 1474046977148,
+  "executionTime": 3
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testParseDoSectionWithoutClientCallSection(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testParseDoSectionWithoutClientCallSection(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+  "startTimestamp": 1474046977151,
+  "executionTime": 15
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testParseDoSectionWithJsonMultipleBodiesRepeatedProperty(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testParseDoSectionWithJsonMultipleBodiesRepeatedProperty(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+  "startTimestamp": 1474046977166,
+  "executionTime": 3
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testParseDoSectionWithYamlMultipleBodiesRepeatedProperty(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testParseDoSectionWithYamlMultipleBodiesRepeatedProperty(org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests)",
+  "startTimestamp": 1474046977170,
+  "executionTime": 4
+ }
+]
+
+[
+ "SUITE_COMPLETED",
+ {
+  "description": "ID#org.elasticsearch.test.rest.yaml.parser.DoSectionParserTests",
+  "startTimestamp": 1474046976851,
+  "executionTime": 334
+ }
+]
+
+[
+ "SUITE_STARTED",
+ {
+  "description": {
+   "id": "ID#org.elasticsearch.test.rest.yaml.StashTests",
+   "displayName": "org.elasticsearch.test.rest.yaml.StashTests",
+   "methodName": null,
+   "className": "org.elasticsearch.test.rest.yaml.StashTests",
+   "children": [
+    {
+     "id": "ID#testReplaceStashedValuesEmbeddedStashKey(org.elasticsearch.test.rest.yaml.StashTests)",
+     "displayName": "testReplaceStashedValuesEmbeddedStashKey(org.elasticsearch.test.rest.yaml.StashTests)",
+     "methodName": "testReplaceStashedValuesEmbeddedStashKey",
+     "className": "org.elasticsearch.test.rest.yaml.StashTests",
+     "children": []
+    }
+   ]
+  },
+  "startTimestamp": 1474046977192
+ }
+]
+
+[
+ "TEST_STARTED",
+ "ID#testReplaceStashedValuesEmbeddedStashKey(org.elasticsearch.test.rest.yaml.StashTests)"
+]
+
+[
+ "TEST_FINISHED",
+ {
+  "description": "ID#testReplaceStashedValuesEmbeddedStashKey(org.elasticsearch.test.rest.yaml.StashTests)",
+  "startTimestamp": 1474046977228,
+  "executionTime": 7
+ }
+]
+
+[
+ "SUITE_COMPLETED",
+ {
+  "description": "ID#org.elasticsearch.test.rest.yaml.StashTests",
+  "startTimestamp": 1474046977192,
+  "executionTime": 47
+ }
+]
+
+[
+ "IDLE",
+ {}
+]
+
+[
+ "QUIT",
+ {}
+]
+
