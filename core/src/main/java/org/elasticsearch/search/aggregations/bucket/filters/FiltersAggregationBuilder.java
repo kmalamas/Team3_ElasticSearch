@@ -199,10 +199,6 @@ public class FiltersAggregationBuilder extends AbstractAggregationBuilder<Filter
         return builder;
     }
 
-    public static void RefactoredMethod (XContentParser parser)
-    {
-
-    }
     public static FiltersAggregationBuilder parse(String aggregationName, QueryParseContext context)
             throws IOException {
         XContentParser parser = context.parser();
