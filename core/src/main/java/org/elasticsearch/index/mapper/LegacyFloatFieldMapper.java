@@ -25,6 +25,7 @@ import org.apache.lucene.document.Field;
 import org.apache.lucene.index.IndexOptions;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.Terms;
+import org.apache.lucene.queryparser.ext.Extensions;
 import org.apache.lucene.search.LegacyNumericRangeQuery;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.util.BytesRef;
@@ -235,24 +236,10 @@ public class LegacyFloatFieldMapper extends LegacyNumberFieldMapper {
                 }
             } else if (parser.currentToken() == XContentParser.Token.START_OBJECT
                     && Version.indexCreated(context.indexSettings()).before(Version.V_5_0_0_alpha1)) {
-                XContentParser.Token token;
-                String currentFieldName = null;
-                Float objValue = fieldType().nullValue();
-                while ((token = parser.nextToken()) != XContentParser.Token.END_OBJECT) {
-                    if (token == XContentParser.Token.FIELD_NAME) {
-                        currentFieldName = parser.currentName();
-                    } else {
-                        if ("value".equals(currentFieldName) || "_value".equals(currentFieldName)) {
-                            if (parser.currentToken() != XContentParser.Token.VALUE_NULL) {
-                                objValue = parser.floatValue(coerce.value());
-                            }
-                        } else if ("boost".equals(currentFieldName) || "_boost".equals(currentFieldName)) {
-                            boost = parser.floatValue();
-                        } else {
-                            throw new IllegalArgumentException("unknown property [" + currentFieldName + "]");
-                        }
-                    }
-                }
+
+                Extensions.Pair<Float, Float> boostObj = getBoostObjValue(parser, boost);
+                Float objValue = boostObj.cur;
+                boost = boostObj.cud;
                 if (objValue == null) {
                     // no value
                     return;
@@ -278,6 +265,28 @@ public class LegacyFloatFieldMapper extends LegacyNumberFieldMapper {
         }
     }
 
+    protected Extensions.Pair<Float, Float> getBoostObjValue(XContentParser parser, float boost) throws IOException {
+        XContentParser.Token token;
+        String currentFieldName = null;
+        Float objValue = fieldType().nullValue();
+
+        while ((token = parser.nextToken()) != XContentParser.Token.END_OBJECT) {
+            if (token == XContentParser.Token.FIELD_NAME) {
+                currentFieldName = parser.currentName();
+            } else {
+                if ("value".equals(currentFieldName) || "_value".equals(currentFieldName)) {
+                    if (parser.currentToken() != XContentParser.Token.VALUE_NULL) {
+                        objValue = parser.floatValue(coerce.value());
+                    }
+                } else if ("boost".equals(currentFieldName) || "_boost".equals(currentFieldName)) {
+                    boost = parser.floatValue();
+                } else {
+                    throw new IllegalArgumentException("unknown property [" + currentFieldName + "]");
+                }
+            }
+        }
+        return new Extensions.Pair<>(objValue, boost);
+    }
     @Override
     protected String contentType() {
         return CONTENT_TYPE;
