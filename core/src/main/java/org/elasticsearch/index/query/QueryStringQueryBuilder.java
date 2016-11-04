@@ -19,6 +19,7 @@
 
 package org.elasticsearch.index.query;
 
+import org.apache.logging.log4j.Logger;
 import org.apache.lucene.queryparser.classic.MapperQueryParser;
 import org.apache.lucene.queryparser.classic.QueryParserSettings;
 import org.apache.lucene.search.BooleanQuery;
@@ -30,6 +31,7 @@ import org.elasticsearch.common.ParseField;
 import org.elasticsearch.common.ParsingException;
 import org.elasticsearch.common.io.stream.StreamInput;
 import org.elasticsearch.common.io.stream.StreamOutput;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.lucene.search.Queries;
 import org.elasticsearch.common.regex.Regex;
 import org.elasticsearch.common.unit.Fuzziness;
@@ -98,7 +100,7 @@ public class QueryStringQueryBuilder extends AbstractQueryBuilder<QueryStringQue
     private static final ParseField LENIENT_FIELD = new ParseField("lenient");
     private static final ParseField LOCALE_FIELD = new ParseField("locale");
     private static final ParseField TIME_ZONE_FIELD = new ParseField("time_zone");
-
+    protected static final Logger logger = Loggers.getLogger(QueryStringQueryBuilder.class);
 
     private final String queryString;
 
@@ -745,6 +747,7 @@ public class QueryStringQueryBuilder extends AbstractQueryBuilder<QueryStringQue
                     try {
                         timeZone = parser.text();
                     } catch (IllegalArgumentException e) {
+                        logger.error(e);
                         throw new ParsingException(parser.getTokenLocation(), "[" + QueryStringQueryBuilder.NAME +
                                 "] time_zone [" + parser.text() + "] is unknown");
                     }

@@ -19,6 +19,7 @@
 
 package org.elasticsearch.common.xcontent;
 
+import org.apache.logging.log4j.Logger;
 import org.apache.lucene.util.BytesRef;
 import org.elasticsearch.common.Strings;
 import org.elasticsearch.common.bytes.BytesReference;
@@ -26,6 +27,7 @@ import org.elasticsearch.common.geo.GeoPoint;
 import org.elasticsearch.common.io.BytesStream;
 import org.elasticsearch.common.io.stream.BytesStreamOutput;
 import org.elasticsearch.common.lease.Releasable;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.text.Text;
 import org.elasticsearch.common.unit.ByteSizeValue;
 import org.elasticsearch.common.unit.TimeValue;
@@ -55,6 +57,7 @@ import java.util.concurrent.TimeUnit;
 public final class XContentBuilder implements BytesStream, Releasable {
 
     public static final DateTimeFormatter defaultDatePrinter = ISODateTimeFormat.dateTime().withZone(DateTimeZone.UTC);
+    protected static final Logger logger = Loggers.getLogger(XContentBuilder.class);
 
     public static XContentBuilder builder(XContent xContent) throws IOException {
         return new XContentBuilder(xContent, new BytesStreamOutput());
@@ -298,6 +301,7 @@ public final class XContentBuilder implements BytesStream, Releasable {
                 try {
                     generator.writeNumber(value.setScale(scale, rounding).doubleValue());
                 } catch (ArithmeticException e) {
+                    logger.error(e);
                     generator.writeString(value.toEngineeringString());
                 }
             } else {

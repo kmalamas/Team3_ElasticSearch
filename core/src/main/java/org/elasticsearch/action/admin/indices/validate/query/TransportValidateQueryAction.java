@@ -77,7 +77,7 @@ public class TransportValidateQueryAction extends TransportBroadcastAction<Valid
 
     private final FetchPhase fetchPhase;
 
-    private static final Logger logger = Loggers.getLogger(TransportValidateQueryAction.class);
+    protected static final Logger logger = Loggers.getLogger(TransportValidateQueryAction.class);
 
     @Inject
     public TransportValidateQueryAction(Settings settings, ThreadPool threadPool, ClusterService clusterService,

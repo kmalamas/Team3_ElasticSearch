@@ -82,7 +82,7 @@ public class CreateIndexRequest extends AcknowledgedRequest<CreateIndexRequest> 
 
     private ActiveShardCount waitForActiveShards = ActiveShardCount.DEFAULT;
 
-    private static final Logger logger = Loggers.getLogger(CreateIndexRequest.class);
+    protected static final Logger logger = Loggers.getLogger(CreateIndexRequest.class);
 
     public CreateIndexRequest() {
     }

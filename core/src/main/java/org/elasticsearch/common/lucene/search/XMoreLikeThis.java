@@ -34,6 +34,7 @@
  */
 package org.elasticsearch.common.lucene.search;
 
+import org.apache.logging.log4j.Logger;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
@@ -59,6 +60,7 @@ import org.apache.lucene.util.CharsRefBuilder;
 import org.apache.lucene.util.PriorityQueue;
 import org.elasticsearch.common.Nullable;
 import org.elasticsearch.common.io.FastStringReader;
+import org.elasticsearch.common.logging.Loggers;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -155,6 +157,8 @@ import java.util.Set;
  * </pre>
  */
 public final class XMoreLikeThis {
+
+    protected static final Logger logger = Loggers.getLogger(XMoreLikeThis.class);
 
 //    static {
 //        assert Version.CURRENT.luceneVersion == org.apache.lucene.util.Version.LUCENE_4_9: "Remove this class once we upgrade to Lucene 5.0";
@@ -701,6 +705,7 @@ public final class XMoreLikeThis {
                 query.add(tq, BooleanClause.Occur.SHOULD);
             }
             catch (BooleanQuery.TooManyClauses ignore) {
+                logger.error(ignore);
                 break;
             }
         }

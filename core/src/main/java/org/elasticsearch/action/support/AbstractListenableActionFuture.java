@@ -33,7 +33,7 @@ import java.util.List;
  */
 public abstract class AbstractListenableActionFuture<T, L> extends AdapterActionFuture<T, L> implements ListenableActionFuture<T> {
 
-    private static final Logger logger = Loggers.getLogger(AbstractListenableActionFuture.class);
+    protected static final Logger logger = Loggers.getLogger(AbstractListenableActionFuture.class);
 
     final ThreadPool threadPool;
     volatile Object listeners;

@@ -18,6 +18,7 @@
  */
 package org.elasticsearch.index.query;
 
+import org.apache.logging.log4j.Logger;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
@@ -30,6 +31,7 @@ import org.apache.lucene.search.FuzzyQuery;
 import org.apache.lucene.search.PrefixQuery;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.SynonymQuery;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.index.mapper.MappedFieldType;
 
 import java.io.IOException;
@@ -47,6 +49,8 @@ public class SimpleQueryParser extends org.apache.lucene.queryparser.simple.Simp
 
     private final Settings settings;
     private QueryShardContext context;
+    protected static final Logger logger = Loggers.getLogger(SimpleQueryParser.class);
+
 
     /** Creates a new parser with custom flags used to enable/disable certain features. */
     public SimpleQueryParser(Analyzer analyzer, Map<String, Float> weights, int flags,
@@ -195,10 +199,12 @@ public class SimpleQueryParser extends org.apache.lucene.queryparser.simple.Simp
                     tlist.add(currentPos);
                 }
             } catch (IOException e) {
+                logger.error(e);
                 // ignore
                 // TODO: we should not ignore the exception and return a prefix query with the original term ?
             }
         } catch (IOException e) {
+            logger.error(e);
             // Bail on any exceptions, going with a regular prefix query
             return new PrefixQuery(new Term(field, termStr));
         }

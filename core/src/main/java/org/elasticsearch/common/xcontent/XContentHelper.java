@@ -19,12 +19,14 @@
 
 package org.elasticsearch.common.xcontent;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.ElasticsearchParseException;
 import org.elasticsearch.common.bytes.BytesReference;
 import org.elasticsearch.common.collect.Tuple;
 import org.elasticsearch.common.compress.Compressor;
 import org.elasticsearch.common.compress.CompressorFactory;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.xcontent.ToXContent.Params;
 
 import java.io.BufferedInputStream;
@@ -43,6 +45,8 @@ import static org.elasticsearch.common.xcontent.ToXContent.EMPTY_PARAMS;
  */
 @SuppressWarnings("unchecked")
 public class XContentHelper {
+
+    protected static final Logger logger = Loggers.getLogger(XContentHelper.class);
 
     public static XContentParser createParser(BytesReference bytes) throws IOException {
         Compressor compressor = CompressorFactory.compressor(bytes);
@@ -144,6 +148,7 @@ public class XContentHelper {
                 builder.endObject();
                 return builder.string();
             } catch (IOException e2) {
+                logger.error(e2);
                 throw new ElasticsearchException("cannot generate error message for deserialization", e);
             }
         }

@@ -19,6 +19,8 @@
 
 package org.elasticsearch.common.util;
 
+import org.apache.logging.log4j.Logger;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.regex.Regex;
 
 import java.net.URI;
@@ -34,6 +36,7 @@ import java.net.URISyntaxException;
  */
 public class URIPattern {
     private final URI uriPattern;
+    protected static final Logger logger = Loggers.getLogger(URIPattern.class);
 
     /**
      * Constructs uri pattern
@@ -42,6 +45,7 @@ public class URIPattern {
         try {
             uriPattern = new URI(pattern);
         } catch (URISyntaxException ex) {
+            logger.error(ex);
             throw new IllegalArgumentException("cannot parse URI pattern [" + pattern + "]");
         }
     }

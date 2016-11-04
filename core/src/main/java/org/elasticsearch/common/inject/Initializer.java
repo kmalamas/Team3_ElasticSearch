@@ -52,7 +52,7 @@ class Initializer {
      */
     private final Map<Object, InjectableReference<?>> pendingInjection = new IdentityHashMap<>();
 
-    private static final Logger logger = Loggers.getLogger(Initializer.class);
+    protected static final Logger logger = Loggers.getLogger(Initializer.class);
 
     /**
      * Registers an instance for member injection when that step is performed.

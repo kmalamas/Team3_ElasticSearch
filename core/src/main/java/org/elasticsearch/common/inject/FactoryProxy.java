@@ -38,7 +38,7 @@ class FactoryProxy<T> implements InternalFactory<T>, BindingProcessor.CreationLi
 
     private InternalFactory<? extends T> targetFactory;
 
-    private static final Logger logger = Loggers.getLogger(FactoryProxy.class);
+    protected static final Logger logger = Loggers.getLogger(FactoryProxy.class);
 
     FactoryProxy(InjectorImpl injector, Key<T> key, Key<? extends T> targetKey, Object source) {
         this.injector = injector;

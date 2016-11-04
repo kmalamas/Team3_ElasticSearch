@@ -1103,8 +1103,10 @@ public abstract class Engine implements Closeable {
                     try {
                         flush(); // TODO we might force a flush in the future since we have the write lock already even though recoveries are running.
                     } catch (FlushNotAllowedEngineException ex) {
+                        logger.error(ex);
                         logger.debug("flush not allowed during flushAndClose - skipping");
                     } catch (EngineClosedException ex) {
+                        logger.error(ex);
                         logger.debug("engine already closed - skipping flushAndClose");
                     }
                 } finally {

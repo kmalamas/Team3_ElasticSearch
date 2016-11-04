@@ -50,7 +50,7 @@ public class ClusterHealthResponse extends ActionResponse implements StatusToXCo
     private boolean timedOut = false;
     private ClusterStateHealth clusterStateHealth;
     private ClusterHealthStatus clusterHealthStatus;
-    private static final Logger logger = Loggers.getLogger(ClusterHealthResponse.class);
+    protected static final Logger logger = Loggers.getLogger(ClusterHealthResponse.class);
 
     ClusterHealthResponse() {
     }

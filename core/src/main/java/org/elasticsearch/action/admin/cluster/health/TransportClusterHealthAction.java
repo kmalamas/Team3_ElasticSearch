@@ -52,7 +52,7 @@ import org.elasticsearch.transport.TransportService;
 public class TransportClusterHealthAction extends TransportMasterNodeReadAction<ClusterHealthRequest, ClusterHealthResponse> {
 
     private final GatewayAllocator gatewayAllocator;
-    private static final Logger logger = Loggers.getLogger(TransportClusterHealthAction.class);
+    protected static final Logger logger = Loggers.getLogger(TransportClusterHealthAction.class);
 
     @Inject
     public TransportClusterHealthAction(Settings settings, TransportService transportService, ClusterService clusterService,

@@ -41,7 +41,7 @@ import org.elasticsearch.transport.TransportService;
  */
 public class TransportIndicesExistsAction extends TransportMasterNodeReadAction<IndicesExistsRequest, IndicesExistsResponse> {
 
-    private static final Logger logger = Loggers.getLogger(TransportIndicesExistsAction.class);
+    protected static final Logger logger = Loggers.getLogger(TransportIndicesExistsAction.class);
 
     @Inject
     public TransportIndicesExistsAction(Settings settings, TransportService transportService, ClusterService clusterService,

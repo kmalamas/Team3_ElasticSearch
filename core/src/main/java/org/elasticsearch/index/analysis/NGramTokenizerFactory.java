@@ -19,8 +19,10 @@
 
 package org.elasticsearch.index.analysis;
 
+import org.apache.logging.log4j.Logger;
 import org.apache.lucene.analysis.Tokenizer;
 import org.apache.lucene.analysis.ngram.NGramTokenizer;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.env.Environment;
 import org.elasticsearch.index.IndexSettings;
@@ -41,6 +43,7 @@ public class NGramTokenizerFactory extends AbstractTokenizerFactory {
     private final int minGram;
     private final int maxGram;
     private final CharMatcher matcher;
+    protected static final Logger logger = Loggers.getLogger(NGramTokenizerFactory.class);
 
     static final Map<String, CharMatcher> MATCHERS;
 
@@ -60,7 +63,7 @@ public class NGramTokenizerFactory extends AbstractTokenizerFactory {
                 try {
                     matchers.put(field.getName().toLowerCase(Locale.ROOT), CharMatcher.ByUnicodeCategory.of(field.getByte(null)));
                 } catch (Exception e) {
-                    // just ignore
+                    logger.error(e);
                     continue;
                 }
             }

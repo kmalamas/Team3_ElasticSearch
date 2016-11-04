@@ -55,6 +55,7 @@ import org.elasticsearch.common.io.stream.BytesStreamOutput;
 import org.elasticsearch.common.lease.Releasable;
 import org.elasticsearch.common.lease.Releasables;
 import org.elasticsearch.common.logging.LoggerMessageFormat;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.lucene.Lucene;
 import org.elasticsearch.common.metrics.MeanMetric;
 import org.elasticsearch.common.settings.Settings;
@@ -171,7 +172,7 @@ public class IndexShard extends AbstractIndexShardComponent implements IndicesCl
     private final TranslogConfig translogConfig;
     private final IndexEventListener indexEventListener;
     private final QueryCachingPolicy cachingPolicy;
-
+    protected static final Logger logger = Loggers.getLogger(IndexShard.class);
 
     /**
      * How many bytes we are currently moving to disk, via either IndexWriter.flush or refresh.  IndexingMemoryController polls this
@@ -463,6 +464,7 @@ public class IndexShard extends AbstractIndexShardComponent implements IndicesCl
                 }
             });
         } catch (TimeoutException e) {
+            logger.error(e);
             logger.warn("timed out waiting for relocation hand-off to complete");
             // This is really bad as ongoing replication operations are preventing this shard from completing relocation hand-off.
             // Fail primary relocation source and target shards.
@@ -688,6 +690,7 @@ public class IndexShard extends AbstractIndexShardComponent implements IndicesCl
         try {
             return store.stats();
         } catch (IOException e) {
+            logger.error(e);
             throw new ElasticsearchException("io exception while building 'store stats'", e);
         } catch (AlreadyClosedException ex) {
             return null; // already closed
@@ -1149,6 +1152,7 @@ public class IndexShard extends AbstractIndexShardComponent implements IndicesCl
         try {
             return engine.getIndexBufferRAMBytesUsed();
         } catch (AlreadyClosedException ex) {
+            logger.error(ex);
             return 0;
         }
     }
@@ -1226,6 +1230,7 @@ public class IndexShard extends AbstractIndexShardComponent implements IndicesCl
                 Translog translog = engine.getTranslog();
                 return translog.sizeInBytes() > indexSettings.getFlushThresholdSize().bytes();
             } catch (AlreadyClosedException | EngineClosedException ex) {
+                logger.error(ex);
                 // that's fine we are already close - no need to flush
             }
         }
@@ -1265,7 +1270,7 @@ public class IndexShard extends AbstractIndexShardComponent implements IndicesCl
         try {
             getEngine().activateThrottling();
         } catch (EngineClosedException ex) {
-            // ignore
+            logger.error(ex);
         }
     }
 
@@ -1273,7 +1278,7 @@ public class IndexShard extends AbstractIndexShardComponent implements IndicesCl
         try {
             getEngine().deactivateThrottling();
         } catch (EngineClosedException ex) {
-            // ignore
+            logger.error(ex);
         }
     }
 
@@ -1650,6 +1655,7 @@ public class IndexShard extends AbstractIndexShardComponent implements IndicesCl
                     final Engine engine = getEngine();
                     engine.getTranslog().ensureSynced(candidates.stream().map(Tuple::v1));
                 } catch (EngineClosedException ex) {
+                    logger.error(ex);
                     // that's fine since we already synced everything on engine close - this also is conform with the methods
                     // documentation
                 } catch (IOException ex) { // if this fails we are in deep shit - fail the request

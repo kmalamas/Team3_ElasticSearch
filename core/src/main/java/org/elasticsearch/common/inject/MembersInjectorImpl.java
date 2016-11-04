@@ -41,7 +41,7 @@ class MembersInjectorImpl<T> implements MembersInjector<T> {
     private final List<SingleMemberInjector> memberInjectors;
     private final List<MembersInjector<? super T>> userMembersInjectors;
     private final List<InjectionListener<? super T>> injectionListeners;
-    private static final Logger logger = Loggers.getLogger(MembersInjectorImpl.class);
+    protected static final Logger logger = Loggers.getLogger(MembersInjectorImpl.class);
 
     MembersInjectorImpl(InjectorImpl injector, TypeLiteral<T> typeLiteral,
                         EncounterImpl<T> encounter, List<SingleMemberInjector> memberInjectors) {

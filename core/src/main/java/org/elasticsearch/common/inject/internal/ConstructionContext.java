@@ -35,7 +35,7 @@ public class ConstructionContext<T> {
 
     T currentReference;
     boolean constructing;
-    private static final Logger logger = Loggers.getLogger(ConstructionContext.class);
+    protected static final Logger logger = Loggers.getLogger(ConstructionContext.class);
 
     List<DelegatingInvocationHandler<T>> invocationHandlers;
 

@@ -37,7 +37,7 @@ public class PutStoredScriptRequest extends AcknowledgedRequest<PutStoredScriptR
     private String id;
     private String scriptLang;
     private BytesReference script;
-    private static final Logger logger = Loggers.getLogger(PutStoredScriptRequest.class);
+    protected static final Logger logger = Loggers.getLogger(PutStoredScriptRequest.class);
 
     public PutStoredScriptRequest() {
         super();

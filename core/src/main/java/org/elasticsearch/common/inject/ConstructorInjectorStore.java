@@ -16,10 +16,12 @@
 
 package org.elasticsearch.common.inject;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.common.inject.internal.Errors;
 import org.elasticsearch.common.inject.internal.ErrorsException;
 import org.elasticsearch.common.inject.internal.FailableCache;
 import org.elasticsearch.common.inject.spi.InjectionPoint;
+import org.elasticsearch.common.logging.Loggers;
 
 /**
  * Constructor injectors by type.
@@ -28,6 +30,7 @@ import org.elasticsearch.common.inject.spi.InjectionPoint;
  */
 class ConstructorInjectorStore {
     private final InjectorImpl injector;
+    protected static final Logger logger = Loggers.getLogger(ConstructorInjectorStore.class);
 
     private final FailableCache<TypeLiteral<?>, ConstructorInjector<?>> cache
             = new FailableCache<TypeLiteral<?>, ConstructorInjector<?>>() {
@@ -59,6 +62,7 @@ class ConstructorInjectorStore {
         try {
             injectionPoint = InjectionPoint.forConstructorOf(type);
         } catch (ConfigurationException e) {
+            logger.error(e);
             errors.merge(e.getErrorMessages());
             throw errors.toException();
         }

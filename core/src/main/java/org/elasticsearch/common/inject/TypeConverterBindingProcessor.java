@@ -41,7 +41,7 @@ import java.lang.reflect.Type;
  */
 class TypeConverterBindingProcessor extends AbstractProcessor {
 
-    private static final Logger logger = Loggers.getLogger(TypeConverterBindingProcessor.class);
+    protected static final Logger logger = Loggers.getLogger(TypeConverterBindingProcessor.class);
 
     TypeConverterBindingProcessor(Errors errors) {
         super(errors);

@@ -29,7 +29,7 @@ public class ShapesAvailability {
     public static final boolean SPATIAL4J_AVAILABLE;
     public static final boolean JTS_AVAILABLE;
 
-    private static final Logger logger = Loggers.getLogger(ShapesAvailability.class);
+    protected static final Logger logger = Loggers.getLogger(ShapesAvailability.class);
 
     static {
         boolean xSPATIAL4J_AVAILABLE;

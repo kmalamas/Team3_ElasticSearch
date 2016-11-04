@@ -31,7 +31,7 @@ class ProviderToInternalFactoryAdapter<T> implements Provider<T> {
 
     private final InjectorImpl injector;
     private final InternalFactory<? extends T> internalFactory;
-    private static final Logger logger = Loggers.getLogger(ProviderToInternalFactoryAdapter.class);
+    protected static final Logger logger = Loggers.getLogger(ProviderToInternalFactoryAdapter.class);
 
     public ProviderToInternalFactoryAdapter(InjectorImpl injector,
                                             InternalFactory<? extends T> internalFactory) {

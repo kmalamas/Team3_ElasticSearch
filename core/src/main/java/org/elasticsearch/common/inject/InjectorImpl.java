@@ -69,7 +69,7 @@ class InjectorImpl implements Injector, Lookups {
     boolean readOnly;
     BindingsMultimap bindingsMultimap = new BindingsMultimap();
     final Initializer initializer;
-    private static final Logger logger = Loggers.getLogger(InjectorImpl.class);
+    protected static final Logger logger = Loggers.getLogger(InjectorImpl.class);
 
     /**
      * Just-in-time binding cache. Guarded by state.lock()

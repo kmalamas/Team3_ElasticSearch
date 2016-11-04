@@ -18,8 +18,10 @@
  */
 package org.elasticsearch.index.query;
 
+import org.apache.logging.log4j.Logger;
 import org.apache.lucene.util.automaton.RegExp;
 import org.elasticsearch.common.Strings;
+import org.elasticsearch.common.logging.Loggers;
 
 import java.util.Locale;
 
@@ -75,6 +77,7 @@ public enum RegexpFlag {
      */
     ALL(RegExp.ALL);
 
+    protected static final Logger logger = Loggers.getLogger(RegexpFlag.class);
 
     final int value;
 
@@ -127,6 +130,7 @@ public enum RegexpFlag {
                 }
                 magic |= flag.value();
             } catch (IllegalArgumentException iae) {
+                logger.error(iae);
                 throw new IllegalArgumentException("Unknown regexp flag [" + s + "]");
             }
         }

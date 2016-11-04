@@ -19,6 +19,7 @@
 
 package org.elasticsearch.index.mapper;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.Version;
 import org.elasticsearch.common.logging.DeprecationLogger;
 import org.elasticsearch.common.logging.Loggers;
@@ -40,6 +41,7 @@ import java.util.TreeMap;
 public class DynamicTemplate implements ToXContent {
 
     private static final DeprecationLogger DEPRECATION_LOGGER = new DeprecationLogger(Loggers.getLogger(DynamicTemplate.class));
+    protected static final Logger logger = Loggers.getLogger(DynamicTemplate.class);
 
     public static enum MatchType {
         SIMPLE {
@@ -208,6 +210,7 @@ public class DynamicTemplate implements ToXContent {
             try {
                 xcontentFieldType = XContentFieldType.fromString(matchMappingType);
             } catch (IllegalArgumentException e) {
+                logger.error(e);
                 // TODO: do this in 6.0
                 /*if (indexVersionCreated.onOrAfter(Version.V_6_0_0)) {
                     throw e;

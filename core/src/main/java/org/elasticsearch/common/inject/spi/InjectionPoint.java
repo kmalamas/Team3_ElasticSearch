@@ -61,7 +61,7 @@ public final class InjectionPoint {
     private final Member member;
     private final List<Dependency<?>> dependencies;
 
-    private static final Logger logger = Loggers.getLogger(InjectionPoint.class);
+    protected static final Logger logger = Loggers.getLogger(InjectionPoint.class);
 
     private InjectionPoint(Member member,
                            List<Dependency<?>> dependencies, boolean optional) {

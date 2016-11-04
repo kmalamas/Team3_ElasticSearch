@@ -16,8 +16,10 @@
 
 package org.elasticsearch.common.inject.assistedinject;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.common.inject.TypeLiteral;
+import org.elasticsearch.common.logging.Loggers;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
@@ -41,6 +43,7 @@ class AssistedConstructor<T> {
     private final Constructor<T> constructor;
     private final ParameterListKey assistedParameters;
     private final List<Parameter> allParameters;
+    protected static final Logger logger = Loggers.getLogger(AssistedConstructor.class);
 
     @SuppressWarnings("unchecked")
     public AssistedConstructor(Constructor<T> constructor, List<TypeLiteral<?>> parameterTypes) {
@@ -91,6 +94,7 @@ class AssistedConstructor<T> {
         try {
             return constructor.newInstance(args);
         } catch (InvocationTargetException e) {
+            logger.error(e);
             throw e.getCause();
         }
     }
