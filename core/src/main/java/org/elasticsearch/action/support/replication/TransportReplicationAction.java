@@ -101,7 +101,7 @@ public abstract class TransportReplicationAction<
     final String transportPrimaryAction;
     private final ReplicasProxy replicasProxy;
 
-    private static final Logger logger = Loggers.getLogger(TransportReplicationAction.class);
+    protected static final Logger logger = Loggers.getLogger(TransportReplicationAction.class);
 
     protected TransportReplicationAction(Settings settings, String actionName, TransportService transportService,
                                          ClusterService clusterService, IndicesService indicesService,
