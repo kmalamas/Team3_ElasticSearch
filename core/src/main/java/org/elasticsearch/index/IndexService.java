@@ -274,7 +274,7 @@ public class IndexService extends AbstractIndexComponent implements IndicesClust
         if (closed.get()) {
             throw new IllegalStateException("Can't create shard " + routing.shardId() + ", closed");
         }
-        final Settings indexSettings = this.indexSettings.getSettings();
+        final Settings settings = this.indexSettings.getSettings();
         final ShardId shardId = routing.shardId();
         boolean success = false;
         Store store = null;
@@ -282,7 +282,7 @@ public class IndexService extends AbstractIndexComponent implements IndicesClust
         ShardLock lock = null;
         try {
             lock = nodeEnv.shardLock(shardId, TimeUnit.SECONDS.toMillis(5));
-            eventListener.beforeIndexShardCreated(shardId, indexSettings);
+            eventListener.beforeIndexShardCreated(shardId, settings);
             ShardPath path;
             try {
                 path = ShardPath.loadShardPath(logger, nodeEnv, shardId, this.indexSettings);
@@ -325,8 +325,8 @@ public class IndexService extends AbstractIndexComponent implements IndicesClust
 
             logger.debug("creating shard_id {}", shardId);
             // if we are on a shared FS we only own the shard (ie. we can safely delete it) if we are the primary.
-            final boolean canDeleteShardContent = IndexMetaData.isOnSharedFilesystem(indexSettings) == false ||
-                (primary && IndexMetaData.isOnSharedFilesystem(indexSettings));
+            final boolean canDeleteShardContent = IndexMetaData.isOnSharedFilesystem(settings) == false ||
+                (primary && IndexMetaData.isOnSharedFilesystem(settings));
             final Engine.Warmer engineWarmer = (searcher) -> {
                 IndexShard shard =  getShardOrNull(shardId.getId());
                 if (shard != null) {
@@ -335,7 +335,7 @@ public class IndexService extends AbstractIndexComponent implements IndicesClust
             };
             store = new Store(shardId, this.indexSettings, indexStore.newDirectoryService(path), lock,
                 new StoreCloseListener(shardId, canDeleteShardContent, () -> eventListener.onStoreClosed(shardId)));
-            if (useShadowEngine(primary, indexSettings)) {
+            if (useShadowEngine(primary, settings)) {
                 indexShard = new ShadowIndexShard(routing, this.indexSettings, path, store, indexCache, mapperService, similarityService,
                     indexFieldData, engineFactory, eventListener, searcherWrapper, threadPool, bigArrays, engineWarmer,
                     searchOperationListeners);
@@ -382,11 +382,11 @@ public class IndexService extends AbstractIndexComponent implements IndicesClust
     }
 
     private void closeShard(String reason, ShardId sId, IndexShard indexShard, Store store, IndexEventListener listener) {
-        final int shardId = sId.id();
-        final Settings indexSettings = this.getIndexSettings().getSettings();
+
+        final Settings settings = this.getIndexSettings().getSettings();
         try {
             try {
-                listener.beforeIndexShardClosed(sId, indexShard, indexSettings);
+                listener.beforeIndexShardClosed(sId, indexShard, settings);
             } finally {
                 // this logic is tricky, we want to close the engine so we rollback the changes done to it
                 // and close the shard so no operations are allowed to it
@@ -396,12 +396,12 @@ public class IndexService extends AbstractIndexComponent implements IndicesClust
                         final boolean flushEngine = deleted.get() == false && closed.get();
                         indexShard.close(reason, flushEngine);
                     } catch (Exception e) {
-                        logger.debug((Supplier<?>) () -> new ParameterizedMessage("[{}] failed to close index shard", shardId), e);
+                        logger.debug((Supplier<?>) () -> new ParameterizedMessage("[{}] failed to close index shard", sId.id()), e);
                         // ignore
                     }
                 }
                 // call this before we close the store, so we can release resources for it
-                listener.afterIndexShardClosed(sId, indexShard, indexSettings);
+                listener.afterIndexShardClosed(sId, indexShard, settings);
             }
         } finally {
             try {
@@ -409,31 +409,12 @@ public class IndexService extends AbstractIndexComponent implements IndicesClust
             } catch (Exception e) {
                 logger.warn(
                     (Supplier<?>) () -> new ParameterizedMessage(
-                        "[{}] failed to close store on shard removal (reason: [{}])", shardId, reason), e);
+                        "[{}] failed to close store on shard removal (reason: [{}])", sId.id(), reason), e);
             }
         }
     }
 
 
-    private void onShardClose(ShardLock lock, boolean ownsShard) {
-        if (deleted.get()) { // we remove that shards content if this index has been deleted
-            try {
-                if (ownsShard) {
-                    try {
-                        eventListener.beforeIndexShardDeleted(lock.getShardId(), indexSettings.getSettings());
-                    } finally {
-                        shardStoreDeleter.deleteShardStore("delete index", lock, indexSettings);
-                        eventListener.afterIndexShardDeleted(lock.getShardId(), indexSettings.getSettings());
-                    }
-                }
-            } catch (IOException e) {
-                shardStoreDeleter.addPendingDelete(lock.getShardId(), indexSettings);
-                logger.debug(
-                    (Supplier<?>) () -> new ParameterizedMessage(
-                        "[{}] failed to delete shard content - scheduled a retry", lock.getShardId().id()), e);
-            }
-        }
-    }
 
     public NodeServicesProvider getIndexServices() {
         return nodeServicesProvider;
@@ -510,6 +491,34 @@ public class IndexService extends AbstractIndexComponent implements IndicesClust
                     logger.debug("failed to close resource", ex);
                 }
             }
+
+        }
+
+
+        private void onShardClose(ShardLock lock, boolean ownsShard) {
+            if (deleted.get()) { // we remove that shards content if this index has been deleted
+                    try {     
+                        if (!ownsShard) 
+                            return;                   
+
+                        eventListener.beforeIndexShardDeleted(lock.getShardId(), indexSettings.getSettings());                        
+                    } finally {
+                        deleteShard(lock);
+                     }
+                    
+            } 
+        }
+
+        private void deleteShard(ShardLock lock){
+            try{
+                shardStoreDeleter.deleteShardStore("delete index", lock, indexSettings);
+                eventListener.afterIndexShardDeleted(lock.getShardId(), indexSettings.getSettings());    
+                }catch (IOException e) {
+                        shardStoreDeleter.addPendingDelete(lock.getShardId(), indexSettings);
+                        logger.debug(
+                        (Supplier<?>) () -> new ParameterizedMessage(
+                            "[{}] failed to delete shard content - scheduled a retry", lock.getShardId().id()), e);                        
+                }
 
         }
     }

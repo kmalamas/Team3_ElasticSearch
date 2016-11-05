@@ -99,7 +99,9 @@ public final class IndexWarmer extends AbstractComponent {
     /** A handle on the execution of  warm-up action. */
     public interface TerminationHandle {
 
-        TerminationHandle NO_WAIT = () -> {};
+        TerminationHandle NO_WAIT = () -> {
+            return;
+        };
 
         /** Wait until execution of the warm-up action completes. */
         void awaitTermination() throws InterruptedException;

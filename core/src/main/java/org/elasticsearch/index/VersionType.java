@@ -331,9 +331,7 @@ public enum VersionType implements Writeable {
     public static VersionType fromString(String versionType) {
         if ("internal".equals(versionType)) {
             return INTERNAL;
-        } else if ("external".equals(versionType)) {
-            return EXTERNAL;
-        } else if ("external_gt".equals(versionType)) {
+        } else if ("external".equals(versionType) || "external_gt".equals(versionType)) {
             return EXTERNAL;
         } else if ("external_gte".equals(versionType)) {
             return EXTERNAL_GTE;
