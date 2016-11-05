@@ -41,7 +41,7 @@ import java.util.List;
  */
 public abstract class NetworkUtils {
 
-    private static final Logger logger = Loggers.getLogger(NetworkUtils.class);
+    protected static final Logger logger = Loggers.getLogger(NetworkUtils.class);
 
     /** no instantation */
     private NetworkUtils() {}

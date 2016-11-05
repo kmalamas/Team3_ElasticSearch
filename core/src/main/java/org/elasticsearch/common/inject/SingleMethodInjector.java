@@ -16,11 +16,13 @@
 
 package org.elasticsearch.common.inject;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.common.inject.InjectorImpl.MethodInvoker;
 import org.elasticsearch.common.inject.internal.Errors;
 import org.elasticsearch.common.inject.internal.ErrorsException;
 import org.elasticsearch.common.inject.internal.InternalContext;
 import org.elasticsearch.common.inject.spi.InjectionPoint;
+import org.elasticsearch.common.logging.Loggers;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -33,6 +35,7 @@ class SingleMethodInjector implements SingleMemberInjector {
     final MethodInvoker methodInvoker;
     final SingleParameterInjector<?>[] parameterInjectors;
     final InjectionPoint injectionPoint;
+    protected static final Logger logger = Loggers.getLogger(SingleMethodInjector.class);
 
     public SingleMethodInjector(InjectorImpl injector, InjectionPoint injectionPoint, Errors errors)
             throws ErrorsException {
@@ -69,6 +72,7 @@ class SingleMethodInjector implements SingleMemberInjector {
         try {
             parameters = SingleParameterInjector.getAll(errors, context, parameterInjectors);
         } catch (ErrorsException e) {
+            logger.error(e);
             errors.merge(e.getErrors());
             return;
         }

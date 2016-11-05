@@ -41,6 +41,8 @@ public final class IndexingSlowLog implements IndexingOperationListener {
     private long indexInfoThreshold;
     private long indexDebugThreshold;
     private long indexTraceThreshold;
+    protected static final Logger logger = Loggers.getLogger(IndexingSlowLog.class);
+
     /**
      * How much of the source to log in the slowlog - 0 means log none and
      * anything greater than 0 means log at least that many <em>characters</em>
@@ -188,6 +190,7 @@ public final class IndexingSlowLog implements IndexingOperationListener {
                 String source = XContentHelper.convertToJson(doc.source(), reformat);
                 sb.append(", source[").append(Strings.cleanTruncate(source, maxSourceCharsToLog)).append("]");
             } catch (IOException e) {
+                logger.error(e);
                 sb.append(", source[_failed_to_convert_]");
             }
             return sb.toString();

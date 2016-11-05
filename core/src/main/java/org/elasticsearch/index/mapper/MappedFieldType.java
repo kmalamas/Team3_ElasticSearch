@@ -19,6 +19,7 @@
 
 package org.elasticsearch.index.mapper;
 
+import org.apache.logging.log4j.Logger;
 import org.apache.lucene.document.FieldType;
 import org.apache.lucene.index.IndexOptions;
 import org.apache.lucene.index.IndexReader;
@@ -35,6 +36,7 @@ import org.apache.lucene.search.BoostQuery;
 import org.elasticsearch.action.fieldstats.FieldStats;
 import org.elasticsearch.common.Nullable;
 import org.elasticsearch.common.joda.DateMathParser;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.unit.Fuzziness;
 import org.elasticsearch.index.analysis.NamedAnalyzer;
 import org.elasticsearch.index.fielddata.IndexFieldData;
@@ -64,6 +66,7 @@ public abstract class MappedFieldType extends FieldType {
     private Object nullValue;
     private String nullValueAsString; // for sending null value to _all field
     private boolean eagerGlobalOrdinals;
+    protected static final Logger logger = Loggers.getLogger(MappedFieldType.class);
 
     protected MappedFieldType(MappedFieldType ref) {
         super(ref);
@@ -322,6 +325,7 @@ public abstract class MappedFieldType extends FieldType {
             fielddataBuilder();
             return true;
         } catch (IllegalArgumentException e) {
+            logger.error(e);
             return false;
         }
     }

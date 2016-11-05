@@ -16,6 +16,7 @@
 
 package org.elasticsearch.common.inject.internal;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.common.inject.Binder;
 import org.elasticsearch.common.inject.ConfigurationException;
 import org.elasticsearch.common.inject.Key;
@@ -25,6 +26,7 @@ import org.elasticsearch.common.inject.binder.AnnotatedBindingBuilder;
 import org.elasticsearch.common.inject.spi.Element;
 import org.elasticsearch.common.inject.spi.InjectionPoint;
 import org.elasticsearch.common.inject.spi.Message;
+import org.elasticsearch.common.logging.Loggers;
 
 import java.lang.annotation.Annotation;
 import java.util.HashSet;
@@ -42,6 +44,8 @@ import static java.util.Collections.unmodifiableSet;
  */
 public class BindingBuilder<T> extends AbstractBindingBuilder<T>
         implements AnnotatedBindingBuilder<T> {
+
+    protected static final Logger logger = Loggers.getLogger(BindingBuilder.class);
 
     public BindingBuilder(Binder binder, List<Element> elements, Object source, Key<T> key) {
         super(binder, elements, source, key);
@@ -89,6 +93,7 @@ public class BindingBuilder<T> extends AbstractBindingBuilder<T>
             try {
                 injectionPoints = InjectionPoint.forInstanceMethodsAndFields(instance.getClass());
             } catch (ConfigurationException e) {
+                logger.error(e);
                 for (Message message : e.getErrorMessages()) {
                     binder.addError(message);
                 }
@@ -114,6 +119,7 @@ public class BindingBuilder<T> extends AbstractBindingBuilder<T>
         try {
             injectionPoints = InjectionPoint.forInstanceMethodsAndFields(provider.getClass());
         } catch (ConfigurationException e) {
+            logger.error(e);
             for (Message message : e.getErrorMessages()) {
                 binder.addError(message);
             }

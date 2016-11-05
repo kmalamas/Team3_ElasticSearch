@@ -59,7 +59,7 @@ public class SnapshotStatus implements ToXContent, Streamable {
 
     private SnapshotStats stats;
 
-    private static final Logger logger = Loggers.getLogger(SnapshotStatus.class);
+    protected static final Logger logger = Loggers.getLogger(SnapshotStatus.class);
 
     SnapshotStatus(final Snapshot snapshot, final State state, final List<SnapshotIndexShardStatus> shards) {
         this.snapshot = Objects.requireNonNull(snapshot);

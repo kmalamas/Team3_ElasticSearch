@@ -19,11 +19,16 @@
 
 package org.elasticsearch.common;
 
+import org.apache.logging.log4j.Logger;
+import org.elasticsearch.common.logging.Loggers;
+
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.Enumeration;
 
 public class MacAddressProvider {
+
+    protected static final Logger logger = Loggers.getLogger(MacAddressProvider.class);
 
     private static byte[] getMacAddress() throws SocketException {
         Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces();
@@ -60,7 +65,7 @@ public class MacAddressProvider {
         try {
             address = getMacAddress();
         } catch (SocketException e) {
-            // address will be set below
+            logger.error(e);
         }
 
         if (!isValidAddress(address)) {

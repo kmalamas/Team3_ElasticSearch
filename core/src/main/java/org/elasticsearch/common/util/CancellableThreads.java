@@ -41,7 +41,7 @@ public class CancellableThreads {
     // needs to be volatile as it is also read outside of synchronized blocks.
     private volatile boolean cancelled = false;
     private String reason;
-    private static final Logger logger = Loggers.getLogger(CancellableThreads.class);
+    protected static final Logger logger = Loggers.getLogger(CancellableThreads.class);
 
     public synchronized boolean isCancelled() {
         return cancelled;
@@ -107,6 +107,7 @@ public class CancellableThreads {
         try {
             interruptable.run();
         } catch (InterruptedException | ThreadInterruptedException e) {
+            logger.error(e);
             // ignore, this interrupt has been triggered by us in #cancel()...
             assert cancelled : "Interruption via Thread#interrupt() is unsupported. Use CancellableThreads#cancel() instead";
             // we can only reach here if assertions are disabled. If we reach this code and cancelled is false, this means that we've

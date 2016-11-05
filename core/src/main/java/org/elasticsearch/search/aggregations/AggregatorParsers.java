@@ -162,35 +162,39 @@ public class AggregatorParsers {
                 }
             }
 
-            if (aggFactory == null && pipelineAggregatorFactory == null) {
-                throw new ParsingException(parser.getTokenLocation(), "Missing definition for aggregation [" + aggregationName + "]",
-                        parser.getTokenLocation());
-            } else if (aggFactory != null) {
-                assert pipelineAggregatorFactory == null;
-            if (metaData != null) {
-                    aggFactory.setMetaData(metaData);
-            }
-
-            if (subFactories != null) {
-                    aggFactory.subAggregations(subFactories);
-            }
-
-                factories.addAggregator(aggFactory);
-            } else {
-                assert pipelineAggregatorFactory != null;
-                if (subFactories != null) {
-                    throw new ParsingException(parser.getTokenLocation(),
-                            "Aggregation [" + aggregationName + "] cannot define sub-aggregations",
-                            parser.getTokenLocation());
-                }
-                if (metaData != null) {
-                    pipelineAggregatorFactory.setMetaData(metaData);
-                }
-                factories.addPipelineAggregator(pipelineAggregatorFactory);
-            }
+            refactoredMethod(factories, parser, aggregationName, aggFactory, pipelineAggregatorFactory, subFactories, metaData);
         }
 
         return factories;
+    }
+
+    private void refactoredMethod(AggregatorFactories.Builder factories, XContentParser parser, String aggregationName, AggregationBuilder aggFactory, PipelineAggregationBuilder pipelineAggregatorFactory, AggregatorFactories.Builder subFactories, Map<String, Object> metaData) {
+        if (aggFactory == null && pipelineAggregatorFactory == null) {
+            throw new ParsingException(parser.getTokenLocation(), "Missing definition for aggregation [" + aggregationName + "]",
+                    parser.getTokenLocation());
+        } else if (aggFactory != null) {
+            assert pipelineAggregatorFactory == null;
+        if (metaData != null) {
+                aggFactory.setMetaData(metaData);
+        }
+
+        if (subFactories != null) {
+                aggFactory.subAggregations(subFactories);
+        }
+
+            factories.addAggregator(aggFactory);
+        } else {
+            assert pipelineAggregatorFactory != null;
+            if (subFactories != null) {
+                throw new ParsingException(parser.getTokenLocation(),
+                        "Aggregation [" + aggregationName + "] cannot define sub-aggregations",
+                        parser.getTokenLocation());
+            }
+            if (metaData != null) {
+                pipelineAggregatorFactory.setMetaData(metaData);
+            }
+            factories.addPipelineAggregator(pipelineAggregatorFactory);
+        }
     }
 
 }

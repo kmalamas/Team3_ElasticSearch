@@ -717,8 +717,10 @@ public class IndexService extends AbstractIndexComponent implements IndicesClust
                         translog.sync();
                     }
                 } catch (EngineClosedException | AlreadyClosedException ex) {
+                    logger.error(ex);
                     // fine - continue;
                 } catch (IOException e) {
+                    logger.error(e);
                     logger.warn("failed to sync translog", e);
                 }
             }
@@ -741,7 +743,7 @@ public class IndexService extends AbstractIndexComponent implements IndicesClust
                                 shard.refresh("schedule");
                             }
                         } catch (EngineClosedException | AlreadyClosedException ex) {
-                            // fine - continue;
+                            logger.error(ex);
                         }
                         continue;
                     default:

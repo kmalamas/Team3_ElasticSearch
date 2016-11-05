@@ -19,10 +19,12 @@
 
 package org.elasticsearch.common.util;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.common.component.AbstractComponent;
 import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.common.lease.Releasable;
 import org.elasticsearch.common.lease.Releasables;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.recycler.AbstractRecyclerC;
 import org.elasticsearch.common.recycler.Recycler;
 import org.elasticsearch.common.settings.Setting;
@@ -56,6 +58,8 @@ public class PageCacheRecycler extends AbstractComponent implements Releasable {
     // object pages are less useful to us so we give them a lower weight by default
     public static final Setting<Double> WEIGHT_OBJECTS_SETTING  =
         Setting.doubleSetting("cache.recycler.page.weight.objects", 0.1d, 0d, Property.NodeScope);
+
+    protected static final Logger logger = Loggers.getLogger(PageCacheRecycler.class);
 
     private final Recycler<byte[]> bytePage;
     private final Recycler<int[]> intPage;
@@ -208,6 +212,7 @@ public class PageCacheRecycler extends AbstractComponent implements Releasable {
             try {
                 return Type.valueOf(type.toUpperCase(Locale.ROOT));
             } catch (IllegalArgumentException e) {
+                logger.error(e);
                 throw new IllegalArgumentException("no type support [" + type + "]");
             }
         }

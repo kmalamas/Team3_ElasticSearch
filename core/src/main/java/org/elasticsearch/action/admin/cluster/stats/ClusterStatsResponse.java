@@ -19,12 +19,14 @@
 
 package org.elasticsearch.action.admin.cluster.stats;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.action.FailedNodeException;
 import org.elasticsearch.action.support.nodes.BaseNodesResponse;
 import org.elasticsearch.cluster.ClusterName;
 import org.elasticsearch.cluster.health.ClusterHealthStatus;
 import org.elasticsearch.common.io.stream.StreamInput;
 import org.elasticsearch.common.io.stream.StreamOutput;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.xcontent.ToXContent;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
@@ -43,6 +45,7 @@ public class ClusterStatsResponse extends BaseNodesResponse<ClusterStatsNodeResp
     String clusterUUID;
     ClusterHealthStatus status;
     long timestamp;
+    protected static final Logger logger = Loggers.getLogger(ClusterStatsResponse.class);
 
 
     ClusterStatsResponse() {
@@ -141,6 +144,7 @@ public class ClusterStatsResponse extends BaseNodesResponse<ClusterStatsNodeResp
             builder.endObject();
             return builder.string();
         } catch (IOException e) {
+            logger.error(e);
             return "{ \"error\" : \"" + e.getMessage() + "\"}";
         }
     }

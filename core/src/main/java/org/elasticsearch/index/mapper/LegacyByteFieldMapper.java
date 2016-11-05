@@ -24,6 +24,7 @@ import org.apache.lucene.document.Field;
 import org.apache.lucene.index.IndexOptions;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.Terms;
+import org.apache.lucene.queryparser.ext.Extensions;
 import org.apache.lucene.search.LegacyNumericRangeQuery;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.util.BytesRef;
@@ -240,24 +241,9 @@ public class LegacyByteFieldMapper extends LegacyNumberFieldMapper {
                 }
             } else if (parser.currentToken() == XContentParser.Token.START_OBJECT
                     && Version.indexCreated(context.indexSettings()).before(Version.V_5_0_0_alpha1)) {
-                XContentParser.Token token;
-                String currentFieldName = null;
-                Byte objValue = fieldType().nullValue();
-                while ((token = parser.nextToken()) != XContentParser.Token.END_OBJECT) {
-                    if (token == XContentParser.Token.FIELD_NAME) {
-                        currentFieldName = parser.currentName();
-                    } else {
-                        if ("value".equals(currentFieldName) || "_value".equals(currentFieldName)) {
-                            if (parser.currentToken() != XContentParser.Token.VALUE_NULL) {
-                                objValue = (byte) parser.shortValue(coerce.value());
-                            }
-                        } else if ("boost".equals(currentFieldName) || "_boost".equals(currentFieldName)) {
-                            boost = parser.floatValue();
-                        } else {
-                            throw new IllegalArgumentException("unknown property [" + currentFieldName + "]");
-                        }
-                    }
-                }
+                Extensions.Pair<Byte, Float> boostObj = getBoostObjValue(parser, boost);
+                Byte objValue = boostObj.cur;
+                boost = boostObj.cud;
                 if (objValue == null) {
                     // no value
                     return;
@@ -280,6 +266,28 @@ public class LegacyByteFieldMapper extends LegacyNumberFieldMapper {
         if (fieldType().hasDocValues()) {
             addDocValue(context, fields, value);
         }
+    }
+
+    protected Extensions.Pair<Byte, Float> getBoostObjValue(XContentParser parser, float boost) throws IOException {
+        XContentParser.Token token;
+        String currentFieldName = null;
+        Byte objValue = fieldType().nullValue();
+        while ((token = parser.nextToken()) != XContentParser.Token.END_OBJECT) {
+            if (token == XContentParser.Token.FIELD_NAME) {
+                currentFieldName = parser.currentName();
+            } else {
+                if ("value".equals(currentFieldName) || "_value".equals(currentFieldName)) {
+                    if (parser.currentToken() != XContentParser.Token.VALUE_NULL) {
+                        objValue = (byte) parser.shortValue(coerce.value());
+                    }
+                } else if ("boost".equals(currentFieldName) || "_boost".equals(currentFieldName)) {
+                    boost = parser.floatValue();
+                } else {
+                    throw new IllegalArgumentException("unknown property [" + currentFieldName + "]");
+                }
+            }
+        }
+        return new Extensions.Pair<>(objValue, boost);
     }
 
     @Override

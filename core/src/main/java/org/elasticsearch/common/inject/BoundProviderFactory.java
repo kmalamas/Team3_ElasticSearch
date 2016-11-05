@@ -35,7 +35,7 @@ class BoundProviderFactory<T> implements InternalFactory<T>, CreationListener {
     final Object source;
     private InternalFactory<? extends Provider<? extends T>> providerFactory;
 
-    private static final Logger logger = Loggers.getLogger(BoundProviderFactory.class);
+    protected static final Logger logger = Loggers.getLogger(BoundProviderFactory.class);
 
     BoundProviderFactory(
             InjectorImpl injector,

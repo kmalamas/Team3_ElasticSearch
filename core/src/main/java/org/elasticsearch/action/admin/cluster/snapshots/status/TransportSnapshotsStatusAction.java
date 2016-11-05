@@ -200,6 +200,12 @@ public class TransportSnapshotsStatusAction extends TransportMasterNodeAction<Sn
             }
         }
         // Now add snapshots on disk that are not currently running
+        addSnapshotsNotRunning(request, builder, currentSnapshotNames);
+
+        return new SnapshotsStatusResponse(Collections.unmodifiableList(builder));
+    }
+
+    private void addSnapshotsNotRunning(SnapshotsStatusRequest request, List<SnapshotStatus> builder, Set<String> currentSnapshotNames) throws IOException {
         final String repositoryName = request.repository();
         if (Strings.hasText(repositoryName) && request.snapshots() != null && request.snapshots().length > 0) {
             final Set<String> requestedSnapshotNames = Sets.newHashSet(request.snapshots());
@@ -249,8 +255,6 @@ public class TransportSnapshotsStatusAction extends TransportMasterNodeAction<Sn
                 }
             }
         }
-
-        return new SnapshotsStatusResponse(Collections.unmodifiableList(builder));
     }
 
 }

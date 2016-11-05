@@ -291,41 +291,7 @@ public class TransportBulkAction extends HandledTransportAction<BulkRequest, Bul
 
         // first, go over all the requests and create a ShardId -> Operations mapping
         Map<ShardId, List<BulkItemRequest>> requestsByShard = new HashMap<>();
-
-        for (int i = 0; i < bulkRequest.requests.size(); i++) {
-            ActionRequest request = bulkRequest.requests.get(i);
-            if (request instanceof IndexRequest) {
-                IndexRequest indexRequest = (IndexRequest) request;
-                String concreteIndex = concreteIndices.getConcreteIndex(indexRequest.index()).getName();
-                ShardId shardId = clusterService.operationRouting().indexShards(clusterState, concreteIndex, indexRequest.id(), indexRequest.routing()).shardId();
-                List<BulkItemRequest> list = requestsByShard.get(shardId);
-                if (list == null) {
-                    list = new ArrayList<>();
-                    requestsByShard.put(shardId, list);
-                }
-                list.add(new BulkItemRequest(i, request));
-            } else if (request instanceof DeleteRequest) {
-                DeleteRequest deleteRequest = (DeleteRequest) request;
-                String concreteIndex = concreteIndices.getConcreteIndex(deleteRequest.index()).getName();
-                ShardId shardId = clusterService.operationRouting().indexShards(clusterState, concreteIndex, deleteRequest.id(), deleteRequest.routing()).shardId();
-                List<BulkItemRequest> list = requestsByShard.get(shardId);
-                if (list == null) {
-                    list = new ArrayList<>();
-                    requestsByShard.put(shardId, list);
-                }
-                list.add(new BulkItemRequest(i, request));
-            } else if (request instanceof UpdateRequest) {
-                UpdateRequest updateRequest = (UpdateRequest) request;
-                String concreteIndex = concreteIndices.getConcreteIndex(updateRequest.index()).getName();
-                ShardId shardId = clusterService.operationRouting().indexShards(clusterState, concreteIndex, updateRequest.id(), updateRequest.routing()).shardId();
-                List<BulkItemRequest> list = requestsByShard.get(shardId);
-                if (list == null) {
-                    list = new ArrayList<>();
-                    requestsByShard.put(shardId, list);
-                }
-                list.add(new BulkItemRequest(i, request));
-            }
-        }
+        createShardId(bulkRequest, concreteIndices, clusterState, requestsByShard);
 
         if (requestsByShard.isEmpty()) {
             listener.onResponse(new BulkResponse(responses.toArray(new BulkItemResponse[responses.length()]), buildTookInMillis(startTimeNanos)));
@@ -388,6 +354,44 @@ public class TransportBulkAction extends HandledTransportAction<BulkRequest, Bul
                 }
             });
         }
+    }
+
+    private void createShardId(BulkRequest bulkRequest, ConcreteIndices concreteIndices, ClusterState clusterState, Map<ShardId, List<BulkItemRequest>> requestsByShard) {
+        for (int i = 0; i < bulkRequest.requests.size(); i++) {
+            ActionRequest request = bulkRequest.requests.get(i);
+            if (request instanceof IndexRequest) {
+                IndexRequest indexRequest = (IndexRequest) request;
+                String concreteIndex = concreteIndices.getConcreteIndex(indexRequest.index()).getName();
+                ShardId shardId = clusterService.operationRouting().indexShards(clusterState, concreteIndex, indexRequest.id(), indexRequest.routing()).shardId();
+                List<BulkItemRequest> list = requestsByShard.get(shardId);
+                if (list == null) {
+                    list = new ArrayList<>();
+                    requestsByShard.put(shardId, list);
+                }
+                list.add(new BulkItemRequest(i, request));
+            } else if (request instanceof DeleteRequest) {
+                DeleteRequest deleteRequest = (DeleteRequest) request;
+                String concreteIndex = concreteIndices.getConcreteIndex(deleteRequest.index()).getName();
+                ShardId shardId = clusterService.operationRouting().indexShards(clusterState, concreteIndex, deleteRequest.id(), deleteRequest.routing()).shardId();
+                List<BulkItemRequest> list = requestsByShard.get(shardId);
+                if (list == null) {
+                    list = new ArrayList<>();
+                    requestsByShard.put(shardId, list);
+                }
+                list.add(new BulkItemRequest(i, request));
+            } else if (request instanceof UpdateRequest) {
+                UpdateRequest updateRequest = (UpdateRequest) request;
+                String concreteIndex = concreteIndices.getConcreteIndex(updateRequest.index()).getName();
+                ShardId shardId = clusterService.operationRouting().indexShards(clusterState, concreteIndex, updateRequest.id(), updateRequest.routing()).shardId();
+                List<BulkItemRequest> list = requestsByShard.get(shardId);
+                if (list == null) {
+                    list = new ArrayList<>();
+                    requestsByShard.put(shardId, list);
+                }
+                list.add(new BulkItemRequest(i, request));
+            }
+        }
+
     }
 
     private boolean addFailureIfIndexIsUnavailable(DocumentRequest request, BulkRequest bulkRequest, AtomicArray<BulkItemResponse> responses, int idx,

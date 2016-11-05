@@ -16,10 +16,12 @@
 
 package org.elasticsearch.common.inject;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.common.inject.internal.Errors;
 import org.elasticsearch.common.inject.internal.ErrorsException;
 import org.elasticsearch.common.inject.spi.MembersInjectorLookup;
 import org.elasticsearch.common.inject.spi.ProviderLookup;
+import org.elasticsearch.common.logging.Loggers;
 
 /**
  * Handles {@link Binder#getProvider} and {@link Binder#getMembersInjector(TypeLiteral)} commands.
@@ -28,6 +30,8 @@ import org.elasticsearch.common.inject.spi.ProviderLookup;
  * @author jessewilson@google.com (Jesse Wilson)
  */
 class LookupProcessor extends AbstractProcessor {
+
+    protected static final Logger logger = Loggers.getLogger(LookupProcessor.class);
 
     LookupProcessor(Errors errors) {
         super(errors);
@@ -40,6 +44,7 @@ class LookupProcessor extends AbstractProcessor {
                     = injector.membersInjectorStore.get(lookup.getType(), errors);
             lookup.initializeDelegate(membersInjector);
         } catch (ErrorsException e) {
+            logger.error(e);
             errors.merge(e.getErrors()); // TODO: source
         }
 
@@ -53,6 +58,7 @@ class LookupProcessor extends AbstractProcessor {
             Provider<T> provider = injector.getProviderOrThrow(lookup.getKey(), errors);
             lookup.initializeDelegate(provider);
         } catch (ErrorsException e) {
+            logger.error(e);
             errors.merge(e.getErrors()); // TODO: source
         }
 

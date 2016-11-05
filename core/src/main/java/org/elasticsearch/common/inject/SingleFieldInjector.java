@@ -16,12 +16,14 @@
 
 package org.elasticsearch.common.inject;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.common.inject.internal.Errors;
 import org.elasticsearch.common.inject.internal.ErrorsException;
 import org.elasticsearch.common.inject.internal.InternalContext;
 import org.elasticsearch.common.inject.internal.InternalFactory;
 import org.elasticsearch.common.inject.spi.Dependency;
 import org.elasticsearch.common.inject.spi.InjectionPoint;
+import org.elasticsearch.common.logging.Loggers;
 
 import java.lang.reflect.Field;
 
@@ -33,6 +35,7 @@ class SingleFieldInjector implements SingleMemberInjector {
     final InjectionPoint injectionPoint;
     final Dependency<?> dependency;
     final InternalFactory<?> factory;
+    protected static final Logger logger = Loggers.getLogger(SingleFieldInjector.class);
 
     public SingleFieldInjector(InjectorImpl injector, InjectionPoint injectionPoint, Errors errors)
             throws ErrorsException {
@@ -56,6 +59,7 @@ class SingleFieldInjector implements SingleMemberInjector {
             Object value = factory.get(errors, context, dependency);
             field.set(o, value);
         } catch (ErrorsException e) {
+            logger.error(e);
             errors.withSource(injectionPoint).merge(e.getErrors());
         } catch (IllegalAccessException e) {
             throw new AssertionError(e); // a security manager is blocking us, we're hosed

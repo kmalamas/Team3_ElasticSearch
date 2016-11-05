@@ -19,6 +19,7 @@
 
 package org.elasticsearch.index.search;
 
+import org.apache.logging.log4j.Logger;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.queries.BlendedTermQuery;
@@ -31,6 +32,7 @@ import org.apache.lucene.search.Query;
 import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.util.BytesRef;
 import org.elasticsearch.common.collect.Tuple;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.lucene.search.MatchNoDocsQuery;
 import org.elasticsearch.common.lucene.search.Queries;
 import org.elasticsearch.index.mapper.MappedFieldType;
@@ -49,6 +51,7 @@ import java.util.Objects;
 public class MultiMatchQuery extends MatchQuery {
 
     private Float groupTieBreaker = null;
+    protected static final Logger logger = Loggers.getLogger(MultiMatchQuery.class);
 
     public void setTieBreaker(float tieBreaker) {
         this.groupTieBreaker = tieBreaker;
@@ -251,6 +254,7 @@ public class MultiMatchQuery extends MatchQuery {
             try {
                 query = ft.fieldType.termQuery(value, null);
             } catch (IllegalArgumentException e) {
+                logger.error(e);
                 // the query expects a certain class of values such as numbers
                 // of ip addresses and the value can't be parsed, so ignore this
                 // field

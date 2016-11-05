@@ -19,8 +19,10 @@
 
 package org.elasticsearch.common.lucene;
 
+import org.apache.logging.log4j.Logger;
 import org.apache.lucene.index.LeafReader;
 import org.apache.lucene.index.LeafReader.CoreClosedListener;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.index.shard.ShardId;
 import org.elasticsearch.index.shard.ShardUtils;
 
@@ -48,6 +50,7 @@ public final class ShardCoreKeyMap {
 
     private final Map<Object, ShardId> coreKeyToShard;
     private final Map<String, Set<Object>> indexToCoreKey;
+    protected static final Logger logger = Loggers.getLogger(ShardCoreKeyMap.class);
 
     public ShardCoreKeyMap() {
         coreKeyToShard = new IdentityHashMap<>();
@@ -95,6 +98,7 @@ public final class ShardCoreKeyMap {
                         try {
                             listener.onClose(coreKey);
                         } catch (IOException e) {
+                            logger.error(e);
                             throw new RuntimeException("Blow up trying to recover from failure to add listener", e);
                         }
                     }

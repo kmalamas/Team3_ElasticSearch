@@ -19,6 +19,7 @@
 
 package org.elasticsearch.action.search;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.action.ActionListener;
 import org.elasticsearch.action.support.ActionFilters;
 import org.elasticsearch.action.support.HandledTransportAction;
@@ -26,6 +27,7 @@ import org.elasticsearch.cluster.ClusterState;
 import org.elasticsearch.cluster.metadata.IndexNameExpressionResolver;
 import org.elasticsearch.cluster.service.ClusterService;
 import org.elasticsearch.common.inject.Inject;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.settings.Setting;
 import org.elasticsearch.common.settings.Setting.Property;
 import org.elasticsearch.common.settings.Settings;
@@ -51,6 +53,8 @@ public class TransportSearchAction extends HandledTransportAction<SearchRequest,
     private final ClusterService clusterService;
     private final SearchTransportService searchTransportService;
     private final SearchPhaseController searchPhaseController;
+
+    protected static final Logger logger = Loggers.getLogger(TransportSearchAction.class);
 
     @Inject
     public TransportSearchAction(Settings settings, ThreadPool threadPool, SearchPhaseController searchPhaseController,
@@ -88,6 +92,7 @@ public class TransportSearchAction extends HandledTransportAction<SearchRequest,
                 }
             }
         } catch (IndexNotFoundException | IndexClosedException e) {
+            logger.error(e);
             // ignore these failures, we will notify the search response if its really the case from the actual action
         } catch (Exception e) {
             logger.debug("failed to optimize search type, continue as normal", e);

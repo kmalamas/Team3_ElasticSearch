@@ -16,6 +16,7 @@
 
 package org.elasticsearch.common.inject;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.common.inject.internal.Annotations;
 import org.elasticsearch.common.inject.internal.BindingImpl;
 import org.elasticsearch.common.inject.internal.Errors;
@@ -41,6 +42,7 @@ import org.elasticsearch.common.inject.spi.ProviderBinding;
 import org.elasticsearch.common.inject.spi.ProviderInstanceBinding;
 import org.elasticsearch.common.inject.spi.ProviderKeyBinding;
 import org.elasticsearch.common.inject.spi.UntargettedBinding;
+import org.elasticsearch.common.logging.Loggers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +62,8 @@ class BindingProcessor extends AbstractProcessor {
     private final List<CreationListener> creationListeners = new ArrayList<>();
     private final Initializer initializer;
     private final List<Runnable> uninitializedBindings = new ArrayList<>();
+
+    protected static final Logger logger = Loggers.getLogger(BindingProcessor.class);
 
     BindingProcessor(Errors errors, Initializer initializer) {
         super(errors);
@@ -167,6 +171,7 @@ class BindingProcessor extends AbstractProcessor {
                     binding = injector.createUnitializedBinding(key, scoping, source, errors);
                     putBinding(binding);
                 } catch (ErrorsException e) {
+                    logger.error(e);
                     errors.merge(e.getErrors());
                     putBinding(invalidBinding(injector, key, source));
                     return null;
@@ -179,6 +184,7 @@ class BindingProcessor extends AbstractProcessor {
                             ((InjectorImpl) binding.getInjector()).initializeBinding(
                                     binding, errors.withSource(source));
                         } catch (ErrorsException e) {
+                            logger.error(e);
                             errors.merge(e.getErrors());
                         }
                     }

@@ -41,7 +41,7 @@ import java.util.Iterator;
  */
 public class MultiSearchResponse extends ActionResponse implements Iterable<MultiSearchResponse.Item>, ToXContent {
 
-    private static final Logger logger = Loggers.getLogger(MultiSearchResponse.class);
+    protected static final Logger logger = Loggers.getLogger(MultiSearchResponse.class);
 
     /**
      * A search response item, holding the actual search response, or an error message if it failed.

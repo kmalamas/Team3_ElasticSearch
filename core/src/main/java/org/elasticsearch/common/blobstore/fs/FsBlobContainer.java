@@ -19,12 +19,14 @@
 
 package org.elasticsearch.common.blobstore.fs;
 
+import org.apache.logging.log4j.Logger;
 import org.apache.lucene.util.IOUtils;
 import org.elasticsearch.common.blobstore.BlobMetaData;
 import org.elasticsearch.common.blobstore.BlobPath;
 import org.elasticsearch.common.blobstore.support.AbstractBlobContainer;
 import org.elasticsearch.common.blobstore.support.PlainBlobMetaData;
 import org.elasticsearch.common.io.Streams;
+import org.elasticsearch.common.logging.Loggers;
 
 import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
@@ -59,6 +61,8 @@ public class FsBlobContainer extends AbstractBlobContainer {
     protected final FsBlobStore blobStore;
 
     protected final Path path;
+
+    protected static final Logger logger = Loggers.getLogger(FsBlobContainer.class);
 
     public FsBlobContainer(FsBlobStore blobStore, BlobPath blobPath, Path path) {
         super(blobPath);
@@ -117,6 +121,7 @@ public class FsBlobContainer extends AbstractBlobContainer {
         try {
             return new BufferedInputStream(Files.newInputStream(resolvedPath), blobStore.bufferSizeInBytes());
         } catch (FileNotFoundException fnfe) {
+            logger.error(fnfe);
             throw new NoSuchFileException("[" + name + "] blob not found");
         }
     }

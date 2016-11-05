@@ -19,12 +19,14 @@
 
 package org.elasticsearch.index.get;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.ElasticsearchParseException;
 import org.elasticsearch.common.bytes.BytesReference;
 import org.elasticsearch.common.compress.CompressorFactory;
 import org.elasticsearch.common.io.stream.StreamInput;
 import org.elasticsearch.common.io.stream.StreamOutput;
 import org.elasticsearch.common.io.stream.Streamable;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.xcontent.ToXContent;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentHelper;
@@ -54,6 +56,7 @@ public class GetResult implements Streamable, Iterable<GetField>, ToXContent {
     private Map<String, Object> sourceAsMap;
     private BytesReference source;
     private byte[] sourceAsBytes;
+    protected static final Logger logger = Loggers.getLogger(GetResult.class);
 
     GetResult() {
     }
@@ -157,6 +160,7 @@ public class GetResult implements Streamable, Iterable<GetField>, ToXContent {
         try {
             return XContentHelper.convertToJson(source, false);
         } catch (IOException e) {
+            logger.error(e);
             throw new ElasticsearchParseException("failed to convert source to a json string");
         }
     }

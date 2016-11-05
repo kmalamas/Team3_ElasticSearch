@@ -49,7 +49,7 @@ public final class Randomness {
     private static final Method currentMethod;
     private static final Method getRandomMethod;
 
-    private static final Logger logger = Loggers.getLogger(Randomness.class);
+    protected static final Logger logger = Loggers.getLogger(Randomness.class);
 
     static {
         Method maybeCurrentMethod;

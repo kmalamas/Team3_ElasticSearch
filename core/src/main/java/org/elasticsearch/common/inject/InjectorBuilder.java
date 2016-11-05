@@ -61,7 +61,7 @@ class InjectorBuilder {
     private final InjectorShell.Builder shellBuilder = new InjectorShell.Builder();
     private List<InjectorShell> shells;
 
-    private static final Logger logger = Loggers.getLogger(InjectorBuilder.class);
+    protected static final Logger logger = Loggers.getLogger(InjectorBuilder.class);
 
     InjectorBuilder() {
         injectionRequestProcessor = new InjectionRequestProcessor(errors, initializer);

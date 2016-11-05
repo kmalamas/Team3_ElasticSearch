@@ -19,12 +19,14 @@
 
 package org.elasticsearch.index.mapper;
 
+import org.apache.logging.log4j.Logger;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.index.IndexableField;
 import org.elasticsearch.Version;
 import org.elasticsearch.common.Strings;
 import org.elasticsearch.common.collect.Tuple;
 import org.elasticsearch.common.joda.FormatDateTimeFormatter;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.xcontent.XContentHelper;
 import org.elasticsearch.common.xcontent.XContentParser;
 import org.elasticsearch.index.IndexSettings;
@@ -47,6 +49,7 @@ final class DocumentParser {
     private final IndexSettings indexSettings;
     private final DocumentMapperParser docMapperParser;
     private final DocumentMapper docMapper;
+    protected static final Logger logger = Loggers.getLogger(DocumentParser.class);
 
     public DocumentParser(IndexSettings indexSettings, DocumentMapperParser docMapperParser, DocumentMapper docMapper) {
         this.indexSettings = indexSettings;
@@ -681,7 +684,7 @@ final class DocumentParser {
                             }
                             return builder;
                         } catch (Exception e) {
-                            // failure to parse this, continue
+                            logger.error(e);
                         }
                     }
                 }
@@ -696,7 +699,7 @@ final class DocumentParser {
                     }
                     return builder;
                 } catch (NumberFormatException e) {
-                    // not a long number
+                    logger.error(e);
                 }
                 try {
                     Double.parseDouble(text);
@@ -706,7 +709,7 @@ final class DocumentParser {
                     }
                     return builder;
                 } catch (NumberFormatException e) {
-                    // not a long number
+                    logger.error(e);
                 }
             }
             Mapper.Builder builder = context.root().findTemplateBuilder(context, currentFieldName, XContentFieldType.STRING);

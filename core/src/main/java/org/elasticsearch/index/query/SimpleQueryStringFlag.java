@@ -18,7 +18,9 @@
  */
 package org.elasticsearch.index.query;
 
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.common.Strings;
+import org.elasticsearch.common.logging.Loggers;
 
 import java.util.Locale;
 
@@ -41,6 +43,7 @@ public enum SimpleQueryStringFlag {
     NEAR(SimpleQueryParser.NEAR_OPERATOR),
     SLOP(SimpleQueryParser.NEAR_OPERATOR);
 
+    protected static final Logger logger = Loggers.getLogger(SimpleQueryStringFlag.class);
     final int value;
 
     private SimpleQueryStringFlag(int value) {
@@ -71,6 +74,7 @@ public enum SimpleQueryStringFlag {
                         magic |= flag.value();
                 }
             } catch (IllegalArgumentException iae) {
+                logger.error(iae);
                 throw new IllegalArgumentException("Unknown " + SimpleQueryStringBuilder.NAME + " flag [" + s + "]");
             }
         }
