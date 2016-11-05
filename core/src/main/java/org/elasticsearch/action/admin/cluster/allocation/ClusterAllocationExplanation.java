@@ -164,14 +164,8 @@ public final class ClusterAllocationExplanation implements ToXContent, Writeable
     }
 
     public XContentBuilder toXContent(XContentBuilder builder, Params params) throws IOException {
-        builder.startObject(); {
-            builder.startObject("shard"); {
-                builder.field("index", shard.getIndexName());
-                builder.field("index_uuid", shard.getIndex().getUUID());
-                builder.field("id", shard.getId());
-                builder.field("primary", primary);
-            }
-            builder.endObject(); // end shard
+        builder.startObject();
+            buildShard(builder);
             builder.field("assigned", this.assignedNodeId != null);
             // If assigned, show the node id of the node it's assigned to
             if (assignedNodeId != null) {
@@ -184,21 +178,36 @@ public final class ClusterAllocationExplanation implements ToXContent, Writeable
                 builder.timeValueField("allocation_delay_in_millis", "allocation_delay", TimeValue.timeValueMillis(allocationDelayMillis));
                 builder.timeValueField("remaining_delay_in_millis", "remaining_delay", TimeValue.timeValueMillis(remainingDelayMillis));
             }
-            builder.startObject("nodes"); {
-                for (NodeExplanation explanation : nodeExplanations.values()) {
-                    explanation.toXContent(builder, params);
-                }
-            }
-            builder.endObject(); // end nodes
+            buildNode(builder, params);
             if (this.clusterInfo != null) {
-                builder.startObject("cluster_info"); {
-                    this.clusterInfo.toXContent(builder, params);
-                }
-                builder.endObject(); // end "cluster_info"
+                buildClusterInfo(builder, params);
             }
-        }
+
         builder.endObject(); // end wrapping object
         return builder;
+    }
+
+    private void buildClusterInfo(XContentBuilder builder, Params params) throws IOException {
+        builder.startObject("cluster_info");
+        this.clusterInfo.toXContent(builder, params);
+        builder.endObject(); // end "cluster_info"
+    }
+
+    private void buildNode(XContentBuilder builder, Params params) throws IOException {
+        builder.startObject("nodes");
+            for (NodeExplanation explanation : nodeExplanations.values()) {
+                explanation.toXContent(builder, params);
+            }
+        builder.endObject(); // end nodes
+    }
+
+    private void buildShard(XContentBuilder builder) throws IOException {
+        builder.startObject("shard");
+            builder.field("index", shard.getIndexName());
+            builder.field("index_uuid", shard.getIndex().getUUID());
+            builder.field("id", shard.getId());
+            builder.field("primary", primary);
+        builder.endObject(); // end shard
     }
 
     /** An Enum representing the final decision for a shard allocation on a node */
