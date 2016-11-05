@@ -295,19 +295,7 @@ public class TransportClusterAllocationExplainAction
                 foundShard = allocation.routingTable().shardRoutingTable(index, shard).primaryShard();
             } else {
                 // If looking for a replica, go through all the replica shards
-                List<ShardRouting> replicaShardRoutings = allocation.routingTable().shardRoutingTable(index, shard).replicaShards();
-                if (replicaShardRoutings.size() > 0) {
-                    // Pick the first replica at the very least
-                    foundShard = replicaShardRoutings.get(0);
-                    // In case there are multiple replicas where some are assigned and some aren't,
-                    // try to find one that is unassigned at least
-                    for (ShardRouting replica : replicaShardRoutings) {
-                        if (replica.unassigned()) {
-                            foundShard = replica;
-                            break;
-                        }
-                    }
-                }
+                foundShard = lookupReplicaShards(allocation, index, shard);
             }
         }
 
@@ -335,6 +323,25 @@ public class TransportClusterAllocationExplainAction
                 listener.onFailure(e);
             }
         });
+    }
+
+    private ShardRouting lookupReplicaShards(RoutingAllocation allocation, String index, int shard) {
+
+        List<ShardRouting> replicaShardRoutings = allocation.routingTable().shardRoutingTable(index, shard).replicaShards();
+        ShardRouting found = null;
+        if (!replicaShardRoutings.isEmpty()) {
+            // Pick the first replica at the very least
+            found = replicaShardRoutings.get(0);
+            // In case there are multiple replicas where some are assigned and some aren't,
+            // try to find one that is unassigned at least
+            for (ShardRouting replica : replicaShardRoutings) {
+                if (replica.unassigned()) {
+                    found = replica;
+                    break;
+                }
+            }
+        }
+        return found;
     }
 
     private void getShardStores(ShardRouting shard, final ActionListener<IndicesShardStoresResponse> listener) {
