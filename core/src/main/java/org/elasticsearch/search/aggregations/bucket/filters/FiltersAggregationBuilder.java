@@ -263,7 +263,9 @@ public class FiltersAggregationBuilder extends AbstractAggregationBuilder<Filter
         return getFiltersAggregationBuilder(aggregationName, keyedFilters, nonKeyedFilters, otherBucketKey, otherBucket);
     }
 
-    private static FiltersAggregationBuilder getFiltersAggregationBuilder(String aggregationName, List<KeyedFilter> keyedFilters, List<QueryBuilder> nonKeyedFilters, String otherBucketKey, Boolean otherBucket) {
+    private static FiltersAggregationBuilder getFiltersAggregationBuilder(String aggregationName, List<KeyedFilter> keyedFilters, 
+                                                                            List<QueryBuilder> nonKeyedFilters, String otherBucketKey,
+                                                                             Boolean otherBucket) {
         if (otherBucket && otherBucketKey == null) {
             otherBucketKey = "_other_";
         }

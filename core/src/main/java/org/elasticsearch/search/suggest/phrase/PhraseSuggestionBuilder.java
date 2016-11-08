@@ -517,7 +517,8 @@ public class PhraseSuggestionBuilder extends SuggestionBuilder<PhraseSuggestionB
         return new PhraseSuggestionBuilder(fieldname, tmpSuggestion);
     }
 
-    private static String parseObjectToken(QueryParseContext parseContext, XContentParser parser, PhraseSuggestionBuilder tmpSuggestion, ParseFieldMatcher parseFieldMatcher, String currentFieldName) throws IOException {
+    private static String parseObjectToken(QueryParseContext parseContext, XContentParser parser, PhraseSuggestionBuilder tmpSuggestion,
+                                            ParseFieldMatcher parseFieldMatcher, String currentFieldName) throws IOException {
         Token token;
         if (parseFieldMatcher.match(currentFieldName, PhraseSuggestionBuilder.SMOOTHING_MODEL_FIELD)) {
             ensureNoSmoothing(tmpSuggestion);
@@ -573,7 +574,8 @@ public class PhraseSuggestionBuilder extends SuggestionBuilder<PhraseSuggestionB
         return currentFieldName;
     }
 
-    private static void parseArrayToken(QueryParseContext parseContext, XContentParser parser, PhraseSuggestionBuilder tmpSuggestion, ParseFieldMatcher parseFieldMatcher, String currentFieldName) throws IOException {
+    private static void parseArrayToken(QueryParseContext parseContext, XContentParser parser, PhraseSuggestionBuilder tmpSuggestion, 
+                                            ParseFieldMatcher parseFieldMatcher, String currentFieldName) throws IOException {
         Token token;
         if (parseFieldMatcher.match(currentFieldName, DirectCandidateGeneratorBuilder.DIRECT_GENERATOR_FIELD)) {
             // for now we only have a single type of generators
@@ -586,7 +588,8 @@ public class PhraseSuggestionBuilder extends SuggestionBuilder<PhraseSuggestionB
         }
     }
 
-    private static String parseValueToken(XContentParser parser, PhraseSuggestionBuilder tmpSuggestion, ParseFieldMatcher parseFieldMatcher, String currentFieldName, String fieldname) throws IOException {
+    private static String parseValueToken(XContentParser parser, PhraseSuggestionBuilder tmpSuggestion, 
+        ParseFieldMatcher parseFieldMatcher, String currentFieldName, String fieldname) throws IOException {
         if (parseFieldMatcher.match(currentFieldName, SuggestionBuilder.ANALYZER_FIELD)) {
             tmpSuggestion.analyzer(parser.text());
         } else if (parseFieldMatcher.match(currentFieldName, SuggestionBuilder.FIELDNAME_FIELD)) {
