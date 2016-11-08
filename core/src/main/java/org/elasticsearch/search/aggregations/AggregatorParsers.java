@@ -162,13 +162,13 @@ public class AggregatorParsers {
                 }
             }
 
-            refactoredMethod(factories, parser, aggregationName, aggFactory, pipelineAggregatorFactory, subFactories, metaData);
+            checkAggregators(factories, parser, aggregationName, aggFactory, pipelineAggregatorFactory, subFactories, metaData);
         }
 
         return factories;
     }
 
-    private void refactoredMethod(AggregatorFactories.Builder factories, XContentParser parser, String aggregationName, 
+    private void checkAggregators(AggregatorFactories.Builder factories, XContentParser parser, String aggregationName, 
                                     AggregationBuilder aggFactory, PipelineAggregationBuilder pipelineAggregatorFactory,
                                     AggregatorFactories.Builder subFactories, Map<String, Object> metaData) {
         if (aggFactory == null && pipelineAggregatorFactory == null) {
