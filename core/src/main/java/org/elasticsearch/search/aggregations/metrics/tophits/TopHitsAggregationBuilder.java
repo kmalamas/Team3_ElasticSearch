@@ -599,7 +599,8 @@ public class TopHitsAggregationBuilder extends AbstractAggregationBuilder<TopHit
         return factory;
     }
 
-    private static String parseObjectToken(QueryParseContext context, TopHitsAggregationBuilder factory, XContentParser.Token token, String currentFieldName, XContentParser parser) throws IOException {
+    private static String parseObjectToken(QueryParseContext context, TopHitsAggregationBuilder factory, XContentParser.Token token,
+                                            String currentFieldName, XContentParser parser) throws IOException {
         if (context.getParseFieldMatcher().match(currentFieldName, SearchSourceBuilder._SOURCE_FIELD)) {
             factory.fetchSource(FetchSourceContext.parse(context));
         } else if (context.getParseFieldMatcher().match(currentFieldName, SearchSourceBuilder.SCRIPT_FIELDS_FIELD)) {
@@ -656,7 +657,8 @@ public class TopHitsAggregationBuilder extends AbstractAggregationBuilder<TopHit
         return currentFieldName;
     }
 
-    private static void parseValueToken(QueryParseContext context, TopHitsAggregationBuilder factory, XContentParser.Token token, String currentFieldName, XContentParser parser) throws IOException {
+    private static void parseValueToken(QueryParseContext context, TopHitsAggregationBuilder factory, XContentParser.Token token,
+                                            String currentFieldName, XContentParser parser) throws IOException {
         if (context.getParseFieldMatcher().match(currentFieldName, SearchSourceBuilder.FROM_FIELD)) {
             factory.from(parser.intValue());
         } else if (context.getParseFieldMatcher().match(currentFieldName, SearchSourceBuilder.SIZE_FIELD)) {
@@ -680,7 +682,8 @@ public class TopHitsAggregationBuilder extends AbstractAggregationBuilder<TopHit
         }
     }
 
-    private static void parseArrayToken(QueryParseContext context, TopHitsAggregationBuilder factory, XContentParser.Token token, String currentFieldName, XContentParser parser) throws IOException {
+    private static void parseArrayToken(QueryParseContext context, TopHitsAggregationBuilder factory, XContentParser.Token token,
+                                            String currentFieldName, XContentParser parser) throws IOException {
         if (context.getParseFieldMatcher().match(currentFieldName, SearchSourceBuilder.STORED_FIELDS_FIELD)) {
             factory.storedFieldsContext =
                 StoredFieldsContext.fromXContent(SearchSourceBuilder.STORED_FIELDS_FIELD.getPreferredName(), context);
