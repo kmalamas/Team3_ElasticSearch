@@ -1,0 +1,13 @@
+{
+    "query" : {
+	"match_all" : {}
+    },
+    "aggs" : {
+        "viewport" : {
+            "geo_bounds" : {
+                "field" : "location", 
+                "wrap_longitude" : true 
+            }
+        }
+    }
+}
