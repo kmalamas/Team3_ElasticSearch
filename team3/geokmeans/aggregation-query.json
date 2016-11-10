@@ -1,0 +1,12 @@
+{
+    "query" : {
+	"match_all" : {}
+    },
+    "aggs" : {
+        "viewport" : {
+            "geo_kmeans" : {
+                "field" : "location"
+            }
+        }
+    }
+}

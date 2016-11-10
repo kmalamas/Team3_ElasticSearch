@@ -1,0 +1,12 @@
+{
+    "mappings": {
+        "place": {
+            "properties": {
+                "id": {"type": "double"},
+                "name": {"type": "string"},
+                "type": {"type": "string"},
+                "location": {"type": "geo_point"}
+            }
+        }
+    }
+}
