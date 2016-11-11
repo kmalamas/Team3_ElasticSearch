@@ -58,11 +58,11 @@ public class InternalGeoKMeans extends InternalMetricsAggregation implements Geo
         super(in);
         this.k = in.readVInt();
         int size = in.readVInt();
-        List<Cluster> clusters = new ArrayList<>(size);
+        List<Cluster> clustersInFunction = new ArrayList<>(size);
         for (int i = 0; i < size; i++) {
-            clusters.add(new InternalCluster(in));
+            clustersInFunction.add(new InternalCluster(in));
         }
-        this.clusters = clusters;
+        this.clusters = clustersInFunction;
         this.totalNumPoints = in.readVLong();
     }
 
@@ -93,13 +93,14 @@ public class InternalGeoKMeans extends InternalMetricsAggregation implements Geo
     @Override
     public InternalAggregation doReduce(List<InternalAggregation> aggregations, ReduceContext reduceContext) {
         List<Cluster> combinedResults = new ArrayList<>();
-        long totalNumPoints = 0;
+        long totalNumPointsInFunction = 0;
         for (InternalAggregation aggregation : aggregations) {
             InternalGeoKMeans internalGeoKMeans = (InternalGeoKMeans) aggregation;
             combinedResults.addAll(internalGeoKMeans.getClusters());
-            totalNumPoints += internalGeoKMeans.getTotalNumPoints();
+            totalNumPointsInFunction += internalGeoKMeans.getTotalNumPoints();
         }
-        if (combinedResults.size() > 0) {
+
+        if (!combinedResults.isEmpty()) {
             Collections.sort(combinedResults, new Comparator<Cluster>() {
 
                 @Override
@@ -119,9 +120,9 @@ public class InternalGeoKMeans extends InternalMetricsAggregation implements Geo
                     return (int) (o2.getDocCount() - o1.getDocCount());
                 }
             });
-            return new InternalGeoKMeans(getName(), k, results, totalNumPoints, pipelineAggregators(), metaData);
+            return new InternalGeoKMeans(getName(), k, results, totalNumPointsInFunction, pipelineAggregators(), metaData);
         } else {
-            return new InternalGeoKMeans(getName(), k, combinedResults, totalNumPoints, pipelineAggregators(), metaData);
+            return new InternalGeoKMeans(getName(), k, combinedResults, totalNumPointsInFunction, pipelineAggregators(), metaData);
         }
     }
 

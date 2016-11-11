@@ -64,11 +64,11 @@ public class StreamingKMeansAggregator extends MetricsAggregator {
     private BigArrays bigArrays;
     private long numClusters;
 
-    public StreamingKMeansAggregator(String name, AggregatorFactories factories, int numClusters, double maxStreamingClustersCoeff,
+    public StreamingKMeansAggregator(String name, AggregatorFactories factories, int numClustersInFunction, double maxStreamingClustersCoeff,
             double distanceCutoffCoeffMultiplier, ValuesSource.GeoPoint valuesSource, AggregationContext aggregationContext,
             Aggregator parent, List<PipelineAggregator> pipelineAggregators, Map<String, Object> metaData) throws IOException {
         super(name, aggregationContext, parent, pipelineAggregators, metaData);
-        this.numFinalClusters = numClusters;
+        this.numFinalClusters = numClustersInFunction;
         this.maxStreamingClustersCoeff = maxStreamingClustersCoeff;
         this.distanceCutoffCoeffMultiplier = distanceCutoffCoeffMultiplier;
         this.distanceCutoffCoeff = 1;
@@ -83,7 +83,7 @@ public class StreamingKMeansAggregator extends MetricsAggregator {
         topLeftClusterBounds = bigArrays.newObjectArray(0);
         bottomRightClusterBounds = bigArrays.newObjectArray(0);
         points = bigArrays.newObjectArray(0);
-        numClusters = 0;
+        numClustersInFunction = 0;
     }
 
     @Override
@@ -96,7 +96,6 @@ public class StreamingKMeansAggregator extends MetricsAggregator {
                 values.setDocument(doc);
                 final int valuesCount = values.count();
 
-                GeoPoint previous = null;
                 for (int i = 0; i < valuesCount; ++i) {
                     final GeoPoint val = new GeoPoint(values.valueAt(i));
                     collectPoint(val, sub, doc);
@@ -112,8 +111,8 @@ public class StreamingKMeansAggregator extends MetricsAggregator {
         }
         numPoints++;
         MinDistanceResult minDistResult = calculateMinDistance(point, centroids, numClusters);
-        int nearestCentroidIndex = minDistResult.nearestCentroidIndex;
-        double minDistance = minDistResult.distance;
+        int nearestCentroidIndex = minDistResult.getNearestCentroidIndex();
+        double minDistance = minDistResult.getDistance();
         double f = distanceCutoffCoeff / (numFinalClusters * (1 + Math.log(numPoints)));
         double probability = minDistance / f;
         if (numPoints == 1 || random.nextDouble() <= probability) {
@@ -183,8 +182,8 @@ public class StreamingKMeansAggregator extends MetricsAggregator {
                 Set<GeoPoint> clusterPoints = points.get(i);
                 long docCount = docCounts.get(i);
                 MinDistanceResult minDistResult = calculateMinDistance(centroid, newCentroids, newNumClusters);
-                int nearestCentroidIndex = minDistResult.nearestCentroidIndex;
-                double minDistance = minDistResult.distance;
+                int nearestCentroidIndex = minDistResult.getNearestCentroidIndex();
+                double minDistance = minDistResult.getDistance();
                 double f = distanceCutoffCoeff / (numFinalClusters * (1 + Math.log(numPoints)));
                 double probability = docCount * minDistance / f;
                 if (random.nextDouble() <= probability) {
@@ -254,8 +253,8 @@ public class StreamingKMeansAggregator extends MetricsAggregator {
             }
         }
         MinDistanceResult result = new MinDistanceResult();
-        result.nearestCentroidIndex = nearestCentroidIndex;
-        result.distance = minDistance;
+        result.setNearestCentroidIndex(nearestCentroidIndex);
+        result.setDistance(minDistance);
         return result;
     }
 
@@ -266,8 +265,22 @@ public class StreamingKMeansAggregator extends MetricsAggregator {
     }
 
     private static class MinDistanceResult {
-        public int nearestCentroidIndex;
-        public double distance;
+        private int nearestCentroidIndex;
+        private double distance;
+
+        public int getNearestCentroidIndex(){
+            return this.nearestCentroidIndex;
+        }
+        public void setNearestCentroidIndex(int nearest){
+            this.nearestCentroidIndex = nearest;
+        }
+
+        public double getDistance(){
+            return this.distance;
+        }
+        public void setDistance(double dist){
+            this.distance = dist;
+        }
     }
 
     @Override
