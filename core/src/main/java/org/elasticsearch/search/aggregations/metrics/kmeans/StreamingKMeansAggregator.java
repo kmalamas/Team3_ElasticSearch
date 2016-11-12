@@ -83,7 +83,6 @@ public class StreamingKMeansAggregator extends MetricsAggregator {
         topLeftClusterBounds = bigArrays.newObjectArray(0);
         bottomRightClusterBounds = bigArrays.newObjectArray(0);
         points = bigArrays.newObjectArray(0);
-        numClustersInFunction = 0;
     }
 
     @Override
