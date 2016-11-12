@@ -103,29 +103,14 @@ public class InternalGeoKMeans extends InternalMetricsAggregation implements Geo
         if (!combinedResults.isEmpty()) {
 
             Collections.sort(combinedResults, (Cluster o1, Cluster o2) -> (int) (o2.getDocCount() - o1.getDocCount()));
-// Old
-/*            Collections.sort(combinedResults, new Comparator<Cluster>() {
-                @Override
-                public int compare(Cluster o1, Cluster o2) {
-                    return (int) (o2.getDocCount() - o1.getDocCount());
-                }
-            });
-*/
+
             StandardKMeans kmeans = new StandardKMeans(k, combinedResults);
             for (int i = 0; i < 100; i++) {
                 kmeans.nextIteration();
             }
             List<Cluster> results = kmeans.getResults();
             Collections.sort(results, (Cluster o1, Cluster o2) -> (int) (o2.getDocCount() - o1.getDocCount()));
-//
-/*            Collections.sort(results, new Comparator<Cluster>() {
 
-                @Override
-                public int compare(Cluster o1, Cluster o2) {
-                    return (int) (o2.getDocCount() - o1.getDocCount());
-                }
-            });
-*/
             return new InternalGeoKMeans(getName(), k, results, totalNumPointsInFunction, pipelineAggregators(), metaData);
         } else {
             return new InternalGeoKMeans(getName(), k, combinedResults, totalNumPointsInFunction, pipelineAggregators(), metaData);
