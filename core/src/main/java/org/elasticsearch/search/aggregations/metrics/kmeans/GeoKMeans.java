@@ -29,18 +29,18 @@ import java.util.Set;
 
 public interface GeoKMeans extends Aggregation {
 
-    public List<Cluster> getClusters();
+    List<Cluster> getClusters();
 
-    public static interface Cluster extends ToXContent, Writeable {
+    interface Cluster extends ToXContent, Writeable {
 
-        public GeoPoint getCentroid();
+        GeoPoint getCentroid();
 
-        public GeoPoint getTopLeft();
+        GeoPoint getTopLeft();
 
-        public GeoPoint getBottomRight();
+        GeoPoint getBottomRight();
 
-        public long getDocCount();
+        long getDocCount();
 
-        public Set<GeoPoint> points();
+        Set<GeoPoint> points();
     }
 }

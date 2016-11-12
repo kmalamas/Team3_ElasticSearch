@@ -451,8 +451,8 @@ public class SearchModule extends AbstractModule {
                 new GeoDistanceParser()).addResultReader(InternalGeoDistance::new));
         registerAggregation(new AggregationSpec(GeoGridAggregationBuilder.NAME, GeoGridAggregationBuilder::new, new GeoHashGridParser())
                 .addResultReader(InternalGeoHashGrid::new));
-        registerAggregation(new AggregationSpec(GeoKMeansAggregationBuilder.AGGREGATION_NAME_FIED, GeoKMeansAggregationBuilder::new, new GeoKMeansParser())
-                .addResultReader(InternalGeoKMeans::new));
+        registerAggregation(new AggregationSpec(GeoKMeansAggregationBuilder.AGGREGATION_NAME_FIED, GeoKMeansAggregationBuilder::new,
+                new GeoKMeansParser()).addResultReader(InternalGeoKMeans::new));
         registerAggregation(new AggregationSpec(NestedAggregationBuilder.NAME, NestedAggregationBuilder::new,
                 NestedAggregationBuilder::parse).addResultReader(InternalNested::new));
         registerAggregation(new AggregationSpec(ReverseNestedAggregationBuilder.NAME, ReverseNestedAggregationBuilder::new,

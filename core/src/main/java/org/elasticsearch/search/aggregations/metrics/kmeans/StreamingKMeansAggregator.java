@@ -64,9 +64,11 @@ public class StreamingKMeansAggregator extends MetricsAggregator {
     private BigArrays bigArrays;
     private long numClusters;
 
-    public StreamingKMeansAggregator(String name, AggregatorFactories factories, int numClustersInFunction, double maxStreamingClustersCoeff,
-            double distanceCutoffCoeffMultiplier, ValuesSource.GeoPoint valuesSource, AggregationContext aggregationContext,
-            Aggregator parent, List<PipelineAggregator> pipelineAggregators, Map<String, Object> metaData) throws IOException {
+    public StreamingKMeansAggregator(String name, AggregatorFactories factories, int numClustersInFunction,
+                                     double maxStreamingClustersCoeff, double distanceCutoffCoeffMultiplier,
+                                     ValuesSource.GeoPoint valuesSource, AggregationContext aggregationContext,
+                                     Aggregator parent, List<PipelineAggregator> pipelineAggregators, Map<String,
+                                     Object> metaData) throws IOException {
         super(name, aggregationContext, parent, pipelineAggregators, metaData);
         this.numFinalClusters = numClustersInFunction;
         this.maxStreamingClustersCoeff = maxStreamingClustersCoeff;
