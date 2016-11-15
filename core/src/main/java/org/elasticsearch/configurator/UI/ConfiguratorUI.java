@@ -1,4 +1,4 @@
-package org.elasticsearch.configurator;
+package org.elasticsearch.configurator.UI;
 
 
 import javax.swing.*;
@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import org.elasticsearch.configurator.Configurator;
 
 /**
  * Created by kmala on 15-Nov-16.

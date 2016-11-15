@@ -1,6 +1,7 @@
-package org.elasticsearch.configurator;
+package org.elasticsearch.configurator.UI;
 
 import java.awt.*;
+
 
 public class main {
     public static void main( String args[] )

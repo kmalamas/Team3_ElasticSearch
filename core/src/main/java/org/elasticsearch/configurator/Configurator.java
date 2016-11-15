@@ -21,6 +21,10 @@ public class Configurator {
             file = new File("config.malakies");
             if (!file.isFile())
                 file.createNewFile();
+            file.setReadable(true);
+            file.setWritable(true);
+
+
         }
         catch (IOException e){}
         isLateParsingQueryActivated = false;
