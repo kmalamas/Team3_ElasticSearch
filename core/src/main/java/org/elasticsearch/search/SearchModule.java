@@ -29,6 +29,7 @@ import org.elasticsearch.common.io.stream.Writeable;
 import org.elasticsearch.common.settings.Setting;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.xcontent.ParseFieldRegistry;
+import org.elasticsearch.configurator.Configurator;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.BoostingQueryBuilder;
 import org.elasticsearch.index.query.CommonTermsQueryBuilder;
@@ -313,6 +314,7 @@ public class SearchModule extends AbstractModule {
     private final Settings settings;
     private final List<Entry> namedWriteables = new ArrayList<>();
     private final SearchRequestParsers searchRequestParsers;
+    private Configurator config = Configurator.getInstance();
 
     public SearchModule(Settings settings, boolean transportClient, List<SearchPlugin> plugins) {
         this.settings = settings;
@@ -451,8 +453,11 @@ public class SearchModule extends AbstractModule {
                 new GeoDistanceParser()).addResultReader(InternalGeoDistance::new));
         registerAggregation(new AggregationSpec(GeoGridAggregationBuilder.NAME, GeoGridAggregationBuilder::new, new GeoHashGridParser())
                 .addResultReader(InternalGeoHashGrid::new));
+        // Check configurator whether to register geoKMeans feature or not
+        if (config.getisGeoKMeansActivated()){
         registerAggregation(new AggregationSpec(GeoKMeansAggregationBuilder.AGGREGATION_NAME_FIED, GeoKMeansAggregationBuilder::new,
-                new GeoKMeansParser()).addResultReader(InternalGeoKMeans::new));
+                new GeoKMeansParser()).addResultReader(InternalGeoKMeans::new));}
+
         registerAggregation(new AggregationSpec(NestedAggregationBuilder.NAME, NestedAggregationBuilder::new,
                 NestedAggregationBuilder::parse).addResultReader(InternalNested::new));
         registerAggregation(new AggregationSpec(ReverseNestedAggregationBuilder.NAME, ReverseNestedAggregationBuilder::new,
