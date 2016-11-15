@@ -47,7 +47,7 @@ import org.elasticsearch.index.query.QueryShardContext;
 import org.elasticsearch.search.DocValueFormat;
 import org.elasticsearch.search.internal.SearchContext;
 import org.joda.time.DateTimeZone;
-
+import org.elasticsearch.configurator.Configurator;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
@@ -60,6 +60,7 @@ import static org.elasticsearch.index.mapper.TypeParsers.parseDateTimeFormatter;
 
 /** A {@link FieldMapper} for ip addresses. */
 public class DateFieldMapper extends FieldMapper {
+
 
     public static final String CONTENT_TYPE = "date";
     public static final FormatDateTimeFormatter DEFAULT_DATE_TIME_FORMATTER = Joda.forPattern(
@@ -164,6 +165,7 @@ public class DateFieldMapper extends FieldMapper {
 
     public static final class DateFieldType extends MappedFieldType {
 
+        private Configurator conf = Configurator.getInstance();
         final class LateParsingQuery extends Query {
 
             final Object lowerTerm;
@@ -317,7 +319,16 @@ public class DateFieldMapper extends FieldMapper {
         public Query rangeQuery(Object lowerTerm, Object upperTerm, boolean includeLower, boolean includeUpper,
                 @Nullable DateTimeZone timeZone, @Nullable DateMathParser forcedDateParser) {
             failIfNotIndexed();
-            return new LateParsingQuery(lowerTerm, upperTerm, includeLower, includeUpper, timeZone, forcedDateParser);
+
+            Query query;
+            if (conf.getisLateParsingQueryActivated())
+            {
+                query = new LateParsingQuery(lowerTerm, upperTerm, includeLower, includeUpper, timeZone, forcedDateParser);
+            }
+            else {
+                query = innerRangeQuery(lowerTerm, upperTerm, includeLower, includeUpper, timeZone, forcedDateParser);
+            }
+            return query;
         }
 
         Query innerRangeQuery(Object lowerTerm, Object upperTerm, boolean includeLower, boolean includeUpper,
@@ -463,7 +474,6 @@ public class DateFieldMapper extends FieldMapper {
     }
 
     private Boolean includeInAll;
-
     private Explicit<Boolean> ignoreMalformed;
 
     private DateFieldMapper(
@@ -579,4 +589,6 @@ public class DateFieldMapper extends FieldMapper {
             builder.field("locale", fieldType().dateTimeFormatter().locale());
         }
     }
+
+
 }
