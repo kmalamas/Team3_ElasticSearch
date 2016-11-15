@@ -39,6 +39,7 @@ import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.util.LocaleUtils;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentParser;
+import org.elasticsearch.configurator.Configurator;
 import org.elasticsearch.index.fielddata.IndexFieldData;
 import org.elasticsearch.index.fielddata.IndexNumericFieldData.NumericType;
 import org.elasticsearch.index.fielddata.plain.DocValuesIndexFieldData;
@@ -176,6 +177,7 @@ public class LegacyDateFieldMapper extends LegacyNumberFieldMapper {
 
     public static class DateFieldType extends NumberFieldType {
 
+        private Configurator conf = Configurator.getInstance();
         final class LateParsingQuery extends Query {
 
             final Object lowerTerm;
@@ -367,7 +369,16 @@ public class LegacyDateFieldMapper extends LegacyNumberFieldMapper {
         }
 
         public Query rangeQuery(Object lowerTerm, Object upperTerm, boolean includeLower, boolean includeUpper, @Nullable DateTimeZone timeZone, @Nullable DateMathParser forcedDateParser) {
-            return new LateParsingQuery(lowerTerm, upperTerm, includeLower, includeUpper, timeZone, forcedDateParser);
+            Query query;
+            if (conf.getisLateParsingQueryActivated())
+            {
+                query = new LateParsingQuery(lowerTerm, upperTerm, includeLower, includeUpper, timeZone, forcedDateParser);
+            }
+            else {
+                query = innerRangeQuery(lowerTerm, upperTerm, includeLower, includeUpper, timeZone, forcedDateParser);
+            }
+            return query;
+
         }
 
         private Query innerRangeQuery(Object lowerTerm, Object upperTerm, boolean includeLower, boolean includeUpper, @Nullable DateTimeZone timeZone, @Nullable DateMathParser forcedDateParser) {
