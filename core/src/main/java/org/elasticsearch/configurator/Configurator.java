@@ -1,6 +1,12 @@
 package org.elasticsearch.configurator;
 
+import org.elasticsearch.SpecialPermission;
+
 import java.io.*;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
+import java.security.PrivilegedActionException;
+import java.security.PrivilegedExceptionAction;
 import java.util.Properties;
 
 /**
@@ -15,24 +21,34 @@ public class Configurator {
     private boolean isXMLActivated;
     private File file;
 
+
+
+
     protected Configurator(){
-
-        try {
-            file = new File("config.malakies");
-            if (!file.isFile())
-                file.createNewFile();
-            file.setReadable(true);
-            file.setWritable(true);
-
-
-        }
-        catch (IOException e){}
         isLateParsingQueryActivated = false;
         isGeoKMeansActivated = false;
         isUsageStatisticsActivated = false;
         isXMLActivated = false;
-        loadConfiguration();
-           }
+
+            openOrCreateFile();
+            loadConfiguration();
+
+    }
+
+    private void openOrCreateFile() {
+        try {
+
+                file = AccessController.doPrivileged((PrivilegedExceptionAction<File>)() -> new File("feature.config")
+                );
+                if (!file.exists())
+                    AccessController.doPrivileged((PrivilegedExceptionAction<Boolean>)() -> file.createNewFile());
+        }
+
+
+        catch (PrivilegedActionException e) { }
+
+
+    }
 
     public static Configurator getInstance(){
     if (INSTANCE == null)
@@ -80,8 +96,8 @@ public class Configurator {
     InputStream input = null;
 
     try {
-
-        input = new FileInputStream(file);
+        input = AccessController.doPrivileged((PrivilegedExceptionAction<FileInputStream>)
+                        () -> new FileInputStream(file));
 
         // load a properties file
         prop.load(input);
@@ -92,9 +108,11 @@ public class Configurator {
         isUsageStatisticsActivated = Boolean.valueOf(prop.getProperty("UsageStatistics"));
         isXMLActivated = Boolean.valueOf(prop.getProperty("XML"));
 
-    } catch (IOException ex) {
+    } catch (PrivilegedActionException ex) {
         ex.printStackTrace();
-    } finally {
+    }
+    catch (IOException ioe) {}
+    finally {
         if (input != null) {
             try {
                 input.close();
