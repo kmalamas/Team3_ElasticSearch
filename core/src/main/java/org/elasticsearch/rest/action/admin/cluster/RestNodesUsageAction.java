@@ -1,10 +1,3 @@
-package org.elasticsearch.rest.action.admin.cluster;
-
-/**
- * Created by lundenant on 2016-11-16.
- */
-public class RestNodesUsageAction {
-}
 /*
  * Licensed to Elasticsearch under one or more contributor
  * license agreements. See the NOTICE file distributed with
@@ -26,26 +19,26 @@ public class RestNodesUsageAction {
 
 package org.elasticsearch.rest.action.admin.cluster;
 
-        import org.elasticsearch.action.admin.cluster.node.usage.NodesUsageRequest;
-        import org.elasticsearch.action.admin.cluster.node.usage.NodesUsageResponse;
-        import org.elasticsearch.client.node.NodeClient;
-        import org.elasticsearch.common.Strings;
-        import org.elasticsearch.common.inject.Inject;
-        import org.elasticsearch.common.settings.Settings;
-        import org.elasticsearch.common.xcontent.XContentBuilder;
-        import org.elasticsearch.rest.BaseRestHandler;
-        import org.elasticsearch.rest.BytesRestResponse;
-        import org.elasticsearch.rest.RestChannel;
-        import org.elasticsearch.rest.RestController;
-        import org.elasticsearch.rest.RestRequest;
-        import org.elasticsearch.rest.RestResponse;
-        import org.elasticsearch.rest.RestStatus;
-        import org.elasticsearch.rest.action.RestActions;
-        import org.elasticsearch.rest.action.RestBuilderListener;
+import org.elasticsearch.action.admin.cluster.node.usage.NodesUsageRequest;
+import org.elasticsearch.action.admin.cluster.node.usage.NodesUsageResponse;
+import org.elasticsearch.client.node.NodeClient;
+import org.elasticsearch.common.Strings;
+import org.elasticsearch.common.inject.Inject;
+import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.common.xcontent.XContentBuilder;
+import org.elasticsearch.rest.BaseRestHandler;
+import org.elasticsearch.rest.BytesRestResponse;
+import org.elasticsearch.rest.RestChannel;
+import org.elasticsearch.rest.RestController;
+import org.elasticsearch.rest.RestRequest;
+import org.elasticsearch.rest.RestResponse;
+import org.elasticsearch.rest.RestStatus;
+import org.elasticsearch.rest.action.RestActions;
+import org.elasticsearch.rest.action.RestBuilderListener;
 
-        import java.util.Set;
+import java.util.Set;
 
-        import static org.elasticsearch.rest.RestRequest.Method.GET;
+import static org.elasticsearch.rest.RestRequest.Method.GET;
 
 public class RestNodesUsageAction extends BaseRestHandler {
 
