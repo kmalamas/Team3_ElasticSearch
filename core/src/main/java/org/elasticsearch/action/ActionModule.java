@@ -314,6 +314,18 @@ import static java.util.Collections.unmodifiableList;
 import static java.util.Collections.unmodifiableMap;
 
 /**
+Usage
+*/
+import org.elasticsearch.action.admin.cluster.node.usage.ClearNodesUsageAction;
+import org.elasticsearch.action.admin.cluster.node.usage.NodesUsageAction;
+import org.elasticsearch.action.admin.cluster.node.usage.TransportClearNodesUsageAction;
+import org.elasticsearch.action.admin.cluster.node.usage.TransportNodesUsageAction;
+import org.elasticsearch.rest.action.admin.cluster.RestClearNodesUsageAction;
+import org.elasticsearch.rest.action.admin.cluster.RestNodesUsageAction;
+import org.elasticsearch.usage.UsageService;
+
+
+/**
  * Builds and binds the generic action map, all {@link TransportAction}s, and {@link ActionFilters}.
  */
 public class ActionModule extends AbstractModule {
@@ -328,7 +340,7 @@ public class ActionModule extends AbstractModule {
     private final RestController restController;
 
     public ActionModule(boolean ingestEnabled, boolean transportClient, Settings settings, IndexNameExpressionResolver resolver,
-            ClusterSettings clusterSettings, List<ActionPlugin> actionPlugins) {
+    		ClusterSettings clusterSettings, List<ActionPlugin> actionPlugins, UsageService usageService) {
         this.transportClient = transportClient;
         this.settings = settings;
         this.actionPlugins = actionPlugins;
@@ -337,7 +349,7 @@ public class ActionModule extends AbstractModule {
         autoCreateIndex = transportClient ? null : new AutoCreateIndex(settings, clusterSettings, resolver);
         destructiveOperations = new DestructiveOperations(settings, clusterSettings);
         Set<String> headers = actionPlugins.stream().flatMap(p -> p.getRestHeaders().stream()).collect(Collectors.toSet());
-        restController = new RestController(settings, headers);
+        restController = new RestController(settings, headers, usageService);
     }
 
     public Map<String, ActionHandler<?, ?>> getActions() {
@@ -453,6 +465,11 @@ public class ActionModule extends AbstractModule {
         actions.register(GetPipelineAction.INSTANCE, GetPipelineTransportAction.class);
         actions.register(DeletePipelineAction.INSTANCE, DeletePipelineTransportAction.class);
         actions.register(SimulatePipelineAction.INSTANCE, SimulatePipelineTransportAction.class);
+
+        //Usage
+        actions.register(NodesUsageAction.INSTANCE, TransportNodesUsageAction.class);
+        actions.register(ClearNodesUsageAction.INSTANCE, TransportClearNodesUsageAction.class);
+
 
         actionPlugins.stream().flatMap(p -> p.getActions().stream()).forEach(actions::register);
 
@@ -603,6 +620,12 @@ public class ActionModule extends AbstractModule {
         registerRestHandler(handlers, RestNodeAttrsAction.class);
         registerRestHandler(handlers, RestRepositoriesAction.class);
         registerRestHandler(handlers, RestSnapshotAction.class);
+
+
+        //Usage
+        registerRestHandler(handlers, RestNodesUsageAction.class);
+        registerRestHandler(handlers, RestClearNodesUsageAction.class);
+
         for (ActionPlugin plugin : actionPlugins) {
             for (Class<? extends RestHandler> handler : plugin.getRestHandlers()) {
                 registerRestHandler(handlers, handler);
