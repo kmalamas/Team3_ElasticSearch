@@ -121,6 +121,7 @@ import org.elasticsearch.threadpool.ThreadPool;
 import org.elasticsearch.transport.TransportService;
 import org.elasticsearch.tribe.TribeService;
 import org.elasticsearch.watcher.ResourceWatcherService;
+import org.elasticsearch.usage.UsageService;
 
 import javax.management.MBeanServerPermission;
 import java.io.BufferedWriter;
@@ -319,6 +320,8 @@ public class Node implements Closeable {
             final IngestService ingestService = new IngestService(settings, threadPool, this.environment,
                 scriptModule.getScriptService(), analysisModule.getAnalysisRegistry(), pluginsService.filterPlugins(IngestPlugin.class));
 
+            final UsageService usageService = new UsageService(clusterService::localNode, settings);
+
             ModulesBuilder modules = new ModulesBuilder();
             // plugin modules must be added here, before others or we can get crazy injection errors...
             for (Module pluginModule : pluginsService.createGuiceModules()) {
@@ -338,7 +341,7 @@ public class Node implements Closeable {
             modules.add(searchModule);
             modules.add(new ActionModule(DiscoveryNode.isIngestNode(settings), false, settings,
                 clusterModule.getIndexNameExpressionResolver(), settingsModule.getClusterSettings(),
-                pluginsService.filterPlugins(ActionPlugin.class)));
+                pluginsService.filterPlugins(ActionPlugin.class), usageService));
             modules.add(new GatewayModule());
             modules.add(new RepositoriesModule(this.environment, pluginsService.filterPlugins(RepositoryPlugin.class)));
             pluginsService.processModules(modules);
@@ -386,6 +389,7 @@ public class Node implements Closeable {
                     b.bind(AnalysisRegistry.class).toInstance(analysisModule.getAnalysisRegistry());
                     b.bind(IngestService.class).toInstance(ingestService);
                     b.bind(NamedWriteableRegistry.class).toInstance(namedWriteableRegistry);
+                    b.bind(UsageService.class).toInstance(usageService);
                     b.bind(MetaDataUpgrader.class).toInstance(metaDataUpgrader);
                     b.bind(MetaStateService.class).toInstance(metaStateService);
                     b.bind(IndicesService.class).toInstance(indicesService);
