@@ -106,10 +106,12 @@ if (isEclipse) {
     if (project.path == ":core") {
       main.java.srcDirs = ['java']
       main.resources.srcDirs = ['resources']
+
     } else {
       test.java.srcDirs = ['java']
       test.resources.srcDirs = ['resources']
     }
+
   }
 }
 
