@@ -19,8 +19,12 @@
 
 package org.elasticsearch.rest.action.admin.cluster;
 
+import org.elasticsearch.action.ActionListener;
+import org.elasticsearch.action.admin.cluster.node.stats.NodesStatsRequest;
 import org.elasticsearch.action.admin.cluster.node.usage.NodesUsageRequest;
 import org.elasticsearch.action.admin.cluster.node.usage.NodesUsageResponse;
+import org.elasticsearch.action.admin.indices.stats.CommonStatsFlags;
+import org.elasticsearch.action.admin.indices.stats.CommonStatsFlags.Flag;
 import org.elasticsearch.client.node.NodeClient;
 import org.elasticsearch.common.Strings;
 import org.elasticsearch.common.inject.Inject;
@@ -33,8 +37,9 @@ import org.elasticsearch.rest.RestController;
 import org.elasticsearch.rest.RestRequest;
 import org.elasticsearch.rest.RestResponse;
 import org.elasticsearch.rest.RestStatus;
-import org.elasticsearch.rest.action.RestActions;
-import org.elasticsearch.rest.action.RestBuilderListener;
+import org.elasticsearch.rest.action.support.RestActions;
+import org.elasticsearch.rest.action.support.RestBuilderListener;
+import org.elasticsearch.rest.action.support.RestActions.NodesResponseRestListener;
 
 import java.util.Set;
 
@@ -60,12 +65,12 @@ public class RestNodesUsageAction extends BaseRestHandler {
         NodesUsageRequest nodesUsageRequest = new NodesUsageRequest(nodesIds);
         nodesUsageRequest.timeout(request.param("timeout"));
 
-        if (metrics.size() == 1 && metrics.contains("_all")) {
-            nodesUsageRequest.all();
-        } else {
-            nodesUsageRequest.clear();
-            nodesUsageRequest.restActions(metrics.contains("rest_actions"));
-        }
+        // if (metrics.size() == 1 && metrics.contains("_all")) {
+        // nodesUsageRequest.all();
+        // } else {
+        // nodesUsageRequest.clear();
+        // nodesUsageRequest.os(metrics.contains("os"));
+        // }
 
         client.admin().cluster().nodesUsage(nodesUsageRequest, new RestBuilderListener<NodesUsageResponse>(channel) {
 

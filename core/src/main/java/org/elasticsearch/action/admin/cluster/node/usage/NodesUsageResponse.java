@@ -31,10 +31,6 @@ import org.elasticsearch.common.xcontent.XContentFactory;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * The response for the nodes usage api which contains the individual usage
- * statistics for all nodes queried.
- */
 public class NodesUsageResponse extends BaseNodesResponse<NodeUsage> implements ToXContent {
 
     NodesUsageResponse() {

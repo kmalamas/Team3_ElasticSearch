@@ -27,10 +27,7 @@ import java.io.IOException;
 
 public class NodesUsageRequest extends BaseNodesRequest<NodesUsageRequest> {
 
-    private boolean restActions;
-
     public NodesUsageRequest() {
-        super();
     }
 
     /**
@@ -41,46 +38,13 @@ public class NodesUsageRequest extends BaseNodesRequest<NodesUsageRequest> {
         super(nodesIds);
     }
 
-    /**
-     * Sets all the request flags.
-     */
-    public NodesUsageRequest all() {
-        this.restActions = true;
-        return this;
-    }
-
-    /**
-     * Clears all the request flags.
-     */
-    public NodesUsageRequest clear() {
-        this.restActions = false;
-        return this;
-    }
-
-    /**
-     * Should the node rest actions usage statistics be returned.
-     */
-    public boolean restActions() {
-        return this.restActions;
-    }
-
-    /**
-     * Should the node rest actions usage statistics be returned.
-     */
-    public NodesUsageRequest restActions(boolean restActions) {
-        this.restActions = restActions;
-        return this;
-    }
-
     @Override
     public void readFrom(StreamInput in) throws IOException {
         super.readFrom(in);
-        this.restActions = in.readBoolean();
     }
 
     @Override
     public void writeTo(StreamOutput out) throws IOException {
         super.writeTo(out);
-        out.writeBoolean(restActions);
     }
 }

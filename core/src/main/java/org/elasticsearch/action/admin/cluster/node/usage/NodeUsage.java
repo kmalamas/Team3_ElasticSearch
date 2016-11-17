@@ -33,7 +33,7 @@ public class NodeUsage extends BaseNodeResponse implements ToXContent {
 
     private long timestamp;
     private long sinceTime;
-    private Map<String, Long> restUsage;
+    private Map<String, Long> actionUsage;
 
     NodeUsage() {
     }
@@ -44,54 +44,22 @@ public class NodeUsage extends BaseNodeResponse implements ToXContent {
         return nodeInfo;
     }
 
-    /**
-     * @param node
-     *            the node these statistics were collected from
-     * @param timestamp
-     *            the timestamp for when these statistics were collected
-     * @param sinceTime
-     *            the timestamp for when the collection of these statistics
-     *            started
-     * @param restUsage
-     *            a map containing the counts of the number of times each REST
-     *            endpoint has been called
-     */
-    public NodeUsage(DiscoveryNode node, long timestamp, long sinceTime, Map<String, Long> restUsage) {
+    public NodeUsage(DiscoveryNode node, long timestamp, long sinceTime, Map<String, Long> actionUsage) {
         super(node);
         this.timestamp = timestamp;
         this.sinceTime = sinceTime;
-        this.restUsage = restUsage;
+        this.actionUsage = actionUsage;
     }
 
-    /**
-     * @return the timestamp for when these statistics were collected
-     */
     public long getTimestamp() {
         return timestamp;
-    }
-
-    /**
-     * @return the timestamp for when the collection of these statistics started
-     */
-    public long getSinceTime() {
-        return sinceTime;
-    }
-
-    /**
-     * @return a map containing the counts of the number of times each REST
-     *         endpoint has been called
-     */
-    public Map<String, Long> getRestUsage() {
-        return restUsage;
     }
 
     @Override
     public XContentBuilder toXContent(XContentBuilder builder, Params params) throws IOException {
         builder.field("since", sinceTime);
-        if (restUsage != null) {
-            builder.field("rest_actions");
-            builder.map(restUsage);
-        }
+        builder.field("usage");
+        builder.map(actionUsage);
         return builder;
     }
 
@@ -101,7 +69,7 @@ public class NodeUsage extends BaseNodeResponse implements ToXContent {
         super.readFrom(in);
         timestamp = in.readLong();
         sinceTime = in.readLong();
-        restUsage = (Map<String, Long>) in.readGenericValue();
+        actionUsage = (Map<String, Long>) in.readGenericValue();
     }
 
     @Override
@@ -109,7 +77,7 @@ public class NodeUsage extends BaseNodeResponse implements ToXContent {
         super.writeTo(out);
         out.writeLong(timestamp);
         out.writeLong(sinceTime);
-        out.writeGenericValue(restUsage);
+        out.writeGenericValue(actionUsage);
     }
 
 }
