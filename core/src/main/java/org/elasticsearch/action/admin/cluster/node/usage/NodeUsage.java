@@ -38,11 +38,6 @@ public class NodeUsage extends BaseNodeResponse implements ToXContent {
     NodeUsage() {
     }
 
-    public static NodeUsage readNodeStats(StreamInput in) throws IOException {
-        NodeUsage nodeInfo = new NodeUsage();
-        nodeInfo.readFrom(in);
-        return nodeInfo;
-    }
 
     /**
      * @param node
@@ -63,6 +58,12 @@ public class NodeUsage extends BaseNodeResponse implements ToXContent {
         this.restUsage = restUsage;
     }
 
+    public static NodeUsage readNodeStats(StreamInput in) throws IOException {
+        NodeUsage nodeInfo = new NodeUsage();
+        nodeInfo.readFrom(in);
+        return nodeInfo;
+    }
+    
     /**
      * @return the timestamp for when these statistics were collected
      */
