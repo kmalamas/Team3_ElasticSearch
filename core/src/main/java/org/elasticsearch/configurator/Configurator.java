@@ -27,7 +27,7 @@ public class Configurator {
     protected Configurator(){
         isLateParsingQueryActivated = true;
         isGeoKMeansActivated = false;
-        isUsageStatisticsActivated = false;
+        isUsageStatisticsActivated = true;
         isXMLActivated = false;
 
             //openOrCreateFile();

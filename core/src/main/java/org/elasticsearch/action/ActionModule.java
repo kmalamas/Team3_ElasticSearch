@@ -208,6 +208,7 @@ import org.elasticsearch.common.inject.multibindings.Multibinder;
 import org.elasticsearch.common.network.NetworkModule;
 import org.elasticsearch.common.settings.ClusterSettings;
 import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.configurator.Configurator;
 import org.elasticsearch.plugins.ActionPlugin;
 import org.elasticsearch.plugins.ActionPlugin.ActionHandler;
 import org.elasticsearch.rest.RestController;
@@ -325,6 +326,7 @@ import static java.util.Collections.unmodifiableMap;
  */
 public class ActionModule extends AbstractModule {
 
+
     private final boolean transportClient;
     private final Settings settings;
     private final List<ActionPlugin> actionPlugins;
@@ -346,6 +348,7 @@ public class ActionModule extends AbstractModule {
         Set<String> headers = actionPlugins.stream().flatMap(p -> p.getRestHeaders().stream()).collect(Collectors.toSet());
         restController = new RestController(settings, headers, usageService);
     }
+
 
     public Map<String, ActionHandler<?, ?>> getActions() {
         return actions;
@@ -369,12 +372,15 @@ public class ActionModule extends AbstractModule {
             }
         }
         ActionRegistry actions = new ActionRegistry();
+        Configurator config = Configurator.getInstance();
 
         actions.register(MainAction.INSTANCE, TransportMainAction.class);
         actions.register(NodesInfoAction.INSTANCE, TransportNodesInfoAction.class);
         actions.register(NodesStatsAction.INSTANCE, TransportNodesStatsAction.class);
-        actions.register(NodesUsageAction.INSTANCE, TransportNodesUsageAction.class);
+        if (config.getisUsageStatisticsActivated()){
+            actions.register(NodesUsageAction.INSTANCE, TransportNodesUsageAction.class);
         actions.register(ClearNodesUsageAction.INSTANCE, TransportClearNodesUsageAction.class);
+         }
         actions.register(NodesHotThreadsAction.INSTANCE, TransportNodesHotThreadsAction.class);
         actions.register(ListTasksAction.INSTANCE, TransportListTasksAction.class);
         actions.register(GetTaskAction.INSTANCE, TransportGetTaskAction.class);
@@ -485,12 +491,16 @@ public class ActionModule extends AbstractModule {
     }
 
     static Set<Class<? extends RestHandler>> setupRestHandlers(List<ActionPlugin> actionPlugins) {
+        Configurator config = Configurator.getInstance();
         Set<Class<? extends RestHandler>> handlers = new HashSet<>();
         registerRestHandler(handlers, RestMainAction.class);
         registerRestHandler(handlers, RestNodesInfoAction.class);
         registerRestHandler(handlers, RestNodesStatsAction.class);
-        registerRestHandler(handlers, RestNodesUsageAction.class);
-        registerRestHandler(handlers, RestClearNodesUsageAction.class);
+        if (config.getisUsageStatisticsActivated()){
+            registerRestHandler(handlers, RestNodesUsageAction.class);
+            registerRestHandler(handlers, RestClearNodesUsageAction.class);
+        }
+
         registerRestHandler(handlers, RestNodesHotThreadsAction.class);
         registerRestHandler(handlers, RestClusterAllocationExplainAction.class);
         registerRestHandler(handlers, RestClusterStatsAction.class);

@@ -66,6 +66,11 @@ public class RestController extends AbstractLifecycleComponent {
         this.headersToCopy = headersToCopy;
         this.usageService = usageService;
     }
+    public RestController(Settings settings, Set<String> headersToCopy) {
+        super(settings);
+        this.headersToCopy = headersToCopy;
+
+    }
 
     @Override
     protected void doStart() {

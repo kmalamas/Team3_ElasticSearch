@@ -69,6 +69,7 @@ import org.elasticsearch.common.transport.TransportAddress;
 import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.common.util.BigArrays;
 import org.elasticsearch.common.xcontent.json.JsonXContent;
+
 import org.elasticsearch.discovery.Discovery;
 import org.elasticsearch.discovery.DiscoveryModule;
 import org.elasticsearch.discovery.DiscoverySettings;
@@ -155,7 +156,7 @@ import java.util.stream.Stream;
  */
 public class Node implements Closeable {
 
-
+    private org.elasticsearch.configurator.Configurator config = org.elasticsearch.configurator.Configurator.getInstance();
     public static final Setting<Boolean> WRITE_PORTS_FIELD_SETTING =
         Setting.boolSetting("node.portsfile", false, Property.NodeScope);
     public static final Setting<Boolean> NODE_DATA_SETTING = Setting.boolSetting("node.data", true, Property.NodeScope);
@@ -338,9 +339,14 @@ public class Node implements Closeable {
             modules.add(indicesModule);
             SearchModule searchModule = new SearchModule(settings, false, pluginsService.filterPlugins(SearchPlugin.class));
             modules.add(searchModule);
-            modules.add(new ActionModule(DiscoveryNode.isIngestNode(settings), false, settings,
+            if (config.getisUsageStatisticsActivated()){
+                            modules.add(new ActionModule(DiscoveryNode.isIngestNode(settings), false, settings,
                 clusterModule.getIndexNameExpressionResolver(), settingsModule.getClusterSettings(),
-                    pluginsService.filterPlugins(ActionPlugin.class), usageService));
+                    pluginsService.filterPlugins(ActionPlugin.class), usageService));}
+            else {
+                modules.add(new ActionModule(DiscoveryNode.isIngestNode(settings), false, settings,
+                        clusterModule.getIndexNameExpressionResolver(), settingsModule.getClusterSettings(),
+                        pluginsService.filterPlugins(ActionPlugin.class), null));}
             modules.add(new GatewayModule());
             modules.add(new RepositoriesModule(this.environment, pluginsService.filterPlugins(RepositoryPlugin.class)));
             pluginsService.processModules(modules);
@@ -624,7 +630,7 @@ public class Node implements Closeable {
         }
         if (shutdownEnabled) {
             LoggerContext context = (LoggerContext) LogManager.getContext(false);
-            Configurator.shutdown(context);
+            org.apache.logging.log4j.core.config.Configurator.shutdown(context);
         }
 
         return this;
