@@ -25,13 +25,13 @@ public class Configurator {
 
 
     protected Configurator(){
-        isLateParsingQueryActivated = false;
+        isLateParsingQueryActivated = true;
         isGeoKMeansActivated = false;
         isUsageStatisticsActivated = false;
         isXMLActivated = false;
 
-            openOrCreateFile();
-            loadConfiguration();
+            //openOrCreateFile();
+            //loadConfiguration();
 
     }
 
