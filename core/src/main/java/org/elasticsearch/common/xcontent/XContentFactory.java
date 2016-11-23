@@ -29,6 +29,8 @@ import org.elasticsearch.common.xcontent.cbor.CborXContent;
 import org.elasticsearch.common.xcontent.json.JsonXContent;
 import org.elasticsearch.common.xcontent.smile.SmileXContent;
 import org.elasticsearch.common.xcontent.yaml.YamlXContent;
+import org.elasticsearch.common.xcontent.xml.XmlXContent;
+import org.elasticsearch.common.xcontent.xml.XmlXParams;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -77,6 +79,27 @@ public class XContentFactory {
     }
 
     /**
+     * Constructs a new xml builder using XML.
+     */
+    public static XContentBuilder xmlBuilder() throws IOException {
+        return XmlXContent.contentBuilder();
+    }
+
+    /**
+     * Constructs a new xml builder using XML.
+     */
+    public static XContentBuilder xmlBuilder(XmlXParams params) throws IOException {
+        return XmlXContent.contentBuilder(params);
+    }
+
+    /**
+     * Constructs a new xml builder that will output the result into the provided output stream.
+     */
+    public static XContentBuilder xmlBuilder(OutputStream os) throws IOException {
+        return new XContentBuilder(XmlXContent.xmlXContent(), os);
+    }
+
+    /**
      * Constructs a new yaml builder that will output the result into the provided output stream.
      */
     public static XContentBuilder yamlBuilder(OutputStream os) throws IOException {
@@ -109,7 +132,10 @@ public class XContentFactory {
             return yamlBuilder(outputStream);
         } else if (type == XContentType.CBOR) {
             return cborBuilder(outputStream);
+        } else if (type == XContentType.XML) {
+            return xmlBuilder(outputStream);
         }
+
         throw new IllegalArgumentException("No matching content type for " + type);
     }
 
@@ -125,7 +151,10 @@ public class XContentFactory {
             return YamlXContent.contentBuilder();
         } else if (type == XContentType.CBOR) {
             return CborXContent.contentBuilder();
+        } else if (type == XContentType.XML) {
+            return XmlXContent.contentBuilder();
         }
+
         throw new IllegalArgumentException("No matching content type for " + type);
     }
 
@@ -165,6 +194,9 @@ public class XContentFactory {
             char c = content.charAt(i);
             if (c == '{') {
                 return XContentType.JSON;
+            }
+            if (c == '<') {
+                return XContentType.XML;
             }
             if (Character.isWhitespace(c) == false) {
                 break;
@@ -259,8 +291,11 @@ public class XContentFactory {
         if (length > 2 && first == '-' && bytes.get(1) == '-' && bytes.get(2) == '-') {
             return XContentType.YAML;
         }
+        if (length > 2 && first == '<' && bytes.get(1) == '?' && bytes.get(2) == 'x') {
+            return XContentType.XML;
+        }
         // CBOR logic similar to CBORFactory#hasCBORFormat
-        if (first == CBORConstants.BYTE_OBJECT_INDEFINITE && length > 1){
+        if (first == CBORConstants.BYTE_OBJECT_INDEFINITE && length > 1) {
             return XContentType.CBOR;
         }
         if (CBORConstants.hasMajorType(CBORConstants.MAJOR_TYPE_TAG, first) && length > 2) {

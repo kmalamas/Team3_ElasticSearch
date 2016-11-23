@@ -74,6 +74,9 @@ dependencies {
   compile "com.fasterxml.jackson.dataformat:jackson-dataformat-smile:${versions.jackson}"
   compile "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${versions.jackson}"
   compile "com.fasterxml.jackson.dataformat:jackson-dataformat-cbor:${versions.jackson}"
+  compile "com.fasterxml.jackson.dataformat:jackson-dataformat-xml:${versions.jackson}"
+  compile "com.fasterxml.woodstox:woodstox-core:5.0.2"
+  compile "org.codehaus.woodstox:stax2-api:4.0.0"
 
   // percentiles aggregation
   compile 'com.tdunning:t-digest:3.0'

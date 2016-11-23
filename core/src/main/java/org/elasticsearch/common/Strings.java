@@ -957,4 +957,79 @@ public class Strings {
         }
     }
 
+    public static String toUnderscoreCase(String value) {
+        return toUnderscoreCase(value, null);
+    }
+
+    public static String toUnderscoreCase(String value, StringBuilder sb) {
+        boolean changed = false;
+        for (int i = 0; i < value.length(); i++) {
+            char c = value.charAt(i);
+            if (Character.isUpperCase(c)) {
+                if (!changed) {
+                    if (sb != null) {
+                        sb.setLength(0);
+                    } else {
+                        sb = new StringBuilder();
+                    }
+                    // copy it over here
+                    for (int j = 0; j < i; j++) {
+                        sb.append(value.charAt(j));
+                    }
+                    changed = true;
+                    if (i == 0) {
+                        sb.append(Character.toLowerCase(c));
+                    } else {
+                        sb.append('_');
+                        sb.append(Character.toLowerCase(c));
+                    }
+                } else {
+                    sb.append('_');
+                    sb.append(Character.toLowerCase(c));
+                }
+            } else {
+                if (changed) {
+                    sb.append(c);
+                }
+            }
+        }
+        if (!changed) {
+            return value;
+        }
+        return sb.toString();
+    }
+
+    public static String toCamelCase(String value) {
+        return toCamelCase(value, null);
+    }
+
+    public static String toCamelCase(String value, StringBuilder sb) {
+        boolean changed = false;
+        for (int i = 0; i < value.length(); i++) {
+            char c = value.charAt(i);
+            if (c == '_') {
+                if (!changed) {
+                    if (sb != null) {
+                        sb.setLength(0);
+                    } else {
+                        sb = new StringBuilder();
+                    }
+                    // copy it over here
+                    for (int j = 0; j < i; j++) {
+                        sb.append(value.charAt(j));
+                    }
+                    changed = true;
+                }
+                sb.append(Character.toUpperCase(value.charAt(++i)));
+            } else {
+                if (changed) {
+                    sb.append(c);
+                }
+            }
+        }
+        if (!changed) {
+            return value;
+        }
+        return sb.toString();
+    }
 }

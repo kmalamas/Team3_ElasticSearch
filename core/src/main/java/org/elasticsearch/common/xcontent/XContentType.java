@@ -25,6 +25,7 @@ import org.elasticsearch.common.xcontent.cbor.CborXContent;
 import org.elasticsearch.common.xcontent.json.JsonXContent;
 import org.elasticsearch.common.xcontent.smile.SmileXContent;
 import org.elasticsearch.common.xcontent.yaml.YamlXContent;
+import org.elasticsearch.common.xcontent.xml.XmlXContent;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -94,6 +95,25 @@ public enum XContentType {
         @Override
         public XContent xContent() {
             return YamlXContent.yamlXContent;
+        }
+    },
+    /**
+     * The XML format.
+     */
+    XML(3) {
+        @Override
+        public String mediaTypeWithoutParameters() {
+            return "application/xml";
+        }
+
+        @Override
+        public String shortName() {
+            return "xml";
+        }
+
+        @Override
+        public XContent xContent() {
+            return XmlXContent.xmlXContent();
         }
     },
     /**
