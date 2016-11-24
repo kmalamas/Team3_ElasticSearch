@@ -29,6 +29,8 @@ import org.elasticsearch.common.xcontent.cbor.CborXContent;
 import org.elasticsearch.common.xcontent.json.JsonXContent;
 import org.elasticsearch.common.xcontent.smile.SmileXContent;
 import org.elasticsearch.common.xcontent.yaml.YamlXContent;
+import org.elasticsearch.common.xcontent.xml.XmlXContent;
+import org.elasticsearch.common.xcontent.xml.XmlXParams;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -96,6 +98,46 @@ public class XContentFactory {
     public static XContentBuilder cborBuilder(OutputStream os) throws IOException {
         return new XContentBuilder(CborXContent.cborXContent, os);
     }
+    /**
+
+     * Constructs a new xml builder using XML.
+
+     */
+
+    public static XContentBuilder xmlBuilder() throws IOException {
+
+        return XmlXContent.contentBuilder();
+
+    }
+
+
+
+    /**
+
+     * Constructs a new xml builder using XML.
+
+     */
+
+    public static XContentBuilder xmlBuilder(XmlXParams params) throws IOException {
+
+        return XmlXContent.contentBuilder(params);
+
+    }
+
+
+
+    /**
+
+     * Constructs a new xml builder that will output the result into the provided output stream.
+
+     */
+
+    public static XContentBuilder xmlBuilder(OutputStream os) throws IOException {
+
+        return new XContentBuilder(XmlXContent.xmlXContent(), os);
+
+    }
+
 
     /**
      * Constructs a xcontent builder that will output the result into the provided output stream.
@@ -109,6 +151,8 @@ public class XContentFactory {
             return yamlBuilder(outputStream);
         } else if (type == XContentType.CBOR) {
             return cborBuilder(outputStream);
+        } else if (type == XContentType.XML) {
+            return xmlBuilder(outputStream);
         }
         throw new IllegalArgumentException("No matching content type for " + type);
     }

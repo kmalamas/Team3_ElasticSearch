@@ -24,6 +24,7 @@ import org.elasticsearch.common.io.stream.StreamOutput;
 import org.elasticsearch.common.xcontent.cbor.CborXContent;
 import org.elasticsearch.common.xcontent.json.JsonXContent;
 import org.elasticsearch.common.xcontent.smile.SmileXContent;
+import org.elasticsearch.common.xcontent.xml.XmlXContent;
 import org.elasticsearch.common.xcontent.yaml.YamlXContent;
 
 import java.io.IOException;
@@ -113,6 +114,22 @@ public enum XContentType {
         @Override
         public XContent xContent() {
             return CborXContent.cborXContent;
+        }
+    },
+    XML(4) {
+        @Override
+        protected String mediaTypeWithoutParameters() {
+            return "application/xml";
+        }
+
+        @Override
+        public String shortName() {
+            return "xml";
+        }
+
+        @Override
+        public XContent xContent() {
+            return XmlXContent.xmlXContent();
         }
     };
 

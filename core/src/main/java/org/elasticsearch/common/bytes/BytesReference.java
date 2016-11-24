@@ -38,6 +38,9 @@ public abstract class BytesReference implements Accountable, Comparable<BytesRef
     /**
      * Returns the byte at the specified index. Need to be between 0 and length.
      */
+    public Boolean hasArray(){return true;}
+
+
     public abstract byte get(int index);
 
     /**
