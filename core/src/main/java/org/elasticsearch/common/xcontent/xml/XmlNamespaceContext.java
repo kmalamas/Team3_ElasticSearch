@@ -59,11 +59,6 @@ public class XmlNamespaceContext implements NamespaceContext {
     }
 
 
-    /**
-     * Empty namespace context.
-     *
-     * @return
-     */
     public static XmlNamespaceContext newInstance() {
         return new XmlNamespaceContext();
     }

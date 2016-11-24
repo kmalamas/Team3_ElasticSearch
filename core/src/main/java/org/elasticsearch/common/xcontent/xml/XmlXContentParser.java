@@ -23,6 +23,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 import org.apache.lucene.util.BytesRef;
 import org.apache.lucene.util.UnicodeUtil;
+import org.elasticsearch.common.xcontent.XContentLocation;
 import org.elasticsearch.common.xcontent.XContentParser;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.common.xcontent.support.AbstractXContentParser;
@@ -71,7 +72,7 @@ public class XmlXContentParser extends AbstractXContentParser {
     }
 
 
-    @Override
+
     public boolean estimatedNumberType() {
         return true;
     }
@@ -95,9 +96,14 @@ public class XmlXContentParser extends AbstractXContentParser {
     }
 
     @Override
+    public BytesRef utf8Bytes() throws IOException {
+        return null;
+    }
+
+
     public BytesRef bytes() throws IOException {
         BytesRef bytes = new BytesRef();
-        UnicodeUtil.UTF16toUTF8(parser.getTextCharacters(), parser.getTextOffset(), parser.getTextLength(), bytes);
+        UnicodeUtil.UTF16toUTF8(parser.getTextCharacters(), parser.getTextOffset(), parser.getTextLength(), bytes.bytes);
         return bytes;
     }
 
@@ -196,10 +202,20 @@ public class XmlXContentParser extends AbstractXContentParser {
         return parser.getDoubleValue();
     }
 
+    @Override
+    public boolean isClosed() {
+        return false;
+    }
+
 
     @Override
     public byte[] binaryValue() throws IOException {
         return parser.getBinaryValue();
+    }
+
+    @Override
+    public XContentLocation getTokenLocation() {
+        return null;
     }
 
 
