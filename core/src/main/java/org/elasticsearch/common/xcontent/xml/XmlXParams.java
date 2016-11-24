@@ -28,17 +28,19 @@ import javax.xml.namespace.QName;
 public class XmlXParams {
 
     private final static XmlXParams instance = new XmlXParams();
-
     private final QName root;
 
     private final XmlNamespaceContext namespaceContext;
 
     public XmlXParams() {
-        this(null, null);
+
+        this.root = getDefaultRoot();
+        this.namespaceContext = XmlNamespaceContext.getDefaultInstance();
     }
 
     public XmlXParams(QName root) {
-        this(root, null);
+        this.root = getDefaultRoot();
+        this.namespaceContext = XmlNamespaceContext.getDefaultInstance();
     }
 
     public XmlXParams(XmlNamespaceContext namespaceContext) {

@@ -111,7 +111,7 @@ public class XmlXContent implements XContent {
 
     @Override
     public XContentGenerator createGenerator(OutputStream os, Set<String> includes, Set<String> excludes) throws IOException {
-        return null;
+        return new XmlXContentGenerator(xmlFactory.createGenerator(os, JsonEncoding.UTF8));
     }
 
 

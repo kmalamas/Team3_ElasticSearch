@@ -169,6 +169,8 @@ public class XContentFactory {
             return YamlXContent.contentBuilder();
         } else if (type == XContentType.CBOR) {
             return CborXContent.contentBuilder();
+        }else if (type == XContentType.XML) {
+            return XmlXContent.contentBuilder();
         }
         throw new IllegalArgumentException("No matching content type for " + type);
     }
