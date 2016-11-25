@@ -22,7 +22,9 @@ package org.elasticsearch.common.xcontent.xml;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.dataformat.xml.ser.ToXmlGenerator;
 import com.google.common.base.Charsets;
+import org.apache.logging.log4j.Logger;
 import org.elasticsearch.common.bytes.BytesReference;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.xcontent.XContentGenerator;
 import org.elasticsearch.common.xcontent.XContentHelper;
 import org.elasticsearch.common.xcontent.XContentParser;
@@ -47,6 +49,9 @@ public class XmlXContentGenerator implements XContentGenerator {
     private XmlXParams params = XmlXParams.getDefaultParams();
 
     private boolean started = false;
+
+    private static final Logger logger = Loggers.getLogger(XmlXContentGenerator.class);
+
 
     public XmlXContentGenerator(ToXmlGenerator generator) {
         this.generator = generator;
@@ -112,6 +117,7 @@ public class XmlXContentGenerator implements XContentGenerator {
             }
         } catch (XMLStreamException e) {
             //
+            logger.error("Error when attempting to write to XML object", e);
         }
     }
 

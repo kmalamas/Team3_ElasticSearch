@@ -20,6 +20,9 @@
 package org.elasticsearch.common.xcontent.xml;
 
 import com.google.common.collect.Maps;
+import org.apache.logging.log4j.Logger;
+import org.elasticsearch.common.logging.Loggers;
+
 import javax.xml.namespace.NamespaceContext;
 import java.util.Enumeration;
 import java.util.HashSet;
@@ -41,6 +44,8 @@ public class XmlNamespaceContext implements NamespaceContext {
     private final SortedMap<String, String> namespaces = Maps.newTreeMap();
 
     private final SortedMap<String, Set<String>> prefixes = Maps.newTreeMap();
+
+    private static final Logger logger = Loggers.getLogger(XmlNamespaceContext.class);
 
     protected XmlNamespaceContext() {
     }
@@ -71,7 +76,7 @@ public class XmlNamespaceContext implements NamespaceContext {
         try {
             return new XmlNamespaceContext(ResourceBundle.getBundle(bundleName));
         } catch (MissingResourceException e) {
-            //logger.warn("bundle name {} not found, namespace will be empty", bundleName);
+            logger.warn("bundle name {} not found, namespace will be empty", bundleName);
             return new XmlNamespaceContext();
         }
     }
