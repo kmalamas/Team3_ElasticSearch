@@ -25,6 +25,10 @@ import javax.xml.namespace.QName;
 
 public class ToQName {
 
+    private ToQName() {
+        throw new IllegalAccessError("Utility class");
+    }
+
     public static QName toQName(QName root, XmlNamespaceContext context, String name) {
         String nsPrefix = root.getPrefix();
         String nsURI = root.getNamespaceURI();
