@@ -21,8 +21,10 @@ package org.elasticsearch.common.xcontent.xml;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
+import org.apache.logging.log4j.Logger;
 import org.apache.lucene.util.BytesRef;
 import org.apache.lucene.util.UnicodeUtil;
+import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.xcontent.XContentLocation;
 import org.elasticsearch.common.xcontent.XContentParser;
 import org.elasticsearch.common.xcontent.XContentType;
@@ -36,6 +38,9 @@ import java.io.IOException;
 public class XmlXContentParser extends AbstractXContentParser {
 
     final JsonParser parser;
+
+    private static final Logger logger = Loggers.getLogger(XmlXContentParser.class);
+
 
     public XmlXContentParser(JsonParser parser) {
         this.parser = parser;
@@ -224,7 +229,7 @@ public class XmlXContentParser extends AbstractXContentParser {
         try {
             parser.close();
         } catch (IOException e) {
-            // ignore
+            logger.error("Could not close JSONParser", e);
         }
     }
 
