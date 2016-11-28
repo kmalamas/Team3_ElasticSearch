@@ -124,4 +124,8 @@ grant {
 
   // io stats on Linux
   permission java.io.FilePermission "/proc/diskstats", "read";
+
+  // grant permission to feature.config file used in configurator
+  permission java.io.FilePermission "./feature.config", "read,write";
+
 };
