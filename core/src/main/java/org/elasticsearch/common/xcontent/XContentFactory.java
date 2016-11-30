@@ -29,6 +29,9 @@ import org.elasticsearch.common.xcontent.cbor.CborXContent;
 import org.elasticsearch.common.xcontent.json.JsonXContent;
 import org.elasticsearch.common.xcontent.smile.SmileXContent;
 import org.elasticsearch.common.xcontent.yaml.YamlXContent;
+import org.elasticsearch.common.xcontent.xml.XmlXContent;
+import org.elasticsearch.common.xcontent.xml.XmlXParams;
+import org.elasticsearch.configurator.Configurator;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,7 +43,7 @@ import java.io.OutputStream;
 public class XContentFactory {
 
     private static int GUESS_HEADER_LENGTH = 20;
-
+    private static Configurator config;
     /**
      * Returns a content builder using JSON format ({@link org.elasticsearch.common.xcontent.XContentType#JSON}.
      */
@@ -96,11 +99,53 @@ public class XContentFactory {
     public static XContentBuilder cborBuilder(OutputStream os) throws IOException {
         return new XContentBuilder(CborXContent.cborXContent, os);
     }
+    /**
+
+     * Constructs a new xml builder using XML.
+
+     */
+
+    public static XContentBuilder xmlBuilder() throws IOException {
+
+        return XmlXContent.contentBuilder();
+
+    }
+
+
+
+    /**
+
+     * Constructs a new xml builder using XML.
+
+     */
+
+    public static XContentBuilder xmlBuilder(XmlXParams params) throws IOException {
+
+        return XmlXContent.contentBuilder(params);
+
+    }
+
+
+
+    /**
+
+     * Constructs a new xml builder that will output the result into the provided output stream.
+
+     */
+
+    public static XContentBuilder xmlBuilder(OutputStream os) throws IOException {
+
+        return new XContentBuilder(XmlXContent.xmlXContent(), os);
+
+    }
+
 
     /**
      * Constructs a xcontent builder that will output the result into the provided output stream.
      */
     public static XContentBuilder contentBuilder(XContentType type, OutputStream outputStream) throws IOException {
+       config = Configurator.getInstance();
+       System.out.println(type.toString());
         if (type == XContentType.JSON) {
             return jsonBuilder(outputStream);
         } else if (type == XContentType.SMILE) {
@@ -109,6 +154,9 @@ public class XContentFactory {
             return yamlBuilder(outputStream);
         } else if (type == XContentType.CBOR) {
             return cborBuilder(outputStream);
+        } else if (type == XContentType.XML&& config.getisXMLActivated()==true) {
+            System.out.println(" getisXMLActivated() returns "+ config.getisXMLActivated());
+            return xmlBuilder(outputStream);
         }
         throw new IllegalArgumentException("No matching content type for " + type);
     }
@@ -117,6 +165,7 @@ public class XContentFactory {
      * Returns a binary content builder for the provided content type.
      */
     public static XContentBuilder contentBuilder(XContentType type) throws IOException {
+        config = Configurator.getInstance();
         if (type == XContentType.JSON) {
             return JsonXContent.contentBuilder();
         } else if (type == XContentType.SMILE) {
@@ -125,6 +174,9 @@ public class XContentFactory {
             return YamlXContent.contentBuilder();
         } else if (type == XContentType.CBOR) {
             return CborXContent.contentBuilder();
+        }else if (type == XContentType.XML&&config.getisXMLActivated()==true) {
+            System.out.println("binary getisXMLActivated() returns "+ config.getisXMLActivated());
+            return XmlXContent.contentBuilder();
         }
         throw new IllegalArgumentException("No matching content type for " + type);
     }

@@ -1,0 +1,18 @@
+{
+   "index" : {
+      "analysis" : {
+          "filter" : {
+              "standardnumber" : {
+                  "type" : "standardnumber",
+                  "number_types" : [ "isbn" ]
+              }
+          },
+          "analyzer" : {
+              "standardnumber" : {
+                  "tokenizer" : "whitespace",
+                  "filter" : [ "standardnumber", "unique" ]
+              }
+          }
+      }
+   }
+}

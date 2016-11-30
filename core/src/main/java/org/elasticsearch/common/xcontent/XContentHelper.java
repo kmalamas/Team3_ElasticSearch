@@ -28,6 +28,7 @@ import org.elasticsearch.common.compress.Compressor;
 import org.elasticsearch.common.compress.CompressorFactory;
 import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.xcontent.ToXContent.Params;
+import org.elasticsearch.common.xcontent.xml.XmlXParams;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -108,6 +109,65 @@ public class XContentHelper {
             builder.copyCurrentStructure(parser);
             return builder.string();
         }
+    }
+    public static String convertToXml(byte[] data, int offset, int length) throws IOException {
+
+        return convertToXml(XmlXParams.getDefaultParams(), data, offset, length, false);
+
+    }
+
+
+
+    public static String convertToXml(byte[] data, int offset, int length, boolean prettyprint) throws IOException {
+
+        return convertToXml(XmlXParams.getDefaultParams(), data, offset, length, prettyprint);
+
+    }
+
+
+
+    public static String convertToXml(XmlXParams params, byte[] data, int offset, int length) throws IOException {
+
+        return convertToXml(params, data, offset, length, false);
+
+    }
+
+
+
+    public static String convertToXml(XmlXParams params, byte[] data, int offset, int length, boolean prettyPrint) throws IOException {
+
+        XContentType xContentType = XContentFactory.xContentType(data, offset, length);
+
+        XContentParser parser = null;
+
+        try {
+
+            parser = XContentFactory.xContent(xContentType).createParser(data, offset, length);
+
+            parser.nextToken();
+
+            XContentBuilder builder = XContentFactory.xmlBuilder(params);
+
+            if (prettyPrint) {
+
+                builder.prettyPrint();
+
+            }
+
+            builder.copyCurrentStructure(parser);
+
+            return builder.string();
+
+        } finally {
+
+            if (parser != null) {
+
+                parser.close();
+
+            }
+
+        }
+
     }
 
     /**
