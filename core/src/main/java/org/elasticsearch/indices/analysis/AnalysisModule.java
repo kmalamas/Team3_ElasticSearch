@@ -22,6 +22,7 @@ package org.elasticsearch.indices.analysis;
 import org.elasticsearch.Version;
 import org.elasticsearch.cluster.metadata.IndexMetaData;
 import org.elasticsearch.common.NamedRegistry;
+import org.elasticsearch.common.inject.Injector;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.env.Environment;
 import org.elasticsearch.index.IndexSettings;
@@ -141,6 +142,8 @@ import org.elasticsearch.index.analysis.WhitespaceTokenizerFactory;
 import org.elasticsearch.index.analysis.WordDelimiterTokenFilterFactory;
 import org.elasticsearch.index.analysis.compound.DictionaryCompoundWordTokenFilterFactory;
 import org.elasticsearch.index.analysis.compound.HyphenationCompoundWordTokenFilterFactory;
+import org.elasticsearch.index.analysis.standardnumber.StandardnumberAnalyzerProvider;
+import org.elasticsearch.index.analysis.standardnumber.StandardnumberTokenFilterFactory;
 import org.elasticsearch.plugins.AnalysisPlugin;
 
 import java.io.IOException;
@@ -162,6 +165,7 @@ public final class AnalysisModule {
 
     private final HunspellService hunspellService;
     private final AnalysisRegistry analysisRegistry;
+
 
     public AnalysisModule(Environment environment, List<AnalysisPlugin> plugins) throws IOException {
         NamedRegistry<AnalysisProvider<CharFilterFactory>> charFilters = setupCharFilters(plugins);
@@ -253,11 +257,12 @@ public final class AnalysisModule {
                 (indexSettings, env, name, settings) -> new HunspellTokenFilterFactory(indexSettings, name, settings, hunspellService)));
         tokenFilters.register("cjk_bigram", CJKBigramFilterFactory::new);
         tokenFilters.register("cjk_width", CJKWidthFilterFactory::new);
-
+        tokenFilters.register("standard_number", StandardnumberTokenFilterFactory::new);
         tokenFilters.register("apostrophe", ApostropheFilterFactory::new);
         tokenFilters.register("classic", ClassicFilterFactory::new);
         tokenFilters.register("decimal_digit", DecimalDigitFilterFactory::new);
         tokenFilters.register("fingerprint", FingerprintTokenFilterFactory::new);
+        tokenFilters.register("standardnumber", StandardnumberTokenFilterFactory::new);
         tokenFilters.extractAndRegister(plugins, AnalysisPlugin::getTokenFilters);
         return tokenFilters;
     }
@@ -329,6 +334,8 @@ public final class AnalysisModule {
         analyzers.register("turkish", TurkishAnalyzerProvider::new);
         analyzers.register("thai", ThaiAnalyzerProvider::new);
         analyzers.register("fingerprint", FingerprintAnalyzerProvider::new);
+        analyzers.register("standardnumber",  StandardnumberAnalyzerProvider::new);
+
         analyzers.extractAndRegister(plugins, AnalysisPlugin::getAnalyzers);
         return analyzers;
     }
@@ -345,6 +352,7 @@ public final class AnalysisModule {
             }
         };
     }
+
 
     /**
      * The basic factory interface for analysis components.
