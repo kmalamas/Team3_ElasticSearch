@@ -28,6 +28,7 @@ import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentGenerator;
 import org.elasticsearch.common.xcontent.XContentParser;
 import org.elasticsearch.common.xcontent.XContentType;
+import org.elasticsearch.configurator.Configurator;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLOutputFactory;
@@ -47,6 +48,7 @@ public class XmlXContent implements XContent {
     private final static XMLInputFactory inputFactory = XMLInputFactory.newInstance();
 
     private final static XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
+    private Configurator config = Configurator.getInstance();
 
     static {
         inputFactory.setProperty("javax.xml.stream.isNamespaceAware", Boolean.TRUE);
@@ -111,7 +113,9 @@ public class XmlXContent implements XContent {
 
     @Override
     public XContentGenerator createGenerator(OutputStream os, Set<String> includes, Set<String> excludes) throws IOException {
-        return new XmlXContentGenerator(xmlFactory.createGenerator(os, JsonEncoding.UTF8));
+        if (config.getisXMLActivated()) {
+            return new XmlXContentGenerator(xmlFactory.createGenerator(os, JsonEncoding.UTF8));
+        } else return null;
     }
 
 

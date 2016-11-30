@@ -19,13 +19,8 @@
 
 package org.elasticsearch.configurator;
 
-import org.elasticsearch.SpecialPermission;
 
 import java.io.*;
-import java.security.AccessController;
-import java.security.PrivilegedAction;
-import java.security.PrivilegedActionException;
-import java.security.PrivilegedExceptionAction;
 import java.util.Properties;
 
 /**
@@ -38,13 +33,10 @@ public class Configurator {
     private boolean isGeoKMeansActivated = false;
     private boolean isUsageStatisticsActivated = false;
     private boolean isXMLActivated = false;
+    private boolean isStandardNumberAnalysisActivated = false;
     private File file;
 
-
-
-
     protected Configurator(){
-
         openOrCreateFile();
         loadConfiguration();
     }
@@ -56,7 +48,6 @@ public class Configurator {
         }
         else INSTANCE.loadConfiguration();
         return INSTANCE;
-
     }
 
     private void openOrCreateFile() {
@@ -76,7 +67,6 @@ public class Configurator {
                 }
     }
 
-
     /**
      * provides functionality for saving to the configuration file from potential external sources.
      */
@@ -92,6 +82,7 @@ public class Configurator {
                     prop.setProperty("GeoKMeans", String.valueOf(isGeoKMeansActivated) );
                     prop.setProperty("UsageStatistics", String.valueOf(isUsageStatisticsActivated) );
                     prop.setProperty("XML", String.valueOf(isXMLActivated) );
+                    prop.setProperty("StandardNumberAnalysis", String.valueOf(isStandardNumberAnalysisActivated) );
 
                     // save properties to project root folder
                     prop.store(output, null);
@@ -101,6 +92,9 @@ public class Configurator {
                 }
     }
 
+    /**
+     * Loads the configuration from feature.config file
+     */
     public void loadConfiguration(){
     Properties prop = new Properties();
 
@@ -109,27 +103,28 @@ public class Configurator {
                     InputStream input =new FileInputStream(file);
                     // load a properties file
                     prop.load(input);
-
                     // get the property value and print it out
                     isLateParsingQueryActivated = Boolean.valueOf(prop.getProperty("LateParsingQuery"));
                     isGeoKMeansActivated = Boolean.valueOf(prop.getProperty("GeoKMeans"));
                     isUsageStatisticsActivated = Boolean.valueOf(prop.getProperty("UsageStatistics"));
                     isXMLActivated = Boolean.valueOf(prop.getProperty("XML"));
-                    //printValues();
-
-                } catch (Exception e) {
+                    isStandardNumberAnalysisActivated = Boolean.valueOf(prop.getProperty("StandardNumberAnalysis"));
+                    } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
-
-
     }
+
+    /**
+     * Printing values for debugging purposes
+     */
     public void printValues(){
         System.out.println("LateParsingQuery Activated: "+isLateParsingQueryActivated);
         System.out.println("GeoKMeans Activated: "+isGeoKMeansActivated);
         System.out.println("UsageStatistics Activated: "+isUsageStatisticsActivated);
         System.out.println("XML Activated: "+isXMLActivated);
+        System.out.println("StandardNumberAnalysis Activated: "+isStandardNumberAnalysisActivated);
     }
-
+ //get/set methods for the boolean variables.
     public boolean getisLateParsingQueryActivated(){return isLateParsingQueryActivated;}
     public void setLateParsingQueryActivated(boolean state){isLateParsingQueryActivated = state;}
     public boolean getisGeoKMeansActivated(){return isGeoKMeansActivated;}
@@ -138,5 +133,7 @@ public class Configurator {
     public void setUsageStatisticsActivated(boolean state){ isUsageStatisticsActivated = state;}
     public boolean getisXMLActivated(){return isXMLActivated;}
     public void setXMLActivated(boolean state){ isXMLActivated = state;}
+    public boolean getisStandardNumberAnalysisActivated(){return isStandardNumberAnalysisActivated;}
+    public void setStandardNumberAnalysisActivated(boolean state){ isStandardNumberAnalysisActivated = state;}
 
 }

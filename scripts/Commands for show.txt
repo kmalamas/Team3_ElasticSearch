@@ -1,0 +1,15 @@
+commands for show
+
+GeoKMeamns
+curl -XPUT http://localhost:9200/places -d @setup_places.json 
+python2 createDatabaseEntries.py
+curl -XGET http://localhost:9200/places/place/_search?pretty=true -d @aggregation-query.json 
+
+XML
+curl -XGET http://localhost:9200/places/_count?format=xml
+
+StandardNumberAnalysis
+
+curl -XGET http://localhost:9200/_analyze?analyzer=standardnumber -d "Die ISBN von Elasticsearch in Action lautet 9781617291623"
+
+ 

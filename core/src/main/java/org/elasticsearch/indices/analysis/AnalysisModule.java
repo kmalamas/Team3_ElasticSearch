@@ -24,6 +24,7 @@ import org.elasticsearch.cluster.metadata.IndexMetaData;
 import org.elasticsearch.common.NamedRegistry;
 import org.elasticsearch.common.inject.Injector;
 import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.configurator.Configurator;
 import org.elasticsearch.env.Environment;
 import org.elasticsearch.index.IndexSettings;
 import org.elasticsearch.index.analysis.ASCIIFoldingTokenFilterFactory;
@@ -165,7 +166,7 @@ public final class AnalysisModule {
 
     private final HunspellService hunspellService;
     private final AnalysisRegistry analysisRegistry;
-
+    private Configurator config = Configurator.getInstance();
 
     public AnalysisModule(Environment environment, List<AnalysisPlugin> plugins) throws IOException {
         NamedRegistry<AnalysisProvider<CharFilterFactory>> charFilters = setupCharFilters(plugins);
@@ -262,7 +263,9 @@ public final class AnalysisModule {
         tokenFilters.register("classic", ClassicFilterFactory::new);
         tokenFilters.register("decimal_digit", DecimalDigitFilterFactory::new);
         tokenFilters.register("fingerprint", FingerprintTokenFilterFactory::new);
-        tokenFilters.register("standardnumber", StandardnumberTokenFilterFactory::new);
+        if (config.getisStandardNumberAnalysisActivated()) {
+            tokenFilters.register("standardnumber", StandardnumberTokenFilterFactory::new);
+        }
         tokenFilters.extractAndRegister(plugins, AnalysisPlugin::getTokenFilters);
         return tokenFilters;
     }
@@ -334,7 +337,9 @@ public final class AnalysisModule {
         analyzers.register("turkish", TurkishAnalyzerProvider::new);
         analyzers.register("thai", ThaiAnalyzerProvider::new);
         analyzers.register("fingerprint", FingerprintAnalyzerProvider::new);
-        analyzers.register("standardnumber",  StandardnumberAnalyzerProvider::new);
+        if (config.getisStandardNumberAnalysisActivated()) {
+            analyzers.register("standardnumber", StandardnumberAnalyzerProvider::new);
+        }
 
         analyzers.extractAndRegister(plugins, AnalysisPlugin::getAnalyzers);
         return analyzers;

@@ -26,7 +26,9 @@ import org.elasticsearch.action.update.UpdateHelper;
 import org.elasticsearch.cluster.metadata.MetaDataIndexUpgradeService;
 import org.elasticsearch.common.geo.ShapesAvailability;
 import org.elasticsearch.common.inject.AbstractModule;
+import org.elasticsearch.common.inject.ConfigurationException;
 import org.elasticsearch.common.io.stream.NamedWriteableRegistry.Entry;
+import org.elasticsearch.configurator.Configurator;
 import org.elasticsearch.index.NodeServicesProvider;
 import org.elasticsearch.index.mapper.AllFieldMapper;
 import org.elasticsearch.index.mapper.BinaryFieldMapper;
@@ -83,6 +85,7 @@ public class IndicesModule extends AbstractModule {
     private final Map<String, MetadataFieldMapper.TypeParser> metadataMapperParsers;
     private final MapperRegistry mapperRegistry;
     private final List<Entry> namedWritables = new ArrayList<>();
+    private Configurator config = Configurator.getInstance();
 
     public IndicesModule(List<MapperPlugin> mapperPlugins) {
         this.mapperParsers = getMappers(mapperPlugins);
@@ -120,7 +123,9 @@ public class IndicesModule extends AbstractModule {
         mappers.put(ObjectMapper.NESTED_CONTENT_TYPE, new ObjectMapper.TypeParser());
         mappers.put(CompletionFieldMapper.CONTENT_TYPE, new CompletionFieldMapper.TypeParser());
         mappers.put(GeoPointFieldMapper.CONTENT_TYPE, new GeoPointFieldMapper.TypeParser());
+       if (config.getisStandardNumberAnalysisActivated()){
         mappers.put(StandardnumberMapper.CONTENT_TYPE, new StandardnumberMapper.TypeParser());
+       }
         if (ShapesAvailability.JTS_AVAILABLE && ShapesAvailability.SPATIAL4J_AVAILABLE) {
             mappers.put(GeoShapeFieldMapper.CONTENT_TYPE, new GeoShapeFieldMapper.TypeParser());
         }
