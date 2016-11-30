@@ -184,7 +184,7 @@ public class AnalysisModuleTests extends ModuleTestCase {
             .build();
         AnalysisRegistry newRegistry = getNewRegistry(settings);
         IllegalStateException ise = expectThrows(IllegalStateException.class, () -> getAnalysisService(newRegistry, settings));
-        assertEquals("alias [default] is already used by [foobar]", ise.getMessage());
+        assertEquals("alias [default] is already used by [foobar1]", ise.getMessage());
     }
 
     public void testAnalyzerAliasNotAllowedPost5x() throws IOException {
