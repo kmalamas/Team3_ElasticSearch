@@ -22,6 +22,9 @@
  */
 package org.elasticsearch.common.standardnumber;
 
+import org.apache.logging.log4j.Logger;
+import org.elasticsearch.common.logging.Loggers;
+
 import java.net.URI;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -51,6 +54,8 @@ public class ARK extends AbstractStandardNumber implements Comparable<ARK> {
 
     private static final Pattern URI_PATTERN = Pattern.compile("^(ark)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]");
 
+    private static final Logger logger = Loggers.getLogger(ARK.class);
+
     private URI value;
 
     @Override
@@ -68,8 +73,8 @@ public class ARK extends AbstractStandardNumber implements Comparable<ARK> {
         try {
             this.value = value != null ? URI.create(value.toString()) : null;
         } catch (IllegalArgumentException e) {
+            logger.error(e.getMessage());
             this.value = null;
-
         }
         return this;
     }

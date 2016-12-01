@@ -22,6 +22,9 @@
  */
 package org.elasticsearch.common.standardnumber;
 
+import org.apache.logging.log4j.Logger;
+import org.elasticsearch.common.logging.Loggers;
+
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -78,6 +81,8 @@ public class ISBN extends AbstractStandardNumber implements Comparable<ISBN>, St
     private boolean valid;
 
     private boolean isEAN;
+
+    private static final Logger logger = Loggers.getLogger(ISBN.class);
 
     @Override
     public String type() {
@@ -240,97 +245,131 @@ public class ISBN extends AbstractStandardNumber implements Comparable<ISBN>, St
         }
         if (value.length() == 10) {
             // ISBN-10
-            int checksum = 0;
-            int weight = 10;
-            for (i = 0; weight > 0; i++) {
-                val = value.charAt(i) == 'X' || value.charAt(i) == 'x' ? 10
-                        : value.charAt(i) - '0';
-                if (val >= 0) {
-                    if (val == 10 && weight != 1) {
-                        return false;
-                    }
-                    checksum += weight * val;
-                    weight--;
-                } else {
-                    return false;
-                }
-            }
-            String s = value.substring(0, 9);
-            if (checksum % 11 != 0) {
-                if (createWithChecksum) {
-                    this.value = s + createCheckDigit10(s);
-                } else {
-                    return false;
-                }
-            }
-            this.eanvalue = "978" + s + createCheckDigit13("978" + s);
+            if (checkISBNTenDigit()) return false;
         } else if (value.length() == 13) {
             // ISBN-13 "book land"
-            if (!value.startsWith("978") && !value.startsWith("979")) {
-                return false;
-            }
-            int checksum13 = 0;
-            int weight13 = 1;
-            for (i = 0; i < 13; i++) {
-                val = value.charAt(i) == 'X' || value.charAt(i) == 'x' ? 10 : value.charAt(i) - '0';
-                if (val >= 0) {
-                    if (val == 10) {
-                        return false;
-                    }
-                    checksum13 += (weight13 * val);
-                    weight13 = (weight13 + 2) % 4;
-                } else {
-                    return false;
-                }
-            }
-            // set value
-            if ((checksum13 % 10) != 0) {
-                if (eanPreferred && createWithChecksum) {
-                    // with createChecksum
-                    eanvalue = value.substring(0, 12) + createCheckDigit13(value.substring(0, 12));
-                } else {
-                    return false;
-                }
-            } else {
-                eanvalue = value;
-            }
-            if (!eanPreferred && (eanvalue.startsWith("978") || eanvalue.startsWith("979"))) {
-                // create 10-digit from 13-digit
-                this.value = eanvalue.substring(3, 12) + createCheckDigit10(eanvalue.substring(3, 12));
-            } else {
-                // 10 digit version not available - not an error
-                this.value = null;
-            }
-            this.isEAN = true;
+            if (checkISBNThirteenDigit()) return false;
         } else if (value.length() == 9) {
-            String s = value.substring(0, 9);
-            // repair ISBN-10 ?
-            if (createWithChecksum) {
-                // create 978 from 10-digit without createChecksum
-                eanvalue = "978" + s + createCheckDigit13("978" + s);
-                value = s + createCheckDigit10(s);
-            } else {
-                return false;
-            }
+            if (repairISBNTen()) return false;
         } else if (value.length() == 12) {
             // repair ISBN-13 ?
-            if (!value.startsWith("978") && !value.startsWith("979")) {
-                return false;
-            }
-            if (createWithChecksum) {
-                String s = value.substring(0, 9);
-                String t = value.substring(3, 12);
-                // create 978 from 10-digit
-                this.eanvalue = "978" + s + createCheckDigit13("978" + s);
-                this.value = t + createCheckDigit10(t);
-            } else {
-                return false;
-            }
-            this.isEAN = true;
+            if (repairISBNThirteen()) return false;
         } else {
             return false;
         }
         return true;
+    }
+
+    private boolean repairISBNThirteen() {
+        if (!value.startsWith("978") && !value.startsWith("979")) {
+            return true;
+        }
+        if (createWithChecksum) {
+            String s = value.substring(0, 9);
+            String t = value.substring(3, 12);
+            // create 978 from 10-digit
+            this.eanvalue = "978" + s + createCheckDigit13("978" + s);
+            this.value = t + createCheckDigit10(t);
+        } else {
+            return true;
+        }
+        this.isEAN = true;
+        return false;
+    }
+
+    private boolean repairISBNTen() {
+        String s = value.substring(0, 9);
+        // repair ISBN-10 ?
+        if (createWithChecksum) {
+            // create 978 from 10-digit without createChecksum
+            eanvalue = "978" + s + createCheckDigit13("978" + s);
+            value = s + createCheckDigit10(s);
+        } else {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkISBNThirteenDigit() {
+        int i;
+        int val;
+        if (!value.startsWith("978") && !value.startsWith("979")) {
+            return true;
+        }
+        int checksum13 = 0;
+        int weight13 = 1;
+        for (i = 0; i < 13; i++) {
+            val = value.charAt(i) == 'X' || value.charAt(i) == 'x' ? 10 : value.charAt(i) - '0';
+            if (val >= 0) {
+                if (val == 10) {
+                    return true;
+                }
+                checksum13 += (weight13 * val);
+                weight13 = (weight13 + 2) % 4;
+            } else {
+                return true;
+            }
+        }
+        // set value
+        if (setEanValue(checksum13)) return true;
+        if (!eanPreferred && (eanvalue.startsWith("978") || eanvalue.startsWith("979"))) {
+            // create 10-digit from 13-digit
+            this.value = eanvalue.substring(3, 12) + createCheckDigit10(eanvalue.substring(3, 12));
+        } else {
+            // 10 digit version not available - not an error
+            this.value = null;
+        }
+        this.isEAN = true;
+        return false;
+    }
+
+    private boolean checkISBNTenDigit() {
+        int i;
+        int val;
+        int checksum = 0;
+        int weight = 10;
+        for (i = 0; weight > 0; i++) {
+            val = value.charAt(i) == 'X' || value.charAt(i) == 'x' ? 10
+                    : value.charAt(i) - '0';
+            if (val >= 0) {
+                if (val == 10 && weight != 1) {
+                    return true;
+                }
+                checksum += weight * val;
+                weight--;
+            } else {
+                return true;
+            }
+        }
+        String s = value.substring(0, 9);
+        if (checkCheckSum(checksum, s)) return true;
+        this.eanvalue = "978" + s + createCheckDigit13("978" + s);
+        return false;
+    }
+
+    private boolean setEanValue(int checksum13) {
+        if ((checksum13 % 10) != 0) {
+            if (eanPreferred && createWithChecksum) {
+                // with createChecksum
+                eanvalue = value.substring(0, 12) + createCheckDigit13(value.substring(0, 12));
+            } else {
+                return true;
+            }
+        } else {
+            eanvalue = value;
+        }
+        return false;
+    }
+
+    private boolean checkCheckSum(int checksum, String s) {
+        if (checksum % 11 != 0) {
+            if (createWithChecksum) {
+                this.value = s + createCheckDigit10(s);
+            } else {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -455,6 +494,7 @@ public class ISBN extends AbstractStandardNumber implements Comparable<ISBN>, St
                     xmlReader.nextEvent();
                 }
             } catch (XMLStreamException e) {
+                logger.error(e.getMessage());
                 throw new RuntimeException(e.getMessage());
             }
         }
