@@ -50,7 +50,6 @@ import org.elasticsearch.test.TestSearchContext;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.junit.Before;
-import org.elasticsearch.configurator.Configurator;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -254,7 +253,7 @@ public class InnerRangeDateFieldMapperTests extends ESSingleNodeTestCase {
         LegacyNumericRangeQuery<Long> rangeQuery;
         try {
             SearchContext.setCurrent(new TestSearchContext(null));
-            rangeQuery = (LegacyNumericRangeQuery<Long>) defaultMapper.mappers().smartNameFieldMapper("date_field").fieldType().rangeQuery("10:00:00", "11:00:00", true, true).rewrite(null);
+            rangeQuery = (LegacyNumericRangeQuery<Long>) defaultMapper.mappers().smartNameFieldMapper("date_field").fieldType().rangeQuery("10:00:00", "11:00:00", true, true);
         } finally {
             SearchContext.removeCurrent();
         }
@@ -280,7 +279,7 @@ public class InnerRangeDateFieldMapperTests extends ESSingleNodeTestCase {
         LegacyNumericRangeQuery<Long> rangeQuery;
         try {
             SearchContext.setCurrent(new TestSearchContext(null));
-            rangeQuery = (LegacyNumericRangeQuery<Long>) defaultMapper.mappers().smartNameFieldMapper("date_field").fieldType().rangeQuery("Jan 02 10:00:00", "Jan 02 11:00:00", true, true).rewrite(null);
+            rangeQuery = (LegacyNumericRangeQuery<Long>) defaultMapper.mappers().smartNameFieldMapper("date_field").fieldType().rangeQuery("Jan 02 10:00:00", "Jan 02 11:00:00", true, true);
         } finally {
             SearchContext.removeCurrent();
         }
