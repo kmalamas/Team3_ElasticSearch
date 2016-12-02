@@ -49,7 +49,8 @@ public class XmlXContentParser extends AbstractXContentParser {
 
     @Override
     public XContentType contentType() {
-        return XContentType.XML;
+//        return XContentType.XML;
+        return null;
     }
 
 

@@ -96,7 +96,8 @@ public class XmlXContent implements XContent {
     }
 
     public XContentType type() {
-        return XContentType.XML;
+//        return XContentType.XML;
+        return null;
     }
 
     @Override

@@ -28,14 +28,14 @@ import org.elasticsearch.common.logging.Loggers;
 import org.elasticsearch.common.xcontent.XContentGenerator;
 import org.elasticsearch.common.xcontent.XContentHelper;
 import org.elasticsearch.common.xcontent.XContentParser;
-//import org.elasticsearch.common.xcontent.XContentString;
 import org.elasticsearch.common.xcontent.XContentType;
 
 import javax.xml.namespace.QName;
 import javax.xml.stream.XMLStreamException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
+
+//import org.elasticsearch.common.xcontent.XContentString;
 
 /**
  *
@@ -73,7 +73,8 @@ public class XmlXContentGenerator implements XContentGenerator {
 
     @Override
     public XContentType contentType() {
-        return XContentType.XML;
+//        return XContentType.XML;
+        return null;
     }
 
     @Override

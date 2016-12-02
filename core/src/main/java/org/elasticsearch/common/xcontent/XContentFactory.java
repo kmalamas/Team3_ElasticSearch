@@ -154,9 +154,9 @@ public class XContentFactory {
             return yamlBuilder(outputStream);
         } else if (type == XContentType.CBOR) {
             return cborBuilder(outputStream);
-        } else if (type == XContentType.XML&& config.getisXMLActivated()==true) {
-            System.out.println(" getisXMLActivated() returns "+ config.getisXMLActivated());
-            return xmlBuilder(outputStream);
+//        } else if (type == XContentType.XML&& config.getisXMLActivated()==true) {
+//            System.out.println(" getisXMLActivated() returns "+ config.getisXMLActivated());
+//            return xmlBuilder(outputStream);
         }
         throw new IllegalArgumentException("No matching content type for " + type);
     }
@@ -174,9 +174,9 @@ public class XContentFactory {
             return YamlXContent.contentBuilder();
         } else if (type == XContentType.CBOR) {
             return CborXContent.contentBuilder();
-        }else if (type == XContentType.XML&&config.getisXMLActivated()==true) {
-            System.out.println("binary getisXMLActivated() returns "+ config.getisXMLActivated());
-            return XmlXContent.contentBuilder();
+//        }else if (type == XContentType.XML&&config.getisXMLActivated()==true) {
+//            System.out.println("binary getisXMLActivated() returns "+ config.getisXMLActivated());
+//            return XmlXContent.contentBuilder();
         }
         throw new IllegalArgumentException("No matching content type for " + type);
     }
